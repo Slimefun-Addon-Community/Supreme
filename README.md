@@ -123,7 +123,7 @@ Make a new issue, pull request, or contact me on discord @WilianSantos#7381 or @
 - **enable-generators** - Indication whether to enable the power generators
 - **limit-production-generators** - To reduce the efficiency of generators (factor 5x)
 - **enable-quarry** - Indication whether to enable the quarry machine
-- **limit-production-quarry** - To reduce quarry production (hard mode)
-- **enable-weapons** - Indication whether to enable the power weapons
-- **enable-tools** - Indication whether to enable the power tools
-- **enable-armor** - Indication whether to enable the power armor
+- **limit-production-quarry** - To reduce quarry production (hard mode 50% failure)
+- **enable-weapons** - Indication whether to enable the weapons
+- **enable-tools** - Indication whether to enable the tools
+- **enable-armor** - Indication whether to enable the armor
