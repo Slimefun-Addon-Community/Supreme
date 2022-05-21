@@ -1,5 +1,5 @@
-# Supreme Expansion
-Supreme Expansion is an addon for Slimefun which adds 100+ various new resources that will allow you to craft powerful new items, weapons, tools and armor. These can be made up from titanium, aurum, adamantium, thornium with some being magical, rare, epic, legendary or supreme! It also adds 12 new electric generators, 5 new capacitors and even more... 
+# Supreme
+Supreme is an addon for Slimefun which adds 100+ various new resources that will allow you to craft powerful new items, weapons, tools and armor. These can be made up from titanium, aurum, adamantium, thornium with some being magical, rare, epic, legendary or supreme! It also adds 12 new electric generators, 5 new capacitors and even more... 
 
 ## Requirements
 
@@ -116,3 +116,14 @@ Make a new issue, pull request, or contact me on discord @WilianSantos#7381 or @
 - **Attribute Bomb** - A super Bomb attribute with special effects
 - **Attribute Fortune** - A super Fortune attribute with special effects
 - **Attribute Impetus** - A super Impetus attribute with special effects
+
+
+## Customize Configuration (config.yml)
+
+- **enable-generators** - Indication whether to enable the power generators
+- **limit-production-generators** - To reduce the efficiency of generators (factor 5x)
+- **enable-quarry** - Indication whether to enable the quarry machine
+- **limit-production-quarry** - To reduce quarry production (hard mode)
+- **enable-weapons** - Indication whether to enable the power weapons
+- **enable-tools** - Indication whether to enable the power tools
+- **enable-armor** - Indication whether to enable the power armor
