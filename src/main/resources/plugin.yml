@@ -1,0 +1,8 @@
+name: Supreme
+author: RelativoBR, Especttra e WilianSantosBR
+description: Slimefun custom contains supreme items, weapons and machines
+main: com.github.relativobr.supreme.Supreme
+website: https://github.com/RelativoBR/Supreme
+depend: [Slimefun]
+version: ${project.version}
+api-version: 1.17
