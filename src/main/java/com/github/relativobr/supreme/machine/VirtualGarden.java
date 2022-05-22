@@ -1,5 +1,6 @@
 package com.github.relativobr.supreme.machine;
 
+import com.github.relativobr.supreme.machine.recipe.VirtualGardenMachineRecipe;
 import com.github.relativobr.supreme.resource.magical.SupremeCetrus;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;

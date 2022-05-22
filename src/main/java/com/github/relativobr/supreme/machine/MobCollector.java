@@ -1,6 +1,7 @@
 package com.github.relativobr.supreme.machine;
 
 import com.github.relativobr.supreme.Supreme;
+import com.github.relativobr.supreme.machine.recipe.MobCollectorMachineRecipe;
 import com.github.relativobr.supreme.resource.magical.SupremeCetrus;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -338,7 +339,7 @@ public class MobCollector extends AContainer implements RecipeDisplayItem {
   @Nonnull
   @Override
   public String getMachineIdentifier() {
-    return "MAGIC_COLLECTOR";
+    return "MOB_COLLECTOR";
   }
 
   @Override

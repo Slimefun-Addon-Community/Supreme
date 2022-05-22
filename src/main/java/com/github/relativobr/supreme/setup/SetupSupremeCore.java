@@ -3,7 +3,7 @@ package com.github.relativobr.supreme.setup;
 import com.github.relativobr.supreme.util.ItemGroups;
 import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.resource.magical.SupremeCore;
-import com.github.relativobr.supreme.machine.MultiBlockCoreFabricator;
+import com.github.relativobr.supreme.machine.multiblock.MultiBlockCoreFabricator;
 import com.github.relativobr.util.ItemNotPlaceable;
 
 public class SetupSupremeCore {

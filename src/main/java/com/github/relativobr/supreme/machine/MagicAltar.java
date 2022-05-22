@@ -18,7 +18,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 
-public class MagicAltarMachine extends MediumContainerMachine {
+public class MagicAltar extends MediumContainerMachine {
 
   public static final SlimefunItemStack MAGIC_ALTAR_MACHINE = new SlimefunItemStack(
       "SUPREME_MAGIC_ALTAR_I",
@@ -43,7 +43,7 @@ public class MagicAltarMachine extends MediumContainerMachine {
 
   public static final ItemStack[] RECIPE_MAGIC_ALTAR_MACHINE_II = new ItemStack[]{
       SupremeComponents.THORNERITE, SupremeCetrus.CETRUS_AQUA, SupremeComponents.THORNERITE,
-      SupremeCetrus.CETRUS_VENTUS, MagicAltarMachine.MAGIC_ALTAR_MACHINE, SupremeCetrus.CETRUS_LUX,
+      SupremeCetrus.CETRUS_VENTUS, MagicAltar.MAGIC_ALTAR_MACHINE, SupremeCetrus.CETRUS_LUX,
       SupremeComponents.THORNERITE, SupremeCetrus.CETRUS_IGNIS, SupremeComponents.THORNERITE};
 
   public static final SlimefunItemStack MAGIC_ALTAR_MACHINE_III = new SlimefunItemStack(
@@ -56,7 +56,7 @@ public class MagicAltarMachine extends MediumContainerMachine {
 
   public static final ItemStack[] RECIPE_MAGIC_ALTAR_MACHINE_III = new ItemStack[]{
       SupremeComponents.THORNERITE, SupremeCetrus.CETRUS_LUMIUM, SupremeComponents.THORNERITE,
-      SupremeComponents.SUPREME, MagicAltarMachine.MAGIC_ALTAR_MACHINE_II, SupremeComponents.SUPREME,
+      SupremeComponents.SUPREME, MagicAltar.MAGIC_ALTAR_MACHINE_II, SupremeComponents.SUPREME,
       SupremeComponents.CRYSTALLIZER_MACHINE, SupremeCetrus.CETRUS_LUMIUM, SupremeComponents.CRYSTALLIZER_MACHINE};
   public static final SimpleRecipe RECIPE_RUNE_AIR = new SimpleRecipe(
       new SlimefunItemStack(SlimefunItems.AIR_RUNE, 4),
@@ -260,7 +260,7 @@ public class MagicAltarMachine extends MediumContainerMachine {
           new ItemStack(SlimefunItems.ELYTRA_SCALE), new ItemStack(SlimefunItems.FLASK_OF_KNOWLEDGE)
       });
 
-  public MagicAltarMachine(ItemGroup category, SlimefunItemStack item, RecipeType recipeType,
+  public MagicAltar(ItemGroup category, SlimefunItemStack item, RecipeType recipeType,
       ItemStack[] recipe) {
     super(category, item, recipeType, recipe);
   }

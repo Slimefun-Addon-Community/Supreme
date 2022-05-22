@@ -2,7 +2,7 @@ package com.github.relativobr.supreme.setup;
 
 import com.github.relativobr.supreme.util.ItemGroups;
 import com.github.relativobr.supreme.Supreme;
-import com.github.relativobr.supreme.machine.MultiBlockMagicalFabricator;
+import com.github.relativobr.supreme.machine.multiblock.MultiBlockMagicalFabricator;
 import com.github.relativobr.supreme.resource.magical.SupremeAttribute;
 import com.github.relativobr.supreme.resource.magical.SupremeCetrus;
 import com.github.relativobr.util.ItemNotPlaceable;

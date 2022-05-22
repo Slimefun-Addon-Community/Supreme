@@ -1,12 +1,19 @@
 package com.github.relativobr.supreme.setup;
 
 import com.github.relativobr.supreme.Supreme;
-import com.github.relativobr.supreme.machine.MultiBlockMagicalFabricator;
+import com.github.relativobr.supreme.machine.multiblock.MultiBlockMagicalFabricator;
+import com.github.relativobr.supreme.machine.mobtech.TechMutation;
+import com.github.relativobr.supreme.resource.mobtech.AdvancedCard;
+import com.github.relativobr.supreme.resource.mobtech.SimpleCard;
 import com.github.relativobr.supreme.resource.SupremeComponents;
+import com.github.relativobr.supreme.resource.mobtech.BeeTech;
+import com.github.relativobr.supreme.resource.mobtech.IronGolemTech;
 import com.github.relativobr.supreme.util.ItemGroups;
 import com.github.relativobr.util.ItemNotPlaceable;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.inventory.ItemStack;
 
@@ -122,6 +129,45 @@ public class SetupSupremeComponents {
 
     registerMagicalFabricator(
         sup, SupremeComponents.BLEND_MACHINE, SupremeComponents.RECIPE_BLEND_MACHINE);
+
+    if(Supreme.checkEnableMobtech()){
+      registerEnhancedCraft(sup, SupremeComponents.EMPTY_MOBTECH,
+          SupremeComponents.RECIPE_EMPTY_MOBTECH);
+
+      registerEnhancedCraft(sup, SupremeComponents.CENTER_CARD_SIMPLE,
+          SupremeComponents.RECIPE_CENTER_CARD_SIMPLE);
+      registerEnhancedCraft(sup, SupremeComponents.CENTER_CARD_ADVANCED,
+          SupremeComponents.RECIPE_CENTER_CARD_ADVANCED);
+      registerEnhancedCraft(sup, SupremeComponents.CENTER_CARD_ULTIMATE,
+          SupremeComponents.RECIPE_CENTER_CARD_ULTIMATE);
+
+      registerGrindStone(sup, SupremeComponents.DUST_NETHERITE,
+          SupremeComponents.RECIPE_DUST_NETHERITE);
+      registerGrindStone(sup, SupremeComponents.DUST_GLOW_INK, SupremeComponents.RECIPE_DUST_GLOW_INK);
+      registerGrindStone(sup, SupremeComponents.DUST_AMETHYST, SupremeComponents.RECIPE_DUST_AMETHYST);
+
+      addRecipeTechMutation(SupremeComponents.DUST_NETHERITE, SlimefunItems.FIRE_RUNE,
+          SupremeComponents.GENE_BERSERK);
+      addRecipeTechMutation(SupremeComponents.DUST_GLOW_INK, SlimefunItems.LIGHTNING_RUNE,
+          SupremeComponents.GENE_LUCK);
+      addRecipeTechMutation(SupremeComponents.DUST_AMETHYST, SlimefunItems.RAINBOW_RUNE,
+          SupremeComponents.GENE_INTELLIGENCE);
+
+      registerTechMutation(sup, SupremeComponents.GENE_BERSERK);
+      registerTechMutation(sup, SupremeComponents.GENE_LUCK);
+      registerTechMutation(sup, SupremeComponents.GENE_INTELLIGENCE);
+      registerEnhancedCraft(sup, SupremeComponents.GENE_CORE, SupremeComponents.RECIPE_GENE_CORE);
+
+      addRecipeTechMutation(SlimefunItems.URANIUM, SlimefunItems.URANIUM, SlimefunItems.NEPTUNIUM);
+      addRecipeTechMutation(SlimefunItems.NEPTUNIUM, SlimefunItems.NEPTUNIUM, SlimefunItems.PLUTONIUM);
+      addRecipeTechMutation(SlimefunItems.PLUTONIUM, SlimefunItems.URANIUM, SlimefunItems.BOOSTED_URANIUM);
+
+      BeeTech.setup(sup);
+      IronGolemTech.setup(sup);
+
+      SimpleCard.setup(sup);
+      AdvancedCard.setup(sup);
+    }
   }
 
   @ParametersAreNonnullByDefault
@@ -155,5 +201,23 @@ public class SetupSupremeComponents {
       Supreme sup, SlimefunItemStack itemStack, ItemStack[] recipe) {
     new ItemNotPlaceable(ItemGroups.COMPONENTS_CATEGORY, itemStack, RecipeType.NULL, recipe)
         .register(sup);
+  }
+
+  @ParametersAreNonnullByDefault
+  private static void registerGrindStone(Supreme sup, SlimefunItemStack itemStack, ItemStack[] recipe) {
+    new SlimefunItem(ItemGroups.RESOURCE_CATEGORY, itemStack, RecipeType.GRIND_STONE, recipe,
+        new SlimefunItemStack(itemStack, 4)).register(sup);
+  }
+
+  @ParametersAreNonnullByDefault
+  private static void registerTechMutation(Supreme sup, SlimefunItemStack output) {
+    new ItemNotPlaceable(ItemGroups.RESOURCE_CATEGORY, output, RecipeType.NULL,
+        new ItemStack[]{TechMutation.TECH_MUTATION}).register(sup);
+  }
+
+  @ParametersAreNonnullByDefault
+  private static void addRecipeTechMutation(SlimefunItemStack itemStack1, SlimefunItemStack itemStack2,
+      SlimefunItemStack output) {
+    TechMutation.addRecipe(itemStack1, itemStack2, 100, output);
   }
 }

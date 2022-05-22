@@ -8,7 +8,7 @@ import com.github.relativobr.supreme.resource.core.SupremeCoreColor;
 import com.github.relativobr.supreme.resource.core.SupremeCoreDeath;
 import com.github.relativobr.supreme.resource.core.SupremeCoreLife;
 import com.github.relativobr.supreme.resource.core.SupremeCoreNature;
-import com.github.relativobr.supreme.machine.MultiBlockCoreFabricator;
+import com.github.relativobr.supreme.machine.multiblock.MultiBlockCoreFabricator;
 import com.github.relativobr.recipe.CustomCoreRecipe;
 import com.github.relativobr.util.ItemNotPlaceable;
 

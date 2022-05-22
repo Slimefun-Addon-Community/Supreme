@@ -16,7 +16,7 @@ import java.util.List;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-public class ForgeIngotMachine extends SimpleItemContainerMachine {
+public class ForgeIngot extends SimpleItemContainerMachine {
 
   public static final SlimefunItemStack FORGE_INGOT_MACHINE = new SlimefunItemStack(
       "SUPREME_FORGE_INGOT_I", Material.BLAST_FURNACE,
@@ -39,7 +39,7 @@ public class ForgeIngotMachine extends SimpleItemContainerMachine {
 
   public static final ItemStack[] RECIPE_FORGE_INGOT_MACHINE_II = new ItemStack[]{
       SupremeComponents.CONVEYANCE_MACHINE, SupremeCetrus.CETRUS_IGNIS, SupremeComponents.CONVEYANCE_MACHINE,
-      SupremeComponents.INDUCTOR_MACHINE, ForgeIngotMachine.FORGE_INGOT_MACHINE,
+      SupremeComponents.INDUCTOR_MACHINE, ForgeIngot.FORGE_INGOT_MACHINE,
       SupremeComponents.INDUCTOR_MACHINE,
       SupremeComponents.THORNERITE, SupremeCetrus.CETRUS_LUMIUM, SupremeComponents.THORNERITE};
 
@@ -52,7 +52,7 @@ public class ForgeIngotMachine extends SimpleItemContainerMachine {
 
   public static final ItemStack[] RECIPE_FORGE_INGOT_MACHINE_III = new ItemStack[]{
       SupremeComponents.THORNERITE, SupremeCetrus.CETRUS_LUX, SupremeComponents.THORNERITE,
-      SupremeComponents.SUPREME, ForgeIngotMachine.FORGE_INGOT_MACHINE_II, SupremeComponents.SUPREME,
+      SupremeComponents.SUPREME, ForgeIngot.FORGE_INGOT_MACHINE_II, SupremeComponents.SUPREME,
       SupremeComponents.CRYSTALLIZER_MACHINE, SupremeCetrus.CETRUS_LUMIUM, SupremeComponents.CRYSTALLIZER_MACHINE};
   public static final SimpleItemRecipe RECIPE_FORGE_INGOT_LEAD = new SimpleItemRecipe(
       new SlimefunItemStack(SlimefunItems.LEAD_DUST, 32),
@@ -124,7 +124,7 @@ public class ForgeIngotMachine extends SimpleItemContainerMachine {
   public static final SimpleItemRecipe RECIPE_FORGE_INGOT_SULFATE = new SimpleItemRecipe(
       new ItemStack(Material.NETHERRACK, 64), new SlimefunItemStack(SlimefunItems.SULFATE, 8));
 
-  public ForgeIngotMachine(ItemGroup category, SlimefunItemStack item, RecipeType recipeType,
+  public ForgeIngot(ItemGroup category, SlimefunItemStack item, RecipeType recipeType,
       ItemStack[] recipe) {
     super(category, item, recipeType, recipe);
   }

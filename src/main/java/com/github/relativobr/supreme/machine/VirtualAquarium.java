@@ -1,5 +1,6 @@
 package com.github.relativobr.supreme.machine;
 
+import com.github.relativobr.supreme.machine.recipe.VirtualAquariumMachineRecipe;
 import com.github.relativobr.supreme.resource.magical.SupremeCetrus;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.util.UtilMachine;

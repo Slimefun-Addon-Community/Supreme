@@ -8,6 +8,7 @@ options:
   enable-weapons: true
   enable-tools: true
   enable-armor: true
+  enable-mobtech: true
   custom-bc: false
 # -------------------------------
 # supreme-enchant

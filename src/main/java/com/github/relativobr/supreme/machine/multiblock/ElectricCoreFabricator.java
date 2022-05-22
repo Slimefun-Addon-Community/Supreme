@@ -1,4 +1,4 @@
-package com.github.relativobr.supreme.machine;
+package com.github.relativobr.supreme.machine.multiblock;
 
 import com.github.relativobr.machine.MediumContainerMachine;
 import com.github.relativobr.recipe.CustomCoreRecipe;
@@ -25,7 +25,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-public class ElectricCoreMachine extends MediumContainerMachine {
+public class ElectricCoreFabricator extends MediumContainerMachine {
 
   public static final SlimefunItemStack ELECTRIC_CORE_MACHINE =
       new SlimefunItemStack(
@@ -67,7 +67,7 @@ public class ElectricCoreMachine extends MediumContainerMachine {
       new ItemStack[] {
         SupremeComponents.CONVEYANCE_MACHINE, SupremeCetrus.CETRUS_LUX,
             SupremeComponents.CONVEYANCE_MACHINE,
-        SupremeComponents.INDUCTOR_MACHINE, ElectricCoreMachine.ELECTRIC_CORE_MACHINE,
+        SupremeComponents.INDUCTOR_MACHINE, ElectricCoreFabricator.ELECTRIC_CORE_MACHINE,
             SupremeComponents.INDUCTOR_MACHINE,
         SupremeComponents.BLEND_MACHINE, SupremeCetrus.CETRUS_IGNIS, SupremeComponents.BLEND_MACHINE
       };
@@ -88,14 +88,14 @@ public class ElectricCoreMachine extends MediumContainerMachine {
   public static final ItemStack[] RECIPE_ELECTRIC_CORE_MACHINE_III =
       new ItemStack[] {
         SupremeComponents.THORNERITE, SupremeCetrus.CETRUS_LUX, SupremeComponents.THORNERITE,
-        SupremeComponents.SUPREME, ElectricCoreMachine.ELECTRIC_CORE_MACHINE_II,
+        SupremeComponents.SUPREME, ElectricCoreFabricator.ELECTRIC_CORE_MACHINE_II,
             SupremeComponents.SUPREME,
         SupremeComponents.CRYSTALLIZER_MACHINE, SupremeCetrus.CETRUS_LUMIUM,
             SupremeComponents.CRYSTALLIZER_MACHINE
       };
 
   @ParametersAreNonnullByDefault
-  public ElectricCoreMachine(
+  public ElectricCoreFabricator(
       ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
     super(category, item, recipeType, recipe);
   }

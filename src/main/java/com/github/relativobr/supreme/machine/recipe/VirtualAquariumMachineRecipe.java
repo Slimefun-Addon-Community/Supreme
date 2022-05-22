@@ -1,4 +1,4 @@
-package com.github.relativobr.supreme.machine;
+package com.github.relativobr.supreme.machine.recipe;
 
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import java.util.ArrayList;

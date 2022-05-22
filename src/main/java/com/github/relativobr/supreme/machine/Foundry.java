@@ -27,7 +27,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 
-public class FoundryMachine extends MediumContainerMachine {
+public class Foundry extends MediumContainerMachine {
 
   public static final SlimefunItemStack FOUNDRY_MACHINE = new SlimefunItemStack("SUPREME_FOUNDRY_I",
       Material.GRINDSTONE, "&bFoundry",
@@ -51,7 +51,7 @@ public class FoundryMachine extends MediumContainerMachine {
 
   public static final ItemStack[] RECIPE_FOUNDRY_MACHINE_II = new ItemStack[]{
       SupremeComponents.BLEND_MACHINE, SupremeCetrus.CETRUS_AQUA, SupremeComponents.BLEND_MACHINE,
-      SupremeCetrus.CETRUS_VENTUS, FoundryMachine.FOUNDRY_MACHINE, SupremeCetrus.CETRUS_LUX,
+      SupremeCetrus.CETRUS_VENTUS, Foundry.FOUNDRY_MACHINE, SupremeCetrus.CETRUS_LUX,
       SupremeCore.CORE_OF_ALLOY, SupremeCetrus.CETRUS_IGNIS, SupremeCore.CORE_OF_ALLOY};
 
   public static final SlimefunItemStack FOUNDRY_MACHINE_III = new SlimefunItemStack(
@@ -64,7 +64,7 @@ public class FoundryMachine extends MediumContainerMachine {
 
   public static final ItemStack[] RECIPE_FOUNDRY_MACHINE_III = new ItemStack[]{
       SupremeComponents.THORNERITE, SupremeAttribute.ATTRIBUTE_FORTUNE, SupremeComponents.THORNERITE,
-      SupremeComponents.SUPREME, FoundryMachine.FOUNDRY_MACHINE_II, SupremeComponents.SUPREME,
+      SupremeComponents.SUPREME, Foundry.FOUNDRY_MACHINE_II, SupremeComponents.SUPREME,
       SupremeComponents.CRYSTALLIZER_MACHINE, SupremeCetrus.CETRUS_LUMIUM, SupremeComponents.CRYSTALLIZER_MACHINE};
   public static final SimpleRecipe RECIPE_BLISTERING_INGOT_3 = new SimpleRecipe(
       new SlimefunItemStack(SlimefunItems.BLISTERING_INGOT_3, 64),
@@ -164,7 +164,7 @@ public class FoundryMachine extends MediumContainerMachine {
           new ItemStack(SupremeCoreDeath.RESOURCE_CORE_STRING)
       });
 
-  public FoundryMachine(ItemGroup category, SlimefunItemStack item, RecipeType recipeType,
+  public Foundry(ItemGroup category, SlimefunItemStack item, RecipeType recipeType,
       ItemStack[] recipe) {
     super(category, item, recipeType, recipe);
   }

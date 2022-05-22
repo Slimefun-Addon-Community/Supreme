@@ -1,7 +1,7 @@
 package com.github.relativobr.supreme.gear;
 
 import com.github.relativobr.supreme.Supreme;
-import com.github.relativobr.supreme.machine.MultiBlockGearFabricator;
+import com.github.relativobr.supreme.machine.multiblock.MultiBlockGearFabricator;
 import com.github.relativobr.supreme.util.ItemGroups;
 import com.github.relativobr.supreme.util.ItemTier;
 import com.github.relativobr.supreme.util.ItemUtil;

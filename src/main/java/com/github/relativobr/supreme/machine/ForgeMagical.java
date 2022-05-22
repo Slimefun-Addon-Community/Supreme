@@ -16,7 +16,7 @@ import java.util.List;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-public class ForgeMagicalMachine extends SimpleItemContainerMachine {
+public class ForgeMagical extends SimpleItemContainerMachine {
 
   public static final SlimefunItemStack FORGE_MAGICAL_MACHINE = new SlimefunItemStack(
       "SUPREME_FORGE_MAGICAL_I", Material.ENCHANTING_TABLE,
@@ -39,7 +39,7 @@ public class ForgeMagicalMachine extends SimpleItemContainerMachine {
 
   public static final ItemStack[] RECIPE_FORGE_MAGICAL_MACHINE_II = new ItemStack[]{
       SupremeComponents.CONVEYANCE_MACHINE, SupremeCetrus.CETRUS_LUX, SupremeComponents.CONVEYANCE_MACHINE,
-      SupremeComponents.INDUCTOR_MACHINE, ForgeMagicalMachine.FORGE_MAGICAL_MACHINE,
+      SupremeComponents.INDUCTOR_MACHINE, ForgeMagical.FORGE_MAGICAL_MACHINE,
       SupremeComponents.INDUCTOR_MACHINE,
       SupremeComponents.THORNERITE, SupremeCetrus.CETRUS_LUMIUM, SupremeComponents.THORNERITE};
 
@@ -52,7 +52,7 @@ public class ForgeMagicalMachine extends SimpleItemContainerMachine {
 
   public static final ItemStack[] RECIPE_FORGE_MAGICAL_MACHINE_III = new ItemStack[]{
       SupremeComponents.THORNERITE, SupremeCetrus.CETRUS_LUX, SupremeComponents.THORNERITE,
-      SupremeComponents.SUPREME, ForgeMagicalMachine.FORGE_MAGICAL_MACHINE_II, SupremeComponents.SUPREME,
+      SupremeComponents.SUPREME, ForgeMagical.FORGE_MAGICAL_MACHINE_II, SupremeComponents.SUPREME,
       SupremeComponents.CRYSTALLIZER_MACHINE, SupremeCetrus.CETRUS_LUMIUM, SupremeComponents.CRYSTALLIZER_MACHINE};
   public static final SimpleItemRecipe RECIPE_FORGE_MAGICAL_GRAVEL = new SimpleItemRecipe(
       new ItemStack(Material.COBBLESTONE, 32), new ItemStack(Material.GRAVEL, 32));
@@ -145,7 +145,7 @@ public class ForgeMagicalMachine extends SimpleItemContainerMachine {
       new SlimefunItemStack(SlimefunItems.REINFORCED_ALLOY_INGOT, 32),
       new SlimefunItemStack(SlimefunItems.REINFORCED_PLATE, 4));
 
-  public ForgeMagicalMachine(ItemGroup category, SlimefunItemStack item, RecipeType recipeType,
+  public ForgeMagical(ItemGroup category, SlimefunItemStack item, RecipeType recipeType,
       ItemStack[] recipe) {
     super(category, item, recipeType, recipe);
   }

@@ -1,7 +1,7 @@
 package com.github.relativobr.supreme.gear;
 
 import com.github.relativobr.supreme.Supreme;
-import com.github.relativobr.supreme.machine.MultiBlockGearFabricator;
+import com.github.relativobr.supreme.machine.multiblock.MultiBlockGearFabricator;
 import com.github.relativobr.supreme.util.ItemGroups;
 import com.github.relativobr.supreme.util.ItemTier;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -163,5 +163,9 @@ public class AbstractTools extends SlimefunItem implements Soulbound, NotPlaceab
             ToolsThornium.THORNIUM_SHOVEL_SUPREME,
             ItemTier.getSupreme(ToolsThornium.THORNIUM_SHOVEL_LEGENDARY));
     shovelSupreme.register(sup);
+
+    if(Supreme.checkEnableMobtech()){
+      MobCollectorTools.setup(sup);
+    }
   }
 }

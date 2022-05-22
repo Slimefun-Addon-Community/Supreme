@@ -1,4 +1,4 @@
-package com.github.relativobr.supreme.machine;
+package com.github.relativobr.supreme.machine.multiblock;
 
 import com.github.relativobr.supreme.util.ItemGroups;
 import com.github.relativobr.supreme.Supreme;

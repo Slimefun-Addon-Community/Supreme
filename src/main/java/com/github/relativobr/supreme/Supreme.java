@@ -1,8 +1,11 @@
 package com.github.relativobr.supreme;
 
+import com.github.relativobr.generic.MobTechGeneric;
+import com.github.relativobr.generic.MobTechGeneric.MobTechType;
 import com.github.relativobr.supreme.setup.MainSetup;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactivity;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.GitHubBuildsUpdater;
 import java.util.ArrayList;
@@ -23,6 +26,7 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
   private static Supreme instance;
   private static Boolean limitProductionQuarry = null;
   private static Boolean limitProductionGenerators = null;
+  private static Boolean enableMobtech = null;
   private static Boolean customBc = null;
 
   public static Supreme inst() {
@@ -41,6 +45,13 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
       limitProductionGenerators = inst().getConfig().getBoolean("options.limit-production-generators");
     }
     return limitProductionGenerators;
+  }
+
+  public static boolean checkEnableMobtech() {
+    if(enableMobtech == null) {
+      enableMobtech = inst().getConfig().getBoolean("options.enable-mobtech");
+    }
+    return enableMobtech;
   }
 
   public static boolean checkCustomBc() {
@@ -222,6 +233,145 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
 
   public static int getValueGeneratorsWithLimit(int value) {
     return checkLimitProductionGenerators() ? (value / 5) : value;
+  }
+
+  public static String buildNameTier(String newName, Integer tier) {
+    switch (tier) {
+      case 1:
+        return ChatColor.GRAY + newName + " I";
+      case 2:
+        return ChatColor.DARK_GREEN + newName + " II";
+      case 3:
+        return ChatColor.GREEN + newName + " III";
+      case 4:
+        return ChatColor.DARK_BLUE + newName + " IV";
+      case 5:
+        return ChatColor.BLUE + newName + " V";
+      case 6:
+        return ChatColor.GOLD + newName + " VI";
+      case 7:
+        return ChatColor.YELLOW + newName + " VII";
+      case 8:
+        return ChatColor.DARK_RED + newName + " VIII";
+      case 9:
+        return ChatColor.DARK_PURPLE + newName + " IX";
+      default:
+        return ChatColor.DARK_GRAY + newName;
+    }
+  }
+
+  public static String buildIdTier(String newName, Integer tier) {
+    switch (tier) {
+      case 1:
+        return newName + "_I";
+      case 2:
+        return newName + "_II";
+      case 3:
+        return newName + "_III";
+      case 4:
+        return newName + "_IV";
+      case 5:
+        return newName + "_V";
+      case 6:
+        return newName + "_VI";
+      case 7:
+        return newName + "_VII";
+      case 8:
+        return newName + "_VIII";
+      case 9:
+        return newName + "_IX";
+      default:
+        return newName + "_0";
+    }
+  }
+
+  public static String buildLoreRadioactivityType(MobTechType mobTechType) {
+    Radioactivity radioactivity;
+    switch (mobTechType) {
+      case MUTATION_INTELLIGENCE:
+      case MUTATION_BERSERK:
+      case MUTATION_LUCK:
+        radioactivity = Radioactivity.VERY_DEADLY;
+        break;
+      case ROBOTIC_CLONING:
+      case ROBOTIC_ACCELERATION:
+      case ROBOTIC_EFFICIENCY:
+        radioactivity = Radioactivity.HIGH;
+        break;
+      case SIMPLE:
+      default:
+        radioactivity = Radioactivity.LOW;
+    }
+    return radioactivity.getLore();
+  }
+
+  public static String buildLoreType(MobTechType mobTechType, Integer tier) {
+    switch (mobTechType) {
+      case MUTATION_BERSERK:
+      case ROBOTIC_ACCELERATION:
+        return ChatColor.YELLOW + String.valueOf(tier + 1) + "x "
+            + ChatColor.GRAY + "increase speed and increase energy";
+      case MUTATION_LUCK:
+      case ROBOTIC_CLONING:
+        return buildLoreTypeLuckAndCloning(tier);
+      case MUTATION_INTELLIGENCE:
+      case ROBOTIC_EFFICIENCY:
+        return ChatColor.YELLOW + String.valueOf(tier + 1) + "x "
+            + ChatColor.GRAY + " decrease energy";
+      case SIMPLE:
+      default:
+        return ChatColor.GRAY + "Aumenta Velocidade de processamento";
+    }
+  }
+
+  private static String buildLoreTypeLuckAndCloning(Integer tier){
+
+    if (tier >= 1) {
+      return ChatColor.YELLOW + "2x "
+          + ChatColor.GRAY + "Stack clone";
+    } else if (tier >= 4) {
+      return ChatColor.YELLOW + "3x "
+          + ChatColor.GRAY + "Stack clone";
+    } else if(tier >= 6){
+      return ChatColor.YELLOW + "4x "
+          + ChatColor.GRAY + "Stack clone";
+    } else if(tier >= 8){
+      return ChatColor.YELLOW + "5x "
+          + ChatColor.GRAY + "Stack clone";
+    }
+    return "";
+  }
+
+  private static String buildLoreTypeAmount(MobTechType mobTechType, Integer tier){
+    switch (mobTechType) {
+      case MUTATION_BERSERK:
+      case ROBOTIC_ACCELERATION:
+        return ChatColor.YELLOW + "(" + String.valueOf(tier + 1) + "x amount stack / 32) speed "
+            + ChatColor.GRAY + " value process";
+      case MUTATION_INTELLIGENCE:
+      case ROBOTIC_EFFICIENCY:
+        return ChatColor.YELLOW + "(" + String.valueOf(tier + 1) + " amount stack) J/s "
+            + ChatColor.GRAY + " value process";
+      case MUTATION_LUCK:
+      case ROBOTIC_CLONING:
+        return ChatColor.YELLOW + "(" + String.valueOf(tier + 1) + "x amount stack)"
+            + ChatColor.GRAY + " value process (limit 64x)";
+      case SIMPLE:
+      default:
+        return ChatColor.YELLOW + "1x amount stack"
+            + ChatColor.GRAY + " value process";
+    }
+  }
+
+  public static SlimefunItemStack buildItemFromMobTechDTO(MobTechGeneric MobTechGeneric, Integer tier) {
+    return new SlimefunItemStack(buildIdTier(MobTechGeneric.getId(), tier),
+        MobTechGeneric.getTexture(),
+        buildNameTier(MobTechGeneric.getName(), tier),
+        "",
+        buildLoreRadioactivityType(MobTechGeneric.getMobTechType()),
+        buildLoreType(MobTechGeneric.getMobTechType(), tier),
+        buildLoreTypeAmount(MobTechGeneric.getMobTechType(), tier),
+        "", "&3Supreme Component");
   }
 
   public final void log(Level level, String messages) {

@@ -1,4 +1,4 @@
-package com.github.relativobr.supreme.machine;
+package com.github.relativobr.supreme.machine.recipe;
 
 import com.github.relativobr.supreme.Supreme;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;

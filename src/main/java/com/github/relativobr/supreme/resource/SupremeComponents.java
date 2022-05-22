@@ -688,4 +688,78 @@ public class SupremeComponents {
     SupremeCoreAlloy.RESOURCE_CORE_NETHERITE,
     SupremeComponents.CONVEYANCE_MACHINE
   };
+
+  public static final SlimefunItemStack CENTER_CARD_SIMPLE = new SlimefunItemStack("SUPREME_CENTER_CARD_SIMPLE",
+      Material.MUSIC_DISC_11, "&aBasic Component for Card", "", "&fComponent for Machine to produce items", "",
+      "&3Supreme Component");
+  public static final ItemStack[] RECIPE_CENTER_CARD_SIMPLE = new ItemStack[]{
+      SlimefunItems.BASIC_CIRCUIT_BOARD, SlimefunItems.ELECTRO_MAGNET, SlimefunItems.BASIC_CIRCUIT_BOARD,
+      SlimefunItems.ADVANCED_CIRCUIT_BOARD, SupremeComponents.SYNTHETIC_AMETHYST, SlimefunItems.ADVANCED_CIRCUIT_BOARD,
+      SlimefunItems.BASIC_CIRCUIT_BOARD, SlimefunItems.ELECTRO_MAGNET, SlimefunItems.BASIC_CIRCUIT_BOARD};
+
+  public static final SlimefunItemStack CENTER_CARD_ADVANCED = new SlimefunItemStack(
+      "SUPREME_CENTER_CARD_ADVANCED", Material.MUSIC_DISC_PIGSTEP,
+      "&aAdvanced Component for Card", "", "&fComponent for Machine to produce items", "",
+      "&3Supreme Component");
+  public static final ItemStack[] RECIPE_CENTER_CARD_ADVANCED = new ItemStack[]{
+      SlimefunItems.ADVANCED_CIRCUIT_BOARD, SupremeComponents.CENTER_CARD_SIMPLE, SlimefunItems.ADVANCED_CIRCUIT_BOARD,
+      SupremeComponents.CENTER_CARD_SIMPLE, SupremeComponents.SYNTHETIC_RUBY, SupremeComponents.CENTER_CARD_SIMPLE,
+      SlimefunItems.HEATING_COIL, SupremeComponents.CENTER_CARD_SIMPLE, SlimefunItems.HEATING_COIL};
+
+  public static final SlimefunItemStack CENTER_CARD_ULTIMATE = new SlimefunItemStack(
+      "SUPREME_CENTER_CARD_ULTIMATE", Material.MUSIC_DISC_PIGSTEP,
+      "&aUltimate Component for Card", "", "&fComponent for Machine to produce items", "",
+      "&3Supreme Component");
+  public static final ItemStack[] RECIPE_CENTER_CARD_ULTIMATE = new ItemStack[]{
+      SupremeComponents.SYNTHETIC_RUBY, SupremeComponents.CENTER_CARD_ADVANCED, SupremeComponents.SYNTHETIC_RUBY,
+      SupremeComponents.CENTER_CARD_ADVANCED, SupremeComponents.PETRIFIER_MACHINE, SupremeComponents.CENTER_CARD_ADVANCED,
+      SlimefunItems.REINFORCED_PLATE, SupremeComponents.CENTER_CARD_ADVANCED, SlimefunItems.REINFORCED_PLATE};
+
+  public static final SlimefunItemStack DUST_NETHERITE = new SlimefunItemStack("SUPREME_DUST_NETHERITE",
+      Material.MELON_SEEDS, "&aNetherite Dust", "",
+      "&3Supreme Component");
+  public static final ItemStack[] RECIPE_DUST_NETHERITE = new ItemStack[]{
+      new ItemStack(Material.NETHERITE_INGOT), null, null, null, null, null, null, null, null};
+
+  public static final SlimefunItemStack DUST_GLOW_INK = new SlimefunItemStack("SUPREME_DUST_GLOW_INK",
+      Material.PUMPKIN_SEEDS, "&aGlow Ink Dust", "",
+      "&3Supreme Component");
+  public static final ItemStack[] RECIPE_DUST_GLOW_INK = new ItemStack[]{new ItemStack(Material.GLOW_INK_SAC),
+      null, null, null, null, null, null, null, null};
+
+  public static final SlimefunItemStack DUST_AMETHYST = new SlimefunItemStack("SUPREME_DUST_AMETHYST",
+      Material.BEETROOT_SEEDS, "&aAmethyst Dust", "",
+      "&3Supreme Component");
+  public static final ItemStack[] RECIPE_DUST_AMETHYST = new ItemStack[]{
+      new ItemStack(Material.AMETHYST_SHARD), null, null, null, null, null, null, null, null};
+
+  public static final SlimefunItemStack EMPTY_MOBTECH = new SlimefunItemStack("SUPREME_EMPTY_MOBTECH",
+      Material.FIRE_CHARGE, "&aEmpty MobTech", "",
+      "&3Supreme Component");
+  public static final ItemStack[] RECIPE_EMPTY_MOBTECH = new ItemStack[]{
+      SlimefunItems.MAGIC_LUMP_2, SlimefunItems.STONE_CHUNK, SlimefunItems.ENDER_LUMP_2,
+      null, null, null,
+      null, null, null};
+
+  public static final SlimefunItemStack GENE_BERSERK = new SlimefunItemStack("SUPREME_GENE_BERSERK",
+      Material.FIRE_CORAL, "&aBerserk Gene", "",
+      "&3Supreme Component");
+
+  public static final SlimefunItemStack GENE_INTELLIGENCE = new SlimefunItemStack("SUPREME_GENE_INTELLIGENCE",
+      Material.TUBE_CORAL, "&fIntelligence Gene", "",
+      "&3Supreme Component");
+
+  public static final SlimefunItemStack GENE_LUCK = new SlimefunItemStack("SUPREME_GENE_LUCK",
+      Material.HORN_CORAL, "&aLuck Gene", "",
+      "&3Supreme Component");
+
+  public static final SlimefunItemStack GENE_CORE = new SlimefunItemStack("SUPREME_GENE_CORE", Material.CONDUIT,
+      "&aGene Core", "",
+      "&3Supreme Component");
+  public static final ItemStack[] RECIPE_GENE_CORE = new ItemStack[]{SupremeComponents.GENE_BERSERK,
+      SupremeComponents.SYNTHETIC_RUBY, SupremeComponents.GENE_BERSERK,
+      SupremeComponents.GENE_INTELLIGENCE, SupremeComponents.SYNTHETIC_RUBY,
+      SupremeComponents.GENE_INTELLIGENCE, SupremeComponents.GENE_LUCK,
+      SupremeComponents.SYNTHETIC_RUBY, SupremeComponents.GENE_LUCK};
+
 }
