@@ -21,17 +21,33 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Supreme extends JavaPlugin implements SlimefunAddon {
 
   private static Supreme instance;
+  private static Boolean limitProductionQuarry = null;
+  private static Boolean limitProductionGenerators = null;
+  private static Boolean customBc = null;
 
   public static Supreme inst() {
     return instance;
   }
 
-  public static boolean limitProductionquarry() {
-    return inst().getConfig().getBoolean("options.limit-production-generators");
+  public static boolean checkLimitProductionquarry() {
+    if(limitProductionQuarry == null) {
+      limitProductionQuarry = inst().getConfig().getBoolean("options.limit-production-quarry");
+    }
+    return limitProductionQuarry;
   }
 
-  private static boolean limitProductionGenerators() {
-    return inst().getConfig().getBoolean("options.limit-production-generators");
+  private static boolean checkLimitProductionGenerators() {
+    if(limitProductionGenerators == null) {
+      limitProductionGenerators = inst().getConfig().getBoolean("options.limit-production-generators");
+    }
+    return limitProductionGenerators;
+  }
+
+  public static boolean checkCustomBc() {
+    if(customBc == null) {
+      customBc = inst().getConfig().getBoolean("options.custom-bc");
+    }
+    return customBc;
   }
 
   @Override
@@ -205,7 +221,7 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
   }
 
   public static int getValueGeneratorsWithLimit(int value) {
-    return limitProductionGenerators() ? (value / 5) : value;
+    return checkLimitProductionGenerators() ? (value / 5) : value;
   }
 
   public final void log(Level level, String messages) {

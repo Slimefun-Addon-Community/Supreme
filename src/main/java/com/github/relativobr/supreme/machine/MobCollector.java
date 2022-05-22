@@ -1,5 +1,6 @@
 package com.github.relativobr.supreme.machine;
 
+import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.resource.magical.SupremeCetrus;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -191,33 +192,40 @@ public class MobCollector extends AContainer implements RecipeDisplayItem {
         new ItemStack(Material.COAL, this.getSpeed()), (n) -> n instanceof WitherSkeleton));
     this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.SHEARS),
         new SlimefunItemStack(SlimefunItems.COMPRESSED_CARBON, this.getSpeed()), (n) -> n instanceof Wither));
-    this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.SHEARS),
-        new SlimefunItemStack(SlimefunItems.BASIC_CIRCUIT_BOARD, this.getSpeed()), (n) -> n instanceof IronGolem));
+    if(!Supreme.checkCustomBc()){
+      this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.SHEARS),
+          new SlimefunItemStack(SlimefunItems.BASIC_CIRCUIT_BOARD, this.getSpeed()), (n) -> n instanceof IronGolem));
+    }
     this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.SHEARS),
         new ItemStack(Material.ROTTEN_FLESH, this.getSpeed()), (n) -> n instanceof Zombie));
     this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
         new ItemStack(Material.BONE, this.getSpeed()), (n) -> n instanceof Skeleton));
     this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
         new ItemStack(Material.GUNPOWDER, this.getSpeed()), (n) -> n instanceof Creeper));
-    this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
-        new ItemStack(Material.SLIME_BALL, this.getSpeed()), (n) -> n instanceof Slime));
+    if(!Supreme.checkCustomBc()) {
+      this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
+          new ItemStack(Material.SLIME_BALL, this.getSpeed()), (n) -> n instanceof Slime));
+    }
     this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
         new ItemStack(Material.STRING, this.getSpeed()), (n) -> n instanceof Spider));
-    this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
-        new ItemStack(Material.WITHER_SKELETON_SKULL, this.getSpeed()),
-        (n) -> n instanceof WitherSkeleton));
+    if(!Supreme.checkCustomBc()) {
+      this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
+          new ItemStack(Material.WITHER_SKELETON_SKULL, this.getSpeed()), (n) -> n instanceof WitherSkeleton));
+    }
     this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
         new ItemStack(Material.ENDER_PEARL, this.getSpeed()), (n) -> n instanceof Enderman));
     this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
         new ItemStack(Material.BLAZE_ROD, this.getSpeed()), (n) -> n instanceof Blaze));
     this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
         new ItemStack(Material.MAGMA_CREAM, this.getSpeed()), (n) -> n instanceof MagmaCube));
-    this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
-        new ItemStack(Material.NETHER_STAR, this.getSpeed()), (n) -> n instanceof Wither));
-    this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
-        new ItemStack(Material.GHAST_TEAR, this.getSpeed()), (n) -> n instanceof Ghast));
-    this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
-        new ItemStack(Material.TOTEM_OF_UNDYING, this.getSpeed()), (n) -> n instanceof Ravager));
+    if(!Supreme.checkCustomBc()) {
+      this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
+          new ItemStack(Material.NETHER_STAR, this.getSpeed()), (n) -> n instanceof Wither));
+      this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
+          new ItemStack(Material.GHAST_TEAR, this.getSpeed()), (n) -> n instanceof Ghast));
+      this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
+          new ItemStack(Material.TOTEM_OF_UNDYING, this.getSpeed()), (n) -> n instanceof Ravager));
+    }
     this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
         new ItemStack(Material.BEEF, this.getSpeed()), (n) -> n instanceof Cow));
     this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
@@ -232,10 +240,12 @@ public class MobCollector extends AContainer implements RecipeDisplayItem {
         new ItemStack(Material.IRON_INGOT, this.getSpeed()), (n) -> n instanceof IronGolem));
     this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
         new ItemStack(Material.NAUTILUS_SHELL, this.getSpeed()), (n) -> n instanceof Drowned));
-    this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
-        new ItemStack(Material.PRISMARINE_SHARD, this.getSpeed()), (n) -> n instanceof Guardian));
-    this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
-        new ItemStack(Material.PRISMARINE_CRYSTALS, this.getSpeed()), (n) -> n instanceof ElderGuardian));
+    if(!Supreme.checkCustomBc()) {
+      this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
+          new ItemStack(Material.PRISMARINE_SHARD, this.getSpeed()), (n) -> n instanceof Guardian));
+      this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
+          new ItemStack(Material.PRISMARINE_CRYSTALS, this.getSpeed()), (n) -> n instanceof ElderGuardian));
+    }
     this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
         new ItemStack(Material.GLASS_BOTTLE, this.getSpeed()), (n) -> n instanceof Witch));
   }
