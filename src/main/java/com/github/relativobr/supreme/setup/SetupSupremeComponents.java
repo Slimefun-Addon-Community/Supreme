@@ -96,6 +96,8 @@ public class SetupSupremeComponents {
 
     registerMagicalFabricator(sup, SupremeComponents.BLEND_MACHINE, SupremeComponents.RECIPE_BLEND_MACHINE);
 
+    SetupSupremeCore.setup(sup);
+
     SetupMagical.setup(sup);
 
     if (Supreme.checkEnableMobtech()) {
@@ -116,7 +118,6 @@ public class SetupSupremeComponents {
       registerTechMutation(sup, SupremeComponents.GENE_BERSERK);
       registerTechMutation(sup, SupremeComponents.GENE_LUCK);
       registerTechMutation(sup, SupremeComponents.GENE_INTELLIGENCE);
-      registerEnhancedCraft(sup, SupremeComponents.GENE_CORE, SupremeComponents.RECIPE_GENE_CORE);
 
       addRecipeTechMutation(SlimefunItems.URANIUM, SlimefunItems.URANIUM, SlimefunItems.NEPTUNIUM);
       addRecipeTechMutation(SlimefunItems.NEPTUNIUM, SlimefunItems.NEPTUNIUM, SlimefunItems.PLUTONIUM);

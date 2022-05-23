@@ -753,13 +753,4 @@ public class SupremeComponents {
       Material.HORN_CORAL, "&aLuck Gene", "",
       "&3Supreme Component");
 
-  public static final SlimefunItemStack GENE_CORE = new SlimefunItemStack("SUPREME_GENE_CORE", Material.CONDUIT,
-      "&aGene Core", "",
-      "&3Supreme Component");
-  public static final ItemStack[] RECIPE_GENE_CORE = new ItemStack[]{SupremeComponents.GENE_BERSERK,
-      SupremeComponents.SYNTHETIC_RUBY, SupremeComponents.GENE_BERSERK,
-      SupremeComponents.GENE_INTELLIGENCE, SupremeComponents.SYNTHETIC_RUBY,
-      SupremeComponents.GENE_INTELLIGENCE, SupremeComponents.GENE_LUCK,
-      SupremeComponents.SYNTHETIC_RUBY, SupremeComponents.GENE_LUCK};
-
 }

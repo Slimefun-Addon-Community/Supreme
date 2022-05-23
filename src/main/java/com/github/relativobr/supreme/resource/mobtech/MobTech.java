@@ -120,9 +120,12 @@ public class MobTech extends SlimefunItem implements Radioactive, NotPlaceable {
       simpleInput = Supreme.buildItemFromMobTechDTO(IronGolemTech.SIMPLE_GOLEM, 0);
     }
 
-    TechMutation.addRecipe(simpleInput, getGeneMutation(item.getMobTechType()),
-        (MobTechType.MUTATION_BERSERK == item.getMobTechType()) ? 20 : 10,
-        Supreme.buildItemFromMobTechDTO(item, 1));
+    final SlimefunItemStack geneMutation = getGeneMutation(item.getMobTechType());
+    if(geneMutation != null){
+      TechMutation.addRecipe(simpleInput, geneMutation,
+          (MobTechType.MUTATION_BERSERK == item.getMobTechType()) ? 20 : 10,
+          Supreme.buildItemFromMobTechDTO(item, 1));
+    }
     for (int i = 2; i <= 9; i++) {
       final SlimefunItemStack inputTier = Supreme.buildItemFromMobTechDTO(item, (i - 1));
       final SlimefunItemStack itemStack = Supreme.buildItemFromMobTechDTO(item, i);
@@ -146,7 +149,7 @@ public class MobTech extends SlimefunItem implements Radioactive, NotPlaceable {
     } else if (MobTechType.MUTATION_LUCK == mobTechType) {
       return SupremeComponents.GENE_LUCK;
     }
-    return SupremeComponents.GENE_CORE;
+    return null;
   }
 
   private Integer mobTechTier;

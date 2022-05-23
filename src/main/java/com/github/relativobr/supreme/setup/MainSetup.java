@@ -11,7 +11,6 @@ public class MainSetup {
 
     SetupBasicMachine.setup(sup);
     SetupResourceCore.setup(sup);
-    SetupSupremeCore.setup(sup);
     SetupSupremeComponents.setup(sup);
     SetupElectricMachine.setup(sup);
 

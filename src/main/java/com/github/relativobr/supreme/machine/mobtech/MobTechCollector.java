@@ -1,11 +1,12 @@
 package com.github.relativobr.supreme.machine.mobtech;
 
+import com.github.relativobr.supreme.Supreme;
+import com.github.relativobr.supreme.gear.MobCollectorTools;
 import com.github.relativobr.supreme.machine.recipe.MobTechCollectorMachineRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
-import com.github.relativobr.supreme.Supreme;
+import com.github.relativobr.supreme.resource.magical.SupremeCetrus;
 import com.github.relativobr.supreme.resource.mobtech.BeeTech;
 import com.github.relativobr.supreme.resource.mobtech.IronGolemTech;
-import com.github.relativobr.supreme.gear.MobCollectorTools;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -43,26 +44,46 @@ import org.springframework.scheduling.annotation.Async;
 @Async
 public class MobTechCollector extends AContainer implements RecipeDisplayItem {
 
+  public static final SlimefunItemStack MOB_TECH_COLLECTOR_MACHINE_I = new SlimefunItemStack(
+      "MOB_TECH_COLLECTOR_MACHINE", Material.NETHER_GOLD_ORE, "&bMobTech Collector I", "",
+      "&fThis machine allows you to collect ", "&fMobTech head nearby mobs. (3 block)", "",
+      LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE), LoreBuilder.speed(1),
+      LoreBuilder.powerBuffer(1000), LoreBuilder.powerPerSecond(20), "", "&3Supreme Machine");
 
-  public static final SlimefunItemStack MOB_TECH_COLLECTOR_MACHINE = new SlimefunItemStack(
-      "MOB_TECH_COLLECTOR_MACHINE", Material.SCAFFOLDING,
-      "&bMobTech Collector Machine", "", "&fThis machine allows you to collect ",
-      "&fMobTech head nearby mobs. (4 block)",
-      "", LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE), LoreBuilder.speed(1),
-      LoreBuilder.powerBuffer(1000), LoreBuilder.powerPerSecond(20),
-      "", "&3Supreme Machine");
-
-  public static final ItemStack[] RECIPE_MOB_TECH_COLLECTOR_MACHINE = new ItemStack[]{
+  public static final ItemStack[] RECIPE_MOB_TECH_COLLECTOR_MACHINE_I = new ItemStack[]{
       SupremeComponents.RUSTLESS_MACHINE, MobCollectorTools.MOB_COLLECTOR_I, SupremeComponents.RUSTLESS_MACHINE,
       SupremeComponents.INDUCTIVE_MACHINE, MobCollectorTools.MOB_COLLECTOR_I, SupremeComponents.INDUCTIVE_MACHINE,
       SupremeComponents.AURUM_PLATE, SlimefunItems.PROGRAMMABLE_ANDROID_3_BUTCHER, SupremeComponents.AURUM_PLATE};
+
+  public static final SlimefunItemStack MOB_TECH_COLLECTOR_MACHINE_II = new SlimefunItemStack(
+      "SUPREME_MOB_TECH_COLLECTOR_MACHINE_II", Material.NETHER_GOLD_ORE, "&bMobTech Collector II", "",
+      "&fThis machine allows you to collect ", "&fMobTech head nearby mobs. (6 block)", "",
+      LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE), LoreBuilder.speed(1),
+      LoreBuilder.powerBuffer(1000), LoreBuilder.powerPerSecond(20), "", "&3Supreme Machine");
+
+  public static final ItemStack[] RECIPE_MOB_TECH_COLLECTOR_MACHINE_II = new ItemStack[]{
+      SupremeComponents.CONVEYANCE_MACHINE, SupremeCetrus.CETRUS_LUMIUM, SupremeComponents.CONVEYANCE_MACHINE,
+      SupremeComponents.INDUCTOR_MACHINE, MobTechCollector.MOB_TECH_COLLECTOR_MACHINE_I,
+      SupremeComponents.INDUCTOR_MACHINE, SupremeComponents.THORNERITE, SupremeCetrus.CETRUS_IGNIS,
+      SupremeComponents.THORNERITE};
+
+  public static final SlimefunItemStack MOB_TECH_COLLECTOR_MACHINE_III = new SlimefunItemStack(
+      "SUPREME_MOB_TECH_COLLECTOR_MACHINE_III", Material.NETHER_GOLD_ORE, "&bMobTech Collector III", "",
+      "&fThis machine allows you to collect ", "&fMobTech head nearby mobs. (9 block)", "",
+      LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE), LoreBuilder.speed(1),
+      LoreBuilder.powerBuffer(1000), LoreBuilder.powerPerSecond(20), "", "&3Supreme Machine");
+
+  public static final ItemStack[] RECIPE_MOB_TECH_COLLECTOR_MACHINE_III = new ItemStack[]{SupremeComponents.THORNERITE,
+      SupremeCetrus.CETRUS_LUX, SupremeComponents.THORNERITE, SupremeComponents.SUPREME,
+      MobTechCollector.MOB_TECH_COLLECTOR_MACHINE_II, SupremeComponents.SUPREME, SupremeComponents.CRYSTALLIZER_MACHINE,
+      SupremeCetrus.CETRUS_LUMIUM, SupremeComponents.CRYSTALLIZER_MACHINE};
+
 
   private final Set<MobTechCollectorMachineRecipe> MobTechCollectorMachineRecipes = new HashSet();
   private int mobRange = 4;
 
   @ParametersAreNonnullByDefault
-  public MobTechCollector(ItemGroup category, SlimefunItemStack item, RecipeType recipeType,
-      ItemStack[] recipe) {
+  public MobTechCollector(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
     super(category, item, recipeType, recipe);
   }
 
@@ -120,9 +141,8 @@ public class MobTechCollector extends AContainer implements RecipeDisplayItem {
         MobTechCollectorMachineRecipe produce = (MobTechCollectorMachineRecipe) iterator.next();
         ItemStack itemInSlot = inv.getItemInSlot(slot);
         final ItemStack itemInInput = produce.getInput()[0];
-        if (itemInSlot != null && itemInInput != null
-            && SlimefunUtils.isItemSimilar(itemInSlot, SupremeComponents.EMPTY_MOBTECH, false, false)
-            && InvUtils.fits(inv.toInventory(), produce.getOutput()[0],
+        if (itemInSlot != null && itemInInput != null && SlimefunUtils.isItemSimilar(itemInSlot,
+            SupremeComponents.EMPTY_MOBTECH, false, false) && InvUtils.fits(inv.toInventory(), produce.getOutput()[0],
             this.getOutputSlots())) {
           Block invBlock = inv.getBlock();
           produce.getClass();
@@ -141,7 +161,7 @@ public class MobTechCollector extends AContainer implements RecipeDisplayItem {
   private boolean isAnimalNearby(Block b, Predicate<LivingEntity> predicate) {
     return !b.getWorld().getNearbyEntities(b.getLocation(), mobRange, mobRange, mobRange, (n) -> {
       final boolean validAnimal = this.isValidAnimal(n, predicate);
-      if(validAnimal){
+      if (validAnimal) {
         n.remove();
       }
       return validAnimal;
