@@ -11,42 +11,42 @@ public class SetupSupremeCore {
   public static void setup(Supreme sup) {
 
     new ItemNotPlaceable(
-            ItemGroups.MAGICAL_CATEGORY,
+            ItemGroups.COMPONENTS_CATEGORY,
             SupremeCore.CORE_OF_BLOCK,
             MultiBlockCoreFabricator.getMachine(),
             SupremeCore.RECIPE_CORE_OF_BLOCK)
         .register(sup);
 
     new ItemNotPlaceable(
-            ItemGroups.MAGICAL_CATEGORY,
+            ItemGroups.COMPONENTS_CATEGORY,
             SupremeCore.CORE_OF_DEATH,
             MultiBlockCoreFabricator.getMachine(),
             SupremeCore.RECIPE_CORE_OF_DEATH)
         .register(sup);
 
     new ItemNotPlaceable(
-            ItemGroups.MAGICAL_CATEGORY,
+            ItemGroups.COMPONENTS_CATEGORY,
             SupremeCore.CORE_OF_LIFE,
             MultiBlockCoreFabricator.getMachine(),
             SupremeCore.RECIPE_CORE_OF_LIFE)
         .register(sup);
 
     new ItemNotPlaceable(
-            ItemGroups.MAGICAL_CATEGORY,
+            ItemGroups.COMPONENTS_CATEGORY,
             SupremeCore.CORE_OF_COLOR,
             MultiBlockCoreFabricator.getMachine(),
             SupremeCore.RECIPE_CORE_OF_COLOR)
         .register(sup);
 
     new ItemNotPlaceable(
-            ItemGroups.MAGICAL_CATEGORY,
+            ItemGroups.COMPONENTS_CATEGORY,
             SupremeCore.CORE_OF_NATURE,
             MultiBlockCoreFabricator.getMachine(),
             SupremeCore.RECIPE_CORE_OF_NATURE)
         .register(sup);
 
     new ItemNotPlaceable(
-            ItemGroups.MAGICAL_CATEGORY,
+            ItemGroups.COMPONENTS_CATEGORY,
             SupremeCore.CORE_OF_ALLOY,
             MultiBlockCoreFabricator.getMachine(),
             SupremeCore.RECIPE_CORE_OF_ALLOY)

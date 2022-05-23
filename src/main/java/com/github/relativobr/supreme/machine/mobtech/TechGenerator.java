@@ -102,7 +102,7 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
 
   public static void preSetup(Supreme plugin, SlimefunItemStack item, ItemStack input,
       ItemStack output) {
-    new ItemNotPlaceable(ItemGroups.CARDS_RESOURCE_CATEGORY,
+    new ItemNotPlaceable(ItemGroups.CARDS_CATEGORY,
         item, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
         new ItemStack(input), new ItemStack(input), new ItemStack(input),
         new ItemStack(input), SupremeComponents.CENTER_CARD_SIMPLE, new ItemStack(input),
@@ -113,7 +113,7 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
 
   public static void preSetup(Supreme plugin, SlimefunItemStack item, ItemStack input1,
       ItemStack input2, ItemStack output) {
-    new ItemNotPlaceable(ItemGroups.CARDS_RESOURCE_CATEGORY,
+    new ItemNotPlaceable(ItemGroups.CARDS_CATEGORY,
         item, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
         new ItemStack(input1), new ItemStack(input2), new ItemStack(input1),
         new ItemStack(input2), SupremeComponents.CENTER_CARD_SIMPLE, new ItemStack(input2),
@@ -129,7 +129,7 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
 
   public static void preSetup(Supreme plugin, int tierCard, SlimefunItemStack item,
       ItemStack input, ItemStack output) {
-    new ItemNotPlaceable(ItemGroups.CARDS_RESOURCE_CATEGORY,
+    new ItemNotPlaceable(ItemGroups.CARDS_CATEGORY,
         item, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
         new ItemStack(input), new ItemStack(input), new ItemStack(input),
         new ItemStack(input), getCardTier(tierCard),
@@ -141,7 +141,7 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
 
   public static void preSetup(Supreme plugin, int tierCard, SlimefunItemStack item,
       ItemStack input1,  ItemStack input2, ItemStack output) {
-    new ItemNotPlaceable(ItemGroups.CARDS_RESOURCE_CATEGORY,
+    new ItemNotPlaceable(ItemGroups.CARDS_CATEGORY,
         item, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
         new ItemStack(input1), new ItemStack(input2), new ItemStack(input1),
         new ItemStack(input2), getCardTier(tierCard),new ItemStack(input2),

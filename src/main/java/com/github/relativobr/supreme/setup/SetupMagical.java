@@ -12,63 +12,63 @@ public class SetupMagical {
   public static void setup(Supreme sup) {
 
     new ItemNotPlaceable(
-            ItemGroups.MAGICAL_CATEGORY,
+            ItemGroups.COMPONENTS_CATEGORY,
             SupremeCetrus.CETRUS_LUMIUM,
             MultiBlockMagicalFabricator.getMachine(),
             SupremeCetrus.RECIPE_CETRUS_LUMIUM)
         .register(sup);
 
     new ItemNotPlaceable(
-            ItemGroups.MAGICAL_CATEGORY,
+            ItemGroups.COMPONENTS_CATEGORY,
             SupremeCetrus.CETRUS_LUX,
             MultiBlockMagicalFabricator.getMachine(),
             SupremeCetrus.RECIPE_CETRUS_LUX)
         .register(sup);
 
     new ItemNotPlaceable(
-            ItemGroups.MAGICAL_CATEGORY,
+            ItemGroups.COMPONENTS_CATEGORY,
             SupremeCetrus.CETRUS_VENTUS,
             MultiBlockMagicalFabricator.getMachine(),
             SupremeCetrus.RECIPE_CETRUS_VENTUS)
         .register(sup);
 
     new ItemNotPlaceable(
-            ItemGroups.MAGICAL_CATEGORY,
+            ItemGroups.COMPONENTS_CATEGORY,
             SupremeCetrus.CETRUS_AQUA,
             MultiBlockMagicalFabricator.getMachine(),
             SupremeCetrus.RECIPE_CETRUS_AQUA)
         .register(sup);
 
     new ItemNotPlaceable(
-            ItemGroups.MAGICAL_CATEGORY,
+            ItemGroups.COMPONENTS_CATEGORY,
             SupremeCetrus.CETRUS_IGNIS,
             MultiBlockMagicalFabricator.getMachine(),
             SupremeCetrus.RECIPE_CETRUS_IGNIS)
         .register(sup);
 
     new ItemNotPlaceable(
-            ItemGroups.MAGICAL_CATEGORY,
+            ItemGroups.COMPONENTS_CATEGORY,
             SupremeAttribute.getMagic(),
             MultiBlockMagicalFabricator.getMachine(),
             SupremeAttribute.RECIPE_ATTRIBUTE_MAGIC)
         .register(sup);
 
     new ItemNotPlaceable(
-            ItemGroups.MAGICAL_CATEGORY,
+            ItemGroups.COMPONENTS_CATEGORY,
             SupremeAttribute.getBomb(),
             MultiBlockMagicalFabricator.getMachine(),
             SupremeAttribute.RECIPE_ATTRIBUTE_BOMB)
         .register(sup);
 
     new ItemNotPlaceable(
-            ItemGroups.MAGICAL_CATEGORY,
+            ItemGroups.COMPONENTS_CATEGORY,
             SupremeAttribute.getFortune(),
             MultiBlockMagicalFabricator.getMachine(),
             SupremeAttribute.RECIPE_ATTRIBUTE_FORTUNE)
         .register(sup);
 
     new ItemNotPlaceable(
-            ItemGroups.MAGICAL_CATEGORY,
+            ItemGroups.COMPONENTS_CATEGORY,
             SupremeAttribute.getImpetus(),
             MultiBlockMagicalFabricator.getMachine(),
             SupremeAttribute.RECIPE_ATTRIBUTE_IMPETUS)

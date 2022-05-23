@@ -28,7 +28,7 @@ public class MobTech extends SlimefunItem implements Radioactive, NotPlaceable {
 
   public static void preSetup(Supreme plugin, MobTechGeneric item) {
     if (MobTechType.SIMPLE == item.getMobTechType()) {
-      new MobTech(ItemGroups.RESOURCE_CATEGORY, Supreme.buildItemFromMobTechDTO(item, 0),
+      new MobTech(ItemGroups.COMPONENTS_CATEGORY, Supreme.buildItemFromMobTechDTO(item, 0),
           RecipeType.NULL, new ItemStack[]{MobCollectorTools.MOB_COLLECTOR_I})
           .setMobTechType(item.getMobTechType())
           .setMobTechTier(0)
