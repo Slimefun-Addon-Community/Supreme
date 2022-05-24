@@ -4,9 +4,9 @@ import com.github.relativobr.generic.MobTechMutationGeneric;
 import com.github.relativobr.machine.SimpleItemContainerMachine;
 import com.github.relativobr.recipe.InventoryRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
+import com.github.relativobr.supreme.util.ItemGroups;
 import com.github.relativobr.util.UtilEnergy;
 import com.github.relativobr.util.UtilMachine;
-import com.github.relativobr.supreme.util.ItemGroups;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
@@ -41,249 +42,244 @@ import org.springframework.scheduling.annotation.Async;
 @Async
 public class TechMutation extends SimpleItemContainerMachine implements Radioactive {
 
-    public static final SlimefunItemStack TECH_MUTATION = new SlimefunItemStack("SUPREME_TECH_MUTATION",
-            Material.SLIME_BLOCK, "&aTech &bMutation", "",
-        "&fUse generator mutation to progress to higher levels",
-        "",
-        LoreBuilder.radioactive(Radioactivity.VERY_HIGH),
-        "",
-        LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
-        UtilEnergy.energyPowerPerSecond(500),
-        "", "&3Supreme Machine");
-    public static final ItemStack[] RECIPE_TECH_MUTATION = {
-            SupremeComponents.INDUCTIVE_MACHINE, SupremeComponents.SYNTHETIC_RUBY, SupremeComponents.INDUCTIVE_MACHINE,
-        SlimefunItems.REINFORCED_PLATE, SlimefunItems.BOOSTED_URANIUM, SlimefunItems.REINFORCED_PLATE,
-            SupremeComponents.RUSTLESS_MACHINE, SupremeComponents.SYNTHETIC_RUBY, SupremeComponents.RUSTLESS_MACHINE
-    };
+  public static final SlimefunItemStack TECH_MUTATION = new SlimefunItemStack("SUPREME_TECH_MUTATION",
+      Material.SLIME_BLOCK, "&aTech &bMutation", "", "&fUse generator mutation to progress to higher levels", "",
+      LoreBuilder.radioactive(Radioactivity.VERY_HIGH), "",
+      LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE), UtilEnergy.energyPowerPerSecond(500), "",
+      "&3Supreme Machine");
+  public static final ItemStack[] RECIPE_TECH_MUTATION = {SupremeComponents.INDUCTIVE_MACHINE,
+      SupremeComponents.SYNTHETIC_RUBY, SupremeComponents.INDUCTIVE_MACHINE, SlimefunItems.REINFORCED_PLATE,
+      SlimefunItems.BOOSTED_URANIUM, SlimefunItems.REINFORCED_PLATE, SupremeComponents.RUSTLESS_MACHINE,
+      SupremeComponents.SYNTHETIC_RUBY, SupremeComponents.RUSTLESS_MACHINE};
 
-    public TechMutation(SlimefunItemStack item, ItemStack[] recipe) {
-        super(ItemGroups.MACHINES_CATEGORY, item, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
+  public TechMutation(SlimefunItemStack item, ItemStack[] recipe) {
+    super(ItemGroups.MACHINES_CATEGORY, item, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
+  }
+
+  public static final List<MobTechMutationGeneric> recipes = new ArrayList<>();
+  private Map<Block, MobTechMutationGeneric> processing = new HashMap<Block, MobTechMutationGeneric>();
+  private Map<Block, Integer> progressTime = new HashMap<Block, Integer>();
+  private int speed = 1;
+
+  @ParametersAreNonnullByDefault
+  public static void addRecipe(SlimefunItemStack recipe1, SlimefunItemStack recipe2, int chance,
+      SlimefunItemStack item) {
+    recipes.add(new MobTechMutationGeneric(recipe1, recipe2, chance, item));
+  }
+
+  @ParametersAreNonnullByDefault
+  public static void addRecipe(SlimefunItemStack itemStack1, SlimefunItemStack itemStack2, SlimefunItemStack output) {
+    TechMutation.addRecipe(itemStack1, itemStack2, 100, output);
+  }
+
+  @Override
+  public int[] getInputSlots() {
+    return InventoryRecipe.TECH_MUTATION_INPUT_SLOTS;
+  }
+
+  @Override
+  public int[] getOutputSlots() {
+    return InventoryRecipe.TECH_MUTATION_OUTPUT_SLOTS;
+  }
+
+  @Override
+  protected void constructMenu(BlockMenuPreset preset) {
+
+    for (int i : InventoryRecipe.TECH_MUTATION_BORDER) {
+      preset.addItem(i, new CustomItemStack(Material.GRAY_STAINED_GLASS_PANE, " ", new String[0]),
+          ChestMenuUtils.getEmptyClickHandler());
     }
 
-    public static final List<MobTechMutationGeneric> recipes = new ArrayList<>();
-    private Map<Block, MobTechMutationGeneric> processing = new HashMap<Block, MobTechMutationGeneric>();
-    private Map<Block, Integer> progressTime = new HashMap<Block, Integer>();
-    private int speed = 1;
-
-    public static void addRecipe(SlimefunItemStack recipe1, SlimefunItemStack recipe2, int chance, SlimefunItemStack item) {
-        recipes.add(new MobTechMutationGeneric(recipe1, recipe2, chance, item));
+    for (int i : InventoryRecipe.TECH_MUTATION_BORDER_IN) {
+      preset.addItem(i, new CustomItemStack(Material.BLUE_STAINED_GLASS_PANE, " ", new String[0]),
+          ChestMenuUtils.getEmptyClickHandler());
     }
 
-    @Override
-    public int[] getInputSlots() {
-        return InventoryRecipe.TECH_MUTATION_INPUT_SLOTS;
+    for (int i : InventoryRecipe.TECH_MUTATION_BORDER_OUT) {
+      preset.addItem(i, new CustomItemStack(Material.ORANGE_STAINED_GLASS_PANE, " ", new String[0]),
+          ChestMenuUtils.getEmptyClickHandler());
     }
 
-    @Override
-    public int[] getOutputSlots() {
-        return InventoryRecipe.TECH_MUTATION_OUTPUT_SLOTS;
+    for (int i : InventoryRecipe.TECH_MUTATION_PROGRESS_BAR_SLOT) {
+      preset.addItem(i, new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, " ", new String[0]),
+          ChestMenuUtils.getEmptyClickHandler());
     }
 
-    @Override
-    protected void constructMenu(BlockMenuPreset preset) {
-
-        for (int i : InventoryRecipe.TECH_MUTATION_BORDER) {
-            preset.addItem(i, new CustomItemStack(Material.GRAY_STAINED_GLASS_PANE,
-                " ", new String[0]), ChestMenuUtils.getEmptyClickHandler());
+    for (int i : InventoryRecipe.TECH_MUTATION_OUTPUT_SLOTS) {
+      preset.addMenuClickHandler(i, new ChestMenu.AdvancedMenuClickHandler() {
+        @Override
+        public boolean onClick(Player p, int slot, ItemStack cursor, ClickAction action) {
+          return false;
         }
 
-        for (int i : InventoryRecipe.TECH_MUTATION_BORDER_IN) {
-            preset.addItem(i, new CustomItemStack(Material.BLUE_STAINED_GLASS_PANE,
-                " ", new String[0]), ChestMenuUtils.getEmptyClickHandler());
+        @Override
+        public boolean onClick(InventoryClickEvent e, Player p, int slot, ItemStack cursor, ClickAction action) {
+          if (cursor == null) {
+            return true;
+          }
+          return cursor.getType() == Material.AIR;
         }
-
-        for (int i : InventoryRecipe.TECH_MUTATION_BORDER_OUT) {
-            preset.addItem(i, new CustomItemStack(Material.ORANGE_STAINED_GLASS_PANE,
-                " ", new String[0]), ChestMenuUtils.getEmptyClickHandler());
-        }
-
-        for (int i : InventoryRecipe.TECH_MUTATION_PROGRESS_BAR_SLOT) {
-            preset.addItem(i, new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE,
-                " ", new String[0]), ChestMenuUtils.getEmptyClickHandler());
-        }
-
-        for (int i : InventoryRecipe.TECH_MUTATION_OUTPUT_SLOTS) {
-            preset.addMenuClickHandler(i, new ChestMenu.AdvancedMenuClickHandler() {
-                @Override
-                public boolean onClick(Player p, int slot, ItemStack cursor, ClickAction action) {
-                    return false;
-                }
-
-                @Override
-                public boolean onClick(InventoryClickEvent e, Player p, int slot, ItemStack cursor,
-                    ClickAction action) {
-                    if (cursor == null) {
-                        return true;
-                    }
-                    return cursor.getType() == Material.AIR;
-                }
-            });
-        }
-
+      });
     }
 
-    @Override
-    public void preRegister() {
-        this.addItemHandler(new BlockTicker() {
-            @Override
-            public void tick(Block b, SlimefunItem sf, Config data) {
-                TechMutation.this.tick(b);
-            }
+  }
 
-            public boolean isSynchronized() {
-                return true;
-            }
-        });
-    }
+  @Override
+  public void preRegister() {
+    this.addItemHandler(new BlockTicker() {
+      @Override
+      public void tick(Block b, SlimefunItem sf, Config data) {
+        TechMutation.this.tick(b);
+      }
 
-    public void tick(Block b) {
+      public boolean isSynchronized() {
+        return true;
+      }
+    });
+  }
 
-        BlockMenu inv = BlockStorage.getInventory(b);
+  public void tick(Block b) {
 
-        // verifica se não está processando nada
-        final MobTechMutationGeneric itemNaReceita = validRecipeItem(inv);
-        final MobTechMutationGeneric itemProduzindo = processing.get(b);
-        if (itemProduzindo == null) {
+    BlockMenu inv = BlockStorage.getInventory(b);
 
-            if (itemNaReceita != null) {
+    // verifica se não está processando nada
+    final MobTechMutationGeneric itemNaReceita = validRecipeItem(inv);
+    final MobTechMutationGeneric itemProduzindo = processing.get(b);
+    if (itemProduzindo == null) {
 
-                // consome os 1 mutante tier anterior
-                inv.consumeItem(getInputSlots()[0], 1);
-                inv.consumeItem(getInputSlots()[1], 1);
+      if (itemNaReceita != null) {
 
-                //INICIO PRODUÇÃO
-                invalidProgressBar(inv, itemNaReceita.getOutput().getType(), " ");
+        // consome os 1 mutante tier anterior
+        inv.consumeItem(getInputSlots()[0], 1);
+        inv.consumeItem(getInputSlots()[1], 1);
 
-                // indica no block o processamento
-                processing.put(b, itemNaReceita);
-                progressTime.put(b, (getTimeProcess() * 2));
+        //INICIO PRODUÇÃO
+        invalidProgressBar(inv, itemNaReceita.getOutput().getType(), " ");
 
-            } else {
+        // indica no block o processamento
+        processing.put(b, itemNaReceita);
+        progressTime.put(b, (getTimeProcess() * 2));
 
-                invalidProgressBar(inv, "&cTechMutation de receita não identificados");
+      } else {
 
-            }
+        invalidProgressBar(inv, "&cTechMutation de receita não identificados");
 
-            // caso já tenha algo em processamento
+      }
+
+      // caso já tenha algo em processamento
+    } else {
+
+      // verifica se deve finalizar
+      if (this.getProgressTime(b) <= 0) {
+
+        //CRIAÇÃO DO ITEM
+        if (UtilMachine.getRandomInt() <= itemProduzindo.getChance()) {
+          inv.pushItem(itemProduzindo.getOutput().clone(), this.getOutputSlots());
+          invalidProgressBar(inv, Material.BLACK_STAINED_GLASS_PANE, " Success! ");
         } else {
-
-            // verifica se deve finalizar
-            if (this.getProgressTime(b) <= 0) {
-
-                //CRIAÇÃO DO ITEM
-                if(UtilMachine.getRandomInt() <= itemProduzindo.getChance()){
-                    inv.pushItem(itemProduzindo.getOutput().clone(), this.getOutputSlots());
-                    invalidProgressBar(inv, Material.BLACK_STAINED_GLASS_PANE, " Success! ");
-                } else {
-                    invalidProgressBar(inv, Material.BLACK_STAINED_GLASS_PANE, " Fail! ");
-                }
-
-                //TÉRMINO PRODUÇÃO
-                processing.put(b, null);
-                progressTime.put(b, 0);
-
-                // realiza consulmo de energia e ticks
-            } else {
-
-                this.processTicks(b, inv, itemProduzindo.getOutput());
-
-            }
-
+          invalidProgressBar(inv, Material.BLACK_STAINED_GLASS_PANE, " Fail! ");
         }
+
+        //TÉRMINO PRODUÇÃO
+        processing.put(b, null);
+        progressTime.put(b, 0);
+
+        // realiza consulmo de energia e ticks
+      } else {
+
+        this.processTicks(b, inv, itemProduzindo.getOutput());
+
+      }
 
     }
 
-    private static void invalidProgressBar(BlockMenu menu, String txt) {
+  }
+
+  private static void invalidProgressBar(BlockMenu menu, String txt) {
+    for (int i : InventoryRecipe.TECH_MUTATION_PROGRESS_BAR_SLOT) {
+      menu.replaceExistingItem(i, new CustomItemStack(Material.RED_STAINED_GLASS_PANE, txt));
+    }
+  }
+
+  private static void invalidProgressBar(BlockMenu menu, Material material, String txt) {
+    for (int i : InventoryRecipe.TECH_MUTATION_PROGRESS_BAR_SLOT) {
+      menu.replaceExistingItem(i, new CustomItemStack(material, txt));
+    }
+  }
+
+  public int getProgressTime(Block b) {
+    return progressTime.get(b) != null ? progressTime.get(b) : (getTimeProcess() * 2);
+  }
+
+  private void processTicks(Block b, BlockMenu inv, ItemStack result) {
+    int ticksTotal = getTimeProcess() * 2;
+    int ticksLeft = this.getProgressTime(b);
+    if (ticksLeft > 0) {
+      // verifica se há energia
+      if (this.takeCharge(b.getLocation())) {
+
+        int time = ticksLeft - this.getSpeed();
+        if (time < 0) {
+          time = 0;
+        }
+        progressTime.put(b, time);
+
+        //todo ajustar para progresso parcial nos 3 slots
         for (int i : InventoryRecipe.TECH_MUTATION_PROGRESS_BAR_SLOT) {
-            menu.replaceExistingItem(i, new CustomItemStack(Material.RED_STAINED_GLASS_PANE, txt));
+          ChestMenuUtils.updateProgressbar(inv, i, Math.round(ticksLeft / this.getSpeed()),
+              Math.round(ticksTotal / this.getSpeed()), result);
         }
+      } else {
+        invalidProgressBar(inv, "&cSem energia para maquina");
+      }
+    } else {
+      invalidProgressBar(inv, "&cFalha no tempo da maquina");
     }
+  }
 
-    private static void invalidProgressBar(BlockMenu menu, Material material, String txt) {
-        for (int i : InventoryRecipe.TECH_MUTATION_PROGRESS_BAR_SLOT) {
-            menu.replaceExistingItem(i, new CustomItemStack(material, txt));
-        }
+  private MobTechMutationGeneric validRecipeItem(BlockMenu inv) {
+    // percore as possíveis receitas
+    for (MobTechMutationGeneric produce : this.recipes) {
+      ItemStack input1 = produce.getInput1().clone();
+      ItemStack input2 = produce.getInput2().clone();
+      if (SlimefunUtils.isItemSimilar(inv.getItemInSlot(getInputSlots()[0]), input1, false, false)
+          && SlimefunUtils.isItemSimilar(inv.getItemInSlot(getInputSlots()[1]), input2, false, false)) {
+        return produce;
+      }
+
     }
+    return null;
+  }
 
-    public int getProgressTime(Block b) {
-        return progressTime.get(b) != null ? progressTime.get(b) : (getTimeProcess() * 2);
-    }
+  @Nonnull
+  @Override
+  public List<ItemStack> getDisplayRecipes() {
+    final CustomItemStack separator = new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, " ");
+    List<ItemStack> displayRecipes = new ArrayList();
+    this.recipes.forEach(recipe -> {
+      displayRecipes.add(recipe.getInput1());
+      displayRecipes.add(new CustomItemStack(Material.NAME_TAG, " " + recipe.getChance() + "% chance"));
+      displayRecipes.add(recipe.getInput2());
+      displayRecipes.add(recipe.getOutput());
+      displayRecipes.add(separator);
+      displayRecipes.add(separator);
+    });
+    return displayRecipes;
+  }
 
-    private void processTicks(Block b, BlockMenu inv, ItemStack result) {
-        int ticksTotal = getTimeProcess() * 2;
-        int ticksLeft = this.getProgressTime(b);
-        if (ticksLeft > 0) {
-            // verifica se há energia
-            if (this.takeCharge(b.getLocation())) {
+  public TechMutation setSpeed(int speed) {
+    this.speed = speed;
+    return this;
+  }
 
-                int time = ticksLeft - this.getSpeed();
-                if (time < 0) {
-                    time = 0;
-                }
-                progressTime.put(b, time);
+  public int getSpeed() {
+    return speed;
+  }
 
-                //todo ajustar para progresso parcial nos 3 slots
-                for (int i : InventoryRecipe.TECH_MUTATION_PROGRESS_BAR_SLOT) {
-                    ChestMenuUtils.updateProgressbar(inv, i, Math.round(ticksLeft / this.getSpeed()),
-                        Math.round(ticksTotal / this.getSpeed()), result);
-                }
-            } else {
-                invalidProgressBar(inv, "&cSem energia para maquina");
-            }
-        } else {
-            invalidProgressBar(inv, "&cFalha no tempo da maquina");
-        }
-    }
-
-    private MobTechMutationGeneric validRecipeItem(BlockMenu inv) {
-        // percore as possíveis receitas
-        for (MobTechMutationGeneric produce : this.recipes) {
-            ItemStack input1 = produce.getInput1().clone();
-            ItemStack input2 = produce.getInput2().clone();
-            if (SlimefunUtils.isItemSimilar(inv.getItemInSlot(getInputSlots()[0]),
-                input1,
-                false,
-                false) &&
-                SlimefunUtils.isItemSimilar(inv.getItemInSlot(getInputSlots()[1]),
-                    input2,
-                    false,
-                    false)) {
-                return produce;
-            }
-
-        }
-        return null;
-    }
-
-    @Nonnull
-    @Override
-    public List<ItemStack> getDisplayRecipes() {
-        final CustomItemStack separator = new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, " ");
-        List<ItemStack> displayRecipes = new ArrayList();
-        this.recipes.forEach(recipe -> {
-            displayRecipes.add(recipe.getInput1());
-            displayRecipes.add(new CustomItemStack(Material.NAME_TAG, " " + recipe.getChance() + "% chance"));
-            displayRecipes.add(recipe.getInput2());
-            displayRecipes.add(recipe.getOutput());
-            displayRecipes.add(separator);
-            displayRecipes.add(separator);
-        });
-        return displayRecipes;
-    }
-
-    public TechMutation setSpeed(int speed) {
-        this.speed = speed;
-        return this;
-    }
-
-    public int getSpeed() {
-        return speed;
-    }
-
-    @Nonnull
-    @Override
-    public Radioactivity getRadioactivity() {
-        return Radioactivity.VERY_HIGH;
-    }
+  @Nonnull
+  @Override
+  public Radioactivity getRadioactivity() {
+    return Radioactivity.VERY_HIGH;
+  }
 
 }

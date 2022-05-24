@@ -1,5 +1,7 @@
 package com.github.relativobr.supreme.setup;
 
+import static com.github.relativobr.supreme.Supreme.getSupremeOptions;
+
 import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.gear.AbstractArmor;
 import com.github.relativobr.supreme.gear.AbstractTools;
@@ -9,28 +11,27 @@ public class MainSetup {
 
   public static void setup(Supreme sup) {
 
-    SetupBasicMachine.setup(sup);
     SetupResourceCore.setup(sup);
     SetupSupremeComponents.setup(sup);
-    SetupElectricMachine.setup(sup);
+    SetupMachines.setup(sup);
 
-    if (sup.getConfig().getBoolean("options.enable-generators")) {
+    if (getSupremeOptions().isEnableGenerators()) {
       SetupGenerators.setup(sup);
     }
 
-    if (sup.getConfig().getBoolean("options.enable-weapons")) {
+    if (getSupremeOptions().isEnableWeapons()) {
       AbstractWeapons.setup(sup);
     }
 
-    if (sup.getConfig().getBoolean("options.enable-tools")) {
+    if (getSupremeOptions().isEnableTools()) {
       AbstractTools.setup(sup);
     }
 
-    if (sup.getConfig().getBoolean("options.enable-armor")) {
+    if (getSupremeOptions().isEnableArmor()) {
       AbstractArmor.setup(sup);
     }
 
-    if (sup.getConfig().getBoolean("options.enable-quarry")) {
+    if (getSupremeOptions().isEnableQuarry()) {
       SetupSupremeQuarry.setup(sup);
     }
 

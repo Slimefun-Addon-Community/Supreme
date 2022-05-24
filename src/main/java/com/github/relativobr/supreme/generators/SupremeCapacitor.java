@@ -21,95 +21,48 @@ public class SupremeCapacitor {
   public static final int THORNIUM_CAPACITY = 100000000;
   public static final int SUPREME_CAPACITY = 1600000000; // infinity
 
-  public static final SlimefunItemStack AURUM_CAPACITOR =
-      new SlimefunItemStack(
-          "SUPREME_AURUM_CAPACITOR",
-          "db2b1c052e84a4ad245a4d1ca5b10bd7f5249af0ca373f99174ce7990e597836",
-          "&9Aurum Capacitor",
-          "",
-          LoreBuilder.machine(MachineTier.ADVANCED, MachineType.CAPACITOR),
-          UtilEnergy.energyCapacity(AURUM_CAPACITY),
-          "",
-          "&3Supreme Machine");
-  public static final ItemStack[] MACHINE_TITANIUM_CAPACITOR =
-      new ItemStack[] {
-        SupremeComponents.TITANIUM_PLATE, AURUM_CAPACITOR, SupremeComponents.TITANIUM_PLATE,
-        SupremeComponents.TITANIUM_PLATE, SupremeCoreAlloy.RESOURCE_CORE_REDSTONE,
-            SupremeComponents.TITANIUM_PLATE,
-        SupremeComponents.STAINLESS_MACHINE, AURUM_CAPACITOR, SupremeComponents.STAINLESS_MACHINE
-      };
-  public static final ItemStack[] MACHINE_AURUM_CAPACITOR =
-      new ItemStack[] {
-        SupremeComponents.AURUM_PLATE, SlimefunItems.ENERGIZED_CAPACITOR,
-            SupremeComponents.AURUM_PLATE,
-        SupremeComponents.AURUM_PLATE, SupremeCoreAlloy.RESOURCE_CORE_IRON,
-            SupremeComponents.AURUM_PLATE,
-        SupremeComponents.INDUCTOR_MACHINE, SlimefunItems.ENERGIZED_CAPACITOR,
-            SupremeComponents.INDUCTOR_MACHINE
-      };
-  public static final SlimefunItemStack TITANIUM_CAPACITOR =
-      new SlimefunItemStack(
-          "SUPREME_TITANIUM_CAPACITOR",
-          "b30ad864b265ab178a03e27fc249a1e32941e007486febd0059e4e3b76c11958",
-          "&9Titanium Capacitor",
-          "",
-          LoreBuilder.machine(MachineTier.ADVANCED, MachineType.CAPACITOR),
-          UtilEnergy.energyCapacity(TITANIUM_CAPACITY),
-          "",
-          "&3Supreme Machine");
-  public static final ItemStack[] MACHINE_ADAMANTIUM_CAPACITOR =
-      new ItemStack[] {
-        SupremeComponents.ADAMANTIUM_PLATE, TITANIUM_CAPACITOR, SupremeComponents.ADAMANTIUM_PLATE,
-        SupremeComponents.ADAMANTIUM_PLATE, SupremeCoreAlloy.RESOURCE_CORE_EMERALD,
-            SupremeComponents.ADAMANTIUM_PLATE,
-        SupremeComponents.CONVEYANCE_MACHINE, TITANIUM_CAPACITOR,
-            SupremeComponents.CONVEYANCE_MACHINE
-      };
-  public static final SlimefunItemStack ADAMANTIUM_CAPACITOR =
-      new SlimefunItemStack(
-          "SUPREME_ADAMANTIUM_CAPACITOR",
-          "9ac52419b99025828c89fa825945e6948e45bb5a22e4425a59e9096e4c1ac38",
-          "&9Adamantium Capacitor",
-          "",
-          LoreBuilder.machine(MachineTier.ADVANCED, MachineType.CAPACITOR),
-          UtilEnergy.energyCapacity(ADAMANTIUM_CAPACITY),
-          "",
-          "&3Supreme Machine");
-  public static final ItemStack[] MACHINE_THORNIUM_CAPACITOR =
-      new ItemStack[] {
-        SupremeComponents.THORNIUM_ENERGIZED, ADAMANTIUM_CAPACITOR,
-            SupremeComponents.THORNIUM_ENERGIZED,
-        SupremeComponents.THORNIUM_ENERGIZED, SupremeCetrus.CETRUS_LUMIUM,
-            SupremeComponents.THORNIUM_ENERGIZED,
-        SupremeComponents.CRYSTALLIZER_MACHINE, ADAMANTIUM_CAPACITOR,
-            SupremeComponents.CRYSTALLIZER_MACHINE
-      };
-  public static final SlimefunItemStack THORNIUM_CAPACITOR =
-      new SlimefunItemStack(
-          "SUPREME_THORNIUM_CAPACITOR",
-          "9aab01a5d9512e3175bf3af2edbfd59419dc5662605c42c91730e711254efcc4",
-          "&9Thornium Capacitor",
-          "",
-          LoreBuilder.machine(MachineTier.END_GAME, MachineType.CAPACITOR),
-          UtilEnergy.energyCapacity(THORNIUM_CAPACITY),
-          "",
-          "&3Supreme Machine");
-  public static final ItemStack[] MACHINE_SUPREME_CAPACITOR =
-      new ItemStack[] {
-        SupremeComponents.SUPREME, THORNIUM_CAPACITOR, SupremeComponents.SUPREME,
-        SupremeComponents.SUPREME, SupremeCetrus.CETRUS_LUMIUM, SupremeComponents.SUPREME,
-        SupremeComponents.THORNERITE, THORNIUM_CAPACITOR, SupremeComponents.THORNERITE
-      };
-  public static final SlimefunItemStack SUPREME_CAPACITOR =
-      new SlimefunItemStack(
-          "SUPREME_SUPREME_CAPACITOR",
-          "77400ea19dbd84f75c39ad6823ac4ef786f39f48fc6f84602366ac29b837422",
-          "&9Supreme Capacitor",
-          "&c&oDo not use more than ",
-          "&c&o1 per energy network",
-          "",
-          LoreBuilder.machine(MachineTier.END_GAME, MachineType.CAPACITOR),
-          UtilEnergy.energyCapacity(null),
-          "",
-          "&3Supreme Machine");
+  public static final SlimefunItemStack AURUM_CAPACITOR = new SlimefunItemStack("SUPREME_AURUM_CAPACITOR",
+      "db2b1c052e84a4ad245a4d1ca5b10bd7f5249af0ca373f99174ce7990e597836", "&9Aurum Capacitor", "",
+      LoreBuilder.machine(MachineTier.ADVANCED, MachineType.CAPACITOR), UtilEnergy.energyCapacity(AURUM_CAPACITY), "",
+      "&3Supreme Machine");
+  public static final ItemStack[] MACHINE_AURUM_CAPACITOR = new ItemStack[]{SupremeComponents.AURUM_PLATE,
+      SlimefunItems.ENERGIZED_CAPACITOR, SupremeComponents.AURUM_PLATE, SupremeComponents.AURUM_PLATE,
+      SupremeCoreAlloy.RESOURCE_CORE_IRON, SupremeComponents.AURUM_PLATE, SupremeComponents.INDUCTOR_MACHINE,
+      SlimefunItems.ENERGIZED_CAPACITOR, SupremeComponents.INDUCTOR_MACHINE};
+
+  public static final SlimefunItemStack TITANIUM_CAPACITOR = new SlimefunItemStack("SUPREME_TITANIUM_CAPACITOR",
+      "b30ad864b265ab178a03e27fc249a1e32941e007486febd0059e4e3b76c11958", "&9Titanium Capacitor", "",
+      LoreBuilder.machine(MachineTier.ADVANCED, MachineType.CAPACITOR), UtilEnergy.energyCapacity(TITANIUM_CAPACITY),
+      "", "&3Supreme Machine");
+  public static final ItemStack[] MACHINE_TITANIUM_CAPACITOR = new ItemStack[]{SupremeComponents.TITANIUM_PLATE,
+      AURUM_CAPACITOR, SupremeComponents.TITANIUM_PLATE, SupremeComponents.TITANIUM_PLATE,
+      SupremeCoreAlloy.RESOURCE_CORE_REDSTONE, SupremeComponents.TITANIUM_PLATE, SupremeComponents.STAINLESS_MACHINE,
+      AURUM_CAPACITOR, SupremeComponents.STAINLESS_MACHINE};
+
+  public static final SlimefunItemStack ADAMANTIUM_CAPACITOR = new SlimefunItemStack("SUPREME_ADAMANTIUM_CAPACITOR",
+      "9ac52419b99025828c89fa825945e6948e45bb5a22e4425a59e9096e4c1ac38", "&9Adamantium Capacitor", "",
+      LoreBuilder.machine(MachineTier.ADVANCED, MachineType.CAPACITOR), UtilEnergy.energyCapacity(ADAMANTIUM_CAPACITY),
+      "", "&3Supreme Machine");
+  public static final ItemStack[] MACHINE_ADAMANTIUM_CAPACITOR = new ItemStack[]{SupremeComponents.ADAMANTIUM_PLATE,
+      TITANIUM_CAPACITOR, SupremeComponents.ADAMANTIUM_PLATE, SupremeComponents.ADAMANTIUM_PLATE,
+      SupremeCoreAlloy.RESOURCE_CORE_EMERALD, SupremeComponents.ADAMANTIUM_PLATE, SupremeComponents.CONVEYANCE_MACHINE,
+      TITANIUM_CAPACITOR, SupremeComponents.CONVEYANCE_MACHINE};
+
+  public static final SlimefunItemStack THORNIUM_CAPACITOR = new SlimefunItemStack("SUPREME_THORNIUM_CAPACITOR",
+      "9aab01a5d9512e3175bf3af2edbfd59419dc5662605c42c91730e711254efcc4", "&9Thornium Capacitor", "",
+      LoreBuilder.machine(MachineTier.END_GAME, MachineType.CAPACITOR), UtilEnergy.energyCapacity(THORNIUM_CAPACITY),
+      "", "&3Supreme Machine");
+  public static final ItemStack[] MACHINE_THORNIUM_CAPACITOR = new ItemStack[]{SupremeComponents.THORNIUM_ENERGIZED,
+      ADAMANTIUM_CAPACITOR, SupremeComponents.THORNIUM_ENERGIZED, SupremeComponents.THORNIUM_ENERGIZED,
+      SupremeCetrus.CETRUS_LUMIUM, SupremeComponents.THORNIUM_ENERGIZED, SupremeComponents.CRYSTALLIZER_MACHINE,
+      ADAMANTIUM_CAPACITOR, SupremeComponents.CRYSTALLIZER_MACHINE};
+
+  public static final SlimefunItemStack SUPREME_CAPACITOR = new SlimefunItemStack("SUPREME_SUPREME_CAPACITOR",
+      "77400ea19dbd84f75c39ad6823ac4ef786f39f48fc6f84602366ac29b837422", "&9Supreme Capacitor",
+      "&c&oDo not use more than ", "&c&o1 per energy network", "",
+      LoreBuilder.machine(MachineTier.END_GAME, MachineType.CAPACITOR), UtilEnergy.energyCapacity(null), "",
+      "&3Supreme Machine");
+  public static final ItemStack[] MACHINE_SUPREME_CAPACITOR = new ItemStack[]{SupremeComponents.SUPREME,
+      THORNIUM_CAPACITOR, SupremeComponents.SUPREME, SupremeComponents.SUPREME, SupremeCetrus.CETRUS_LUMIUM,
+      SupremeComponents.SUPREME, SupremeComponents.THORNERITE, THORNIUM_CAPACITOR, SupremeComponents.THORNERITE};
 }

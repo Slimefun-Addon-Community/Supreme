@@ -1,7 +1,7 @@
 package com.github.relativobr.supreme.machine.multiblock;
 
-import com.github.relativobr.supreme.util.ItemGroups;
 import com.github.relativobr.supreme.Supreme;
+import com.github.relativobr.supreme.util.ItemGroups;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -28,38 +28,20 @@ import org.bukkit.inventory.ItemStack;
 
 public class MultiBlockGearFabricator extends MultiBlockMachine implements NotPlaceable {
 
-  public static final SlimefunItemStack GEAR_FABRICATOR =
-      new SlimefunItemStack(
-          "SUPREME_MULTIBLOCK_GEAR",
-          Material.SMITHING_TABLE,
-          "&eGear Fabricator",
-          "",
-          "&7&oYou can craft weapons, armor and tools here!",
-          "",
-          "&aMultiBlock Machine");
-  public static final RecipeType MACHINE_GEAR_FABRICATOR =
-      new RecipeType(
-          new NamespacedKey(Supreme.inst(), "SUPREME_MULTIBLOCK_GEAR_KEY"),
-          GEAR_FABRICATOR);
+  public static final SlimefunItemStack GEAR_FABRICATOR = new SlimefunItemStack("SUPREME_MULTIBLOCK_GEAR",
+      Material.SMITHING_TABLE, "&eGear Fabricator", "", "&7&oYou can craft weapons, armor and tools here!", "",
+      "&aMultiBlock Machine");
+  public static final RecipeType MACHINE_GEAR_FABRICATOR = new RecipeType(
+      new NamespacedKey(Supreme.inst(), "SUPREME_MULTIBLOCK_GEAR_KEY"), GEAR_FABRICATOR);
 
   @ParametersAreNonnullByDefault
   public MultiBlockGearFabricator() {
-    super(
-        ItemGroups.MACHINES_CATEGORY,
-        GEAR_FABRICATOR,
-        new ItemStack[] {
-          new ItemStack(Material.ENCHANTING_TABLE),
-          new ItemStack(Material.DISPENSER),
-          new ItemStack(Material.SMITHING_TABLE),
-          new ItemStack(Material.BLUE_STAINED_GLASS_PANE),
-          new ItemStack(Material.ANVIL),
-          new ItemStack(Material.RED_STAINED_GLASS_PANE),
-          new ItemStack(Material.BLUE_STAINED_GLASS_PANE),
-          new ItemStack(Material.BLAST_FURNACE),
-          new ItemStack(Material.RED_STAINED_GLASS_PANE)
-        },
-        new ItemStack[0],
-        BlockFace.SELF);
+    super(ItemGroups.MACHINES_CATEGORY, GEAR_FABRICATOR,
+        new ItemStack[]{new ItemStack(Material.ENCHANTING_TABLE), new ItemStack(Material.DISPENSER),
+            new ItemStack(Material.SMITHING_TABLE), new ItemStack(Material.BLUE_STAINED_GLASS_PANE),
+            new ItemStack(Material.ANVIL), new ItemStack(Material.RED_STAINED_GLASS_PANE),
+            new ItemStack(Material.BLUE_STAINED_GLASS_PANE), new ItemStack(Material.BLAST_FURNACE),
+            new ItemStack(Material.RED_STAINED_GLASS_PANE)}, new ItemStack[0], BlockFace.SELF);
   }
 
   public static RecipeType getMachine() {
@@ -72,8 +54,8 @@ public class MultiBlockGearFabricator extends MultiBlockMachine implements NotPl
     Block dispenser = b.getRelative(BlockFace.UP);
     if (!dispenser.isEmpty()) {
 
-      BlastFurnace blastFurnace =
-          (BlastFurnace) PaperLib.getBlockState(b.getRelative(BlockFace.DOWN), false).getState();
+      BlastFurnace blastFurnace = (BlastFurnace) PaperLib.getBlockState(b.getRelative(BlockFace.DOWN), false)
+          .getState();
       FurnaceInventory furnaceInventory = blastFurnace.getInventory();
 
       Inventory inv = ((Dispenser) dispenser.getState()).getInventory();
@@ -104,21 +86,11 @@ public class MultiBlockGearFabricator extends MultiBlockMachine implements NotPl
             }
           }
 
-          Bukkit.getScheduler()
-              .runTaskLater(
-                  Supreme.inst(),
-                  () ->
-                      p.getWorld()
-                          .playSound(dispenser.getLocation(), Sound.BLOCK_LAVA_EXTINGUISH, 1F, 1F),
-                  55L);
+          Bukkit.getScheduler().runTaskLater(Supreme.inst(),
+              () -> p.getWorld().playSound(dispenser.getLocation(), Sound.BLOCK_LAVA_EXTINGUISH, 1F, 1F), 55L);
           for (int i = 1; i < 7; i++) {
-            Bukkit.getScheduler()
-                .runTaskLater(
-                    Supreme.inst(),
-                    () ->
-                        p.getWorld()
-                            .playSound(dispenser.getLocation(), Sound.BLOCK_METAL_PLACE, 7F, 1F),
-                    i * 5L);
+            Bukkit.getScheduler().runTaskLater(Supreme.inst(),
+                () -> p.getWorld().playSound(dispenser.getLocation(), Sound.BLOCK_METAL_PLACE, 7F, 1F), i * 5L);
           }
 
           if (furnaceInventory.getResult() == null) {

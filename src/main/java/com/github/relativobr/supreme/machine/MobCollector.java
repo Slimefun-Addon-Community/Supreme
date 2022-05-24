@@ -1,6 +1,7 @@
 package com.github.relativobr.supreme.machine;
 
-import com.github.relativobr.supreme.Supreme;
+import static com.github.relativobr.supreme.Supreme.getSupremeOptions;
+
 import com.github.relativobr.supreme.machine.recipe.MobCollectorMachineRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.magical.SupremeCetrus;
@@ -72,7 +73,6 @@ public class MobCollector extends AContainer implements RecipeDisplayItem {
       Material.RESPAWN_ANCHOR, "&bMob Collector", "", "&fThis machine allows you to collect ",
       "&fitems from nearby mobs. (4 block)", "", LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE),
       LoreBuilder.speed(1), LoreBuilder.powerBuffer(1000), LoreBuilder.powerPerSecond(20), "", "&3Supreme Machine");
-
   public static final ItemStack[] RECIPE_MOB_COLLECTOR_MACHINE = new ItemStack[]{SupremeComponents.RUSTLESS_MACHINE,
       new ItemStack(Material.RESPAWN_ANCHOR), SupremeComponents.RUSTLESS_MACHINE, SupremeComponents.INDUCTIVE_MACHINE,
       SupremeComponents.SYNTHETIC_RUBY, SupremeComponents.INDUCTIVE_MACHINE, SupremeComponents.ADAMANTIUM_PLATE,
@@ -83,7 +83,6 @@ public class MobCollector extends AContainer implements RecipeDisplayItem {
       "&fThis machine allows you to collect", "&f items from nearby mobs. (8 block)", "",
       LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE), LoreBuilder.speed(5),
       LoreBuilder.powerBuffer(5000), LoreBuilder.powerPerSecond(100), "", "&3Supreme Machine");
-
   public static final ItemStack[] RECIPE_MOB_COLLECTOR_MACHINE_II = new ItemStack[]{
       SupremeComponents.CONVEYANCE_MACHINE, SupremeCetrus.CETRUS_LUMIUM, SupremeComponents.CONVEYANCE_MACHINE,
       SupremeComponents.INDUCTOR_MACHINE, MobCollector.MOB_COLLECTOR_MACHINE, SupremeComponents.INDUCTOR_MACHINE,
@@ -94,7 +93,6 @@ public class MobCollector extends AContainer implements RecipeDisplayItem {
       "&fThis machine allows you to collect", "&f items from nearby mobs. (16 block)", "",
       LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE), LoreBuilder.speed(15),
       LoreBuilder.powerBuffer(15000), LoreBuilder.powerPerSecond(300), "", "&3Supreme Machine");
-
   public static final ItemStack[] RECIPE_MOB_COLLECTOR_MACHINE_III = new ItemStack[]{SupremeComponents.THORNERITE,
       SupremeCetrus.CETRUS_LUX, SupremeComponents.THORNERITE, SupremeComponents.SUPREME,
       MobCollector.MOB_COLLECTOR_MACHINE_II, SupremeComponents.SUPREME, SupremeComponents.CRYSTALLIZER_MACHINE,
@@ -188,7 +186,7 @@ public class MobCollector extends AContainer implements RecipeDisplayItem {
             (n) -> n instanceof WitherSkeleton));
     this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.SHEARS),
         new SlimefunItemStack(SlimefunItems.COMPRESSED_CARBON, this.getSpeed()), (n) -> n instanceof Wither));
-    if (!Supreme.checkCustomBc()) {
+    if (!getSupremeOptions().isCustomBc()) {
       this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.SHEARS),
           new SlimefunItemStack(SlimefunItems.BASIC_CIRCUIT_BOARD, this.getSpeed()), (n) -> n instanceof IronGolem));
     }
@@ -199,13 +197,13 @@ public class MobCollector extends AContainer implements RecipeDisplayItem {
             (n) -> n instanceof Skeleton));
     this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
         new ItemStack(Material.GUNPOWDER, this.getSpeed()), (n) -> n instanceof Creeper));
-    if (!Supreme.checkCustomBc()) {
+    if (!getSupremeOptions().isCustomBc()) {
       this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
           new ItemStack(Material.SLIME_BALL, this.getSpeed()), (n) -> n instanceof Slime));
     }
     this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
         new ItemStack(Material.STRING, this.getSpeed()), (n) -> n instanceof Spider));
-    if (!Supreme.checkCustomBc()) {
+    if (!getSupremeOptions().isCustomBc()) {
       this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
           new ItemStack(Material.WITHER_SKELETON_SKULL, this.getSpeed()), (n) -> n instanceof WitherSkeleton));
     }
@@ -215,7 +213,7 @@ public class MobCollector extends AContainer implements RecipeDisplayItem {
         new ItemStack(Material.BLAZE_ROD, this.getSpeed()), (n) -> n instanceof Blaze));
     this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
         new ItemStack(Material.MAGMA_CREAM, this.getSpeed()), (n) -> n instanceof MagmaCube));
-    if (!Supreme.checkCustomBc()) {
+    if (!getSupremeOptions().isCustomBc()) {
       this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
           new ItemStack(Material.NETHER_STAR, this.getSpeed()), (n) -> n instanceof Wither));
       this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
@@ -238,7 +236,7 @@ public class MobCollector extends AContainer implements RecipeDisplayItem {
         new ItemStack(Material.IRON_INGOT, this.getSpeed()), (n) -> n instanceof IronGolem));
     this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
         new ItemStack(Material.NAUTILUS_SHELL, this.getSpeed()), (n) -> n instanceof Drowned));
-    if (!Supreme.checkCustomBc()) {
+    if (!getSupremeOptions().isCustomBc()) {
       this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
           new ItemStack(Material.PRISMARINE_SHARD, this.getSpeed()), (n) -> n instanceof Guardian));
       this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),

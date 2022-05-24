@@ -1,5 +1,7 @@
 package com.github.relativobr.supreme.setup;
 
+import static com.github.relativobr.supreme.Supreme.getSupremeOptions;
+
 import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.machine.AbstractQuarry;
 import com.github.relativobr.supreme.machine.SupremeQuarry;
@@ -21,13 +23,13 @@ public class SetupSupremeQuarry {
                 SupremeQuarry.UNIQUENUGGETS_QUARRY,
                 SupremeQuarry.MACHINE_SUPREMENUGGETS_QUARRY)
             .setOutput(
-                Supreme.checkLimitProductionquarry()
+                getSupremeOptions().isLimitProductionQuarry()
                     ? new ItemStack[] {
                       new SlimefunItemStack(SupremeComponents.SUPREME_NUGGET, 1),
                       new SlimefunItemStack(SupremeComponents.THORNIUM_BIT, 9),
                       new ItemStack(Material.NETHERITE_INGOT, 30)
                     }
-                    : Supreme.checkCustomBc() ?
+                    : getSupremeOptions().isCustomBc() ?
                         new ItemStack[] {
                             new SlimefunItemStack(SupremeComponents.SUPREME_NUGGET, 4),
                             new ItemStack(Material.ANCIENT_DEBRIS, 4),
@@ -61,14 +63,14 @@ public class SetupSupremeQuarry {
                 SupremeQuarry.THORNIUM_QUARRY,
                 SupremeQuarry.MACHINE_THORNIUM_QUARRY)
             .setOutput(
-                Supreme.checkLimitProductionquarry()
+                getSupremeOptions().isLimitProductionQuarry()
                     ? new ItemStack[] {
                       new SlimefunItemStack(SupremeComponents.THORNIUM_BIT, 1),
-                      new ItemStack(Supreme.checkCustomBc() ? Material.ANCIENT_DEBRIS : Material.NETHERITE_INGOT, 9),
+                      new ItemStack(getSupremeOptions().isCustomBc() ? Material.ANCIENT_DEBRIS : Material.NETHERITE_INGOT, 9),
                       new ItemStack(Material.REDSTONE, 15),
                       new ItemStack(Material.LAPIS_LAZULI, 15)
                     }
-                    : Supreme.checkCustomBc() ?
+                    : getSupremeOptions().isCustomBc() ?
                         new ItemStack[] {
                             new SlimefunItemStack(SupremeComponents.THORNIUM_BIT, 5),
                             new ItemStack(Material.ANCIENT_DEBRIS, 2),
@@ -101,19 +103,19 @@ public class SetupSupremeQuarry {
                 SupremeQuarry.DIAMOND_QUARRY,
                 SupremeQuarry.MACHINE_DIAMOND_QUARRY)
             .setOutput(
-                Supreme.checkLimitProductionquarry()
+                getSupremeOptions().isLimitProductionQuarry()
                     ? new ItemStack[] {
                       new ItemStack(Material.DIAMOND, 25), new ItemStack(Material.EMERALD, 25)
                     }
                     : new ItemStack[] {
-                      new ItemStack(Material.DIAMOND, Supreme.checkCustomBc() ? 15 : 20),
-                      new ItemStack(Material.EMERALD, Supreme.checkCustomBc() ? 15 : 20),
+                      new ItemStack(Material.DIAMOND, getSupremeOptions().isCustomBc() ? 15 : 20),
+                      new ItemStack(Material.EMERALD, getSupremeOptions().isCustomBc() ? 15 : 20),
                       new ItemStack(Material.QUARTZ, 20),
                       new ItemStack(Material.OBSIDIAN, 5),
                       new ItemStack(Material.CRYING_OBSIDIAN, 5),
                       new ItemStack(Material.END_STONE, 20),
                       new ItemStack(Material.SEA_LANTERN, 5),
-                      new ItemStack(Material.BLACKSTONE, Supreme.checkCustomBc() ? 15 : 5)
+                      new ItemStack(Material.BLACKSTONE, getSupremeOptions().isCustomBc() ? 15 : 5)
                     })
             .setCapacity(1000)
             .setEnergyConsumption(10);
@@ -126,15 +128,15 @@ public class SetupSupremeQuarry {
                 SupremeQuarry.GOLD_QUARRY,
                 SupremeQuarry.MACHINE_GOLD_QUARRY)
             .setOutput(
-                Supreme.checkLimitProductionquarry()
+                getSupremeOptions().isLimitProductionQuarry()
                     ? new ItemStack[] {
                       new ItemStack(Material.GOLD_INGOT, 25), new ItemStack(Material.QUARTZ, 25)
                     }
                     : new ItemStack[] {
                       new ItemStack(Material.GOLD_INGOT, 20),
-                      new ItemStack(Material.GLOWSTONE_DUST, Supreme.checkCustomBc() ? 25 : 5),
-                      new ItemStack(Material.LAPIS_LAZULI, Supreme.checkCustomBc() ? 10 : 20),
-                      new ItemStack(Material.REDSTONE, Supreme.checkCustomBc() ? 10 : 20),
+                      new ItemStack(Material.GLOWSTONE_DUST, getSupremeOptions().isCustomBc() ? 25 : 5),
+                      new ItemStack(Material.LAPIS_LAZULI, getSupremeOptions().isCustomBc() ? 10 : 20),
+                      new ItemStack(Material.REDSTONE, getSupremeOptions().isCustomBc() ? 10 : 20),
                       new SlimefunItemStack(SlimefunItems.SULFATE, 10),
                       new SlimefunItemStack(SlimefunItems.OIL_BUCKET, 5),
                       new ItemStack(Material.CLAY, 10),
@@ -151,7 +153,7 @@ public class SetupSupremeQuarry {
                 SupremeQuarry.IRON_QUARRY,
                 SupremeQuarry.MACHINE_IRON_QUARRY)
             .setOutput(
-                Supreme.checkLimitProductionquarry()
+                getSupremeOptions().isLimitProductionQuarry()
                     ? new ItemStack[] {
                       new ItemStack(Material.IRON_INGOT, 25),
                       new ItemStack(Material.COPPER_INGOT, 25)
@@ -175,7 +177,7 @@ public class SetupSupremeQuarry {
                 SupremeQuarry.COAL_QUARRY,
                 SupremeQuarry.MACHINE_COAL_QUARRY)
             .setOutput(
-                Supreme.checkLimitProductionquarry()
+                getSupremeOptions().isLimitProductionQuarry()
                     ? new ItemStack[] {new ItemStack(Material.COAL, 50)}
                     : new ItemStack[] {
                       new ItemStack(Material.COAL, 20),
@@ -196,7 +198,7 @@ public class SetupSupremeQuarry {
                 SupremeQuarry.COBBLESTONE_QUARRY,
                 SupremeQuarry.MACHINE_COBBLESTONE_QUARRY)
             .setOutput(
-                Supreme.checkLimitProductionquarry()
+                getSupremeOptions().isLimitProductionQuarry()
                     ? new ItemStack[] {new ItemStack(Material.COBBLESTONE, 50)}
                     : new ItemStack[] {new ItemStack(Material.COBBLESTONE, 100)})
             .setCapacity(1000)

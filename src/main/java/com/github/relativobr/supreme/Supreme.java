@@ -3,10 +3,10 @@ package com.github.relativobr.supreme;
 import com.github.relativobr.generic.MobTechGeneric;
 import com.github.relativobr.generic.MobTechGeneric.MobTechType;
 import com.github.relativobr.supreme.setup.MainSetup;
+import com.github.relativobr.supreme.util.SupremeOptions;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactivity;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.GitHubBuildsUpdater;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,41 +24,28 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Supreme extends JavaPlugin implements SlimefunAddon {
 
   private static Supreme instance;
-  private static Boolean limitProductionQuarry = null;
-  private static Boolean limitProductionGenerators = null;
-  private static Boolean enableMobtech = null;
-  private static Boolean customBc = null;
+  private static SupremeOptions supremeOptions = null;
 
   public static Supreme inst() {
     return instance;
   }
 
-  public static boolean checkLimitProductionquarry() {
-    if(limitProductionQuarry == null) {
-      limitProductionQuarry = inst().getConfig().getBoolean("options.limit-production-quarry");
+  public static SupremeOptions getSupremeOptions() {
+    if (supremeOptions == null) {
+      ConfigurationSection typeSection = inst().getConfig().getConfigurationSection("options");
+      if (typeSection != null) {
+        supremeOptions = SupremeOptions.builder().autoUpdate(typeSection.getBoolean("auto-update"))
+            .customTickerDelay(typeSection.getInt("custom-ticker-delay"))
+            .enableGenerators(typeSection.getBoolean("enable-generators"))
+            .limitProductionGenerators(typeSection.getBoolean("limit-production-generators"))
+            .enableQuarry(typeSection.getBoolean("enable-quarry"))
+            .limitProductionQuarry(typeSection.getBoolean("limit-production-quarry"))
+            .enableWeapons(typeSection.getBoolean("enable-weapons")).enableTools(typeSection.getBoolean("enable-tools"))
+            .enableArmor(typeSection.getBoolean("enable-armor")).enableMobtech(typeSection.getBoolean("enable-mobtech"))
+            .customBc(typeSection.getBoolean("custom-bc")).build();
+      }
     }
-    return limitProductionQuarry;
-  }
-
-  private static boolean checkLimitProductionGenerators() {
-    if(limitProductionGenerators == null) {
-      limitProductionGenerators = inst().getConfig().getBoolean("options.limit-production-generators");
-    }
-    return limitProductionGenerators;
-  }
-
-  public static boolean checkEnableMobtech() {
-    if(enableMobtech == null) {
-      enableMobtech = inst().getConfig().getBoolean("options.enable-mobtech");
-    }
-    return enableMobtech;
-  }
-
-  public static boolean checkCustomBc() {
-    if(customBc == null) {
-      customBc = inst().getConfig().getBoolean("options.custom-bc");
-    }
-    return customBc;
+    return supremeOptions;
   }
 
   @Override
@@ -70,9 +57,13 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
     Supreme.inst().log(Level.INFO, "                 Supreme                ");
     Supreme.inst().log(Level.INFO, "########################################");
 
-    Config cfg = new Config(this);
-    if (cfg.getBoolean("options.auto-update") && getDescription().getVersion()
-        .startsWith("DEV - ")) {
+    if (getSupremeOptions() == null) {
+      log(Level.SEVERE, "Config section \"options\" missing, Check your config and report this!");
+      inst().onDisable();
+      return;
+    }
+
+    if (getSupremeOptions().isAutoUpdate() && getDescription().getVersion().startsWith("DEV - ")) {
       new GitHubBuildsUpdater(this, getFile(), "RelativoBR/Supreme/main").start();
     }
 
@@ -117,8 +108,7 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
     ConfigurationSection typeSection = this.getConfig().getConfigurationSection("supreme-enchant");
 
     if (typeSection == null) {
-      log(Level.SEVERE,
-          "Config section \"supreme-enchant\" missing, Check your config and report this!");
+      log(Level.SEVERE, "Config section \"supreme-enchant\" missing, Check your config and report this!");
       return;
     }
 
@@ -174,8 +164,7 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
           meta.addEnchant(entry.getKey(), entry.getValue(), true);
         }
       } else {
-        log(Level.SEVERE,
-            "Config section for " + itemPath + " missing, Check your config and report this!");
+        log(Level.SEVERE, "Config section for " + itemPath + " missing, Check your config and report this!");
       }
 
       // add meta
@@ -188,8 +177,7 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
     ConfigurationSection typeSection = this.getConfig().getConfigurationSection("supreme-enchant");
 
     if (typeSection == null) {
-      log(Level.SEVERE,
-          "Config section \"supreme-enchant\" missing, Check your config and report this!");
+      log(Level.SEVERE, "Config section \"supreme-enchant\" missing, Check your config and report this!");
       return;
     }
 
@@ -221,8 +209,7 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
           meta.addEnchant(entry.getKey(), entry.getValue(), true);
         }
       } else {
-        log(Level.SEVERE,
-            "Config section for " + itemPath + " missing, Check your config and report this!");
+        log(Level.SEVERE, "Config section for " + itemPath + " missing, Check your config and report this!");
       }
 
       // add meta
@@ -232,7 +219,7 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
   }
 
   public static int getValueGeneratorsWithLimit(int value) {
-    return checkLimitProductionGenerators() ? (value / 5) : value;
+    return getSupremeOptions().isLimitProductionGenerators() ? (value / 5) : value;
   }
 
   public static String buildNameTier(String newName, Integer tier) {
@@ -309,69 +296,59 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
     switch (mobTechType) {
       case MUTATION_BERSERK:
       case ROBOTIC_ACCELERATION:
-        return ChatColor.YELLOW + String.valueOf(tier + 1) + "x "
-            + ChatColor.GRAY + "increase speed and increase energy";
+        return ChatColor.YELLOW + String.valueOf(tier + 1) + "x " + ChatColor.GRAY
+            + "increase speed and increase energy";
       case MUTATION_LUCK:
       case ROBOTIC_CLONING:
         return buildLoreTypeLuckAndCloning(tier);
       case MUTATION_INTELLIGENCE:
       case ROBOTIC_EFFICIENCY:
-        return ChatColor.YELLOW + String.valueOf(tier + 1) + "x "
-            + ChatColor.GRAY + " decrease energy";
+        return ChatColor.YELLOW + String.valueOf(tier + 1) + "x " + ChatColor.GRAY + " decrease energy";
       case SIMPLE:
       default:
         return ChatColor.GRAY + "Aumenta Velocidade de processamento";
     }
   }
 
-  private static String buildLoreTypeLuckAndCloning(Integer tier){
+  private static String buildLoreTypeLuckAndCloning(Integer tier) {
 
     if (tier >= 1) {
-      return ChatColor.YELLOW + "2x "
-          + ChatColor.GRAY + "Stack clone";
+      return ChatColor.YELLOW + "2x " + ChatColor.GRAY + "Stack clone";
     } else if (tier >= 4) {
-      return ChatColor.YELLOW + "3x "
-          + ChatColor.GRAY + "Stack clone";
-    } else if(tier >= 6){
-      return ChatColor.YELLOW + "4x "
-          + ChatColor.GRAY + "Stack clone";
-    } else if(tier >= 8){
-      return ChatColor.YELLOW + "5x "
-          + ChatColor.GRAY + "Stack clone";
+      return ChatColor.YELLOW + "3x " + ChatColor.GRAY + "Stack clone";
+    } else if (tier >= 6) {
+      return ChatColor.YELLOW + "4x " + ChatColor.GRAY + "Stack clone";
+    } else if (tier >= 8) {
+      return ChatColor.YELLOW + "5x " + ChatColor.GRAY + "Stack clone";
     }
     return "";
   }
 
-  private static String buildLoreTypeAmount(MobTechType mobTechType, Integer tier){
+  private static String buildLoreTypeAmount(MobTechType mobTechType, Integer tier) {
     switch (mobTechType) {
       case MUTATION_BERSERK:
       case ROBOTIC_ACCELERATION:
-        return ChatColor.YELLOW + "(" + String.valueOf(tier + 1) + "x amount stack / 32) speed "
-            + ChatColor.GRAY + " value process";
+        return ChatColor.YELLOW + "(" + String.valueOf(tier + 1) + "x amount stack / 32) speed " + ChatColor.GRAY
+            + " value process";
       case MUTATION_INTELLIGENCE:
       case ROBOTIC_EFFICIENCY:
-        return ChatColor.YELLOW + "(" + String.valueOf(tier + 1) + " amount stack) J/s "
-            + ChatColor.GRAY + " value process";
+        return ChatColor.YELLOW + "(" + String.valueOf(tier + 1) + " amount stack) J/s " + ChatColor.GRAY
+            + " value process";
       case MUTATION_LUCK:
       case ROBOTIC_CLONING:
-        return ChatColor.YELLOW + "(" + String.valueOf(tier + 1) + "x amount stack)"
-            + ChatColor.GRAY + " value process (limit 64x)";
+        return ChatColor.YELLOW + "(" + String.valueOf(tier + 1) + "x amount stack)" + ChatColor.GRAY
+            + " value process (limit 64x)";
       case SIMPLE:
       default:
-        return ChatColor.YELLOW + "1x amount stack"
-            + ChatColor.GRAY + " value process";
+        return ChatColor.YELLOW + "1x amount stack" + ChatColor.GRAY + " value process";
     }
   }
 
   public static SlimefunItemStack buildItemFromMobTechDTO(MobTechGeneric MobTechGeneric, Integer tier) {
-    return new SlimefunItemStack(buildIdTier(MobTechGeneric.getId(), tier),
-        MobTechGeneric.getTexture(),
-        buildNameTier(MobTechGeneric.getName(), tier),
-        "",
-        buildLoreRadioactivityType(MobTechGeneric.getMobTechType()),
+    return new SlimefunItemStack(buildIdTier(MobTechGeneric.getId(), tier), MobTechGeneric.getTexture(),
+        buildNameTier(MobTechGeneric.getName(), tier), "", buildLoreRadioactivityType(MobTechGeneric.getMobTechType()),
         buildLoreType(MobTechGeneric.getMobTechType(), tier),
-        buildLoreTypeAmount(MobTechGeneric.getMobTechType(), tier),
-        "", "&3Supreme Component");
+        buildLoreTypeAmount(MobTechGeneric.getMobTechType(), tier), "", "&3Supreme Component");
   }
 
   public final void log(Level level, String messages) {

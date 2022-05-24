@@ -1,55 +1,24 @@
 package com.github.relativobr.supreme.setup;
 
-import com.github.relativobr.supreme.util.ItemGroups;
+import static com.github.relativobr.supreme.util.RegisterItem.registerMagicalFabricator;
+
 import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.resource.magical.SupremeCore;
-import com.github.relativobr.supreme.machine.multiblock.MultiBlockCoreFabricator;
-import com.github.relativobr.util.ItemNotPlaceable;
 
 public class SetupSupremeCore {
 
   public static void setup(Supreme sup) {
 
-    new ItemNotPlaceable(
-            ItemGroups.COMPONENTS_CATEGORY,
-            SupremeCore.CORE_OF_BLOCK,
-            MultiBlockCoreFabricator.getMachine(),
-            SupremeCore.RECIPE_CORE_OF_BLOCK)
-        .register(sup);
+    registerMagicalFabricator(SupremeCore.CORE_OF_BLOCK, SupremeCore.RECIPE_CORE_OF_BLOCK);
 
-    new ItemNotPlaceable(
-            ItemGroups.COMPONENTS_CATEGORY,
-            SupremeCore.CORE_OF_DEATH,
-            MultiBlockCoreFabricator.getMachine(),
-            SupremeCore.RECIPE_CORE_OF_DEATH)
-        .register(sup);
+    registerMagicalFabricator(SupremeCore.CORE_OF_DEATH, SupremeCore.RECIPE_CORE_OF_DEATH);
 
-    new ItemNotPlaceable(
-            ItemGroups.COMPONENTS_CATEGORY,
-            SupremeCore.CORE_OF_LIFE,
-            MultiBlockCoreFabricator.getMachine(),
-            SupremeCore.RECIPE_CORE_OF_LIFE)
-        .register(sup);
+    registerMagicalFabricator(SupremeCore.CORE_OF_LIFE, SupremeCore.RECIPE_CORE_OF_LIFE);
 
-    new ItemNotPlaceable(
-            ItemGroups.COMPONENTS_CATEGORY,
-            SupremeCore.CORE_OF_COLOR,
-            MultiBlockCoreFabricator.getMachine(),
-            SupremeCore.RECIPE_CORE_OF_COLOR)
-        .register(sup);
+    registerMagicalFabricator(SupremeCore.CORE_OF_COLOR, SupremeCore.RECIPE_CORE_OF_COLOR);
 
-    new ItemNotPlaceable(
-            ItemGroups.COMPONENTS_CATEGORY,
-            SupremeCore.CORE_OF_NATURE,
-            MultiBlockCoreFabricator.getMachine(),
-            SupremeCore.RECIPE_CORE_OF_NATURE)
-        .register(sup);
+    registerMagicalFabricator(SupremeCore.CORE_OF_NATURE, SupremeCore.RECIPE_CORE_OF_NATURE);
 
-    new ItemNotPlaceable(
-            ItemGroups.COMPONENTS_CATEGORY,
-            SupremeCore.CORE_OF_ALLOY,
-            MultiBlockCoreFabricator.getMachine(),
-            SupremeCore.RECIPE_CORE_OF_ALLOY)
-        .register(sup);
+    registerMagicalFabricator(SupremeCore.CORE_OF_ALLOY, SupremeCore.RECIPE_CORE_OF_ALLOY);
   }
 }

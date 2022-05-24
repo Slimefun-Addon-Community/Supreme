@@ -25,8 +25,7 @@ public class VirtualAquariumMachineRecipe extends MachineRecipe {
     displayRecipes.add(new ItemStack(Material.COD));
     displayRecipes.add(new CustomItemStack(Material.FISHING_ROD, null, "&fGive &bSalmon &f20%"));
     displayRecipes.add(new ItemStack(Material.SALMON));
-    displayRecipes.add(
-        new CustomItemStack(Material.FISHING_ROD, null, "&fGive &bTropical Fish &f20%"));
+    displayRecipes.add(new CustomItemStack(Material.FISHING_ROD, null, "&fGive &bTropical Fish &f20%"));
     displayRecipes.add(new ItemStack(Material.TROPICAL_FISH));
     displayRecipes.add(new CustomItemStack(Material.FISHING_ROD, null, "&fGive &bInk Sac &f20%"));
     displayRecipes.add(new ItemStack(Material.INK_SAC));
@@ -62,8 +61,7 @@ public class VirtualAquariumMachineRecipe extends MachineRecipe {
     displayRecipes.add(new ItemStack(Material.COD));
     displayRecipes.add(new CustomItemStack(Material.GOLDEN_HOE, null, "&fGive &bSalmon &f3%"));
     displayRecipes.add(new ItemStack(Material.SALMON));
-    displayRecipes.add(
-        new CustomItemStack(Material.GOLDEN_HOE, null, "&fGive &bTropical Fish &f2%"));
+    displayRecipes.add(new CustomItemStack(Material.GOLDEN_HOE, null, "&fGive &bTropical Fish &f2%"));
     displayRecipes.add(new ItemStack(Material.TROPICAL_FISH));
     displayRecipes.add(new CustomItemStack(Material.GOLDEN_HOE, null, "&fGive &bInk Sac &f2%"));
     displayRecipes.add(new ItemStack(Material.INK_SAC));

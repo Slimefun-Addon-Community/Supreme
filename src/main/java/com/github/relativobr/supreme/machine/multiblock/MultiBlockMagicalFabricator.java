@@ -1,7 +1,7 @@
 package com.github.relativobr.supreme.machine.multiblock;
 
-import com.github.relativobr.supreme.util.ItemGroups;
 import com.github.relativobr.supreme.Supreme;
+import com.github.relativobr.supreme.util.ItemGroups;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -25,38 +25,20 @@ import org.bukkit.inventory.ItemStack;
 
 public class MultiBlockMagicalFabricator extends MultiBlockMachine implements NotPlaceable {
 
-  public static final SlimefunItemStack MAGICAL_FABRICATOR =
-      new SlimefunItemStack(
-          "SUPREME_MULTIBLOCK_MAGICAL",
-          Material.CRYING_OBSIDIAN,
-          "&eMagical Fabricator",
-          "",
-          "&7&oYou can craft magical here!",
-          "",
-          "&aMultiBlock Machine");
-  public static final RecipeType MACHINE_MAGICAL_FABRICATOR =
-      new RecipeType(
-          new NamespacedKey(Supreme.inst(), "SUPREME_MULTIBLOCK_MAGICAL_KEY"),
-          MAGICAL_FABRICATOR);
+  public static final SlimefunItemStack MAGICAL_FABRICATOR = new SlimefunItemStack("SUPREME_MULTIBLOCK_MAGICAL",
+      Material.CRYING_OBSIDIAN, "&eMagical Fabricator", "", "&7&oYou can craft magical here!", "",
+      "&aMultiBlock Machine");
+  public static final RecipeType MACHINE_MAGICAL_FABRICATOR = new RecipeType(
+      new NamespacedKey(Supreme.inst(), "SUPREME_MULTIBLOCK_MAGICAL_KEY"), MAGICAL_FABRICATOR);
 
   @ParametersAreNonnullByDefault
   public MultiBlockMagicalFabricator() {
-    super(
-        ItemGroups.MACHINES_CATEGORY,
-        MAGICAL_FABRICATOR,
-        new ItemStack[] {
-          new ItemStack(Material.CRYING_OBSIDIAN),
-          new ItemStack(Material.PURPLE_STAINED_GLASS),
-          new ItemStack(Material.CRYING_OBSIDIAN),
-          new ItemStack(Material.IRON_BARS),
-          new ItemStack(Material.IRON_TRAPDOOR),
-          new ItemStack(Material.IRON_BARS),
-          new ItemStack(Material.NETHERITE_BLOCK),
-          new ItemStack(Material.DISPENSER),
-          new ItemStack(Material.NETHERITE_BLOCK)
-        },
-        new ItemStack[0],
-        BlockFace.SELF);
+    super(ItemGroups.MACHINES_CATEGORY, MAGICAL_FABRICATOR,
+        new ItemStack[]{new ItemStack(Material.CRYING_OBSIDIAN), new ItemStack(Material.PURPLE_STAINED_GLASS),
+            new ItemStack(Material.CRYING_OBSIDIAN), new ItemStack(Material.IRON_BARS),
+            new ItemStack(Material.IRON_TRAPDOOR), new ItemStack(Material.IRON_BARS),
+            new ItemStack(Material.NETHERITE_BLOCK), new ItemStack(Material.DISPENSER),
+            new ItemStack(Material.NETHERITE_BLOCK)}, new ItemStack[0], BlockFace.SELF);
   }
 
   public static RecipeType getMachine() {
@@ -89,8 +71,7 @@ public class MultiBlockMagicalFabricator extends MultiBlockMachine implements No
           boolean canFit = false;
           for (int i = 0; i < inv.getContents().length; i++) {
             if (inv.getContents()[i] != null
-                || inv.getContents()[i].getAmount() == inv.getContents()[i].getMaxStackSize()
-                || outputInv != null) {
+                || inv.getContents()[i].getAmount() == inv.getContents()[i].getMaxStackSize() || outputInv != null) {
               canFit = true;
             }
           }
@@ -107,21 +88,11 @@ public class MultiBlockMagicalFabricator extends MultiBlockMachine implements No
             }
           }
 
-          Bukkit.getScheduler()
-              .runTaskLater(
-                  Supreme.inst(),
-                  () ->
-                      p.getWorld()
-                          .playSound(dispenser.getLocation(), Sound.BLOCK_LAVA_EXTINGUISH, 1F, 1F),
-                  55L);
+          Bukkit.getScheduler().runTaskLater(Supreme.inst(),
+              () -> p.getWorld().playSound(dispenser.getLocation(), Sound.BLOCK_LAVA_EXTINGUISH, 1F, 1F), 55L);
           for (int i = 1; i < 7; i++) {
-            Bukkit.getScheduler()
-                .runTaskLater(
-                    Supreme.inst(),
-                    () ->
-                        p.getWorld()
-                            .playSound(dispenser.getLocation(), Sound.BLOCK_METAL_PLACE, 7F, 1F),
-                    i * 5L);
+            Bukkit.getScheduler().runTaskLater(Supreme.inst(),
+                () -> p.getWorld().playSound(dispenser.getLocation(), Sound.BLOCK_METAL_PLACE, 7F, 1F), i * 5L);
           }
 
           if (outputInv != null) {

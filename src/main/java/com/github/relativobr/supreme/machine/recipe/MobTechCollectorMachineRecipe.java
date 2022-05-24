@@ -20,7 +20,8 @@ public class MobTechCollectorMachineRecipe extends MachineRecipe implements Pred
   private final Predicate<LivingEntity> predicate;
 
   @ParametersAreNonnullByDefault
-  public MobTechCollectorMachineRecipe(SlimefunItemStack input, SlimefunItemStack result, Predicate<LivingEntity> predicate) {
+  public MobTechCollectorMachineRecipe(SlimefunItemStack input, SlimefunItemStack result,
+      Predicate<LivingEntity> predicate) {
     super(15, new SlimefunItemStack[]{input}, new SlimefunItemStack[]{result});
     Validate.notNull(predicate, "The Predicate must not be null");
     this.predicate = predicate;
@@ -33,10 +34,12 @@ public class MobTechCollectorMachineRecipe extends MachineRecipe implements Pred
   public static List<ItemStack> getAllRecipe() {
     List<ItemStack> displayRecipes = new ArrayList();
     displayRecipes.add(
-        new CustomItemStack(SupremeComponents.EMPTY_MOBTECH.getType(), SupremeComponents.EMPTY_MOBTECH.getDisplayName(), "", "&fRequires &bBee &fnearby",""));
+        new CustomItemStack(SupremeComponents.EMPTY_MOBTECH.getType(), SupremeComponents.EMPTY_MOBTECH.getDisplayName(),
+            "", "&fRequires &bBee &fnearby", ""));
     displayRecipes.add(Supreme.buildItemFromMobTechDTO(BeeTech.SIMPLE_BEE, 0));
     displayRecipes.add(
-        new CustomItemStack(SupremeComponents.EMPTY_MOBTECH.getType(), SupremeComponents.EMPTY_MOBTECH.getDisplayName(), "", "&fRequires &bIronGolen &fnearby",""));
+        new CustomItemStack(SupremeComponents.EMPTY_MOBTECH.getType(), SupremeComponents.EMPTY_MOBTECH.getDisplayName(),
+            "", "&fRequires &bIronGolen &fnearby", ""));
     displayRecipes.add(Supreme.buildItemFromMobTechDTO(BeeTech.SIMPLE_BEE, 0));
     return displayRecipes;
   }

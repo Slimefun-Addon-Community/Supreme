@@ -11,8 +11,9 @@ public class BeeTech {
   public static final MobTechGeneric SIMPLE_BEE = new MobTechGeneric("SUPREME_SIMPLE_BEE", "Common Bee",
       "259001a851bb1b9e9c05de5d5c68b1ea0dc8bd86babf188e0aded8f912c07d0d", MobTechType.SIMPLE);
 
-  public static final MobTechGeneric MUTATION_BERSERK_BEE = new MobTechGeneric("SUPREME_BERSERK_BEE", "Berserk Mutant Bee",
-      "d8916ea1ffb39f13dbbf4e62449dd2cbd5d2812f414e97608af0609e139d6115", MobTechType.MUTATION_BERSERK);
+  public static final MobTechGeneric MUTATION_BERSERK_BEE = new MobTechGeneric("SUPREME_BERSERK_BEE",
+      "Berserk Mutant Bee", "d8916ea1ffb39f13dbbf4e62449dd2cbd5d2812f414e97608af0609e139d6115",
+      MobTechType.MUTATION_BERSERK);
 
   public static final MobTechGeneric ROBOTIC_ACCELERATION_BEE = new MobTechGeneric("SUPREME_ACCELERATION_BEE",
       "Robotic Bee Accelerator", "725926d73f6f9480efad9e930e8a4a2566c115287a5b40ec0f50d58afab1a72a",

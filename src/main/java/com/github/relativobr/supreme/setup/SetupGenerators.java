@@ -1,5 +1,6 @@
 package com.github.relativobr.supreme.setup;
 
+import static com.github.relativobr.supreme.Supreme.getSupremeOptions;
 import static com.github.relativobr.supreme.Supreme.getValueGeneratorsWithLimit;
 
 import com.github.relativobr.electric.EnergyCapacitor;
@@ -14,22 +15,21 @@ public class SetupGenerators {
 
   public static void setup(Supreme sup) {
 
-    if (Supreme.checkEnableMobtech()) {
+    if (getSupremeOptions().isEnableMobtech()) {
 
       new GeneratorMob(GeneratorMob.GENERATOR_MOB_BASIC, GeneratorMob.RECIPE_GENERATOR_MOB_BASIC).setBuffer(
               getValueGeneratorsWithLimit(GeneratorMob.BASIC_GENERATOR_MOB_BUFFER))
-          .setEnergy(getValueGeneratorsWithLimit(GeneratorMob.BASIC_GENERATOR_MOB_ENERGY))
-          .setMobRange(3).register(sup);
+          .setEnergy(getValueGeneratorsWithLimit(GeneratorMob.BASIC_GENERATOR_MOB_ENERGY)).setMobRange(3).register(sup);
 
       new GeneratorMob(GeneratorMob.GENERATOR_MOB_MEDIUM, GeneratorMob.RECIPE_GENERATOR_MOB_MEDIUM).setBuffer(
               getValueGeneratorsWithLimit(GeneratorMob.MEDIUM_GENERATOR_MOB_BUFFER))
-          .setEnergy(getValueGeneratorsWithLimit(GeneratorMob.MEDIUM_GENERATOR_MOB_ENERGY))
-          .setMobRange(6).register(sup);
+          .setEnergy(getValueGeneratorsWithLimit(GeneratorMob.MEDIUM_GENERATOR_MOB_ENERGY)).setMobRange(6)
+          .register(sup);
 
       new GeneratorMob(GeneratorMob.GENERATOR_MOB_ADVANCED, GeneratorMob.RECIPE_GENERATOR_MOB_ADVANCED).setBuffer(
               getValueGeneratorsWithLimit(GeneratorMob.ADVANCED_GENERATOR_MOB_BUFFER))
-          .setEnergy(getValueGeneratorsWithLimit(GeneratorMob.ADVANCED_GENERATOR_MOB_ENERGY))
-          .setMobRange(9).register(sup);
+          .setEnergy(getValueGeneratorsWithLimit(GeneratorMob.ADVANCED_GENERATOR_MOB_ENERGY)).setMobRange(9)
+          .register(sup);
 
     }
 

@@ -56,28 +56,22 @@ public class ItemUtil {
     }
 
     if (itemPath.contains("helmet")) {
-      effect = new PotionEffect[]{
-          new PotionEffect(PotionEffectType.NIGHT_VISION, 600, amplifier, false, false, false),
+      effect = new PotionEffect[]{new PotionEffect(PotionEffectType.NIGHT_VISION, 600, amplifier, false, false, false),
           new PotionEffect(PotionEffectType.CONDUIT_POWER, 600, amplifier, false, false, false),
-          new PotionEffect(PotionEffectType.WATER_BREATHING, 600, amplifier, false, false, false)
-      };
+          new PotionEffect(PotionEffectType.WATER_BREATHING, 600, amplifier, false, false, false)};
     } else if (itemPath.contains("chestplate")) {
       effect = new PotionEffect[]{
           new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 600, amplifier, false, false, false),
           new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 600, amplifier, false, false, false),
-          new PotionEffect(PotionEffectType.SATURATION, 600, amplifier, false, false, false)
-      };
+          new PotionEffect(PotionEffectType.SATURATION, 600, amplifier, false, false, false)};
     } else if (itemPath.contains("leggings")) {
-      effect = new PotionEffect[]{
-          new PotionEffect(PotionEffectType.SPEED, 600, amplifier, false, false, false),
+      effect = new PotionEffect[]{new PotionEffect(PotionEffectType.SPEED, 600, amplifier, false, false, false),
           new PotionEffect(PotionEffectType.FAST_DIGGING, 600, amplifier, false, false, false),
-          new PotionEffect(PotionEffectType.REGENERATION, 600, amplifier, false, false, false)
-      };
+          new PotionEffect(PotionEffectType.REGENERATION, 600, amplifier, false, false, false)};
     } else if (itemPath.contains("boots")) {
       effect = new PotionEffect[]{
           new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 600, amplifier, false, false, false),
-          new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 600, amplifier, false, false, false)
-      };
+          new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 600, amplifier, false, false, false)};
     } else {
       effect = new PotionEffect[]{};
     }
