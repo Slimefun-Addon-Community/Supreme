@@ -25,7 +25,7 @@ public class ItemUtil {
     }
     final ItemStack[] output = quarry.getOutput();
     for (ItemStack itemStack : output) {
-      if (itemStack.getItemMeta() != null) {
+      if (itemStack != null && itemStack.getItemMeta() != null) {
         String name = itemStack.getType().name();
         if (itemStack.getItemMeta().hasDisplayName()) {
           name = itemStack.getItemMeta().getDisplayName();

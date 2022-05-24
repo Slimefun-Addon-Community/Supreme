@@ -11,6 +11,206 @@ options:
   enable-mobtech: true
   custom-bc: false
 # -------------------------------
+# quarry-custom-output
+# -------------------------------
+# acceptable chance values per quarry: 1 ~ 100
+# acceptable chance values per item: 1 ~ 60
+# Note: success rate is random value, based on luck
+# item limit per quarry: 10
+# -------------------------------
+quarry-custom-output:
+  supreme_stone_quarry:
+    0:
+      item: "COBBLESTONE"
+      chance: 60
+      is-slimefun: false
+    1:
+      item: "STONE"
+      chance: 40
+      is-slimefun: false
+  supreme_coal_quarry:
+    0:
+      item: "COAL"
+      chance: 20
+      is-slimefun: false
+    1:
+      item: "MYCELIUM"
+      chance: 10
+      is-slimefun: false
+    2:
+      item: "GRAVEL"
+      chance: 20
+      is-slimefun: false
+    3:
+      item: "SAND"
+      chance: 10
+      is-slimefun: false
+    4:
+      item: "CLAY_BALL"
+      chance: 20
+      is-slimefun: false
+    5:
+      item: "SNOWBALL"
+      chance: 20
+      is-slimefun: false
+  supreme_iron_quarry:
+    0:
+      item: "IRON_INGOT"
+      chance: 20
+      is-slimefun: false
+    1:
+      item: "COPPER_INGOT"
+      chance: 10
+      is-slimefun: false
+    2:
+      item: "ICE"
+      chance: 10
+      is-slimefun: false
+    3:
+      item: "GRANITE"
+      chance: 20
+      is-slimefun: false
+    4:
+      item: "ANDESITE"
+      chance: 20
+      is-slimefun: false
+    5:
+      item: "DIORITE"
+      chance: 20
+      is-slimefun: false
+  supreme_gold_quarry:
+    0:
+      item: "GOLD_INGOT"
+      chance: 20
+      is-slimefun: false
+    1:
+      item: "GLOWSTONE_DUST"
+      chance: 5
+      is-slimefun: false
+    2:
+      item: "LAPIS_LAZULI"
+      chance: 20
+      is-slimefun: false
+    3:
+      item: "REDSTONE"
+      chance: 20
+      is-slimefun: false
+    4:
+      item: "SULFATE"
+      chance: 10
+      is-slimefun: true
+    5:
+      item: "OIL_BUCKET"
+      chance: 5
+      is-slimefun: true
+    6:
+      item: "CLAY"
+      chance: 10
+      is-slimefun: false
+    7:
+      item: "SNOWBALL"
+      chance: 10
+      is-slimefun: false
+  supreme_diamond_quarry:
+    0:
+      item: "DIAMOND"
+      chance: 20
+      is-slimefun: false
+    1:
+      item: "EMERALD"
+      chance: 20
+      is-slimefun: false
+    2:
+      item: "QUARTZ"
+      chance: 20
+      is-slimefun: false
+    3:
+      item: "OBSIDIAN"
+      chance: 5
+      is-slimefun: false
+    4:
+      item: "CRYING_OBSIDIAN"
+      chance: 5
+      is-slimefun: false
+    5:
+      item: "END_STONE"
+      chance: 20
+      is-slimefun: false
+    6:
+      item: "SEA_LANTERN"
+      chance: 5
+      is-slimefun: false
+    7:
+      item: "BLACKSTONE"
+      chance: 5
+      is-slimefun: false
+  supreme_thornium_quarry:
+    0:
+      item: "SUPREME_THORNIUM_BIT"
+      chance: 5
+      is-slimefun: true
+    1:
+      item: "NETHERITE_INGOT"
+      chance: 5
+      is-slimefun: false
+    2:
+      item: "IRON_BLOCK"
+      chance: 15
+      is-slimefun: false
+    3:
+      item: "COAL_BLOCK"
+      chance: 15
+      is-slimefun: false
+    4:
+      item: "LAPIS_BLOCK"
+      chance: 15
+      is-slimefun: false
+    5:
+      item: "QUARTZ_BLOCK"
+      chance: 15
+      is-slimefun: false
+    6:
+      item: "REDSTONE_BLOCK"
+      chance: 15
+      is-slimefun: false
+    7:
+      item: "GOLD_BLOCK"
+      chance: 15
+      is-slimefun: false
+  supreme_supreme_nuggets_quarry:
+    0:
+      item: "SUPREME_SUPREME_NUGGET"
+      chance: 5
+      is-slimefun: true
+    1:
+      item: "NETHERITE_BLOCK"
+      chance: 5
+      is-slimefun: false
+    2:
+      item: "EMERALD_BLOCK"
+      chance: 10
+      is-slimefun: false
+    3:
+      item: "DIAMOND_BLOCK"
+      chance: 10
+      is-slimefun: false
+    4:
+      item: "SUPREME_THORNIUM_BIT"
+      chance: 10
+      is-slimefun: true
+    5:
+      item: "COAL_BLOCK"
+      chance: 20
+      is-slimefun: false
+    6:
+      item: "IRON_BLOCK"
+      chance: 20
+      is-slimefun: false
+    7:
+      item: "GOLD_BLOCK"
+      chance: 20
+      is-slimefun: false
+# -------------------------------
 # supreme-enchant
 # -------------------------------
 # unbreakable: true = Item does not break

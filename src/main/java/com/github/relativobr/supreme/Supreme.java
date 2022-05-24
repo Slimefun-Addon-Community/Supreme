@@ -5,6 +5,7 @@ import com.github.relativobr.generic.MobTechGeneric.MobTechType;
 import com.github.relativobr.supreme.setup.MainSetup;
 import com.github.relativobr.supreme.util.SupremeOptions;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactivity;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
@@ -16,9 +17,11 @@ import java.util.Map;
 import java.util.logging.Level;
 import javax.annotation.Nonnull;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.enchantments.EnchantmentWrapper;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -352,6 +355,54 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
         buildNameTier(MobTechGeneric.getName(), tier), "", buildLoreRadioactivityType(MobTechGeneric.getMobTechType()),
         buildLoreType(MobTechGeneric.getMobTechType(), tier),
         buildLoreTypeAmount(MobTechGeneric.getMobTechType(), tier), "", "&3Supreme Component");
+  }
+
+
+  public static ItemStack[] getOutputQuarry(@Nonnull SlimefunItemStack item) {
+
+    ConfigurationSection typeSection = inst().getConfig().getConfigurationSection("quarry-custom-output");
+
+    if (typeSection == null) {
+      inst().log(Level.SEVERE, "Config section \"quarry-custom-output\" missing, Check your config and report this!");
+      return null;
+    }
+
+    // find path
+    String itemPath = item.getItemId().toLowerCase();
+    ConfigurationSection itemSection = typeSection.getConfigurationSection(itemPath);
+    ItemStack[] outputQuarry = new ItemStack[]{};
+    if (itemSection != null) {
+      int checkLimitChance = 0;
+      for (int i = 0; i <= 9; i++) {
+        ConfigurationSection itemConfig = itemSection.getConfigurationSection(String.valueOf(i));
+        if(itemConfig == null || checkLimitChance >= 100){
+          break;
+        }
+        int chance = itemConfig.getInt("chance");
+        if(checkLimitChance + chance >= 100){
+          chance = 100 - checkLimitChance;
+        }
+        if(itemConfig.getBoolean("is-slimefun")){
+          final SlimefunItem slimefunItem = SlimefunItem.getById(itemConfig.getString("item"));
+          if(slimefunItem != null){
+            ItemStack slimefunItemClone = slimefunItem.getItem().clone();
+            slimefunItemClone.setAmount(getSupremeOptions().isLimitProductionQuarry() ? (chance/2) : chance);
+            outputQuarry[i] = new ItemStack(slimefunItemClone);
+          }
+
+        } else {
+          final Material material = Material.matchMaterial(itemConfig.getString("item"));
+          if(material != null){
+            outputQuarry[i] = new ItemStack(material, (getSupremeOptions().isLimitProductionQuarry() ? (chance/2) : chance));
+          }
+        }
+        checkLimitChance = checkLimitChance + chance;
+      }
+    } else {
+      inst().log(Level.SEVERE, "Config section for " + itemPath + " missing, Check your config and report this!");
+    }
+
+    return outputQuarry;
   }
 
   public final void log(Level level, String messages) {
