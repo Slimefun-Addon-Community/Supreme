@@ -12,7 +12,9 @@ Minecraft Version: 1.17+
 Slimefun Version: RC-31
 
 
-### [Download](https://thebusybiscuit.github.io/builds/RelativoBR/Supreme0/main/)
+### [Temp Download Link](https://file.io/keZSsxlAIfTW) 
+
+### [Download](https://thebusybiscuit.github.io/builds/RelativoBR/Supreme/main/)
 [![Build Status](https://thebusybiscuit.github.io/builds/RelativoBR/Supreme/main/badge.svg)](https://thebusybiscuit.github.io/builds/RelativoBR/Supreme/main)
 
 
