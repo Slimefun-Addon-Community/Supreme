@@ -10,7 +10,6 @@ import com.github.relativobr.supreme.resource.core.SupremeCoreColor;
 import com.github.relativobr.supreme.resource.core.SupremeCoreDeath;
 import com.github.relativobr.supreme.resource.core.SupremeCoreLife;
 import com.github.relativobr.supreme.resource.core.SupremeCoreNature;
-import com.github.relativobr.supreme.util.ItemGroups;
 
 public class SetupResourceCore {
 
@@ -85,7 +84,7 @@ public class SetupResourceCore {
     registerCoreFabricator(SupremeCoreLife.RESOURCE_CORE_SUGAR_CANE,
         CustomCoreRecipe.getRecipe(SupremeCoreLife.RECIPE_RESOURCE_CORE_SUGAR_CANE));
 
-    registerCoreFabricator(ItemGroups.RESOURCE_CATEGORY, SupremeCoreLife.RESOURCE_CORE_SWEET_BERRIES,
+    registerCoreFabricator(SupremeCoreLife.RESOURCE_CORE_SWEET_BERRIES,
         CustomCoreRecipe.getRecipe(SupremeCoreLife.RECIPE_RESOURCE_CORE_SWEET_BERRIES));
 
     registerCoreFabricator(SupremeCoreLife.RESOURCE_CORE_MELON,

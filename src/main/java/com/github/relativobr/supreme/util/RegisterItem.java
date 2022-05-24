@@ -69,7 +69,7 @@ public class RegisterItem {
 
   @ParametersAreNonnullByDefault
   public static void registerCoreFabricator(SlimefunItemStack itemStack, ItemStack[] recipe) {
-    registerCoreFabricator(ItemGroups.COMPONENTS_CATEGORY, itemStack, recipe);
+    registerCoreFabricator(ItemGroups.RESOURCE_CATEGORY, itemStack, recipe);
   }
 
   @ParametersAreNonnullByDefault

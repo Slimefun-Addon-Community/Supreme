@@ -7,6 +7,7 @@ import com.github.relativobr.supreme.util.SupremeOptions;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactivity;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.GitHubBuildsUpdater;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,13 +58,15 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
     Supreme.inst().log(Level.INFO, "                 Supreme                ");
     Supreme.inst().log(Level.INFO, "########################################");
 
+    Config cfg = new Config(this);
     if (getSupremeOptions() == null) {
       log(Level.SEVERE, "Config section \"options\" missing, Check your config and report this!");
       inst().onDisable();
       return;
     }
 
-    if (getSupremeOptions().isAutoUpdate() && getDescription().getVersion().startsWith("DEV - ")) {
+    if (getSupremeOptions().isAutoUpdate() && cfg.getBoolean("options.auto-update") && getDescription().getVersion()
+        .startsWith("DEV - ")) {
       new GitHubBuildsUpdater(this, getFile(), "RelativoBR/Supreme/main").start();
     }
 
