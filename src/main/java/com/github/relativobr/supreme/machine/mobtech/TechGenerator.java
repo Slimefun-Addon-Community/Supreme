@@ -48,11 +48,11 @@ import org.springframework.scheduling.annotation.Async;
 public class TechGenerator extends SimpleItemContainerMachine implements Radioactive {
 
   public static final SlimefunItemStack TECH_GENERATOR = new SlimefunItemStack("SUPREME_TECH_GENERATOR", Material.LOOM,
-      "&aTech &bGenerator", "", "&fUsing power and bees/golem, slowly generates materials.", "",
+      "&bTech Generator", "", "&fUsing power and bees/golem, ", "&fslowly generates materials.", "",
       LoreBuilder.radioactive(Radioactivity.HIGH), "", LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
       UtilEnergy.energyPowerPerSecond(2000), "", "&3Supreme Machine");
-  public static final ItemStack[] RECIPE_TECH_GENERATOR = {SupremeComponents.SYNTHETIC_AMETHYST,
-      SupremeComponents.SYNTHETIC_RUBY, SupremeComponents.SYNTHETIC_AMETHYST, SlimefunItems.REINFORCED_ALLOY_INGOT,
+  public static final ItemStack[] RECIPE_TECH_GENERATOR = {SupremeComponents.INDUCTIVE_MACHINE,
+      SupremeComponents.SYNTHETIC_RUBY, SupremeComponents.INDUCTIVE_MACHINE, SlimefunItems.REINFORCED_ALLOY_INGOT,
       new ItemStack(Material.LOOM), SlimefunItems.REINFORCED_ALLOY_INGOT, SupremeComponents.CARRIAGE_MACHINE,
       SlimefunItems.HEATING_COIL, SupremeComponents.CARRIAGE_MACHINE};
 

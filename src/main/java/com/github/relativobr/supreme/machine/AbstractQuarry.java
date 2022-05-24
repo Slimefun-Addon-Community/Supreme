@@ -3,6 +3,7 @@ package com.github.relativobr.supreme.machine;
 import static com.github.relativobr.supreme.Supreme.getSupremeOptions;
 
 import com.github.relativobr.recipe.InventoryRecipe;
+import com.github.relativobr.supreme.util.ItemUtil;
 import com.github.relativobr.util.UtilEnergy;
 import com.github.relativobr.util.UtilMachine;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -56,7 +57,7 @@ public class AbstractQuarry extends SlimefunItem implements EnergyNetComponent {
   private boolean effect = true;
   private int delaySpeed = 1;
 
-  private ItemStack[] output;
+  private AbstractQuarryOutput output;
 
   @ParametersAreNonnullByDefault
   public AbstractQuarry(ItemGroup category, SlimefunItemStack machine, ItemStack[] recipe) {
@@ -102,7 +103,7 @@ public class AbstractQuarry extends SlimefunItem implements EnergyNetComponent {
       tickDelayThreshold = 0;
       Inventory inv = ((InventoryHolder) state).getInventory();
       if (inv.firstEmpty() != -1) {
-        ItemStack material = UtilMachine.getMaterial(this.getOutput(), UtilMachine.getRandomInt());
+        ItemStack material = ItemUtil.getItemQuarry(this.getOutput(), UtilMachine.getRandomInt());
         if (material != null) {
           final ItemStack itemStack = material.clone();
           itemStack.setAmount(1);
@@ -247,11 +248,11 @@ public class AbstractQuarry extends SlimefunItem implements EnergyNetComponent {
     return EnergyNetComponentType.CONSUMER;
   }
 
-  public ItemStack[] getOutput() {
+  public AbstractQuarryOutput getOutput() {
     return output;
   }
 
-  public AbstractQuarry setOutput(ItemStack[] output) {
+  public AbstractQuarry setOutput(AbstractQuarryOutput output) {
     this.output = output;
     return this;
   }

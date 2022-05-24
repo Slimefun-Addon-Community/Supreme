@@ -80,7 +80,7 @@ public class RegisterItem {
   @ParametersAreNonnullByDefault
   public static void registerTechMutation(SlimefunItemStack output) {
     new ItemNotPlaceable(ItemGroups.COMPONENTS_CATEGORY, output, RecipeType.NULL,
-        new ItemStack[]{TechMutation.TECH_MUTATION}).register(Supreme.inst());
+        new ItemStack[]{TechMutation.TECH_MUTATION_I}).register(Supreme.inst());
   }
 
 }

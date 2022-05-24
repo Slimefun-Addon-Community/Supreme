@@ -2,6 +2,8 @@ package com.github.relativobr.supreme;
 
 import com.github.relativobr.generic.MobTechGeneric;
 import com.github.relativobr.generic.MobTechGeneric.MobTechType;
+import com.github.relativobr.supreme.machine.AbstractQuarryOutput;
+import com.github.relativobr.supreme.machine.AbstractQuarryOutputItem;
 import com.github.relativobr.supreme.setup.MainSetup;
 import com.github.relativobr.supreme.util.SupremeOptions;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
@@ -58,7 +60,7 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
     instance = this;
 
     Supreme.inst().log(Level.INFO, "########################################");
-    Supreme.inst().log(Level.INFO, "                 Supreme                ");
+    Supreme.inst().log(Level.INFO, "      Supreme 2.0  - By RelativoBR      ");
     Supreme.inst().log(Level.INFO, "########################################");
 
     Config cfg = new Config(this);
@@ -358,7 +360,7 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
   }
 
 
-  public static ItemStack[] getOutputQuarry(@Nonnull SlimefunItemStack item) {
+  public static AbstractQuarryOutput getOutputQuarry(@Nonnull SlimefunItemStack item) {
 
     ConfigurationSection typeSection = inst().getConfig().getConfigurationSection("quarry-custom-output");
 
@@ -370,30 +372,31 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
     // find path
     String itemPath = item.getItemId().toLowerCase();
     ConfigurationSection itemSection = typeSection.getConfigurationSection(itemPath);
-    ItemStack[] outputQuarry = new ItemStack[]{};
+
+    List<AbstractQuarryOutputItem> outputItems = new ArrayList<>();
     if (itemSection != null) {
       int checkLimitChance = 0;
-      for (int i = 0; i <= 9; i++) {
+      for (int i = 1; i <= 12; i++) {
         ConfigurationSection itemConfig = itemSection.getConfigurationSection(String.valueOf(i));
-        if(itemConfig == null || checkLimitChance >= 100){
+        if (itemConfig == null || checkLimitChance >= 100) {
           break;
         }
         int chance = itemConfig.getInt("chance");
-        if(checkLimitChance + chance >= 100){
+        if (checkLimitChance + chance >= 100) {
           chance = 100 - checkLimitChance;
         }
-        if(itemConfig.getBoolean("is-slimefun")){
+        if (itemConfig.getBoolean("is-slimefun")) {
           final SlimefunItem slimefunItem = SlimefunItem.getById(itemConfig.getString("item"));
-          if(slimefunItem != null){
-            ItemStack slimefunItemClone = slimefunItem.getItem().clone();
-            slimefunItemClone.setAmount(getSupremeOptions().isLimitProductionQuarry() ? (chance/2) : chance);
-            outputQuarry[i] = new ItemStack(slimefunItemClone);
+          if (slimefunItem != null) {
+            outputItems.add(AbstractQuarryOutputItem.builder().itemStack(slimefunItem.getItem().clone())
+                .chance(getSupremeOptions().isLimitProductionQuarry() ? (chance / 2) : chance).build());
           }
 
         } else {
           final Material material = Material.matchMaterial(itemConfig.getString("item"));
-          if(material != null){
-            outputQuarry[i] = new ItemStack(material, (getSupremeOptions().isLimitProductionQuarry() ? (chance/2) : chance));
+          if (material != null) {
+            outputItems.add(AbstractQuarryOutputItem.builder().itemStack(new ItemStack(material, 1))
+                .chance(getSupremeOptions().isLimitProductionQuarry() ? (chance / 2) : chance).build());
           }
         }
         checkLimitChance = checkLimitChance + chance;
@@ -402,7 +405,7 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
       inst().log(Level.SEVERE, "Config section for " + itemPath + " missing, Check your config and report this!");
     }
 
-    return outputQuarry;
+    return AbstractQuarryOutput.builder().outputItems(outputItems).build();
   }
 
   public final void log(Level level, String messages) {

@@ -92,7 +92,7 @@ public class MobTech extends SlimefunItem implements Radioactive, NotPlaceable {
 
     SlimefunItemStack slimefunItemStack = Supreme.buildItemFromMobTechDTO(item, 1);
     new MobTech(ItemGroups.TECHMOB_CATEGORY, slimefunItemStack, RecipeType.NULL,
-        new ItemStack[]{TechMutation.TECH_MUTATION}).setMobTechType(item.getMobTechType()).setMobTechTier(1)
+        new ItemStack[]{TechMutation.TECH_MUTATION_I}).setMobTechType(item.getMobTechType()).setMobTechTier(1)
         .register(plugin);
 
     SlimefunItemStack simpleInput = null;
@@ -105,16 +105,16 @@ public class MobTech extends SlimefunItem implements Radioactive, NotPlaceable {
 
     final SlimefunItemStack geneMutation = getGeneMutation(item.getMobTechType());
     if (geneMutation != null) {
-      TechMutation.addRecipe(simpleInput, geneMutation,
+      TechMutation.addRecipeTechMutation(simpleInput, geneMutation,
           (MobTechType.MUTATION_BERSERK == item.getMobTechType()) ? 20 : 10, Supreme.buildItemFromMobTechDTO(item, 1));
     }
     for (int i = 2; i <= 9; i++) {
       final SlimefunItemStack inputTier = Supreme.buildItemFromMobTechDTO(item, (i - 1));
       final SlimefunItemStack itemStack = Supreme.buildItemFromMobTechDTO(item, i);
-      TechMutation.addRecipe(inputTier, inputTier, (MobTechType.MUTATION_BERSERK == item.getMobTechType()) ? 20 : 10,
+      TechMutation.addRecipeTechMutation(inputTier, inputTier, (MobTechType.MUTATION_BERSERK == item.getMobTechType()) ? 20 : 10,
           itemStack);
       new MobTech(ItemGroups.TECHMOB_CATEGORY, itemStack, RecipeType.NULL,
-          new ItemStack[]{TechMutation.TECH_MUTATION}).setMobTechType(item.getMobTechType()).setMobTechTier(1)
+          new ItemStack[]{TechMutation.TECH_MUTATION_I}).setMobTechType(item.getMobTechType()).setMobTechTier(1)
           .register(plugin);
     }
 

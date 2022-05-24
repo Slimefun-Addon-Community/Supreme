@@ -4,6 +4,7 @@ import com.github.relativobr.machine.SimpleItemContainerMachine;
 import com.github.relativobr.recipe.InventoryRecipe;
 import com.github.relativobr.recipe.SimpleRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
+import com.github.relativobr.supreme.resource.magical.SupremeCore;
 import com.github.relativobr.supreme.util.ItemGroups;
 import com.github.relativobr.util.UtilEnergy;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -41,14 +42,14 @@ import org.springframework.scheduling.annotation.Async;
 public class TechRobotic extends SimpleItemContainerMachine implements Radioactive {
 
   public static final SlimefunItemStack TECH_ROBOTIC = new SlimefunItemStack("SUPREME_TECH_ROBOTIC",
-      Material.POLISHED_BLACKSTONE, "&aTech &bRobotic", "", "&fUse beginner level robots to progress to higher levels",
+      Material.POLISHED_BLACKSTONE, "&bTech Robotic", "", "&fUse beginner level robots ", "&fto progress to higher levels",
       "", LoreBuilder.radioactive(Radioactivity.VERY_HIGH), "",
       LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE), UtilEnergy.energyPowerPerSecond(500), "",
       "&3Supreme Machine");
   public static final ItemStack[] RECIPE_TECH_ROBOTIC = {SupremeComponents.INDUCTIVE_MACHINE,
       SupremeComponents.SYNTHETIC_RUBY, SupremeComponents.INDUCTIVE_MACHINE, SlimefunItems.REINFORCED_PLATE,
       SlimefunItems.ELECTRIC_MOTOR, SlimefunItems.REINFORCED_PLATE, SupremeComponents.RUSTLESS_MACHINE,
-      SupremeComponents.SYNTHETIC_RUBY, SupremeComponents.RUSTLESS_MACHINE};
+      SupremeCore.CORE_OF_BLOCK, SupremeComponents.RUSTLESS_MACHINE};
 
 
   public TechRobotic(SlimefunItemStack item, ItemStack[] recipe) {

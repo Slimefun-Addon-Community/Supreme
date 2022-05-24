@@ -1,16 +1,17 @@
 package com.github.relativobr.supreme.setup;
 
 import static com.github.relativobr.supreme.Supreme.getSupremeOptions;
+import static com.github.relativobr.supreme.machine.mobtech.TechMutation.addRecipeTechMutation;
 import static com.github.relativobr.supreme.util.RegisterItem.registerEnhancedCraft;
 import static com.github.relativobr.supreme.util.RegisterItem.registerGrindStone;
 import static com.github.relativobr.supreme.util.RegisterItem.registerTechMutation;
 
 import com.github.relativobr.supreme.Supreme;
+import com.github.relativobr.supreme.machine.mobtech.TechMutation;
 import com.github.relativobr.supreme.resource.SupremeComponents;
-import com.github.relativobr.supreme.resource.mobtech.AdvancedCard;
 import com.github.relativobr.supreme.resource.mobtech.BeeTech;
 import com.github.relativobr.supreme.resource.mobtech.IronGolemTech;
-import com.github.relativobr.supreme.resource.mobtech.SimpleCard;
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 
 public class SetupMobTechComponents {
 
@@ -31,6 +32,13 @@ public class SetupMobTechComponents {
       registerTechMutation(SupremeComponents.GENE_INTELLIGENCE);
 
       registerEnhancedCraft(SupremeComponents.EMPTY_MOBTECH, SupremeComponents.RECIPE_EMPTY_MOBTECH);
+
+      TechMutation.addRecipeTechMutation(SupremeComponents.DUST_NETHERITE, SlimefunItems.FIRE_RUNE, SupremeComponents.GENE_BERSERK);
+      TechMutation.addRecipeTechMutation(SupremeComponents.DUST_GLOW_INK, SlimefunItems.LIGHTNING_RUNE, SupremeComponents.GENE_LUCK);
+      TechMutation.addRecipeTechMutation(SupremeComponents.DUST_AMETHYST, SlimefunItems.RAINBOW_RUNE, SupremeComponents.GENE_INTELLIGENCE);
+      TechMutation.addRecipeTechMutation(SlimefunItems.URANIUM, SlimefunItems.URANIUM, SlimefunItems.NEPTUNIUM);
+      TechMutation.addRecipeTechMutation(SlimefunItems.NEPTUNIUM, SlimefunItems.NEPTUNIUM, SlimefunItems.PLUTONIUM);
+      TechMutation.addRecipeTechMutation(SlimefunItems.PLUTONIUM, SlimefunItems.URANIUM, SlimefunItems.BOOSTED_URANIUM);
 
       BeeTech.setup(sup);
       IronGolemTech.setup(sup);

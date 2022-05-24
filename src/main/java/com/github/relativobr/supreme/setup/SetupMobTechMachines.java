@@ -1,17 +1,14 @@
 package com.github.relativobr.supreme.setup;
 
 import static com.github.relativobr.supreme.Supreme.getSupremeOptions;
-import static com.github.relativobr.supreme.machine.mobtech.TechMutation.addRecipe;
 
 import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.machine.mobtech.MobTechCollector;
 import com.github.relativobr.supreme.machine.mobtech.TechGenerator;
 import com.github.relativobr.supreme.machine.mobtech.TechMutation;
 import com.github.relativobr.supreme.machine.mobtech.TechRobotic;
-import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.util.ItemGroups;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 
 public class SetupMobTechMachines {
 
@@ -31,6 +28,18 @@ public class SetupMobTechMachines {
           RecipeType.ENHANCED_CRAFTING_TABLE, MobTechCollector.RECIPE_MOB_TECH_COLLECTOR_MACHINE_III).setMobRange(9)
           .setCapacity(1000).setProcessingSpeed(1).setEnergyConsumption(200).register(sup);
 
+      new TechMutation(TechMutation.TECH_MUTATION_I, TechMutation.RECIPE_TECH_MUTATION_I).setUpgradeLuck(1)
+          .setTimeProcess(60).setMachineIdentifier(TechMutation.TECH_MUTATION_I.getItemId()).setCapacity(500)
+          .setEnergyConsumption(500).register(sup);
+
+      new TechMutation(TechMutation.TECH_MUTATION_II, TechMutation.RECIPE_TECH_MUTATION_II).setUpgradeLuck(2)
+          .setTimeProcess(60).setMachineIdentifier(TechMutation.TECH_MUTATION_II.getItemId()).setCapacity(500)
+          .setEnergyConsumption(500).register(sup);
+
+      new TechMutation(TechMutation.TECH_MUTATION_III, TechMutation.RECIPE_TECH_MUTATION_III).setUpgradeLuck(4)
+          .setTimeProcess(60).setMachineIdentifier(TechMutation.TECH_MUTATION_III.getItemId()).setCapacity(500)
+          .setEnergyConsumption(500).register(sup);
+
       new TechGenerator(TechGenerator.TECH_GENERATOR, TechGenerator.RECIPE_TECH_GENERATOR).setTimeProcess(1800)
           .setMachineIdentifier(TechGenerator.TECH_GENERATOR.getItemId()).setCapacity(5000).setEnergyConsumption(2000)
           .register(sup);
@@ -39,16 +48,6 @@ public class SetupMobTechMachines {
           .setMachineIdentifier(TechRobotic.TECH_ROBOTIC.getItemId()).setCapacity(500).setEnergyConsumption(500)
           .register(sup);
 
-      new TechMutation(TechMutation.TECH_MUTATION, TechMutation.RECIPE_TECH_MUTATION).setTimeProcess(60)
-          .setMachineIdentifier(TechMutation.TECH_MUTATION.getItemId()).setCapacity(500).setEnergyConsumption(500)
-          .register(sup);
-
-      addRecipe(SupremeComponents.DUST_NETHERITE, SlimefunItems.FIRE_RUNE, SupremeComponents.GENE_BERSERK);
-      addRecipe(SupremeComponents.DUST_GLOW_INK, SlimefunItems.LIGHTNING_RUNE, SupremeComponents.GENE_LUCK);
-      addRecipe(SupremeComponents.DUST_AMETHYST, SlimefunItems.RAINBOW_RUNE, SupremeComponents.GENE_INTELLIGENCE);
-      addRecipe(SlimefunItems.URANIUM, SlimefunItems.URANIUM, SlimefunItems.NEPTUNIUM);
-      addRecipe(SlimefunItems.NEPTUNIUM, SlimefunItems.NEPTUNIUM, SlimefunItems.PLUTONIUM);
-      addRecipe(SlimefunItems.PLUTONIUM, SlimefunItems.URANIUM, SlimefunItems.BOOSTED_URANIUM);
     }
   }
 

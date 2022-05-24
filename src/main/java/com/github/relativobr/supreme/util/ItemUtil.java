@@ -1,9 +1,17 @@
 package com.github.relativobr.supreme.util;
 
+import static com.github.relativobr.supreme.Supreme.getSupremeOptions;
+
 import com.github.relativobr.supreme.machine.AbstractQuarry;
+import com.github.relativobr.supreme.machine.AbstractQuarryOutput;
+import com.github.relativobr.supreme.machine.AbstractQuarryOutputItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
@@ -17,26 +25,35 @@ public class ItemUtil {
     ItemStack item = quarry.getItem();
     ItemMeta meta = item.getItemMeta();
     // lore
-    List<String> lore;
+    List<String> lore = new ArrayList<>();
+    lore.add(" ");
+    Optional<List<String>> lastElementLore = Optional.empty();
     if (meta.hasLore()) {
-      lore = meta.getLore();
-    } else {
-      lore = new ArrayList<>();
+      lastElementLore = Optional.of(meta.getLore());
     }
-    final ItemStack[] output = quarry.getOutput();
-    for (ItemStack itemStack : output) {
-      if (itemStack != null && itemStack.getItemMeta() != null) {
-        String name = itemStack.getType().name();
-        if (itemStack.getItemMeta().hasDisplayName()) {
-          name = itemStack.getItemMeta().getDisplayName();
+    final AbstractQuarryOutput output = quarry.getOutput();
+    final List<AbstractQuarryOutputItem> outputItems = output.getOutputItems().stream().filter(Objects::nonNull)
+        .collect(Collectors.toList());
+    for (AbstractQuarryOutputItem outputItem : outputItems) {
+      if (outputItem != null && outputItem.getItemStack() != null && outputItem.getItemStack().getItemMeta() != null) {
+        String name = outputItem.getItemStack().getType().name();
+        if (outputItem.getItemStack().getItemMeta().hasDisplayName()) {
+          name = outputItem.getItemStack().getItemMeta().getDisplayName();
         } else {
           name = name.replace("_", " ");
           name = name.substring(0, 1).toUpperCase().concat(name.substring(1).toLowerCase());
           name = ChatColor.AQUA + name;
         }
-        lore.add(name + " " + ChatColor.YELLOW + itemStack.getAmount() + "%");
+        lore.add(name + " " + ChatColor.YELLOW + outputItem.getChance() + "%");
       }
     }
+
+    if (getSupremeOptions().isLimitProductionQuarry()) {
+      lore.add(" ");
+      lore.add(ChatColor.GOLD + "Limit Production Quarry");
+    }
+
+    lastElementLore.ifPresent(lore::addAll);
     meta.setLore(lore);
     // add meta
     item.setItemMeta(meta);
@@ -80,4 +97,20 @@ public class ItemUtil {
 
   }
 
+  public static ItemStack getItemQuarry(AbstractQuarryOutput output, int randomInt) {
+    AtomicInteger startValue = new AtomicInteger(0);
+    AtomicInteger nextValue = new AtomicInteger(0);
+    ItemStack item = null;
+    final List<AbstractQuarryOutputItem> outputItems = output.getOutputItems().stream().filter(Objects::nonNull)
+        .collect(Collectors.toList());
+    for (AbstractQuarryOutputItem outputItem : outputItems) {
+      nextValue.set(startValue.get() + outputItem.getChance());
+      if (startValue.get() <= randomInt && nextValue.get() >= randomInt) {
+        item = outputItem.getItemStack();
+        break;
+      }
+      startValue.set(nextValue.get());
+    }
+    return item;
+  }
 }
