@@ -1,5 +1,6 @@
 options:
   auto-update: true
+  change-legacy-id: false
   lang: en
   custom-ticker-delay: 2
   enable-generators: true

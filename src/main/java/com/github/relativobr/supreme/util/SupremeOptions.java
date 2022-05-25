@@ -12,6 +12,7 @@ import lombok.Setter;
 public class SupremeOptions {
 
   boolean autoUpdate;
+  boolean changeLegacyId;
   String lang;
   int customTickerDelay;
   boolean enableGenerators;

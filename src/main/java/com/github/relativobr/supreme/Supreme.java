@@ -42,7 +42,7 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
       ConfigurationSection typeSection = inst().getConfig().getConfigurationSection("options");
       if (typeSection != null) {
         supremeOptions = SupremeOptions.builder().autoUpdate(typeSection.getBoolean("auto-update"))
-            .lang(typeSection.getString("lang"))
+            .changeLegacyId(typeSection.getBoolean("change-legacy-id")).lang(typeSection.getString("lang"))
             .customTickerDelay(typeSection.getInt("custom-ticker-delay"))
             .enableGenerators(typeSection.getBoolean("enable-generators"))
             .limitProductionGenerators(typeSection.getBoolean("limit-production-generators"))
@@ -336,7 +336,7 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
       return ChatColor.YELLOW + "5x " + ChatColor.GRAY + "Stack clone";
     } else if (tier >= 6) {
       return ChatColor.YELLOW + "4x " + ChatColor.GRAY + "Stack clone";
-    }else if (tier >= 4) {
+    } else if (tier >= 4) {
       return ChatColor.YELLOW + "3x " + ChatColor.GRAY + "Stack clone";
     } else {
       return ChatColor.YELLOW + "2x " + ChatColor.GRAY + "Stack clone";
