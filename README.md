@@ -13,7 +13,7 @@ Slimefun Version: RC-31
 
 
 ### Temp Download Link (25/05/2022)
-##[https://file.io/keZSsxlAIfTW](https://easyupload.io/wlglb7)
+[https://easyupload.io/wlglb7](https://easyupload.io/wlglb7)
 
 ### [Download](https://thebusybiscuit.github.io/builds/RelativoBR/Supreme/main/)
 [![Build Status](https://thebusybiscuit.github.io/builds/RelativoBR/Supreme/main/badge.svg)](https://thebusybiscuit.github.io/builds/RelativoBR/Supreme/main)
