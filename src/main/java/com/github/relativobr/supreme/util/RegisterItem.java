@@ -1,7 +1,5 @@
 package com.github.relativobr.supreme.util;
 
-import static com.github.relativobr.supreme.util.CompatibilyLegacy.validLegacyItem;
-
 import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.machine.mobtech.TechMutation;
 import com.github.relativobr.supreme.machine.multiblock.MultiBlockCoreFabricator;
@@ -23,7 +21,7 @@ public class RegisterItem {
 
   @ParametersAreNonnullByDefault
   public static void registerSmeltery(ItemGroup itemGroup, SlimefunItemStack itemStack, ItemStack[] recipe) {
-    new ItemNotPlaceable(itemGroup, validLegacyItem(itemStack), RecipeType.SMELTERY, recipe).register(Supreme.inst());
+    new ItemNotPlaceable(itemGroup, itemStack, RecipeType.SMELTERY, recipe).register(Supreme.inst());
   }
 
   @ParametersAreNonnullByDefault
@@ -33,7 +31,7 @@ public class RegisterItem {
 
   @ParametersAreNonnullByDefault
   public static void registerEnhancedCraft(ItemGroup itemGroup, SlimefunItemStack itemStack, ItemStack[] recipe) {
-    new ItemNotPlaceable(itemGroup, validLegacyItem(itemStack), RecipeType.ENHANCED_CRAFTING_TABLE, recipe).register(Supreme.inst());
+    new ItemNotPlaceable(itemGroup, itemStack, RecipeType.ENHANCED_CRAFTING_TABLE, recipe).register(Supreme.inst());
   }
 
   @ParametersAreNonnullByDefault
@@ -43,7 +41,7 @@ public class RegisterItem {
 
   @ParametersAreNonnullByDefault
   public static void registerNullRecipe(ItemGroup itemGroup, SlimefunItemStack itemStack, ItemStack[] recipe) {
-    new ItemNotPlaceable(itemGroup, validLegacyItem(itemStack), RecipeType.NULL, recipe).register(Supreme.inst());
+    new ItemNotPlaceable(itemGroup, itemStack, RecipeType.NULL, recipe).register(Supreme.inst());
   }
 
   @ParametersAreNonnullByDefault
@@ -54,8 +52,8 @@ public class RegisterItem {
   @ParametersAreNonnullByDefault
   public static void registerGrindStone(ItemGroup itemGroup, SlimefunItemStack itemStack, ItemStack[] recipe,
       int amount) {
-    new SlimefunItem(itemGroup, validLegacyItem(itemStack), RecipeType.GRIND_STONE, recipe,
-        new SlimefunItemStack(validLegacyItem(itemStack), amount)).register(Supreme.inst());
+    new SlimefunItem(itemGroup, itemStack, RecipeType.GRIND_STONE, recipe,
+        new SlimefunItemStack(itemStack, amount)).register(Supreme.inst());
   }
 
   @ParametersAreNonnullByDefault
@@ -65,7 +63,7 @@ public class RegisterItem {
 
   @ParametersAreNonnullByDefault
   public static void registerMagicalFabricator(ItemGroup itemGroup, SlimefunItemStack itemStack, ItemStack[] recipe) {
-    new ItemNotPlaceable(itemGroup, validLegacyItem(itemStack), MultiBlockMagicalFabricator.getMachine(), recipe).register(
+    new ItemNotPlaceable(itemGroup, itemStack, MultiBlockMagicalFabricator.getMachine(), recipe).register(
         Supreme.inst());
   }
 
@@ -76,12 +74,12 @@ public class RegisterItem {
 
   @ParametersAreNonnullByDefault
   public static void registerCoreFabricator(ItemGroup itemGroup, SlimefunItemStack itemStack, ItemStack[] recipe) {
-    new ItemNotPlaceable(itemGroup, validLegacyItem(itemStack), MultiBlockCoreFabricator.getMachine(), recipe).register(Supreme.inst());
+    new ItemNotPlaceable(itemGroup, itemStack, MultiBlockCoreFabricator.getMachine(), recipe).register(Supreme.inst());
   }
 
   @ParametersAreNonnullByDefault
   public static void registerTechMutation(SlimefunItemStack itemStack) {
-    new ItemNotPlaceable(ItemGroups.COMPONENTS_CATEGORY, validLegacyItem(itemStack), RecipeType.NULL,
+    new ItemNotPlaceable(ItemGroups.COMPONENTS_CATEGORY, itemStack, RecipeType.NULL,
         new ItemStack[]{TechMutation.TECH_MUTATION_I}).register(Supreme.inst());
   }
 

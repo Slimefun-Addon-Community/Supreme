@@ -4,6 +4,7 @@ import com.github.relativobr.generic.MobTechMutationGeneric;
 import com.github.relativobr.machine.SimpleItemContainerMachine;
 import com.github.relativobr.recipe.InventoryRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
+import com.github.relativobr.supreme.resource.magical.SupremeAttribute;
 import com.github.relativobr.supreme.resource.magical.SupremeCetrus;
 import com.github.relativobr.supreme.resource.magical.SupremeCore;
 import com.github.relativobr.supreme.util.ItemGroups;
@@ -55,7 +56,7 @@ public class TechMutation extends SimpleItemContainerMachine implements Radioact
       SupremeCore.CORE_OF_DEATH, SupremeComponents.RUSTLESS_MACHINE};
 
   public static final SlimefunItemStack TECH_MUTATION_II = new SlimefunItemStack("SUPREME_TECH_MUTATION_II",
-      Material.SLIME_BLOCK, "&BTech Mutation II", "", "&fUse generator mutation ", "&fto progress to higher levels",
+      Material.SLIME_BLOCK, "&bTech Mutation II", "", "&fUse generator mutation ", "&fto progress to higher levels",
       "", "&fChance factor multiplied by 2x", "", LoreBuilder.radioactive(Radioactivity.VERY_HIGH), "",
       LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE), UtilEnergy.energyPowerPerSecond(500), "",
       "&3Supreme Machine");
@@ -65,12 +66,12 @@ public class TechMutation extends SimpleItemContainerMachine implements Radioact
       SupremeCetrus.CETRUS_IGNIS, SupremeComponents.THORNERITE};
 
   public static final SlimefunItemStack TECH_MUTATION_III = new SlimefunItemStack("SUPREME_TECH_MUTATION_III",
-      Material.SLIME_BLOCK, "&BTech Mutation III", "", "&fUse generator mutation ", "&fto progress to higher levels",
+      Material.SLIME_BLOCK, "&bTech Mutation III", "", "&fUse generator mutation ", "&fto progress to higher levels",
       "", "&fChance factor multiplied by 4x", "", LoreBuilder.radioactive(Radioactivity.VERY_HIGH), "",
       LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE), UtilEnergy.energyPowerPerSecond(500), "",
       "&3Supreme Machine");
   public static final ItemStack[] RECIPE_TECH_MUTATION_III = new ItemStack[]{SupremeComponents.THORNERITE,
-      SupremeCetrus.CETRUS_LUX, SupremeComponents.THORNERITE, SupremeComponents.SUPREME, TechMutation.TECH_MUTATION_II,
+      SupremeAttribute.getImpetus(), SupremeComponents.THORNERITE, SupremeComponents.SUPREME, TechMutation.TECH_MUTATION_II,
       SupremeComponents.SUPREME, SupremeComponents.CRYSTALLIZER_MACHINE, SupremeCetrus.CETRUS_LUMIUM,
       SupremeComponents.CRYSTALLIZER_MACHINE};
 

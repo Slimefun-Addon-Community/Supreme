@@ -106,12 +106,12 @@ public class MobTech extends SlimefunItem implements Radioactive, NotPlaceable {
     final SlimefunItemStack geneMutation = getGeneMutation(item.getMobTechType());
     if (geneMutation != null) {
       TechMutation.addRecipeTechMutation(simpleInput, geneMutation,
-          (MobTechType.MUTATION_BERSERK == item.getMobTechType()) ? 20 : 10, Supreme.buildItemFromMobTechDTO(item, 1));
+          (MobTechType.MUTATION_BERSERK == item.getMobTechType()) ? 25 : 20, Supreme.buildItemFromMobTechDTO(item, 1));
     }
     for (int i = 2; i <= 9; i++) {
       final SlimefunItemStack inputTier = Supreme.buildItemFromMobTechDTO(item, (i - 1));
       final SlimefunItemStack itemStack = Supreme.buildItemFromMobTechDTO(item, i);
-      TechMutation.addRecipeTechMutation(inputTier, inputTier, (MobTechType.MUTATION_BERSERK == item.getMobTechType()) ? 20 : 10,
+      TechMutation.addRecipeTechMutation(inputTier, inputTier, (MobTechType.MUTATION_BERSERK == item.getMobTechType()) ? 25 : 20,
           itemStack);
       new MobTech(ItemGroups.TECHMOB_CATEGORY, itemStack, RecipeType.NULL,
           new ItemStack[]{TechMutation.TECH_MUTATION_I}).setMobTechType(item.getMobTechType()).setMobTechTier(1)

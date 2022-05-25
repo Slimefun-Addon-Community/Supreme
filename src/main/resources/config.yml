@@ -1,7 +1,7 @@
 options:
   auto-update: true
-  change-legacy-id: false
-  lang: en
+  use-legacy-supremeexpansion-item-id: false
+  lang: en-US
   custom-ticker-delay: 2
   enable-generators: true
   limit-production-generators: false

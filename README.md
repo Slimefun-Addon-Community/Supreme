@@ -3,7 +3,7 @@ Supreme is an addon for Slimefun which adds 100+ various new resources that will
 
 
 ## Important information
-We are working to make this addon "Supreme 2.0" compatible with the old addon "SupremeExpansion", more information coming soon
+This addon "Supreme 2.0" compatible with the old addon "SupremeExpansion" change in config `use-legacy-supremeexpansion-item-id` to `true`
 
 ## Requirements
 

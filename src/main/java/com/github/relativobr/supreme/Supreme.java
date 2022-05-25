@@ -5,6 +5,7 @@ import com.github.relativobr.generic.MobTechGeneric.MobTechType;
 import com.github.relativobr.supreme.machine.AbstractQuarryOutput;
 import com.github.relativobr.supreme.machine.AbstractQuarryOutputItem;
 import com.github.relativobr.supreme.setup.MainSetup;
+import com.github.relativobr.supreme.util.CompatibilySupremeLegacy;
 import com.github.relativobr.supreme.util.SupremeOptions;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -42,8 +43,8 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
       ConfigurationSection typeSection = inst().getConfig().getConfigurationSection("options");
       if (typeSection != null) {
         supremeOptions = SupremeOptions.builder().autoUpdate(typeSection.getBoolean("auto-update"))
-            .changeLegacyId(typeSection.getBoolean("change-legacy-id")).lang(typeSection.getString("lang"))
-            .customTickerDelay(typeSection.getInt("custom-ticker-delay"))
+            .useLegacySupremeexpansionItemId(typeSection.getBoolean("use-legacy-supremeexpansion-item-id"))
+            .lang(typeSection.getString("lang")).customTickerDelay(typeSection.getInt("custom-ticker-delay"))
             .enableGenerators(typeSection.getBoolean("enable-generators"))
             .limitProductionGenerators(typeSection.getBoolean("limit-production-generators"))
             .enableQuarry(typeSection.getBoolean("enable-quarry"))
@@ -78,7 +79,10 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
 
     if (getSupremeOptions().isAutoUpdate() && cfg.getBoolean("options.auto-update") && getDescription().getVersion()
         .startsWith("DEV - ")) {
+      Supreme.inst().log(Level.INFO, "Auto Update: enable");
       new GitHubBuildsUpdater(this, getFile(), "RelativoBR/Supreme/main").start();
+    } else {
+      Supreme.inst().log(Level.INFO, "Auto Update: disable");
     }
 
     // localization
@@ -86,6 +90,14 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
     final String lang = getSupremeOptions().getLang();
     localization.addLanguage(lang);
     Supreme.inst().log(Level.INFO, "Loaded language Supreme: " + lang);
+
+    // check Compatibily Legacy (SupremeExpansion)
+    if (getSupremeOptions().isUseLegacySupremeexpansionItemId()) {
+      Supreme.inst().log(Level.INFO, "Legacy SupremeExpansion IDs: enable");
+      CompatibilySupremeLegacy.loadCompatibilySupremeLegacy();
+    } else {
+      Supreme.inst().log(Level.INFO, "Legacy SupremeExpansion IDs: disable");
+    }
 
     MainSetup.setup(this);
 
