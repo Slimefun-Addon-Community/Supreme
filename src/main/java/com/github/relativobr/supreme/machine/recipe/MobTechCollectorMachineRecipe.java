@@ -3,6 +3,7 @@ package com.github.relativobr.supreme.machine.recipe;
 import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.mobtech.BeeTech;
+import com.github.relativobr.supreme.resource.mobtech.IronGolemTech;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class MobTechCollectorMachineRecipe extends MachineRecipe implements Pred
     displayRecipes.add(
         new CustomItemStack(SupremeComponents.EMPTY_MOBTECH.getType(), SupremeComponents.EMPTY_MOBTECH.getDisplayName(),
             "", "&fRequires &bIronGolen &fnearby", ""));
-    displayRecipes.add(Supreme.buildItemFromMobTechDTO(BeeTech.SIMPLE_BEE, 0));
+    displayRecipes.add(Supreme.buildItemFromMobTechDTO(IronGolemTech.SIMPLE_GOLEM, 0));
     return displayRecipes;
   }
 

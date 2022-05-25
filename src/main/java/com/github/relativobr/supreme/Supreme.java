@@ -31,6 +31,7 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
 
   private static Supreme instance;
   private static SupremeOptions supremeOptions = null;
+  private static SupremeLocalization localization;
 
   public static Supreme inst() {
     return instance;
@@ -41,6 +42,7 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
       ConfigurationSection typeSection = inst().getConfig().getConfigurationSection("options");
       if (typeSection != null) {
         supremeOptions = SupremeOptions.builder().autoUpdate(typeSection.getBoolean("auto-update"))
+            .lang(typeSection.getString("lang"))
             .customTickerDelay(typeSection.getInt("custom-ticker-delay"))
             .enableGenerators(typeSection.getBoolean("enable-generators"))
             .limitProductionGenerators(typeSection.getBoolean("limit-production-generators"))
@@ -52,6 +54,10 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
       }
     }
     return supremeOptions;
+  }
+
+  public static SupremeLocalization getLocalization() {
+    return localization;
   }
 
   @Override
@@ -75,6 +81,12 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
       new GitHubBuildsUpdater(this, getFile(), "RelativoBR/Supreme/main").start();
     }
 
+    // localization
+    localization = new SupremeLocalization(this);
+    final String lang = getSupremeOptions().getLang();
+    localization.addLanguage(lang);
+    Supreme.inst().log(Level.INFO, "Loaded language Supreme: " + lang);
+
     MainSetup.setup(this);
 
   }
@@ -93,6 +105,7 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
   public JavaPlugin getJavaPlugin() {
     return this;
   }
+
 
   @Nonnull
   private static Map<Enchantment, Integer> getEnchants(@Nonnull ConfigurationSection section) {
@@ -314,22 +327,20 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
         return ChatColor.YELLOW + String.valueOf(tier + 1) + "x " + ChatColor.GRAY + " decrease energy";
       case SIMPLE:
       default:
-        return ChatColor.GRAY + "Aumenta Velocidade de processamento";
+        return ChatColor.GRAY + "Increases processing speed";
     }
   }
 
   private static String buildLoreTypeLuckAndCloning(Integer tier) {
-
-    if (tier >= 1) {
-      return ChatColor.YELLOW + "2x " + ChatColor.GRAY + "Stack clone";
-    } else if (tier >= 4) {
-      return ChatColor.YELLOW + "3x " + ChatColor.GRAY + "Stack clone";
+    if (tier >= 8) {
+      return ChatColor.YELLOW + "5x " + ChatColor.GRAY + "Stack clone";
     } else if (tier >= 6) {
       return ChatColor.YELLOW + "4x " + ChatColor.GRAY + "Stack clone";
-    } else if (tier >= 8) {
-      return ChatColor.YELLOW + "5x " + ChatColor.GRAY + "Stack clone";
+    }else if (tier >= 4) {
+      return ChatColor.YELLOW + "3x " + ChatColor.GRAY + "Stack clone";
+    } else {
+      return ChatColor.YELLOW + "2x " + ChatColor.GRAY + "Stack clone";
     }
-    return "";
   }
 
   private static String buildLoreTypeAmount(MobTechType mobTechType, Integer tier) {

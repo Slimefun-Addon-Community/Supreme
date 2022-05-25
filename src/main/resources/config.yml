@@ -1,5 +1,6 @@
 options:
   auto-update: true
+  lang: en
   custom-ticker-delay: 2
   enable-generators: true
   limit-production-generators: false

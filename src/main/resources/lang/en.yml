@@ -1,0 +1,15 @@
+---
+categories:
+  main: "&4Supreme"
+items:
+  supreme_sword_supreme:
+    name: "&4&lSupreme Sword"
+    lore:
+      - ""
+      - "&f&lA Supreme Sword of Thornium"
+      - "&3Supreme Weapons"
+      - ""
+messages:
+  no-input: "&cPlease put in items."
+  output-no-space: "&cNo output space!"
+  not-enough-power: "&cNot enough energy."

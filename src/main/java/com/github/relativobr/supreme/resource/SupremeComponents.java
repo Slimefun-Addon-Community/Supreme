@@ -266,7 +266,7 @@ public class SupremeComponents {
       SupremeComponents.CENTER_CARD_SIMPLE, SlimefunItems.HEATING_COIL};
 
   public static final SlimefunItemStack CENTER_CARD_ULTIMATE = new SlimefunItemStack("SUPREME_CENTER_CARD_ULTIMATE",
-      Material.MUSIC_DISC_PIGSTEP, "&aUltimate Component for Card", "", "&fComponent for Machine to produce items", "",
+      Material.MUSIC_DISC_MALL, "&aUltimate Component for Card", "", "&fComponent for Machine to produce items", "",
       "&3Supreme Component");
   public static final ItemStack[] RECIPE_CENTER_CARD_ULTIMATE = new ItemStack[]{SupremeComponents.SYNTHETIC_RUBY,
       SupremeComponents.CENTER_CARD_ADVANCED, SupremeComponents.SYNTHETIC_RUBY, SupremeComponents.CENTER_CARD_ADVANCED,

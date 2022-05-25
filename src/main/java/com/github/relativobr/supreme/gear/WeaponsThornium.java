@@ -1,5 +1,7 @@
 package com.github.relativobr.supreme.gear;
 
+import static com.github.relativobr.supreme.Supreme.getLocalization;
+
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.core.SupremeCoreDeath;
 import com.github.relativobr.supreme.resource.core.SupremeCoreNature;
@@ -73,5 +75,5 @@ public class WeaponsThornium {
       Material.NETHERITE_SWORD, "&6&lLegendary Sword", "&f&lA Legendary Sword of Thornium", "", "&3Supreme Weapons");
 
   public static final SlimefunItemStack THORNIUM_SWORD_SUPREME = new SlimefunItemStack("SUPREME_SWORD_SUPREME",
-      Material.NETHERITE_SWORD, "&4&lSupreme Sword", "&f&lA Supreme Sword of Thornium", "", "&3Supreme Weapons");
+      Material.NETHERITE_SWORD, getLocalization().getItemName("SUPREME_SWORD_SUPREME"), getLocalization().getItemLore("SUPREME_SWORD_SUPREME"));
 }

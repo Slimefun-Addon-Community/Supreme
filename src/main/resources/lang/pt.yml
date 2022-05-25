@@ -1,0 +1,15 @@
+---
+categories:
+  main: "&4Supremo"
+items:
+  supreme_sword_supreme:
+    name: "&4&lEspada Suprema"
+    lore:
+      - ""
+      - "&f&lUma Espada Suprema de Thornium"
+      - "&3Armas Supremas"
+      - ""
+messages:
+  no-input: "&cPor favor coloque os itens."
+  output-no-space: "&cSem espaço de saída!"
+  not-enough-power: "&cEnergia não suficiente."
