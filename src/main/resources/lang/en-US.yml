@@ -1,6 +1,15 @@
 ---
 categories:
-  main: "&4Supreme"
+  main: "&4Supreme 2.0"
+  resource: "&4Resource"
+  components: "&4Components"
+  cards: "&4Cards"
+  techmob: "&4TechMob"
+  machines: "&4Machines"
+  electric: "&4Electric"
+  tools: "&4Supreme Tools"
+  armor: "&4Supreme Armor"
+  weapons: "&4Supreme Weapons"
 items:
   supreme_sword_supreme:
     name: "&4&lSupreme Sword"

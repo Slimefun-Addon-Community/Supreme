@@ -28,10 +28,6 @@ public class MobTechCollectorMachineRecipe extends MachineRecipe implements Pred
     this.predicate = predicate;
   }
 
-  public boolean test(@Nonnull LivingEntity entity) {
-    return this.predicate.test(entity);
-  }
-
   public static List<ItemStack> getAllRecipe() {
     List<ItemStack> displayRecipes = new ArrayList();
     displayRecipes.add(
@@ -43,6 +39,10 @@ public class MobTechCollectorMachineRecipe extends MachineRecipe implements Pred
             "", "&fRequires &bIronGolen &fnearby", ""));
     displayRecipes.add(Supreme.buildItemFromMobTechDTO(IronGolemTech.SIMPLE_GOLEM, 0));
     return displayRecipes;
+  }
+
+  public boolean test(@Nonnull LivingEntity entity) {
+    return this.predicate.test(entity);
   }
 
 }

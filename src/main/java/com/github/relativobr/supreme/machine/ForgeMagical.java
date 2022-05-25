@@ -4,6 +4,7 @@ import com.github.relativobr.machine.SimpleItemContainerMachine;
 import com.github.relativobr.recipe.SimpleItemRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.magical.SupremeCetrus;
+import com.github.relativobr.supreme.util.SupremeItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -18,7 +19,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class ForgeMagical extends SimpleItemContainerMachine {
 
-  public static final SlimefunItemStack FORGE_MAGICAL_MACHINE = new SlimefunItemStack("SUPREME_FORGE_MAGICAL_I",
+  public static final SlimefunItemStack FORGE_MAGICAL_MACHINE = new SupremeItemStack("SUPREME_FORGE_MAGICAL_I",
       Material.ENCHANTING_TABLE, "&bForge Magical", "", "&fThis machine allows you to", "&fforge magical resources.",
       "", LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE), LoreBuilder.speed(1),
       LoreBuilder.powerBuffer(1000), LoreBuilder.powerPerSecond(20), "", "&3Supreme Machine");
@@ -27,7 +28,7 @@ public class ForgeMagical extends SimpleItemContainerMachine {
       SupremeComponents.SYNTHETIC_RUBY, SupremeComponents.INDUCTIVE_MACHINE, SlimefunItems.ELECTRIC_GOLD_PAN_3,
       SlimefunItems.PROGRAMMABLE_ANDROID_3, SlimefunItems.ELECTRIC_ORE_GRINDER_3};
 
-  public static final SlimefunItemStack FORGE_MAGICAL_MACHINE_II = new SlimefunItemStack("SUPREME_FORGE_MAGICAL_II",
+  public static final SlimefunItemStack FORGE_MAGICAL_MACHINE_II = new SupremeItemStack("SUPREME_FORGE_MAGICAL_II",
       Material.ENCHANTING_TABLE, "&bForge Magical II", "", "&fThis machine allows you to", "&fforge magical resources.",
       "", LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE), LoreBuilder.speed(5),
       LoreBuilder.powerBuffer(5000), LoreBuilder.powerPerSecond(100), "", "&3Supreme Machine");
@@ -36,7 +37,7 @@ public class ForgeMagical extends SimpleItemContainerMachine {
       SupremeComponents.INDUCTOR_MACHINE, ForgeMagical.FORGE_MAGICAL_MACHINE, SupremeComponents.INDUCTOR_MACHINE,
       SupremeComponents.THORNERITE, SupremeCetrus.CETRUS_LUMIUM, SupremeComponents.THORNERITE};
 
-  public static final SlimefunItemStack FORGE_MAGICAL_MACHINE_III = new SlimefunItemStack("SUPREME_FORGE_MAGICAL_III",
+  public static final SlimefunItemStack FORGE_MAGICAL_MACHINE_III = new SupremeItemStack("SUPREME_FORGE_MAGICAL_III",
       Material.ENCHANTING_TABLE, "&bForge Magical III", "", "&fThis machine allows you to",
       "&fforge magical resources.", "", LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
       LoreBuilder.speed(15), LoreBuilder.powerBuffer(15000), LoreBuilder.powerPerSecond(300), "", "&3Supreme Machine");

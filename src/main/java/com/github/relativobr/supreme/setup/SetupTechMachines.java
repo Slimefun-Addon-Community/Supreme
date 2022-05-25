@@ -3,18 +3,18 @@ package com.github.relativobr.supreme.setup;
 import static com.github.relativobr.supreme.Supreme.getSupremeOptions;
 
 import com.github.relativobr.supreme.Supreme;
-import com.github.relativobr.supreme.machine.mobtech.MobTechCollector;
-import com.github.relativobr.supreme.machine.mobtech.TechGenerator;
-import com.github.relativobr.supreme.machine.mobtech.TechMutation;
-import com.github.relativobr.supreme.machine.mobtech.TechRobotic;
+import com.github.relativobr.supreme.machine.tech.MobTechCollector;
+import com.github.relativobr.supreme.machine.tech.TechGenerator;
+import com.github.relativobr.supreme.machine.tech.TechMutation;
+import com.github.relativobr.supreme.machine.tech.TechRobotic;
 import com.github.relativobr.supreme.util.ItemGroups;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 
-public class SetupMobTechMachines {
+public class SetupTechMachines {
 
   public static void setup(Supreme sup) {
 
-    if (getSupremeOptions().isEnableMobtech()) {
+    if (getSupremeOptions().isEnableTech()) {
 
       new MobTechCollector(ItemGroups.MACHINES_CATEGORY, MobTechCollector.MOB_TECH_COLLECTOR_MACHINE_I,
           RecipeType.ENHANCED_CRAFTING_TABLE, MobTechCollector.RECIPE_MOB_TECH_COLLECTOR_MACHINE_I).setMobRange(3)

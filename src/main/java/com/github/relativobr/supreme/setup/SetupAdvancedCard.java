@@ -1,7 +1,7 @@
 package com.github.relativobr.supreme.setup;
 
 import com.github.relativobr.supreme.Supreme;
-import com.github.relativobr.supreme.machine.mobtech.TechGenerator;
+import com.github.relativobr.supreme.machine.tech.TechGenerator;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.mobtech.AdvancedCard;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;

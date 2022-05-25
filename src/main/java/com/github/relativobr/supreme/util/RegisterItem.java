@@ -1,9 +1,9 @@
 package com.github.relativobr.supreme.util;
 
 import com.github.relativobr.supreme.Supreme;
-import com.github.relativobr.supreme.machine.mobtech.TechMutation;
 import com.github.relativobr.supreme.machine.multiblock.MultiBlockCoreFabricator;
 import com.github.relativobr.supreme.machine.multiblock.MultiBlockMagicalFabricator;
+import com.github.relativobr.supreme.machine.tech.TechMutation;
 import com.github.relativobr.util.ItemNotPlaceable;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;

@@ -4,8 +4,8 @@ import com.github.relativobr.generic.MobTechGeneric;
 import com.github.relativobr.generic.MobTechGeneric.MobTechType;
 import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.gear.MobCollectorTools;
-import com.github.relativobr.supreme.machine.mobtech.TechMutation;
-import com.github.relativobr.supreme.machine.mobtech.TechRobotic;
+import com.github.relativobr.supreme.machine.tech.TechMutation;
+import com.github.relativobr.supreme.machine.tech.TechRobotic;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.util.ItemGroups;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -20,6 +20,9 @@ import javax.annotation.Nonnull;
 import org.bukkit.inventory.ItemStack;
 
 public class MobTech extends SlimefunItem implements Radioactive, NotPlaceable {
+
+  private Integer mobTechTier;
+  private MobTechType mobTechType;
 
   public MobTech(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
     super(itemGroup, item, recipeType, recipe);
@@ -111,8 +114,8 @@ public class MobTech extends SlimefunItem implements Radioactive, NotPlaceable {
     for (int i = 2; i <= 9; i++) {
       final SlimefunItemStack inputTier = Supreme.buildItemFromMobTechDTO(item, (i - 1));
       final SlimefunItemStack itemStack = Supreme.buildItemFromMobTechDTO(item, i);
-      TechMutation.addRecipeTechMutation(inputTier, inputTier, (MobTechType.MUTATION_BERSERK == item.getMobTechType()) ? 25 : 20,
-          itemStack);
+      TechMutation.addRecipeTechMutation(inputTier, inputTier,
+          (MobTechType.MUTATION_BERSERK == item.getMobTechType()) ? 25 : 20, itemStack);
       new MobTech(ItemGroups.TECHMOB_CATEGORY, itemStack, RecipeType.NULL,
           new ItemStack[]{TechMutation.TECH_MUTATION_I}).setMobTechType(item.getMobTechType()).setMobTechTier(1)
           .register(plugin);
@@ -130,9 +133,6 @@ public class MobTech extends SlimefunItem implements Radioactive, NotPlaceable {
     }
     return null;
   }
-
-  private Integer mobTechTier;
-  private MobTechType mobTechType;
 
   public MobTechType getMobTechType() {
     return mobTechType;

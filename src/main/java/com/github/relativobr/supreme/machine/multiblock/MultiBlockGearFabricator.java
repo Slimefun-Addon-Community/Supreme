@@ -2,6 +2,7 @@ package com.github.relativobr.supreme.machine.multiblock;
 
 import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.util.ItemGroups;
+import com.github.relativobr.supreme.util.SupremeItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -28,7 +29,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class MultiBlockGearFabricator extends MultiBlockMachine implements NotPlaceable {
 
-  public static final SlimefunItemStack GEAR_FABRICATOR = new SlimefunItemStack("SUPREME_MULTIBLOCK_GEAR",
+  public static final SlimefunItemStack GEAR_FABRICATOR = new SupremeItemStack("SUPREME_MULTIBLOCK_GEAR",
       Material.SMITHING_TABLE, "&eGear Fabricator", "", "&7&oYou can craft weapons, armor and tools here!", "",
       "&aMultiBlock Machine");
   public static final RecipeType MACHINE_GEAR_FABRICATOR = new RecipeType(

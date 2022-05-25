@@ -3,6 +3,7 @@ package com.github.relativobr.supreme.machine;
 import com.github.relativobr.supreme.machine.recipe.VirtualAquariumMachineRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.magical.SupremeCetrus;
+import com.github.relativobr.supreme.util.SupremeItemStack;
 import com.github.relativobr.util.UtilMachine;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -42,7 +43,7 @@ import org.springframework.scheduling.annotation.Async;
 @Async
 public class VirtualAquarium extends AContainer implements RecipeDisplayItem {
 
-  public static final SlimefunItemStack VIRTUAL_AQUARIUM_MACHINE = new SlimefunItemStack("SUPREME_VIRTUAL_AQUARIUM_I",
+  public static final SlimefunItemStack VIRTUAL_AQUARIUM_MACHINE = new SupremeItemStack("SUPREME_VIRTUAL_AQUARIUM_I",
       Material.DARK_PRISMARINE, "&bVirtual Aquarium", "", "&fThis machine allows you to collect ",
       "&f items that are collected at sea.", "", LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE),
       LoreBuilder.speed(1), LoreBuilder.powerBuffer(1000), LoreBuilder.powerPerSecond(20), "", "&3Supreme Machine");
@@ -51,7 +52,7 @@ public class VirtualAquarium extends AContainer implements RecipeDisplayItem {
       SupremeComponents.PETRIFIER_MACHINE, SupremeComponents.INDUCTIVE_MACHINE, SupremeComponents.ADAMANTIUM_PLATE,
       SlimefunItems.PROGRAMMABLE_ANDROID_2_FISHERMAN, SupremeComponents.ADAMANTIUM_PLATE};
 
-  public static final SlimefunItemStack VIRTUAL_AQUARIUM_MACHINE_II = new SlimefunItemStack(
+  public static final SlimefunItemStack VIRTUAL_AQUARIUM_MACHINE_II = new SupremeItemStack(
       "SUPREME_VIRTUAL_AQUARIUM_II", Material.DARK_PRISMARINE, "&bVirtual Aquarium II", "",
       "&fThis machine allows you to collect", "&f items that are collected at sea.", "",
       LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE), LoreBuilder.speed(5),
@@ -61,7 +62,7 @@ public class VirtualAquarium extends AContainer implements RecipeDisplayItem {
       SupremeComponents.INDUCTOR_MACHINE, VirtualAquarium.VIRTUAL_AQUARIUM_MACHINE, SupremeComponents.INDUCTOR_MACHINE,
       SupremeComponents.THORNERITE, SupremeCetrus.CETRUS_IGNIS, SupremeComponents.THORNERITE};
 
-  public static final SlimefunItemStack VIRTUAL_AQUARIUM_MACHINE_III = new SlimefunItemStack(
+  public static final SlimefunItemStack VIRTUAL_AQUARIUM_MACHINE_III = new SupremeItemStack(
       "SUPREME_VIRTUAL_AQUARIUM_III", Material.DARK_PRISMARINE, "&bVirtual Aquarium III", "",
       "&fThis machine allows you to collect", "&f items that are collected at sea.", "",
       LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE), LoreBuilder.speed(15),

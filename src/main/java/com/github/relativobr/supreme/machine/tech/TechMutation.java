@@ -1,4 +1,4 @@
-package com.github.relativobr.supreme.machine.mobtech;
+package com.github.relativobr.supreme.machine.tech;
 
 import com.github.relativobr.generic.MobTechMutationGeneric;
 import com.github.relativobr.machine.SimpleItemContainerMachine;
@@ -8,6 +8,7 @@ import com.github.relativobr.supreme.resource.magical.SupremeAttribute;
 import com.github.relativobr.supreme.resource.magical.SupremeCetrus;
 import com.github.relativobr.supreme.resource.magical.SupremeCore;
 import com.github.relativobr.supreme.util.ItemGroups;
+import com.github.relativobr.supreme.util.SupremeItemStack;
 import com.github.relativobr.util.UtilEnergy;
 import com.github.relativobr.util.UtilMachine;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -45,7 +46,7 @@ import org.springframework.scheduling.annotation.Async;
 @Async
 public class TechMutation extends SimpleItemContainerMachine implements Radioactive {
 
-  public static final SlimefunItemStack TECH_MUTATION_I = new SlimefunItemStack("SUPREME_TECH_MUTATION_I",
+  public static final SlimefunItemStack TECH_MUTATION_I = new SupremeItemStack("SUPREME_TECH_MUTATION_I",
       Material.SLIME_BLOCK, "&bTech Mutation", "", "&fUse generator mutation ", "&fto progress to higher levels", "",
       LoreBuilder.radioactive(Radioactivity.VERY_HIGH), "",
       LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE), UtilEnergy.energyPowerPerSecond(500), "",
@@ -55,9 +56,9 @@ public class TechMutation extends SimpleItemContainerMachine implements Radioact
       SlimefunItems.NUCLEAR_REACTOR, SlimefunItems.REINFORCED_PLATE, SupremeComponents.RUSTLESS_MACHINE,
       SupremeCore.CORE_OF_DEATH, SupremeComponents.RUSTLESS_MACHINE};
 
-  public static final SlimefunItemStack TECH_MUTATION_II = new SlimefunItemStack("SUPREME_TECH_MUTATION_II",
-      Material.SLIME_BLOCK, "&bTech Mutation II", "", "&fUse generator mutation ", "&fto progress to higher levels",
-      "", "&fChance factor multiplied by 2x", "", LoreBuilder.radioactive(Radioactivity.VERY_HIGH), "",
+  public static final SlimefunItemStack TECH_MUTATION_II = new SupremeItemStack("SUPREME_TECH_MUTATION_II",
+      Material.SLIME_BLOCK, "&bTech Mutation II", "", "&fUse generator mutation ", "&fto progress to higher levels", "",
+      "&fChance factor multiplied by 2x", "", LoreBuilder.radioactive(Radioactivity.VERY_HIGH), "",
       LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE), UtilEnergy.energyPowerPerSecond(500), "",
       "&3Supreme Machine");
   public static final ItemStack[] RECIPE_TECH_MUTATION_II = new ItemStack[]{SupremeComponents.CONVEYANCE_MACHINE,
@@ -65,25 +66,23 @@ public class TechMutation extends SimpleItemContainerMachine implements Radioact
       TechMutation.TECH_MUTATION_I, SupremeComponents.INDUCTOR_MACHINE, SupremeComponents.THORNERITE,
       SupremeCetrus.CETRUS_IGNIS, SupremeComponents.THORNERITE};
 
-  public static final SlimefunItemStack TECH_MUTATION_III = new SlimefunItemStack("SUPREME_TECH_MUTATION_III",
+  public static final SlimefunItemStack TECH_MUTATION_III = new SupremeItemStack("SUPREME_TECH_MUTATION_III",
       Material.SLIME_BLOCK, "&bTech Mutation III", "", "&fUse generator mutation ", "&fto progress to higher levels",
       "", "&fChance factor multiplied by 4x", "", LoreBuilder.radioactive(Radioactivity.VERY_HIGH), "",
       LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE), UtilEnergy.energyPowerPerSecond(500), "",
       "&3Supreme Machine");
   public static final ItemStack[] RECIPE_TECH_MUTATION_III = new ItemStack[]{SupremeComponents.THORNERITE,
-      SupremeAttribute.getImpetus(), SupremeComponents.THORNERITE, SupremeComponents.SUPREME, TechMutation.TECH_MUTATION_II,
-      SupremeComponents.SUPREME, SupremeComponents.CRYSTALLIZER_MACHINE, SupremeCetrus.CETRUS_LUMIUM,
-      SupremeComponents.CRYSTALLIZER_MACHINE};
-
-  public TechMutation(SlimefunItemStack item, ItemStack[] recipe) {
-    super(ItemGroups.MACHINES_CATEGORY, item, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
-  }
-
+      SupremeAttribute.getImpetus(), SupremeComponents.THORNERITE, SupremeComponents.SUPREME,
+      TechMutation.TECH_MUTATION_II, SupremeComponents.SUPREME, SupremeComponents.CRYSTALLIZER_MACHINE,
+      SupremeCetrus.CETRUS_LUMIUM, SupremeComponents.CRYSTALLIZER_MACHINE};
   public static final List<MobTechMutationGeneric> recipes = new ArrayList<>();
   private Map<Block, MobTechMutationGeneric> processing = new HashMap<Block, MobTechMutationGeneric>();
   private Map<Block, Integer> progressTime = new HashMap<Block, Integer>();
   private int speed = 1;
   private int upgradeLuck = 1;
+  public TechMutation(SlimefunItemStack item, ItemStack[] recipe) {
+    super(ItemGroups.MACHINES_CATEGORY, item, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
+  }
 
   @ParametersAreNonnullByDefault
   public static void addRecipeTechMutation(SlimefunItemStack recipe1, SlimefunItemStack recipe2, int chance,
@@ -95,6 +94,18 @@ public class TechMutation extends SimpleItemContainerMachine implements Radioact
   public static void addRecipeTechMutation(SlimefunItemStack itemStack1, SlimefunItemStack itemStack2,
       SlimefunItemStack output) {
     TechMutation.addRecipeTechMutation(itemStack1, itemStack2, 100, output);
+  }
+
+  private static void invalidProgressBar(BlockMenu menu, String txt) {
+    for (int i : InventoryRecipe.TECH_MUTATION_PROGRESS_BAR_SLOT) {
+      menu.replaceExistingItem(i, new CustomItemStack(Material.RED_STAINED_GLASS_PANE, txt));
+    }
+  }
+
+  private static void invalidProgressBar(BlockMenu menu, Material material, String txt) {
+    for (int i : InventoryRecipe.TECH_MUTATION_PROGRESS_BAR_SLOT) {
+      menu.replaceExistingItem(i, new CustomItemStack(material, txt));
+    }
   }
 
   @Override
@@ -220,18 +231,6 @@ public class TechMutation extends SimpleItemContainerMachine implements Radioact
 
   }
 
-  private static void invalidProgressBar(BlockMenu menu, String txt) {
-    for (int i : InventoryRecipe.TECH_MUTATION_PROGRESS_BAR_SLOT) {
-      menu.replaceExistingItem(i, new CustomItemStack(Material.RED_STAINED_GLASS_PANE, txt));
-    }
-  }
-
-  private static void invalidProgressBar(BlockMenu menu, Material material, String txt) {
-    for (int i : InventoryRecipe.TECH_MUTATION_PROGRESS_BAR_SLOT) {
-      menu.replaceExistingItem(i, new CustomItemStack(material, txt));
-    }
-  }
-
   public int getProgressTime(Block b) {
     return progressTime.get(b) != null ? progressTime.get(b) : (getTimeProcess() * 2);
   }
@@ -296,13 +295,17 @@ public class TechMutation extends SimpleItemContainerMachine implements Radioact
     return displayRecipes;
   }
 
+  public int getSpeed() {
+    return speed;
+  }
+
   public TechMutation setSpeed(int speed) {
     this.speed = speed;
     return this;
   }
 
-  public int getSpeed() {
-    return speed;
+  public int getUpgradeLuck() {
+    return upgradeLuck;
   }
 
   public TechMutation setUpgradeLuck(int upgradeLuck) {
@@ -313,10 +316,6 @@ public class TechMutation extends SimpleItemContainerMachine implements Radioact
     }
     this.upgradeLuck = upgradeLuck;
     return this;
-  }
-
-  public int getUpgradeLuck() {
-    return upgradeLuck;
   }
 
   @Nonnull

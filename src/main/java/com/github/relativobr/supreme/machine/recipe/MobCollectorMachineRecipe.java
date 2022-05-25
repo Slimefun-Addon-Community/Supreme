@@ -26,10 +26,6 @@ public class MobCollectorMachineRecipe extends MachineRecipe implements Predicat
     this.predicate = predicate;
   }
 
-  public boolean test(@Nonnull LivingEntity entity) {
-    return this.predicate.test(entity);
-  }
-
   public static List<ItemStack> getAllRecipe() {
     List<ItemStack> displayRecipes = new ArrayList();
     displayRecipes.add(new CustomItemStack(Material.GLASS_BOTTLE, null, "&fRequires &bBee &fnearby"));
@@ -115,6 +111,10 @@ public class MobCollectorMachineRecipe extends MachineRecipe implements Predicat
     displayRecipes.add(new CustomItemStack(Material.IRON_SWORD, null, "&fRequires &bWitch &fnearby"));
     displayRecipes.add(new ItemStack(Material.GLASS_BOTTLE));
     return displayRecipes;
+  }
+
+  public boolean test(@Nonnull LivingEntity entity) {
+    return this.predicate.test(entity);
   }
 
 }

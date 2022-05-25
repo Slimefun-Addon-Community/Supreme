@@ -7,6 +7,7 @@ import com.github.relativobr.supreme.resource.magical.SupremeCore;
 import com.github.relativobr.supreme.resource.mobtech.BeeTech;
 import com.github.relativobr.supreme.resource.mobtech.IronGolemTech;
 import com.github.relativobr.supreme.util.ItemGroups;
+import com.github.relativobr.supreme.util.SupremeItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -28,23 +29,29 @@ import org.bukkit.inventory.ItemStack;
 
 public class MobCollectorTools extends SlimefunItem implements Rechargeable, NotPlaceable {
 
-  public static final SlimefunItemStack MOB_COLLECTOR_I = new SlimefunItemStack("SUPREME_MOB_COLLECTOR_TOOL_I",
+  public static final SlimefunItemStack MOB_COLLECTOR_I = new SupremeItemStack("SUPREME_MOB_COLLECTOR_TOOL_I",
       Material.IRON_SHOVEL, "&6MobTech Collector I", "", "&fUsed to capture MobTech (Bees and IronGolen)", "",
       LoreBuilder.power(50, " per use"), LoreBuilder.powerCharged(0, 500));
   public static final ItemStack[] RECIPE_MOB_COLLECTOR_I = new ItemStack[]{null, SupremeComponents.SYNTHETIC_RUBY, null,
       null, WeaponsBasic.AURUM_SWORD, null, null, SlimefunItems.MEDIUM_CAPACITOR, null};
 
-  public static final SlimefunItemStack MOB_COLLECTOR_II = new SlimefunItemStack("SUPREME_MOB_COLLECTOR_TOOL_II",
+  public static final SlimefunItemStack MOB_COLLECTOR_II = new SupremeItemStack("SUPREME_MOB_COLLECTOR_TOOL_II",
       Material.DIAMOND_SHOVEL, "&6MobTech Collector II", "", "&fUsed to capture MobTech (Bees and IronGolen)", "",
       LoreBuilder.power(50, " per use"), LoreBuilder.powerCharged(0, 5000));
   public static final ItemStack[] RECIPE_MOB_COLLECTOR_II = new ItemStack[]{null, SupremeCetrus.CETRUS_AQUA, null, null,
       MobCollectorTools.MOB_COLLECTOR_I, null, null, SupremeCetrus.CETRUS_VENTUS, null};
 
-  public static final SlimefunItemStack MOB_COLLECTOR_III = new SlimefunItemStack("SUPREME_MOB_COLLECTOR_TOOL_III",
+  public static final SlimefunItemStack MOB_COLLECTOR_III = new SupremeItemStack("SUPREME_MOB_COLLECTOR_TOOL_III",
       Material.NETHERITE_SHOVEL, "&6MobTech Collector III", "", "&fUsed to capture MobTech (Bees and IronGolen)", "",
       LoreBuilder.power(50, " per use"), LoreBuilder.powerCharged(0, 50000));
   public static final ItemStack[] RECIPE_MOB_COLLECTOR_III = new ItemStack[]{null, SupremeCore.CORE_OF_NATURE, null,
       null, MobCollectorTools.MOB_COLLECTOR_II, null, null, SupremeCore.CORE_OF_LIFE, null};
+  int charge;
+  int maxCharge;
+  public MobCollectorTools(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+    super(itemGroup, item, recipeType, recipe);
+    addItemHandler(getItemHandler());
+  }
 
   public static void setup(Supreme plugin) {
 
@@ -62,20 +69,12 @@ public class MobCollectorTools extends SlimefunItem implements Rechargeable, Not
 
   }
 
-  int charge;
-  int maxCharge;
-
-  public final MobCollectorTools setCharge(int value) {
-    this.charge = value;
-    return this;
-  }
-
   public int getCharge() {
     return this.charge;
   }
 
-  public final MobCollectorTools setMaxCharge(int value) {
-    this.maxCharge = value;
+  public final MobCollectorTools setCharge(int value) {
+    this.charge = value;
     return this;
   }
 
@@ -83,10 +82,9 @@ public class MobCollectorTools extends SlimefunItem implements Rechargeable, Not
     return this.maxCharge;
   }
 
-
-  public MobCollectorTools(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
-    super(itemGroup, item, recipeType, recipe);
-    addItemHandler(getItemHandler());
+  public final MobCollectorTools setMaxCharge(int value) {
+    this.maxCharge = value;
+    return this;
   }
 
   public EntityInteractHandler getItemHandler() {

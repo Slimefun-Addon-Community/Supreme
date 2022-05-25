@@ -2,6 +2,7 @@ package com.github.relativobr.supreme.machine.multiblock;
 
 import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.util.ItemGroups;
+import com.github.relativobr.supreme.util.SupremeItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -25,7 +26,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class MultiBlockCoreFabricator extends MultiBlockMachine implements NotPlaceable {
 
-  public static final SlimefunItemStack CORE_FABRICATOR = new SlimefunItemStack("SUPREME_MULTIBLOCK_CORE",
+  public static final SlimefunItemStack CORE_FABRICATOR = new SupremeItemStack("SUPREME_MULTIBLOCK_CORE",
       Material.SHROOMLIGHT, "&eCore Fabricator", "", "&7&oYou can craft core here!", "", "&aMultiBlock Machine");
   public static final RecipeType MACHINE_CORE_FABRICATOR = new RecipeType(
       new NamespacedKey(Supreme.inst(), "SUPREME_MULTIBLOCK_CORE_KEY"), CORE_FABRICATOR);

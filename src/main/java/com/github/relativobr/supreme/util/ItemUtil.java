@@ -1,6 +1,7 @@
 package com.github.relativobr.supreme.util;
 
 import static com.github.relativobr.supreme.Supreme.getSupremeOptions;
+import static com.github.relativobr.supreme.util.CompatibilySupremeLegacy.getNewIdSupremeLegacy;
 
 import com.github.relativobr.supreme.machine.AbstractQuarry;
 import com.github.relativobr.supreme.machine.AbstractQuarryOutput;
@@ -63,7 +64,7 @@ public class ItemUtil {
   public static PotionEffect[] getSupremeEffects(SlimefunItemStack item) {
 
     // find path
-    String itemPath = item.getItemId().toLowerCase();
+    String itemPath = getNewIdSupremeLegacy(item.getItemId()).toLowerCase();
     PotionEffect[] effect;
     int amplifier = 0;
     if (itemPath.contains("legendary") || itemPath.contains("supreme")) {

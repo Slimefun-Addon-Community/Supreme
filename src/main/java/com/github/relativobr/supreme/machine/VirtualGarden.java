@@ -3,6 +3,7 @@ package com.github.relativobr.supreme.machine;
 import com.github.relativobr.supreme.machine.recipe.VirtualGardenMachineRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.magical.SupremeCetrus;
+import com.github.relativobr.supreme.util.SupremeItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -40,7 +41,7 @@ import org.springframework.scheduling.annotation.Async;
 @Async
 public class VirtualGarden extends AContainer implements NotHopperable, RecipeDisplayItem {
 
-  public static final SlimefunItemStack VIRTUAL_GARDEN_MACHINE = new SlimefunItemStack("SUPREME_VIRTUAL_GARDEN_I",
+  public static final SlimefunItemStack VIRTUAL_GARDEN_MACHINE = new SupremeItemStack("SUPREME_VIRTUAL_GARDEN_I",
       Material.STRIPPED_WARPED_HYPHAE, "&bVirtual Garden", "", "&fThis machine allows you to",
       "&fcultivate some resources.", "", LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE),
       LoreBuilder.speed(1), LoreBuilder.powerBuffer(1000), LoreBuilder.powerPerSecond(20), "", "&3Supreme Machine");
@@ -50,7 +51,7 @@ public class VirtualGarden extends AContainer implements NotHopperable, RecipeDi
       SupremeComponents.ADAMANTIUM_PLATE, SlimefunItems.PROGRAMMABLE_ANDROID_2_FARMER,
       SupremeComponents.ADAMANTIUM_PLATE};
 
-  public static final SlimefunItemStack VIRTUAL_GARDEN_MACHINE_II = new SlimefunItemStack("SUPREME_VIRTUAL_GARDEN_II",
+  public static final SlimefunItemStack VIRTUAL_GARDEN_MACHINE_II = new SupremeItemStack("SUPREME_VIRTUAL_GARDEN_II",
       Material.STRIPPED_WARPED_HYPHAE, "&bVirtual Garden II", "", "&fThis machine allows you to",
       "&fcultivate some resources.", "", LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
       LoreBuilder.speed(5), LoreBuilder.powerBuffer(5000), LoreBuilder.powerPerSecond(100), "", "&3Supreme Machine");
@@ -59,7 +60,7 @@ public class VirtualGarden extends AContainer implements NotHopperable, RecipeDi
       SupremeComponents.INDUCTOR_MACHINE, VirtualGarden.VIRTUAL_GARDEN_MACHINE, SupremeComponents.INDUCTOR_MACHINE,
       SupremeComponents.THORNERITE, SupremeCetrus.CETRUS_AQUA, SupremeComponents.THORNERITE};
 
-  public static final SlimefunItemStack VIRTUAL_GARDEN_MACHINE_III = new SlimefunItemStack("SUPREME_VIRTUAL_GARDEN_III",
+  public static final SlimefunItemStack VIRTUAL_GARDEN_MACHINE_III = new SupremeItemStack("SUPREME_VIRTUAL_GARDEN_III",
       Material.STRIPPED_WARPED_HYPHAE, "&bVirtual Garden III", "", "&fThis machine allows you to",
       "&fcultivate some resources.", "", LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
       LoreBuilder.speed(15), LoreBuilder.powerBuffer(15000), LoreBuilder.powerPerSecond(300), "", "&3Supreme Machine");

@@ -5,6 +5,7 @@ import static com.github.relativobr.supreme.Supreme.getSupremeOptions;
 import com.github.relativobr.supreme.machine.recipe.MobCollectorMachineRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.magical.SupremeCetrus;
+import com.github.relativobr.supreme.util.SupremeItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -69,7 +70,7 @@ import org.springframework.scheduling.annotation.Async;
 public class MobCollector extends AContainer implements RecipeDisplayItem {
 
 
-  public static final SlimefunItemStack MOB_COLLECTOR_MACHINE = new SlimefunItemStack("SUPREME_MOB_COLLECTOR_MACHINE_I",
+  public static final SlimefunItemStack MOB_COLLECTOR_MACHINE = new SupremeItemStack("SUPREME_MOB_COLLECTOR_MACHINE_I",
       Material.RESPAWN_ANCHOR, "&bMob Collector", "", "&fThis machine allows you to collect ",
       "&fitems from nearby mobs. (4 block)", "", LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE),
       LoreBuilder.speed(1), LoreBuilder.powerBuffer(1000), LoreBuilder.powerPerSecond(20), "", "&3Supreme Machine");
@@ -78,7 +79,7 @@ public class MobCollector extends AContainer implements RecipeDisplayItem {
       SupremeComponents.SYNTHETIC_RUBY, SupremeComponents.INDUCTIVE_MACHINE, SupremeComponents.ADAMANTIUM_PLATE,
       SlimefunItems.PROGRAMMABLE_ANDROID_3_BUTCHER, SupremeComponents.ADAMANTIUM_PLATE};
 
-  public static final SlimefunItemStack MOB_COLLECTOR_MACHINE_II = new SlimefunItemStack(
+  public static final SlimefunItemStack MOB_COLLECTOR_MACHINE_II = new SupremeItemStack(
       "SUPREME_MOB_COLLECTOR_MACHINE_II", Material.RESPAWN_ANCHOR, "&bMob Collector II", "",
       "&fThis machine allows you to collect", "&f items from nearby mobs. (8 block)", "",
       LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE), LoreBuilder.speed(5),
@@ -88,7 +89,7 @@ public class MobCollector extends AContainer implements RecipeDisplayItem {
       SupremeComponents.INDUCTOR_MACHINE, MobCollector.MOB_COLLECTOR_MACHINE, SupremeComponents.INDUCTOR_MACHINE,
       SupremeComponents.THORNERITE, SupremeCetrus.CETRUS_IGNIS, SupremeComponents.THORNERITE};
 
-  public static final SlimefunItemStack MOB_COLLECTOR_MACHINE_III = new SlimefunItemStack(
+  public static final SlimefunItemStack MOB_COLLECTOR_MACHINE_III = new SupremeItemStack(
       "SUPREME_MOB_COLLECTOR_MACHINE_III", Material.RESPAWN_ANCHOR, "&bMob Collector III", "",
       "&fThis machine allows you to collect", "&f items from nearby mobs. (16 block)", "",
       LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE), LoreBuilder.speed(15),

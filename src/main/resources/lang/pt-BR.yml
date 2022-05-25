@@ -1,6 +1,14 @@
 ---
 categories:
-  main: "&4Supremo"
+  main: "&4Supreme 2.0"
+  components: "&4Componentes"
+  cards: "&4Cartões"
+  techmob: "&4TechMob"
+  machines: "&4Maquinas"
+  electric: "&4Eletricidade"
+  tools: "&4Ferramentas Suprema"
+  armor: "&4Armaduras Suprema"
+  weapons: "&4Armas Suprema"
 items:
   supreme_sword_supreme:
     name: "&4&lSupreme Sword"

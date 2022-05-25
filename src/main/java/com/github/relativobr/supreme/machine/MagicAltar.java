@@ -4,6 +4,7 @@ import com.github.relativobr.machine.MediumContainerMachine;
 import com.github.relativobr.recipe.SimpleRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.magical.SupremeCetrus;
+import com.github.relativobr.supreme.util.SupremeItemStack;
 import com.github.relativobr.util.UtilEnergy;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -20,7 +21,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class MagicAltar extends MediumContainerMachine {
 
-  public static final SlimefunItemStack MAGIC_ALTAR_MACHINE = new SlimefunItemStack("SUPREME_MAGIC_ALTAR_I",
+  public static final SlimefunItemStack MAGIC_ALTAR_MACHINE = new SupremeItemStack("SUPREME_MAGIC_ALTAR_I",
       Material.SMOKER, "&bMagic Altar", "", "&fCraft Rune and Magical Items", "",
       LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE), LoreBuilder.speed(1),
       UtilEnergy.energyPowerPerSecond(20), "", "&3Supreme Machine");
@@ -29,7 +30,7 @@ public class MagicAltar extends MediumContainerMachine {
       SlimefunItems.ANCIENT_ALTAR, SupremeComponents.CONVEYANCE_MACHINE, SlimefunItems.ANCIENT_PEDESTAL,
       SupremeComponents.INDUCTOR_MACHINE, SlimefunItems.ANCIENT_PEDESTAL};
 
-  public static final SlimefunItemStack MAGIC_ALTAR_MACHINE_II = new SlimefunItemStack("SUPREME_MAGIC_ALTAR_II",
+  public static final SlimefunItemStack MAGIC_ALTAR_MACHINE_II = new SupremeItemStack("SUPREME_MAGIC_ALTAR_II",
       Material.SMOKER, "&bMagic Altar II", "", "&fAdvanced Craft Rune and Magical Items", "",
       LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE), LoreBuilder.speed(5),
       UtilEnergy.energyPowerPerSecond(100), "", "&3Supreme Machine");
@@ -38,7 +39,7 @@ public class MagicAltar extends MediumContainerMachine {
       MagicAltar.MAGIC_ALTAR_MACHINE, SupremeCetrus.CETRUS_LUX, SupremeComponents.THORNERITE,
       SupremeCetrus.CETRUS_IGNIS, SupremeComponents.THORNERITE};
 
-  public static final SlimefunItemStack MAGIC_ALTAR_MACHINE_III = new SlimefunItemStack("SUPREME_MAGIC_ALTAR_III",
+  public static final SlimefunItemStack MAGIC_ALTAR_MACHINE_III = new SupremeItemStack("SUPREME_MAGIC_ALTAR_III",
       Material.SMOKER, "&bMagic Altar III", "", "&fAdvanced Craft Rune and Magical Items", "",
       LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE), LoreBuilder.speed(15),
       UtilEnergy.energyPowerPerSecond(300), "", "&3Supreme Machine");

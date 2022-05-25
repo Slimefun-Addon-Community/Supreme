@@ -1,4 +1,4 @@
-package com.github.relativobr.supreme.machine.mobtech;
+package com.github.relativobr.supreme.machine.tech;
 
 import com.github.relativobr.machine.SimpleItemContainerMachine;
 import com.github.relativobr.recipe.InventoryRecipe;
@@ -6,6 +6,7 @@ import com.github.relativobr.recipe.SimpleRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.magical.SupremeCore;
 import com.github.relativobr.supreme.util.ItemGroups;
+import com.github.relativobr.supreme.util.SupremeItemStack;
 import com.github.relativobr.util.UtilEnergy;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -41,28 +42,37 @@ import org.springframework.scheduling.annotation.Async;
 @Async
 public class TechRobotic extends SimpleItemContainerMachine implements Radioactive {
 
-  public static final SlimefunItemStack TECH_ROBOTIC = new SlimefunItemStack("SUPREME_TECH_ROBOTIC",
-      Material.POLISHED_BLACKSTONE, "&bTech Robotic", "", "&fUse beginner level robots ", "&fto progress to higher levels",
-      "", LoreBuilder.radioactive(Radioactivity.VERY_HIGH), "",
+  public static final SlimefunItemStack TECH_ROBOTIC = new SupremeItemStack("SUPREME_TECH_ROBOTIC",
+      Material.POLISHED_BLACKSTONE, "&bTech Robotic", "", "&fUse beginner level robots ",
+      "&fto progress to higher levels", "", LoreBuilder.radioactive(Radioactivity.VERY_HIGH), "",
       LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE), UtilEnergy.energyPowerPerSecond(500), "",
       "&3Supreme Machine");
   public static final ItemStack[] RECIPE_TECH_ROBOTIC = {SupremeComponents.INDUCTIVE_MACHINE,
       SupremeComponents.SYNTHETIC_RUBY, SupremeComponents.INDUCTIVE_MACHINE, SlimefunItems.REINFORCED_PLATE,
       SlimefunItems.ELECTRIC_MOTOR, SlimefunItems.REINFORCED_PLATE, SupremeComponents.RUSTLESS_MACHINE,
       SupremeCore.CORE_OF_BLOCK, SupremeComponents.RUSTLESS_MACHINE};
-
-
-  public TechRobotic(SlimefunItemStack item, ItemStack[] recipe) {
-    super(ItemGroups.MACHINES_CATEGORY, item, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
-  }
-
   public static final List<SimpleRecipe> recipes = new ArrayList<>();
   private Map<Block, ItemStack> processing = new HashMap<Block, ItemStack>();
   private Map<Block, Integer> progressTime = new HashMap<Block, Integer>();
   private int speed = 1;
+  public TechRobotic(SlimefunItemStack item, ItemStack[] recipe) {
+    super(ItemGroups.MACHINES_CATEGORY, item, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
+  }
 
   public static void addRecipe(ItemStack recipe, ItemStack item) {
     recipes.add(new SimpleRecipe(item, new ItemStack[]{recipe}));
+  }
+
+  private static void invalidProgressBar(BlockMenu menu, String txt) {
+    for (int i : InventoryRecipe.TECH_ROBOTIC_PROGRESS_BAR_SLOT) {
+      menu.replaceExistingItem(i, new CustomItemStack(Material.RED_STAINED_GLASS_PANE, txt));
+    }
+  }
+
+  private static void invalidProgressBar(BlockMenu menu, Material material, String txt) {
+    for (int i : InventoryRecipe.TECH_ROBOTIC_PROGRESS_BAR_SLOT) {
+      menu.replaceExistingItem(i, new CustomItemStack(material, txt));
+    }
   }
 
   @Override
@@ -131,7 +141,6 @@ public class TechRobotic extends SimpleItemContainerMachine implements Radioacti
     });
   }
 
-
   public void tick(Block b) {
 
     BlockMenu inv = BlockStorage.getInventory(b);
@@ -182,18 +191,6 @@ public class TechRobotic extends SimpleItemContainerMachine implements Radioacti
 
     }
 
-  }
-
-  private static void invalidProgressBar(BlockMenu menu, String txt) {
-    for (int i : InventoryRecipe.TECH_ROBOTIC_PROGRESS_BAR_SLOT) {
-      menu.replaceExistingItem(i, new CustomItemStack(Material.RED_STAINED_GLASS_PANE, txt));
-    }
-  }
-
-  private static void invalidProgressBar(BlockMenu menu, Material material, String txt) {
-    for (int i : InventoryRecipe.TECH_ROBOTIC_PROGRESS_BAR_SLOT) {
-      menu.replaceExistingItem(i, new CustomItemStack(material, txt));
-    }
   }
 
   public int getProgressTime(Block b) {
@@ -252,13 +249,13 @@ public class TechRobotic extends SimpleItemContainerMachine implements Radioacti
     return displayRecipes;
   }
 
+  public int getSpeed() {
+    return speed;
+  }
+
   public TechRobotic setSpeed(int speed) {
     this.speed = speed;
     return this;
-  }
-
-  public int getSpeed() {
-    return speed;
   }
 
   @Nonnull

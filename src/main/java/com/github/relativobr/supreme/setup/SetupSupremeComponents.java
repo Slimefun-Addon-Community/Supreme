@@ -50,11 +50,9 @@ public class SetupSupremeComponents {
 
     registerEnhancedCraft(SupremeComponents.THORNIUM_INGOT, SupremeComponents.RECIPE_THORNIUM_INGOT);
 
-    registerEnhancedCraft(SupremeComponents.THORNIUM_BIT_SYNTHETIC,
-        SupremeComponents.RECIPE_THORNIUM_BIT_SYNTHETIC);
+    registerEnhancedCraft(SupremeComponents.THORNIUM_BIT_SYNTHETIC, SupremeComponents.RECIPE_THORNIUM_BIT_SYNTHETIC);
 
-    registerEnhancedCraft(SupremeComponents.THORNIUM_DUST_SYNTHETIC,
-        SupremeComponents.RECIPE_THORNIUM_DUST_SYNTHETIC);
+    registerEnhancedCraft(SupremeComponents.THORNIUM_DUST_SYNTHETIC, SupremeComponents.RECIPE_THORNIUM_DUST_SYNTHETIC);
 
     registerEnhancedCraft(SupremeComponents.THORNIUM_INGOT_SYNTHETIC,
         SupremeComponents.RECIPE_THORNIUM_INGOT_SYNTHETIC);
@@ -91,7 +89,7 @@ public class SetupSupremeComponents {
 
     SetupMagicalComponents.setup(sup);
 
-    SetupMobTechComponents.setup(sup);
+    SetupTechComponents.setup(sup);
   }
 
 }

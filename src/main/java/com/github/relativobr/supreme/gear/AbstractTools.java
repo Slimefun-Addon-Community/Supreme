@@ -114,7 +114,7 @@ public class AbstractTools extends SlimefunItem implements Soulbound, NotPlaceab
         ItemTier.getSupreme(ToolsThornium.THORNIUM_SHOVEL_LEGENDARY));
     shovelSupreme.register(sup);
 
-    if (getSupremeOptions().isEnableMobtech()) {
+    if (getSupremeOptions().isEnableTech()) {
       MobCollectorTools.setup(sup);
     }
   }

@@ -4,6 +4,7 @@ import com.github.relativobr.machine.MediumContainerMachine;
 import com.github.relativobr.recipe.SimpleRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.magical.SupremeCetrus;
+import com.github.relativobr.supreme.util.SupremeItemStack;
 import com.github.relativobr.util.UtilEnergy;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -21,7 +22,7 @@ import org.bukkit.inventory.ItemStack;
 public class ElectricCrafter extends MediumContainerMachine {
 
 
-  public static final SlimefunItemStack ELECTRIC_CRAFTER_MACHINE = new SlimefunItemStack("SUPREME_ELECTRIC_CRAFTER_I",
+  public static final SlimefunItemStack ELECTRIC_CRAFTER_MACHINE = new SupremeItemStack("SUPREME_ELECTRIC_CRAFTER_I",
       Material.CRAFTING_TABLE, "&bElectric Crafter", "", "&fCraft Items", "",
       LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE), LoreBuilder.speed(1),
       UtilEnergy.energyPowerPerSecond(20), "", "&3Supreme Machine");
@@ -30,7 +31,7 @@ public class ElectricCrafter extends MediumContainerMachine {
       SupremeComponents.SYNTHETIC_RUBY, SupremeComponents.INDUCTIVE_MACHINE, SupremeComponents.ADAMANTIUM_PLATE,
       SlimefunItems.ENHANCED_AUTO_CRAFTER, SupremeComponents.ADAMANTIUM_PLATE};
 
-  public static final SlimefunItemStack ELECTRIC_CRAFTER_MACHINE_II = new SlimefunItemStack(
+  public static final SlimefunItemStack ELECTRIC_CRAFTER_MACHINE_II = new SupremeItemStack(
       "SUPREME_ELECTRIC_CRAFTER_II", Material.CRAFTING_TABLE, "&bElectric Crafter II", "", "&fAdvanced Craft Items", "",
       LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE), LoreBuilder.speed(5),
       UtilEnergy.energyPowerPerSecond(100), "", "&3Supreme Machine");
@@ -39,7 +40,7 @@ public class ElectricCrafter extends MediumContainerMachine {
       SupremeComponents.INDUCTOR_MACHINE, ElectricCrafter.ELECTRIC_CRAFTER_MACHINE, SupremeComponents.INDUCTOR_MACHINE,
       SupremeComponents.CRYSTALLIZER_MACHINE, SupremeCetrus.CETRUS_IGNIS, SupremeComponents.CRYSTALLIZER_MACHINE};
 
-  public static final SlimefunItemStack ELECTRIC_CRAFTER_MACHINE_III = new SlimefunItemStack(
+  public static final SlimefunItemStack ELECTRIC_CRAFTER_MACHINE_III = new SupremeItemStack(
       "SUPREME_ELECTRIC_CRAFTER_III", Material.CRAFTING_TABLE, "&bElectric Crafter III", "", "&fAdvanced Craft Items",
       "", LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE), LoreBuilder.speed(15),
       UtilEnergy.energyPowerPerSecond(300), "", "&3Supreme Machine");

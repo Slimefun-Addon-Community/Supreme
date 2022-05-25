@@ -1,4 +1,4 @@
-package com.github.relativobr.supreme.machine.mobtech;
+package com.github.relativobr.supreme.machine.tech;
 
 import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.gear.MobCollectorTools;
@@ -7,6 +7,7 @@ import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.magical.SupremeCetrus;
 import com.github.relativobr.supreme.resource.mobtech.BeeTech;
 import com.github.relativobr.supreme.resource.mobtech.IronGolemTech;
+import com.github.relativobr.supreme.util.SupremeItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -44,7 +45,7 @@ import org.springframework.scheduling.annotation.Async;
 @Async
 public class MobTechCollector extends AContainer implements RecipeDisplayItem {
 
-  public static final SlimefunItemStack MOB_TECH_COLLECTOR_MACHINE_I = new SlimefunItemStack(
+  public static final SlimefunItemStack MOB_TECH_COLLECTOR_MACHINE_I = new SupremeItemStack(
       "MOB_TECH_COLLECTOR_MACHINE", Material.NETHER_GOLD_ORE, "&bMobTech Collector I", "",
       "&fThis machine allows you to collect ", "&fMobTech head nearby mobs. (3 block)", "",
       LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE), LoreBuilder.speed(1),
@@ -54,7 +55,7 @@ public class MobTechCollector extends AContainer implements RecipeDisplayItem {
       SupremeComponents.INDUCTIVE_MACHINE, MobCollectorTools.MOB_COLLECTOR_I, SupremeComponents.INDUCTIVE_MACHINE,
       SupremeComponents.AURUM_PLATE, SlimefunItems.PROGRAMMABLE_ANDROID_3_BUTCHER, SupremeComponents.AURUM_PLATE};
 
-  public static final SlimefunItemStack MOB_TECH_COLLECTOR_MACHINE_II = new SlimefunItemStack(
+  public static final SlimefunItemStack MOB_TECH_COLLECTOR_MACHINE_II = new SupremeItemStack(
       "SUPREME_MOB_TECH_COLLECTOR_MACHINE_II", Material.NETHER_GOLD_ORE, "&bMobTech Collector II", "",
       "&fThis machine allows you to collect ", "&fMobTech head nearby mobs. (6 block)", "",
       LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE), LoreBuilder.speed(1),
@@ -65,7 +66,7 @@ public class MobTechCollector extends AContainer implements RecipeDisplayItem {
       SupremeComponents.INDUCTOR_MACHINE, SupremeComponents.THORNERITE, SupremeCetrus.CETRUS_IGNIS,
       SupremeComponents.THORNERITE};
 
-  public static final SlimefunItemStack MOB_TECH_COLLECTOR_MACHINE_III = new SlimefunItemStack(
+  public static final SlimefunItemStack MOB_TECH_COLLECTOR_MACHINE_III = new SupremeItemStack(
       "SUPREME_MOB_TECH_COLLECTOR_MACHINE_III", Material.NETHER_GOLD_ORE, "&bMobTech Collector III", "",
       "&fThis machine allows you to collect ", "&fMobTech head nearby mobs. (9 block)", "",
       LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE), LoreBuilder.speed(1),

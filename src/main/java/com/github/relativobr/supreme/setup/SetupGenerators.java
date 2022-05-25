@@ -15,7 +15,7 @@ public class SetupGenerators {
 
   public static void setup(Supreme sup) {
 
-    if (getSupremeOptions().isEnableMobtech()) {
+    if (getSupremeOptions().isEnableTech()) {
 
       new GeneratorMob(GeneratorMob.GENERATOR_MOB_BASIC, GeneratorMob.RECIPE_GENERATOR_MOB_BASIC).setBuffer(
               getValueGeneratorsWithLimit(GeneratorMob.BASIC_GENERATOR_MOB_BUFFER))

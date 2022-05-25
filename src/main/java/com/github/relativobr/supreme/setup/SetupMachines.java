@@ -150,7 +150,7 @@ public class SetupMachines {
         RecipeType.ENHANCED_CRAFTING_TABLE, VirtualAquarium.RECIPE_VIRTUAL_AQUARIUM_MACHINE_III).setCapacity(15000)
         .setProcessingSpeed(15).setEnergyConsumption(300).register(sup);
 
-    SetupMobTechMachines.setup(sup);
+    SetupTechMachines.setup(sup);
 
   }
 }

@@ -4,6 +4,7 @@ import com.github.relativobr.machine.SimpleItemContainerMachine;
 import com.github.relativobr.recipe.SimpleItemRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.magical.SupremeCetrus;
+import com.github.relativobr.supreme.util.SupremeItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -18,7 +19,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class ForgeIngot extends SimpleItemContainerMachine {
 
-  public static final SlimefunItemStack FORGE_INGOT_MACHINE = new SlimefunItemStack("SUPREME_FORGE_INGOT_I",
+  public static final SlimefunItemStack FORGE_INGOT_MACHINE = new SupremeItemStack("SUPREME_FORGE_INGOT_I",
       Material.BLAST_FURNACE, "&bForge Ingot", "", "&fThis machine allows you to", "&fforge ingot resources.", "",
       LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE), LoreBuilder.speed(1),
       LoreBuilder.powerBuffer(1000), LoreBuilder.powerPerSecond(20), "", "&3Supreme Machine");
@@ -27,7 +28,7 @@ public class ForgeIngot extends SimpleItemContainerMachine {
       SupremeComponents.PETRIFIER_MACHINE, SupremeComponents.INDUCTIVE_MACHINE, SlimefunItems.ELECTRIC_INGOT_FACTORY_3,
       SlimefunItems.ELECTRIC_SMELTERY_2, SlimefunItems.CARBON_PRESS_3};
 
-  public static final SlimefunItemStack FORGE_INGOT_MACHINE_II = new SlimefunItemStack("SUPREME_FORGE_INGOT_II",
+  public static final SlimefunItemStack FORGE_INGOT_MACHINE_II = new SupremeItemStack("SUPREME_FORGE_INGOT_II",
       Material.BLAST_FURNACE, "&bForge Ingot II", "", "&fThis machine allows you to", "&fforge ingot resources.", "",
       LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE), LoreBuilder.speed(5),
       LoreBuilder.powerBuffer(5000), LoreBuilder.powerPerSecond(100), "", "&3Supreme Machine");
@@ -36,7 +37,7 @@ public class ForgeIngot extends SimpleItemContainerMachine {
       ForgeIngot.FORGE_INGOT_MACHINE, SupremeComponents.INDUCTOR_MACHINE, SupremeComponents.THORNERITE,
       SupremeCetrus.CETRUS_LUMIUM, SupremeComponents.THORNERITE};
 
-  public static final SlimefunItemStack FORGE_INGOT_MACHINE_III = new SlimefunItemStack("SUPREME_FORGE_INGOT_III",
+  public static final SlimefunItemStack FORGE_INGOT_MACHINE_III = new SupremeItemStack("SUPREME_FORGE_INGOT_III",
       Material.BLAST_FURNACE, "&bForge Ingot III", "", "&fThis machine allows you to", "&fforge ingot resources.", "",
       LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE), LoreBuilder.speed(15),
       LoreBuilder.powerBuffer(15000), LoreBuilder.powerPerSecond(300), "", "&3Supreme Machine");

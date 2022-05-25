@@ -1,29 +1,9 @@
 package com.github.relativobr.supreme.util;
 
+import static com.github.relativobr.supreme.Supreme.getLegacyItem;
 import static com.github.relativobr.supreme.Supreme.getSupremeOptions;
 
 import com.github.relativobr.supreme.Supreme;
-import com.github.relativobr.supreme.gear.ArmorBasic;
-import com.github.relativobr.supreme.gear.ArmorThornium;
-import com.github.relativobr.supreme.gear.ToolsBasic;
-import com.github.relativobr.supreme.gear.ToolsThornium;
-import com.github.relativobr.supreme.gear.WeaponsBasic;
-import com.github.relativobr.supreme.gear.WeaponsThornium;
-import com.github.relativobr.supreme.generators.SupremeCapacitor;
-import com.github.relativobr.supreme.generators.SupremeGenerator;
-import com.github.relativobr.supreme.machine.SupremeQuarry;
-import com.github.relativobr.supreme.machine.multiblock.ElectricCoreFabricator;
-import com.github.relativobr.supreme.resource.SupremeComponents;
-import com.github.relativobr.supreme.resource.core.SupremeCoreAlloy;
-import com.github.relativobr.supreme.resource.core.SupremeCoreBlock;
-import com.github.relativobr.supreme.resource.core.SupremeCoreColor;
-import com.github.relativobr.supreme.resource.core.SupremeCoreDeath;
-import com.github.relativobr.supreme.resource.core.SupremeCoreLife;
-import com.github.relativobr.supreme.resource.core.SupremeCoreNature;
-import com.github.relativobr.supreme.resource.magical.SupremeAttribute;
-import com.github.relativobr.supreme.resource.magical.SupremeCetrus;
-import com.github.relativobr.supreme.resource.magical.SupremeCore;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
@@ -38,24 +18,14 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CompatibilySupremeLegacy {
 
-  private static List<CompatibilySupremeLegacyItem> legacyItems = new ArrayList<>();
-
-  public static void loadCompatibilySupremeLegacy() {
-    loadComponents();
-    loadGear();
-    loadGenerators();
-    loadMachines();
-    loadCoreResource();
-  }
-
   public static String getOldIdSupremeLegacy(String newId) {
     if (getSupremeOptions().isUseLegacySupremeexpansionItemId()) {
-      if (legacyItems.isEmpty()) {
-        Supreme.inst().log(Level.SEVERE, "valid SupremeLegacy error");
+      if (getLegacyItem().isEmpty()) {
+        Supreme.inst().log(Level.WARNING, "get Legacy Items error");
       }
-      final Optional<CompatibilySupremeLegacyItem> legacyItem = legacyItems.stream()
+      final Optional<CompatibilySupremeLegacyItem> legacyItem = getLegacyItem().stream()
           .filter(x -> x.getNewSupremeID().equals(newId)).findFirst();
-      if(legacyItem.isPresent()){
+      if (legacyItem.isPresent()) {
         return legacyItem.get().getOldSupremeID();
       }
     }
@@ -64,316 +34,317 @@ public class CompatibilySupremeLegacy {
 
   public static String getNewIdSupremeLegacy(String oldId) {
     if (getSupremeOptions().isUseLegacySupremeexpansionItemId()) {
-      if (legacyItems.isEmpty()) {
-        Supreme.inst().log(Level.SEVERE, "valid SupremeLegacy error");
+      if (getLegacyItem().isEmpty()) {
+        Supreme.inst().log(Level.WARNING, "get Legacy Items error");
       }
-      final Optional<CompatibilySupremeLegacyItem> legacyItem = legacyItems.stream()
+      final Optional<CompatibilySupremeLegacyItem> legacyItem = getLegacyItem().stream()
           .filter(x -> x.getOldSupremeID().equals(oldId)).findFirst();
-      if(legacyItem.isPresent()){
+      if (legacyItem.isPresent()) {
         return legacyItem.get().getNewSupremeID();
       }
     }
     return oldId;
   }
 
-  private static void addSupremeLegacyItem(String newSupremeID, String oldSupremeID) {
-    legacyItems.add(new CompatibilySupremeLegacyItem(newSupremeID, oldSupremeID));
+  private static CompatibilySupremeLegacyItem addSupremeLegacyItem(String newSupremeID, String oldSupremeID) {
+    return new CompatibilySupremeLegacyItem(newSupremeID, oldSupremeID);
   }
 
-  private static void addSupremeLegacyItemWithReplace(String newSupremeID, String oldString) {
-    addSupremeLegacyItemWithReplace(newSupremeID, oldString, "SUPREME_");
+  private static CompatibilySupremeLegacyItem addSupremeLegacyItemWithReplace(String newSupremeID, String oldString) {
+    return addSupremeLegacyItemWithReplace(newSupremeID, oldString, "SUPREME_");
   }
 
-  private static void addSupremeLegacyItemWithReplace(String newSupremeID, String oldString, String newString) {
-    legacyItems.add(new CompatibilySupremeLegacyItem(newSupremeID, newSupremeID.replaceAll(oldString, newString)));
+  private static CompatibilySupremeLegacyItem addSupremeLegacyItemWithReplace(String newSupremeID, String oldString,
+      String newString) {
+    return new CompatibilySupremeLegacyItem(newSupremeID, newSupremeID.replaceAll(newString, oldString));
   }
 
-  private static void addSupremeLegacyItemRemovePrefix(String newSupremeID) {
-    addSupremeLegacyItemRemovePrefix(newSupremeID, "SUPREME_");
+  private static CompatibilySupremeLegacyItem addSupremeLegacyItemRemovePrefix(String newSupremeID) {
+    return addSupremeLegacyItemRemovePrefix(newSupremeID, "SUPREME_");
   }
 
-  private static void addSupremeLegacyItemRemovePrefix(String newSupremeID, String prefix) {
-    legacyItems.add(new CompatibilySupremeLegacyItem(newSupremeID, newSupremeID.substring(prefix.length())));
+  private static CompatibilySupremeLegacyItem addSupremeLegacyItemRemovePrefix(String newSupremeID, String prefix) {
+    return new CompatibilySupremeLegacyItem(newSupremeID, newSupremeID.substring(prefix.length()));
   }
 
-  private static void loadComponents() {
+  public static void loadComponents(List<CompatibilySupremeLegacyItem> result) {
 
     //SupremeComponents
     final String resourcePrefix = "RESOURCE_";
-    addSupremeLegacyItemRemovePrefix(SupremeComponents.SUPREME.getItemId());
-    addSupremeLegacyItemRemovePrefix(SupremeComponents.SUPREME_NUGGET.getItemId());
-    addSupremeLegacyItemWithReplace(SupremeComponents.THORNIUM_BIT.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeComponents.THORNIUM_DUST.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeComponents.THORNIUM_INGOT.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeComponents.THORNIUM_BIT_SYNTHETIC.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeComponents.THORNIUM_DUST_SYNTHETIC.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeComponents.THORNIUM_INGOT_SYNTHETIC.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeComponents.THORNIUM_CARBONADO.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeComponents.THORNIUM_ENERGIZED.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeComponents.ALLOY_ZIRCONIUM.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeComponents.ZIRCONIUM_PLATE.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeComponents.ALLOY_TITANIUM.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeComponents.TITANIUM_PLATE.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeComponents.ALLOY_IRIDIUM.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeComponents.IRIDIUM_PLATE.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeComponents.ALLOY_AURUM.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeComponents.AURUM_PLATE.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeComponents.ALLOY_MANGANESE.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeComponents.MANGANESE_PLATE.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeComponents.ALLOY_PLATINUM.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeComponents.PLATINUM_PLATE.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeComponents.ALLOY_ADAMANTIUM.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeComponents.ADAMANTIUM_PLATE.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeComponents.SYNTHETIC_AMETHYST.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeComponents.SYNTHETIC_RUBY.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeComponents.THORNERITE.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeComponents.INDUCTIVE_MACHINE.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeComponents.INDUCTOR_MACHINE.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeComponents.RUSTLESS_MACHINE.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeComponents.STAINLESS_MACHINE.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeComponents.CARRIAGE_MACHINE.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeComponents.CONVEYANCE_MACHINE.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeComponents.PETRIFIER_MACHINE.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeComponents.CRYSTALLIZER_MACHINE.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeComponents.BLEND_MACHINE.getItemId(), resourcePrefix);
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_SUPREME"));
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_SUPREME_NUGGET"));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_THORNIUM_BIT", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_THORNIUM_DUST", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_THORNIUM_INGOT", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_THORNIUM_BIT_SYNTHETIC", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_THORNIUM_DUST_SYNTHETIC", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_THORNIUM_INGOT_SYNTHETIC", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_THORNIUM_CARBONADO", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_THORNIUM_ENERGIZED", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_ALLOY_ZIRCONIUM", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_ZIRCONIUM_PLATE", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_ALLOY_TITANIUM", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_TITANIUM_PLATE", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_ALLOY_IRIDIUM", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_IRIDIUM_PLATE", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_ALLOY_AURUM", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_AURUM_PLATE", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_ALLOY_MANGANESE", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_MANGANESE_PLATE", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_ALLOY_PLATINUM", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_PLATINUM_PLATE", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_ALLOY_ADAMANTIUM", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_ADAMANTIUM_PLATE", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_SYNTHETIC_AMETHYST", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_SYNTHETIC_RUBY", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_THORNERITE", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_INDUCTIVE_MACHINE", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_INDUCTOR_MACHINE", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_RUSTLESS_MACHINE", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_STAINLESS_MACHINE", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CARRIAGE_MACHINE", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CONVEYANCE_MACHINE", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_PETRIFIER_MACHINE", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CRYSTALLIZER_MACHINE", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_BLEND_MACHINE", resourcePrefix));
 
     //SupremeCore
-    addSupremeLegacyItemRemovePrefix(SupremeCore.CORE_OF_LIFE.getItemId());
-    addSupremeLegacyItemRemovePrefix(SupremeCore.CORE_OF_DEATH.getItemId());
-    addSupremeLegacyItemRemovePrefix(SupremeCore.CORE_OF_COLOR.getItemId());
-    addSupremeLegacyItemRemovePrefix(SupremeCore.CORE_OF_BLOCK.getItemId());
-    addSupremeLegacyItemRemovePrefix(SupremeCore.CORE_OF_NATURE.getItemId());
-    addSupremeLegacyItemRemovePrefix(SupremeCore.CORE_OF_ALLOY.getItemId());
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_CORE_OF_LIFE"));
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_CORE_OF_DEATH"));
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_CORE_OF_COLOR"));
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_CORE_OF_BLOCK"));
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_CORE_OF_NATURE"));
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_CORE_OF_ALLOY"));
 
     //SupremeCetrus
-    addSupremeLegacyItemRemovePrefix(SupremeCetrus.CETRUS_LUX.getItemId());
-    addSupremeLegacyItemRemovePrefix(SupremeCetrus.CETRUS_VENTUS.getItemId());
-    addSupremeLegacyItemRemovePrefix(SupremeCetrus.CETRUS_LUMIUM.getItemId());
-    addSupremeLegacyItemRemovePrefix(SupremeCetrus.CETRUS_AQUA.getItemId());
-    addSupremeLegacyItemRemovePrefix(SupremeCetrus.CETRUS_IGNIS.getItemId());
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_CETRUS_LUX"));
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_CETRUS_VENTUS"));
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_CETRUS_LUMIUM"));
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_CETRUS_AQUA"));
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_CETRUS_IGNIS"));
 
     //SupremeAttribute
-    addSupremeLegacyItemRemovePrefix(SupremeAttribute.ATTRIBUTE_MAGIC.getItemId());
-    addSupremeLegacyItemRemovePrefix(SupremeAttribute.ATTRIBUTE_BOMB.getItemId());
-    addSupremeLegacyItemRemovePrefix(SupremeAttribute.ATTRIBUTE_FORTUNE.getItemId());
-    addSupremeLegacyItemRemovePrefix(SupremeAttribute.ATTRIBUTE_IMPETUS.getItemId());
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_ATTRIBUTE_MAGIC"));
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_ATTRIBUTE_BOMB"));
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_ATTRIBUTE_FORTUNE"));
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_ATTRIBUTE_IMPETUS"));
 
   }
 
-  private static void loadGear() {
+  public static void loadGear(List<CompatibilySupremeLegacyItem> result) {
 
     //ArmorBasic
     final String armorPrefix = "ARMOR_";
-    addSupremeLegacyItemWithReplace(ArmorBasic.ADAMANTIUM_HELMET.getItemId(), armorPrefix);
-    addSupremeLegacyItemWithReplace(ArmorBasic.AURUM_HELMET.getItemId(), armorPrefix);
-    addSupremeLegacyItemWithReplace(ArmorBasic.TITANIUM_HELMET.getItemId(), armorPrefix);
-    addSupremeLegacyItemWithReplace(ArmorBasic.ADAMANTIUM_CHESTPLATE.getItemId(), armorPrefix);
-    addSupremeLegacyItemWithReplace(ArmorBasic.AURUM_CHESTPLATE.getItemId(), armorPrefix);
-    addSupremeLegacyItemWithReplace(ArmorBasic.TITANIUM_CHESTPLATE.getItemId(), armorPrefix);
-    addSupremeLegacyItemWithReplace(ArmorBasic.ADAMANTIUM_LEGGINGS.getItemId(), armorPrefix);
-    addSupremeLegacyItemWithReplace(ArmorBasic.AURUM_LEGGINGS.getItemId(), armorPrefix);
-    addSupremeLegacyItemWithReplace(ArmorBasic.TITANIUM_LEGGINGS.getItemId(), armorPrefix);
-    addSupremeLegacyItemWithReplace(ArmorBasic.ADAMANTIUM_BOOTS.getItemId(), armorPrefix);
-    addSupremeLegacyItemWithReplace(ArmorBasic.AURUM_BOOTS.getItemId(), armorPrefix);
-    addSupremeLegacyItemWithReplace(ArmorBasic.TITANIUM_BOOTS.getItemId(), armorPrefix);
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_ADAMANTIUM_HELMET", armorPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_AURUM_HELMET", armorPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_TITANIUM_HELMET", armorPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_ADAMANTIUM_CHESTPLATE", armorPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_AURUM_CHESTPLATE", armorPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_TITANIUM_CHESTPLATE", armorPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_ADAMANTIUM_LEGGINGS", armorPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_AURUM_LEGGINGS", armorPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_TITANIUM_LEGGINGS", armorPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_ADAMANTIUM_BOOTS", armorPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_AURUM_BOOTS", armorPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_TITANIUM_BOOTS", armorPrefix));
 
     //ArmorThornium
     final String armorThorniumPrefix = "ARMOR_THORNIUM_";
-    addSupremeLegacyItem(ArmorThornium.THORNIUM_BOOTS.getItemId(), "ARMOR_THORNIUM_BOOTS");
-    addSupremeLegacyItemWithReplace(ArmorThornium.THORNIUM_BOOTS_MAGIC.getItemId(), armorThorniumPrefix);
-    addSupremeLegacyItemWithReplace(ArmorThornium.THORNIUM_BOOTS_RARE.getItemId(), armorThorniumPrefix);
-    addSupremeLegacyItemWithReplace(ArmorThornium.THORNIUM_BOOTS_EPIC.getItemId(), armorThorniumPrefix);
-    addSupremeLegacyItemWithReplace(ArmorThornium.THORNIUM_BOOTS_LEGENDARY.getItemId(), armorThorniumPrefix);
-    addSupremeLegacyItemWithReplace(ArmorThornium.THORNIUM_BOOTS_SUPREME.getItemId(), armorThorniumPrefix);
-    addSupremeLegacyItem(ArmorThornium.THORNIUM_CHESTPLATE.getItemId(), "ARMOR_THORNIUM_CHESTPLATE");
-    addSupremeLegacyItemWithReplace(ArmorThornium.THORNIUM_CHESTPLATE_MAGIC.getItemId(), armorThorniumPrefix);
-    addSupremeLegacyItemWithReplace(ArmorThornium.THORNIUM_CHESTPLATE_RARE.getItemId(), armorThorniumPrefix);
-    addSupremeLegacyItemWithReplace(ArmorThornium.THORNIUM_CHESTPLATE_EPIC.getItemId(), armorThorniumPrefix);
-    addSupremeLegacyItemWithReplace(ArmorThornium.THORNIUM_CHESTPLATE_LEGENDARY.getItemId(), armorThorniumPrefix);
-    addSupremeLegacyItemWithReplace(ArmorThornium.THORNIUM_CHESTPLATE_SUPREME.getItemId(), armorThorniumPrefix);
-    addSupremeLegacyItem(ArmorThornium.THORNIUM_HELMET.getItemId(), "ARMOR_THORNIUM_HELMET");
-    addSupremeLegacyItemWithReplace(ArmorThornium.THORNIUM_HELMET_MAGIC.getItemId(), armorThorniumPrefix);
-    addSupremeLegacyItemWithReplace(ArmorThornium.THORNIUM_HELMET_RARE.getItemId(), armorThorniumPrefix);
-    addSupremeLegacyItemWithReplace(ArmorThornium.THORNIUM_HELMET_EPIC.getItemId(), armorThorniumPrefix);
-    addSupremeLegacyItemWithReplace(ArmorThornium.THORNIUM_HELMET_LEGENDARY.getItemId(), armorThorniumPrefix);
-    addSupremeLegacyItemWithReplace(ArmorThornium.THORNIUM_HELMET_SUPREME.getItemId(), armorThorniumPrefix);
-    addSupremeLegacyItem(ArmorThornium.THORNIUM_LEGGINGS.getItemId(), "ARMOR_THORNIUM_LEGGINGS");
-    addSupremeLegacyItemWithReplace(ArmorThornium.THORNIUM_LEGGINGS_MAGIC.getItemId(), armorThorniumPrefix);
-    addSupremeLegacyItemWithReplace(ArmorThornium.THORNIUM_LEGGINGS_RARE.getItemId(), armorThorniumPrefix);
-    addSupremeLegacyItemWithReplace(ArmorThornium.THORNIUM_LEGGINGS_EPIC.getItemId(), armorThorniumPrefix);
-    addSupremeLegacyItemWithReplace(ArmorThornium.THORNIUM_LEGGINGS_LEGENDARY.getItemId(), armorThorniumPrefix);
-    addSupremeLegacyItemWithReplace(ArmorThornium.THORNIUM_LEGGINGS_SUPREME.getItemId(), armorThorniumPrefix);
+    result.add(addSupremeLegacyItem("SUPREME_BOOTS_THORNIUM", "ARMOR_THORNIUM_BOOTS"));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_BOOTS_MAGIC", armorThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_BOOTS_RARE", armorThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_BOOTS_EPIC", armorThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_BOOTS_LEGENDARY", armorThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_BOOTS_SUPREME", armorThorniumPrefix));
+    result.add(addSupremeLegacyItem("SUPREME_CHESTPLATE_THORNIUM", "ARMOR_THORNIUM_CHESTPLATE"));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CHESTPLATE_MAGIC", armorThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CHESTPLATE_RARE", armorThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CHESTPLATE_EPIC", armorThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CHESTPLATE_LEGENDARY", armorThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CHESTPLATE_SUPREME", armorThorniumPrefix));
+    result.add(addSupremeLegacyItem("SUPREME_HELMET_THORNIUM", "ARMOR_THORNIUM_HELMET"));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_HELMET_MAGIC", armorThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_HELMET_RARE", armorThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_HELMET_EPIC", armorThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_HELMET_LEGENDARY", armorThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_HELMET_SUPREME", armorThorniumPrefix));
+    result.add(addSupremeLegacyItem("SUPREME_LEGGINGS_THORNIUM", "ARMOR_THORNIUM_LEGGINGS"));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_LEGGINGS_MAGIC", armorThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_LEGGINGS_RARE", armorThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_LEGGINGS_EPIC", armorThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_LEGGINGS_LEGENDARY", armorThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_LEGGINGS_SUPREME", armorThorniumPrefix));
 
     //ToolsBasic
     final String toolsPrefix = "TOOLS_";
-    addSupremeLegacyItemWithReplace(ToolsBasic.ADAMANTIUM_AXE.getItemId(), toolsPrefix);
-    addSupremeLegacyItemWithReplace(ToolsBasic.AURUM_AXE.getItemId(), toolsPrefix);
-    addSupremeLegacyItemWithReplace(ToolsBasic.TITANIUM_AXE.getItemId(), toolsPrefix);
-    addSupremeLegacyItemWithReplace(ToolsBasic.ADAMANTIUM_PICKAXE.getItemId(), toolsPrefix);
-    addSupremeLegacyItemWithReplace(ToolsBasic.AURUM_PICKAXE.getItemId(), toolsPrefix);
-    addSupremeLegacyItemWithReplace(ToolsBasic.TITANIUM_PICKAXE.getItemId(), toolsPrefix);
-    addSupremeLegacyItemWithReplace(ToolsBasic.ADAMANTIUM_SHOVEL.getItemId(), toolsPrefix);
-    addSupremeLegacyItemWithReplace(ToolsBasic.AURUM_SHOVEL.getItemId(), toolsPrefix);
-    addSupremeLegacyItemWithReplace(ToolsBasic.TITANIUM_SHOVEL.getItemId(), toolsPrefix);
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_ADAMANTIUM_AXE", toolsPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_AURUM_AXE", toolsPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_TITANIUM_AXE", toolsPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_ADAMANTIUM_PICKAXE", toolsPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_AURUM_PICKAXE", toolsPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_TITANIUM_PICKAXE", toolsPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_ADAMANTIUM_SHOVEL", toolsPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_AURUM_SHOVEL", toolsPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_TITANIUM_SHOVEL", toolsPrefix));
 
     //ToolsThornium
     final String toolsThorniumPrefix = "TOOLS_THORNIUM_";
-    addSupremeLegacyItem(ToolsThornium.THORNIUM_AXE.getItemId(), "TOOLS_THORNIUM_AXE");
-    addSupremeLegacyItemWithReplace(ToolsThornium.THORNIUM_AXE_MAGIC.getItemId(), toolsThorniumPrefix);
-    addSupremeLegacyItemWithReplace(ToolsThornium.THORNIUM_AXE_RARE.getItemId(), toolsThorniumPrefix);
-    addSupremeLegacyItemWithReplace(ToolsThornium.THORNIUM_AXE_EPIC.getItemId(), toolsThorniumPrefix);
-    addSupremeLegacyItemWithReplace(ToolsThornium.THORNIUM_AXE_LEGENDARY.getItemId(), toolsThorniumPrefix);
-    addSupremeLegacyItemWithReplace(ToolsThornium.THORNIUM_AXE_SUPREME.getItemId(), toolsThorniumPrefix);
-    addSupremeLegacyItem(ToolsThornium.THORNIUM_PICKAXE.getItemId(), "TOOLS_THORNIUM_PICKAXE");
-    addSupremeLegacyItemWithReplace(ToolsThornium.THORNIUM_PICKAXE_MAGIC.getItemId(), toolsThorniumPrefix);
-    addSupremeLegacyItemWithReplace(ToolsThornium.THORNIUM_PICKAXE_RARE.getItemId(), toolsThorniumPrefix);
-    addSupremeLegacyItemWithReplace(ToolsThornium.THORNIUM_PICKAXE_EPIC.getItemId(), toolsThorniumPrefix);
-    addSupremeLegacyItemWithReplace(ToolsThornium.THORNIUM_PICKAXE_LEGENDARY.getItemId(), toolsThorniumPrefix);
-    addSupremeLegacyItemWithReplace(ToolsThornium.THORNIUM_PICKAXE_SUPREME.getItemId(), toolsThorniumPrefix);
-    addSupremeLegacyItem(ToolsThornium.THORNIUM_SHOVEL.getItemId(), "TOOLS_THORNIUM_SHOVEL");
-    addSupremeLegacyItemWithReplace(ToolsThornium.THORNIUM_SHOVEL_MAGIC.getItemId(), toolsThorniumPrefix);
-    addSupremeLegacyItemWithReplace(ToolsThornium.THORNIUM_SHOVEL_RARE.getItemId(), toolsThorniumPrefix);
-    addSupremeLegacyItemWithReplace(ToolsThornium.THORNIUM_SHOVEL_EPIC.getItemId(), toolsThorniumPrefix);
-    addSupremeLegacyItemWithReplace(ToolsThornium.THORNIUM_SHOVEL_LEGENDARY.getItemId(), toolsThorniumPrefix);
-    addSupremeLegacyItemWithReplace(ToolsThornium.THORNIUM_SHOVEL_SUPREME.getItemId(), toolsThorniumPrefix);
+    result.add(addSupremeLegacyItem("SUPREME_AXE_THORNIUM", "TOOLS_THORNIUM_AXE"));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_AXE_MAGIC", toolsThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_AXE_RARE", toolsThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_AXE_EPIC", toolsThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_AXE_LEGENDARY", toolsThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_AXE_SUPREME", toolsThorniumPrefix));
+    result.add(addSupremeLegacyItem("SUPREME_PICKAXE_THORNIUM", "TOOLS_THORNIUM_PICKAXE"));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_PICKAXE_MAGIC", toolsThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_PICKAXE_RARE", toolsThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_PICKAXE_EPIC", toolsThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_PICKAXE_LEGENDARY", toolsThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_PICKAXE_SUPREME", toolsThorniumPrefix));
+    result.add(addSupremeLegacyItem("SUPREME_SHOVEL_THORNIUM", "TOOLS_THORNIUM_SHOVEL"));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_SHOVEL_MAGIC", toolsThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_SHOVEL_RARE", toolsThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_SHOVEL_EPIC", toolsThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_SHOVEL_LEGENDARY", toolsThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_SHOVEL_SUPREME", toolsThorniumPrefix));
 
     //WeaponsBasic
     final String weaponsPrefix = "WEAPONS_";
-    addSupremeLegacyItemWithReplace(WeaponsBasic.ADAMANTIUM_SWORD.getItemId(), weaponsPrefix);
-    addSupremeLegacyItemWithReplace(WeaponsBasic.AURUM_SWORD.getItemId(), weaponsPrefix);
-    addSupremeLegacyItemWithReplace(WeaponsBasic.TITANIUM_SWORD.getItemId(), weaponsPrefix);
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_ADAMANTIUM_SWORD", weaponsPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_AURUM_SWORD", weaponsPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_TITANIUM_SWORD", weaponsPrefix));
 
     //WeaponsThornium
     final String weaponsThorniumPrefix = "WEAPONS_THORNIUM_";
-    addSupremeLegacyItem(WeaponsThornium.THORNIUM_BOW.getItemId(), "WEAPONS_THORNIUM_BOW");
-    addSupremeLegacyItemWithReplace(WeaponsThornium.THORNIUM_BOW_MAGIC.getItemId(), weaponsThorniumPrefix);
-    addSupremeLegacyItemWithReplace(WeaponsThornium.THORNIUM_BOW_RARE.getItemId(), weaponsThorniumPrefix);
-    addSupremeLegacyItemWithReplace(WeaponsThornium.THORNIUM_BOW_EPIC.getItemId(), weaponsThorniumPrefix);
-    addSupremeLegacyItemWithReplace(WeaponsThornium.THORNIUM_BOW_LEGENDARY.getItemId(), weaponsThorniumPrefix);
-    addSupremeLegacyItemWithReplace(WeaponsThornium.THORNIUM_BOW_SUPREME.getItemId(), weaponsThorniumPrefix);
-    addSupremeLegacyItem(WeaponsThornium.THORNIUM_SHIELD.getItemId(), "WEAPONS_THORNIUM_SHIELD");
-    addSupremeLegacyItemWithReplace(WeaponsThornium.THORNIUM_SHIELD_MAGIC.getItemId(), weaponsThorniumPrefix);
-    addSupremeLegacyItemWithReplace(WeaponsThornium.THORNIUM_SHIELD_RARE.getItemId(), weaponsThorniumPrefix);
-    addSupremeLegacyItemWithReplace(WeaponsThornium.THORNIUM_SHIELD_EPIC.getItemId(), weaponsThorniumPrefix);
-    addSupremeLegacyItemWithReplace(WeaponsThornium.THORNIUM_SHIELD_LEGENDARY.getItemId(), weaponsThorniumPrefix);
-    addSupremeLegacyItemWithReplace(WeaponsThornium.THORNIUM_SHIELD_SUPREME.getItemId(), weaponsThorniumPrefix);
-    addSupremeLegacyItem(WeaponsThornium.THORNIUM_SWORD.getItemId(), "WEAPONS_THORNIUM_SWORD");
-    addSupremeLegacyItemWithReplace(WeaponsThornium.THORNIUM_SWORD_MAGIC.getItemId(), weaponsThorniumPrefix);
-    addSupremeLegacyItemWithReplace(WeaponsThornium.THORNIUM_SWORD_RARE.getItemId(), weaponsThorniumPrefix);
-    addSupremeLegacyItemWithReplace(WeaponsThornium.THORNIUM_SWORD_EPIC.getItemId(), weaponsThorniumPrefix);
-    addSupremeLegacyItemWithReplace(WeaponsThornium.THORNIUM_SWORD_LEGENDARY.getItemId(), weaponsThorniumPrefix);
-    addSupremeLegacyItemWithReplace(WeaponsThornium.THORNIUM_SWORD_SUPREME.getItemId(), weaponsThorniumPrefix);
+    result.add(addSupremeLegacyItem("SUPREME_BOW_THORNIUM", "WEAPONS_THORNIUM_BOW"));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_BOW_MAGIC", weaponsThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_BOW_RARE", weaponsThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_BOW_EPIC", weaponsThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_BOW_LEGENDARY", weaponsThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_BOW_SUPREME", weaponsThorniumPrefix));
+    result.add(addSupremeLegacyItem("SUPREME_SHIELD_THORNIUM", "WEAPONS_THORNIUM_SHIELD"));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_SHIELD_MAGIC", weaponsThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_SHIELD_RARE", weaponsThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_SHIELD_EPIC", weaponsThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_SHIELD_LEGENDARY", weaponsThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_SHIELD_SUPREME", weaponsThorniumPrefix));
+    result.add(addSupremeLegacyItem("SUPREME_SWORD_THORNIUM", "WEAPONS_THORNIUM_SWORD"));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_SWORD_MAGIC", weaponsThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_SWORD_RARE", weaponsThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_SWORD_EPIC", weaponsThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_SWORD_LEGENDARY", weaponsThorniumPrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_SWORD_SUPREME", weaponsThorniumPrefix));
   }
 
-  private static void loadGenerators() {
+  public static void loadGenerators(List<CompatibilySupremeLegacyItem> result) {
 
     //SupremeCapacitor
-    addSupremeLegacyItemRemovePrefix(SupremeCapacitor.AURUM_CAPACITOR.getItemId());
-    addSupremeLegacyItemRemovePrefix(SupremeCapacitor.TITANIUM_CAPACITOR.getItemId());
-    addSupremeLegacyItemRemovePrefix(SupremeCapacitor.ADAMANTIUM_CAPACITOR.getItemId());
-    addSupremeLegacyItemRemovePrefix(SupremeCapacitor.THORNIUM_CAPACITOR.getItemId());
-    addSupremeLegacyItemRemovePrefix(SupremeCapacitor.SUPREME_CAPACITOR.getItemId());
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_AURUM_CAPACITOR"));
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_TITANIUM_CAPACITOR"));
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_ADAMANTIUM_CAPACITOR"));
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_THORNIUM_CAPACITOR"));
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_SUPREME_CAPACITOR"));
 
     //SupremeGenerator
-    addSupremeLegacyItemRemovePrefix(SupremeGenerator.BASIC_IGNIS_GENERATOR.getItemId());
-    addSupremeLegacyItemRemovePrefix(SupremeGenerator.IGNIS_GENERATOR.getItemId());
-    addSupremeLegacyItemRemovePrefix(SupremeGenerator.BASIC_VENTUS_GENERATOR.getItemId());
-    addSupremeLegacyItemRemovePrefix(SupremeGenerator.VENTUS_GENERATOR.getItemId());
-    addSupremeLegacyItemRemovePrefix(SupremeGenerator.BASIC_AQUA_GENERATOR.getItemId());
-    addSupremeLegacyItemRemovePrefix(SupremeGenerator.AQUA_GENERATOR.getItemId());
-    addSupremeLegacyItemRemovePrefix(SupremeGenerator.BASIC_LUX_GENERATOR.getItemId());
-    addSupremeLegacyItemRemovePrefix(SupremeGenerator.LUX_GENERATOR.getItemId());
-    addSupremeLegacyItemRemovePrefix(SupremeGenerator.BASIC_LUMIUM_GENERATOR.getItemId());
-    addSupremeLegacyItemRemovePrefix(SupremeGenerator.LUMIUM_GENERATOR.getItemId());
-    addSupremeLegacyItemRemovePrefix(SupremeGenerator.THORNIUM_GENERATOR.getItemId());
-    addSupremeLegacyItemRemovePrefix(SupremeGenerator.SUPREME_GENERATOR.getItemId());
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_BASIC_IGNIS_GENERATOR"));
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_IGNIS_GENERATOR"));
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_BASIC_VENTUS_GENERATOR"));
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_VENTUS_GENERATOR"));
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_BASIC_AQUA_GENERATOR"));
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_AQUA_GENERATOR"));
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_BASIC_LUX_GENERATOR"));
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_LUX_GENERATOR"));
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_BASIC_LUMIUM_GENERATOR"));
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_LUMIUM_GENERATOR"));
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_THORNIUM_GENERATOR"));
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_SUPREME_GENERATOR"));
 
   }
 
-  private static void loadMachines() {
+  public static void loadMachines(List<CompatibilySupremeLegacyItem> result) {
 
     //ElectricCoreFabricator
-    addSupremeLegacyItem(ElectricCoreFabricator.ELECTRIC_CORE_MACHINE.getItemId(), "ELECTRIC_CORE_MACHINE");
-    addSupremeLegacyItem(ElectricCoreFabricator.ELECTRIC_CORE_MACHINE_II.getItemId(), "ELECTRIC_CORE_MACHINE_II");
-    addSupremeLegacyItem(ElectricCoreFabricator.ELECTRIC_CORE_MACHINE_III.getItemId(), "ELECTRIC_CORE_MACHINE_III");
+    result.add(addSupremeLegacyItem("SUPREME_ELECTRIC_CORE_I", "ELECTRIC_CORE_MACHINE"));
+    result.add(addSupremeLegacyItem("SUPREME_ELECTRIC_CORE_II", "ELECTRIC_CORE_MACHINE_II"));
+    result.add(addSupremeLegacyItem("SUPREME_ELECTRIC_CORE_III", "ELECTRIC_CORE_MACHINE_III"));
 
     //SupremeQuarry
-    addSupremeLegacyItemRemovePrefix(SupremeQuarry.COAL_QUARRY.getItemId());
-    addSupremeLegacyItemRemovePrefix(SupremeQuarry.IRON_QUARRY.getItemId());
-    addSupremeLegacyItemRemovePrefix(SupremeQuarry.GOLD_QUARRY.getItemId());
-    addSupremeLegacyItemRemovePrefix(SupremeQuarry.DIAMOND_QUARRY.getItemId());
-    addSupremeLegacyItemRemovePrefix(SupremeQuarry.THORNIUM_QUARRY.getItemId());
-    addSupremeLegacyItem(SupremeQuarry.SUPREME_NUGGETS_QUARRY.getItemId(), "SUPREME_SUPREME_NUGGETS_QUARRY");
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_COAL_QUARRY"));
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_IRON_QUARRY"));
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_GOLD_QUARRY"));
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_DIAMOND_QUARRY"));
+    result.add(addSupremeLegacyItemRemovePrefix("SUPREME_THORNIUM_QUARRY"));
+    result.add(addSupremeLegacyItem("SUPREME_SUPREME_NUGGETS_QUARRY", "UNIQUENUGGETS_QUARRY"));
 
   }
 
-  private static void loadCoreResource() {
+  public static void loadCoreResource(List<CompatibilySupremeLegacyItem> result) {
 
     final String resourcePrefix = "RESOURCE_";
     //SupremeCoreAlloy
-    addSupremeLegacyItemWithReplace(SupremeCoreAlloy.RESOURCE_CORE_COAL.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreAlloy.RESOURCE_CORE_IRON.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreAlloy.RESOURCE_CORE_GOLD.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreAlloy.RESOURCE_CORE_REDSTONE.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreAlloy.RESOURCE_CORE_LAPIS.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreAlloy.RESOURCE_CORE_DIAMOND.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreAlloy.RESOURCE_CORE_EMERALD.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreAlloy.RESOURCE_CORE_QUARTZ.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreAlloy.RESOURCE_CORE_NETHERITE.getItemId(), resourcePrefix);
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_COAL", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_IRON", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_GOLD", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_REDSTONE", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_LAPIS", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_DIAMOND", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_EMERALD", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_QUARTZ", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_NETHERITE", resourcePrefix));
 
     //SupremeCoreBlock
-    addSupremeLegacyItemWithReplace(SupremeCoreBlock.RESOURCE_CORE_STONE.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreBlock.RESOURCE_CORE_GRANITE.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreBlock.RESOURCE_CORE_DIORITE.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreBlock.RESOURCE_CORE_ANDESITE.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreBlock.RESOURCE_CORE_GRAVEL.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreBlock.RESOURCE_CORE_SAND.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreBlock.RESOURCE_CORE_ENDSTONE.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreBlock.RESOURCE_CORE_CLAY.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreBlock.RESOURCE_CORE_SNOW.getItemId(), resourcePrefix);
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_STONE", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_GRANITE", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_DIORITE", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_ANDESITE", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_GRAVEL", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_SAND", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_ENDSTONE", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_CLAY", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_SNOW", resourcePrefix));
 
     //SupremeCoreColor
-    addSupremeLegacyItemWithReplace(SupremeCoreColor.RESOURCE_CORE_RED.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreColor.RESOURCE_CORE_YELLOW.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreColor.RESOURCE_CORE_PURPLE.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreColor.RESOURCE_CORE_BLUE.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreColor.RESOURCE_CORE_BLACK.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreColor.RESOURCE_CORE_GREEN.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreColor.RESOURCE_CORE_PINK.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreColor.RESOURCE_CORE_GRAY.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreColor.RESOURCE_CORE_CYAN.getItemId(), resourcePrefix);
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_RED", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_YELLOW", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_PURPLE", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_BLUE", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_BLACK", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_GREEN", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_PINK", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_GRAY", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_CYAN", resourcePrefix));
 
     //SupremeCoreDeath
-    addSupremeLegacyItemWithReplace(SupremeCoreDeath.RESOURCE_CORE_PORKCHOP.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreDeath.RESOURCE_CORE_BEEF.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreDeath.RESOURCE_CORE_MUTTON.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreDeath.RESOURCE_CORE_CHICKEN.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreDeath.RESOURCE_CORE_SALMON.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreDeath.RESOURCE_CORE_COD.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreDeath.RESOURCE_CORE_STRING.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreDeath.RESOURCE_CORE_SPIDER_EYE.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreDeath.RESOURCE_CORE_TEAR.getItemId(), resourcePrefix);
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_PORKCHOP", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_BEEF", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_MUTTON", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_CHICKEN", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_SALMON", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_COD", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_STRING", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_SPIDER_EYE", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_TEAR", resourcePrefix));
 
     //SupremeCoreLife
-    addSupremeLegacyItemWithReplace(SupremeCoreLife.RESOURCE_CORE_POTATO.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreLife.RESOURCE_CORE_APPLE.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreLife.RESOURCE_CORE_BEETROOT.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreLife.RESOURCE_CORE_WHEAT.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreLife.RESOURCE_CORE_SUGAR_CANE.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreLife.RESOURCE_CORE_SWEET_BERRIES.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreLife.RESOURCE_CORE_MELON.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreLife.RESOURCE_CORE_CARROT.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreLife.RESOURCE_CORE_PUMPKIN.getItemId(), resourcePrefix);
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_POTATO", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_APPLE", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_BEETROOT", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_WHEAT", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_SUGAR_CANE", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_SWEET_BERRIES", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_MELON", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_CARROT", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_PUMPKIN", resourcePrefix));
 
     //SupremeCoreNature
-    addSupremeLegacyItemWithReplace(SupremeCoreNature.RESOURCE_CORE_OAK_LOG.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreNature.RESOURCE_CORE_SPRUCE_LOG.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreNature.RESOURCE_CORE_BIRCH_LOG.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreNature.RESOURCE_CORE_JUNGLE_LOG.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreNature.RESOURCE_CORE_ACACIA_LOG.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreNature.RESOURCE_CORE_DARK_OAK_LOG.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreNature.RESOURCE_CORE_CRIMSON_STEM.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreNature.RESOURCE_CORE_WARPED_STEM.getItemId(), resourcePrefix);
-    addSupremeLegacyItemWithReplace(SupremeCoreNature.RESOURCE_CORE_WITHER_ROSE.getItemId(), resourcePrefix);
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_OAK_LOG", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_SPRUCE_LOG", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_BIRCH_LOG", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_JUNGLE_LOG", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_ACACIA_LOG", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_DARK_OAK_LOG", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_CRIMSON_STEM", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_WARPED_STEM", resourcePrefix));
+    result.add(addSupremeLegacyItemWithReplace("SUPREME_CORE_WITHER_ROSE", resourcePrefix));
   }
 }

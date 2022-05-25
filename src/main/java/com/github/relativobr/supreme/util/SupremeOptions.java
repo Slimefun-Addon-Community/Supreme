@@ -22,7 +22,7 @@ public class SupremeOptions {
   boolean enableWeapons;
   boolean enableTools;
   boolean enableArmor;
-  boolean enableMobtech;
+  boolean enableTech;
   boolean customBc;
 
 }

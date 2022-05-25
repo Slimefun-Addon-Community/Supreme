@@ -10,13 +10,6 @@ import org.bukkit.inventory.ItemStack;
 
 public class VirtualGardenMachineRecipe extends MachineRecipe {
 
-  @ParametersAreNonnullByDefault
-  public VirtualGardenMachineRecipe(DoubleMaterialRecipe recipe) {
-    super(15, recipe.getInput(),
-        (recipe.getOutput()[0].getType() == recipe.getOutput()[1].getType()) ? new ItemStack[]{recipe.getOutput()[0]}
-            : recipe.getOutput());
-  }
-
   public static final DoubleMaterialRecipe RECIPE_GARDEN_WHITE_DYE = new DoubleMaterialRecipe(
       Material.LILY_OF_THE_VALLEY, Material.WHITE_DYE);
   public static final DoubleMaterialRecipe RECIPE_GARDEN_ORANGE_DYE = new DoubleMaterialRecipe(Material.ORANGE_TULIP,
@@ -101,6 +94,12 @@ public class VirtualGardenMachineRecipe extends MachineRecipe {
       Material.DIORITE);
   public static final DoubleMaterialRecipe RECIPE_GARDEN_ANDESITE = new DoubleMaterialRecipe(Material.POLISHED_ANDESITE,
       Material.ANDESITE);
+  @ParametersAreNonnullByDefault
+  public VirtualGardenMachineRecipe(DoubleMaterialRecipe recipe) {
+    super(15, recipe.getInput(),
+        (recipe.getOutput()[0].getType() == recipe.getOutput()[1].getType()) ? new ItemStack[]{recipe.getOutput()[0]}
+            : recipe.getOutput());
+  }
 
   public static List<DoubleMaterialRecipe> getAllRecipe() {
     List<DoubleMaterialRecipe> list = new ArrayList<>();

@@ -2,6 +2,7 @@ package com.github.relativobr.supreme.machine.multiblock;
 
 import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.util.ItemGroups;
+import com.github.relativobr.supreme.util.SupremeItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -25,7 +26,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class MultiBlockMagicalFabricator extends MultiBlockMachine implements NotPlaceable {
 
-  public static final SlimefunItemStack MAGICAL_FABRICATOR = new SlimefunItemStack("SUPREME_MULTIBLOCK_MAGICAL",
+  public static final SlimefunItemStack MAGICAL_FABRICATOR = new SupremeItemStack("SUPREME_MULTIBLOCK_MAGICAL",
       Material.CRYING_OBSIDIAN, "&eMagical Fabricator", "", "&7&oYou can craft magical here!", "",
       "&aMultiBlock Machine");
   public static final RecipeType MACHINE_MAGICAL_FABRICATOR = new RecipeType(

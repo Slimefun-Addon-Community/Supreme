@@ -132,6 +132,7 @@ Make a new issue, pull request, or contact me on discord @RelativoBR#9577
 
 ## Customize Configuration (config.yml)
 
+- **use-legacy-supremeexpansion-item-id** - Indication use compatibily old item from addon SupremeExpanssion
 - **enable-generators** - Indication whether to enable the power generators
 - **limit-production-generators** - To reduce the efficiency of generators (factor 5x)
 - **enable-quarry** - Indication whether to enable the quarry machine
@@ -139,3 +140,4 @@ Make a new issue, pull request, or contact me on discord @RelativoBR#9577
 - **enable-weapons** - Indication whether to enable the weapons
 - **enable-tools** - Indication whether to enable the tools
 - **enable-armor** - Indication whether to enable the armor
+- **enable-tech** - Indication whether to enable new machine and resource to clonnig item

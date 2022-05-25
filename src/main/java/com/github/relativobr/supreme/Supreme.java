@@ -1,11 +1,18 @@
 package com.github.relativobr.supreme;
 
+import static com.github.relativobr.supreme.util.CompatibilySupremeLegacy.getNewIdSupremeLegacy;
+import static com.github.relativobr.supreme.util.CompatibilySupremeLegacy.loadComponents;
+import static com.github.relativobr.supreme.util.CompatibilySupremeLegacy.loadCoreResource;
+import static com.github.relativobr.supreme.util.CompatibilySupremeLegacy.loadGear;
+import static com.github.relativobr.supreme.util.CompatibilySupremeLegacy.loadGenerators;
+import static com.github.relativobr.supreme.util.CompatibilySupremeLegacy.loadMachines;
+
 import com.github.relativobr.generic.MobTechGeneric;
 import com.github.relativobr.generic.MobTechGeneric.MobTechType;
 import com.github.relativobr.supreme.machine.AbstractQuarryOutput;
 import com.github.relativobr.supreme.machine.AbstractQuarryOutputItem;
 import com.github.relativobr.supreme.setup.MainSetup;
-import com.github.relativobr.supreme.util.CompatibilySupremeLegacy;
+import com.github.relativobr.supreme.util.CompatibilySupremeLegacyItem;
 import com.github.relativobr.supreme.util.SupremeOptions;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -32,7 +39,8 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
 
   private static Supreme instance;
   private static SupremeOptions supremeOptions = null;
-  private static SupremeLocalization localization;
+  private static SupremeLocalization localization = null;
+  private static List<CompatibilySupremeLegacyItem> legacyItem = null;
 
   public static Supreme inst() {
     return instance;
@@ -50,7 +58,7 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
             .enableQuarry(typeSection.getBoolean("enable-quarry"))
             .limitProductionQuarry(typeSection.getBoolean("limit-production-quarry"))
             .enableWeapons(typeSection.getBoolean("enable-weapons")).enableTools(typeSection.getBoolean("enable-tools"))
-            .enableArmor(typeSection.getBoolean("enable-armor")).enableMobtech(typeSection.getBoolean("enable-mobtech"))
+            .enableArmor(typeSection.getBoolean("enable-armor")).enableTech(typeSection.getBoolean("enable-tech"))
             .customBc(typeSection.getBoolean("custom-bc")).build();
       }
     }
@@ -58,66 +66,26 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
   }
 
   public static SupremeLocalization getLocalization() {
+    if (localization == null) {
+      localization = new SupremeLocalization(inst());
+      localization.addLanguage(getSupremeOptions().getLang());
+    }
     return localization;
   }
 
-  @Override
-  public void onEnable() {
-
-    instance = this;
-
-    Supreme.inst().log(Level.INFO, "########################################");
-    Supreme.inst().log(Level.INFO, "      Supreme 2.0  - By RelativoBR      ");
-    Supreme.inst().log(Level.INFO, "########################################");
-
-    Config cfg = new Config(this);
-    if (getSupremeOptions() == null) {
-      log(Level.SEVERE, "Config section \"options\" missing, Check your config and report this!");
-      inst().onDisable();
-      return;
+  public static List<CompatibilySupremeLegacyItem> getLegacyItem() {
+    if (legacyItem == null || legacyItem.isEmpty()) {
+      if (legacyItem == null) {
+        legacyItem = new ArrayList<>();
+      }
+      loadComponents(legacyItem);
+      loadGear(legacyItem);
+      loadGenerators(legacyItem);
+      loadMachines(legacyItem);
+      loadCoreResource(legacyItem);
     }
-
-    if (getSupremeOptions().isAutoUpdate() && cfg.getBoolean("options.auto-update") && getDescription().getVersion()
-        .startsWith("DEV - ")) {
-      Supreme.inst().log(Level.INFO, "Auto Update: enable");
-      new GitHubBuildsUpdater(this, getFile(), "RelativoBR/Supreme/main").start();
-    } else {
-      Supreme.inst().log(Level.INFO, "Auto Update: disable");
-    }
-
-    // localization
-    localization = new SupremeLocalization(this);
-    final String lang = getSupremeOptions().getLang();
-    localization.addLanguage(lang);
-    Supreme.inst().log(Level.INFO, "Loaded language Supreme: " + lang);
-
-    // check Compatibily Legacy (SupremeExpansion)
-    if (getSupremeOptions().isUseLegacySupremeexpansionItemId()) {
-      Supreme.inst().log(Level.INFO, "Legacy SupremeExpansion IDs: enable");
-      CompatibilySupremeLegacy.loadCompatibilySupremeLegacy();
-    } else {
-      Supreme.inst().log(Level.INFO, "Legacy SupremeExpansion IDs: disable");
-    }
-
-    MainSetup.setup(this);
-
+    return legacyItem;
   }
-
-  @Override
-  public void onDisable() {
-    instance = null;
-  }
-
-  @Override
-  public String getBugTrackerURL() {
-    return "";
-  }
-
-  @Override
-  public JavaPlugin getJavaPlugin() {
-    return this;
-  }
-
 
   @Nonnull
   private static Map<Enchantment, Integer> getEnchants(@Nonnull ConfigurationSection section) {
@@ -134,121 +102,6 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
       }
     }
     return enchants;
-  }
-
-  public void addSupremeEnchantsAndSoulbound(@Nonnull SlimefunItemStack... items) {
-
-    ConfigurationSection typeSection = this.getConfig().getConfigurationSection("supreme-enchant");
-
-    if (typeSection == null) {
-      log(Level.SEVERE, "Config section \"supreme-enchant\" missing, Check your config and report this!");
-      return;
-    }
-
-    for (SlimefunItemStack item : items) {
-
-      ItemMeta meta = item.getItemMeta();
-
-      // lore
-      List<String> lore;
-      if (meta.hasLore()) {
-        lore = meta.getLore();
-      } else {
-        lore = new ArrayList<>();
-        lore.add("");
-      }
-
-      lore.add(ChatColor.AQUA + "Soulbound");
-
-      // find path
-      String itemPath = item.getItemId().toLowerCase();
-
-      String amplifier = "I";
-      if (itemPath.contains("legendary") || itemPath.contains("supreme")) {
-        amplifier = "III";
-      } else if (itemPath.contains("epic") || itemPath.contains("rare")) {
-        amplifier = "II";
-      }
-
-      if (itemPath.contains("helmet")) {
-        lore.add(ChatColor.DARK_PURPLE + "Night Vision " + amplifier);
-        lore.add(ChatColor.DARK_PURPLE + "Conduit Power " + amplifier);
-        lore.add(ChatColor.DARK_PURPLE + "Water Breathing " + amplifier);
-      } else if (itemPath.contains("chestplate")) {
-        lore.add(ChatColor.DARK_PURPLE + "Damage Resistance " + amplifier);
-        lore.add(ChatColor.DARK_PURPLE + "Increase Damage " + amplifier);
-        lore.add(ChatColor.DARK_PURPLE + "Saturation " + amplifier);
-      } else if (itemPath.contains("leggings")) {
-        lore.add(ChatColor.DARK_PURPLE + "Speed " + amplifier);
-        lore.add(ChatColor.DARK_PURPLE + "Fast Digging " + amplifier);
-        lore.add(ChatColor.DARK_PURPLE + "Regeneration " + amplifier);
-      } else if (itemPath.contains("boots")) {
-        lore.add(ChatColor.DARK_PURPLE + "Dolphins Grace " + amplifier);
-        lore.add(ChatColor.DARK_PURPLE + "Fire Resistance " + amplifier);
-      }
-
-      meta.setLore(lore);
-
-      ConfigurationSection itemSection = typeSection.getConfigurationSection(itemPath);
-      if (itemSection != null) {
-        // unbreakable and enchants
-        meta.setUnbreakable(itemSection.getBoolean("unbreakable"));
-        for (Map.Entry<Enchantment, Integer> entry : getEnchants(itemSection).entrySet()) {
-          meta.addEnchant(entry.getKey(), entry.getValue(), true);
-        }
-      } else {
-        log(Level.SEVERE, "Config section for " + itemPath + " missing, Check your config and report this!");
-      }
-
-      // add meta
-      item.setItemMeta(meta);
-
-    }
-  }
-
-  public void addGearEnchants(@Nonnull SlimefunItemStack... items) {
-    ConfigurationSection typeSection = this.getConfig().getConfigurationSection("supreme-enchant");
-
-    if (typeSection == null) {
-      log(Level.SEVERE, "Config section \"supreme-enchant\" missing, Check your config and report this!");
-      return;
-    }
-
-    for (SlimefunItemStack item : items) {
-
-      ItemMeta meta = item.getItemMeta();
-
-      // lore
-      List<String> lore;
-      if (meta.hasLore()) {
-        lore = meta.getLore();
-      } else {
-        lore = new ArrayList<>();
-        lore.add("");
-      }
-
-      lore.add(ChatColor.AQUA + "Soulbound");
-
-      // find path
-      String itemPath = item.getItemId().toLowerCase();
-
-      meta.setLore(lore);
-
-      ConfigurationSection itemSection = typeSection.getConfigurationSection(itemPath);
-      if (itemSection != null) {
-        // unbreakable and enchants
-        meta.setUnbreakable(itemSection.getBoolean("unbreakable"));
-        for (Map.Entry<Enchantment, Integer> entry : getEnchants(itemSection).entrySet()) {
-          meta.addEnchant(entry.getKey(), entry.getValue(), true);
-        }
-      } else {
-        log(Level.SEVERE, "Config section for " + itemPath + " missing, Check your config and report this!");
-      }
-
-      // add meta
-      item.setItemMeta(meta);
-
-    }
   }
 
   public static int getValueGeneratorsWithLimit(int value) {
@@ -382,7 +235,6 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
         buildLoreTypeAmount(MobTechGeneric.getMobTechType(), tier), "", "&3Supreme Component");
   }
 
-
   public static AbstractQuarryOutput getOutputQuarry(@Nonnull SlimefunItemStack item) {
 
     ConfigurationSection typeSection = inst().getConfig().getConfigurationSection("quarry-custom-output");
@@ -393,7 +245,7 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
     }
 
     // find path
-    String itemPath = item.getItemId().toLowerCase();
+    String itemPath = getNewIdSupremeLegacy(item.getItemId()).toLowerCase();
     ConfigurationSection itemSection = typeSection.getConfigurationSection(itemPath);
 
     List<AbstractQuarryOutputItem> outputItems = new ArrayList<>();
@@ -429,6 +281,176 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
     }
 
     return AbstractQuarryOutput.builder().outputItems(outputItems).build();
+  }
+
+  @Override
+  public void onEnable() {
+
+    instance = this;
+
+    Supreme.inst().log(Level.INFO, "########################################");
+    Supreme.inst().log(Level.INFO, "      Supreme 2.0  - By RelativoBR      ");
+    Supreme.inst().log(Level.INFO, "########################################");
+
+    Config cfg = new Config(this);
+    if (getSupremeOptions() == null) {
+      log(Level.SEVERE, "Config section \"options\" missing, Check your config and report this!");
+      inst().onDisable();
+      return;
+    }
+
+    if (getSupremeOptions().isAutoUpdate() && cfg.getBoolean("options.auto-update") && getDescription().getVersion()
+        .startsWith("DEV - ")) {
+      Supreme.inst().log(Level.INFO, "Auto Update: enable");
+      new GitHubBuildsUpdater(this, getFile(), "RelativoBR/Supreme/main").start();
+    } else {
+      Supreme.inst().log(Level.INFO, "Auto Update: disable");
+    }
+
+    // localization
+    Supreme.inst().log(Level.INFO, "Loaded language Supreme: " + getSupremeOptions().getLang());
+    getLocalization();
+
+    // check Compatibily Legacy (SupremeExpansion)
+    if (getSupremeOptions().isUseLegacySupremeexpansionItemId()) {
+      Supreme.inst().log(Level.INFO, "Legacy SupremeExpansion IDs: enable");
+      getLegacyItem();
+    } else {
+      Supreme.inst().log(Level.INFO, "Legacy SupremeExpansion IDs: disable");
+    }
+
+    MainSetup.setup(this);
+
+  }
+
+  @Override
+  public void onDisable() {
+    instance = null;
+  }
+
+  @Override
+  public String getBugTrackerURL() {
+    return "";
+  }
+
+  @Override
+  public JavaPlugin getJavaPlugin() {
+    return this;
+  }
+
+  public void addSupremeEnchantsAndSoulbound(@Nonnull SlimefunItemStack... items) {
+
+    ConfigurationSection typeSection = this.getConfig().getConfigurationSection("supreme-enchant");
+
+    if (typeSection == null) {
+      log(Level.SEVERE, "Config section \"supreme-enchant\" missing, Check your config and report this!");
+      return;
+    }
+
+    for (SlimefunItemStack item : items) {
+
+      ItemMeta meta = item.getItemMeta();
+
+      // lore
+      List<String> lore;
+      if (meta.hasLore()) {
+        lore = meta.getLore();
+      } else {
+        lore = new ArrayList<>();
+        lore.add("");
+      }
+
+      lore.add(ChatColor.AQUA + "Soulbound");
+
+      // find path
+      String itemPath = getNewIdSupremeLegacy(item.getItemId()).toLowerCase();
+
+      String amplifier = "I";
+      if (itemPath.contains("legendary") || itemPath.contains("supreme")) {
+        amplifier = "III";
+      } else if (itemPath.contains("epic") || itemPath.contains("rare")) {
+        amplifier = "II";
+      }
+
+      if (itemPath.contains("helmet")) {
+        lore.add(ChatColor.DARK_PURPLE + "Night Vision " + amplifier);
+        lore.add(ChatColor.DARK_PURPLE + "Conduit Power " + amplifier);
+        lore.add(ChatColor.DARK_PURPLE + "Water Breathing " + amplifier);
+      } else if (itemPath.contains("chestplate")) {
+        lore.add(ChatColor.DARK_PURPLE + "Damage Resistance " + amplifier);
+        lore.add(ChatColor.DARK_PURPLE + "Increase Damage " + amplifier);
+        lore.add(ChatColor.DARK_PURPLE + "Saturation " + amplifier);
+      } else if (itemPath.contains("leggings")) {
+        lore.add(ChatColor.DARK_PURPLE + "Speed " + amplifier);
+        lore.add(ChatColor.DARK_PURPLE + "Fast Digging " + amplifier);
+        lore.add(ChatColor.DARK_PURPLE + "Regeneration " + amplifier);
+      } else if (itemPath.contains("boots")) {
+        lore.add(ChatColor.DARK_PURPLE + "Dolphins Grace " + amplifier);
+        lore.add(ChatColor.DARK_PURPLE + "Fire Resistance " + amplifier);
+      }
+
+      meta.setLore(lore);
+
+      ConfigurationSection itemSection = typeSection.getConfigurationSection(itemPath);
+      if (itemSection != null) {
+        // unbreakable and enchants
+        meta.setUnbreakable(itemSection.getBoolean("unbreakable"));
+        for (Map.Entry<Enchantment, Integer> entry : getEnchants(itemSection).entrySet()) {
+          meta.addEnchant(entry.getKey(), entry.getValue(), true);
+        }
+      } else {
+        log(Level.SEVERE, "Config section for " + itemPath + " missing, Check your config and report this!");
+      }
+
+      // add meta
+      item.setItemMeta(meta);
+
+    }
+  }
+
+  public void addGearEnchants(@Nonnull SlimefunItemStack... items) {
+    ConfigurationSection typeSection = this.getConfig().getConfigurationSection("supreme-enchant");
+
+    if (typeSection == null) {
+      log(Level.SEVERE, "Config section \"supreme-enchant\" missing, Check your config and report this!");
+      return;
+    }
+
+    for (SlimefunItemStack item : items) {
+
+      ItemMeta meta = item.getItemMeta();
+
+      // lore
+      List<String> lore;
+      if (meta.hasLore()) {
+        lore = meta.getLore();
+      } else {
+        lore = new ArrayList<>();
+        lore.add("");
+      }
+
+      lore.add(ChatColor.AQUA + "Soulbound");
+
+      // find path
+      String itemPath = getNewIdSupremeLegacy(item.getItemId()).toLowerCase();
+
+      meta.setLore(lore);
+
+      ConfigurationSection itemSection = typeSection.getConfigurationSection(itemPath);
+      if (itemSection != null) {
+        // unbreakable and enchants
+        meta.setUnbreakable(itemSection.getBoolean("unbreakable"));
+        for (Map.Entry<Enchantment, Integer> entry : getEnchants(itemSection).entrySet()) {
+          meta.addEnchant(entry.getKey(), entry.getValue(), true);
+        }
+      } else {
+        log(Level.SEVERE, "Config section for " + itemPath + " missing, Check your config and report this!");
+      }
+
+      // add meta
+      item.setItemMeta(meta);
+
+    }
   }
 
   public final void log(Level level, String messages) {
