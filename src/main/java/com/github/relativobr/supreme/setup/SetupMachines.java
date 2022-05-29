@@ -1,10 +1,13 @@
 package com.github.relativobr.supreme.setup;
 
+import static com.github.relativobr.supreme.Supreme.getSupremeOptions;
+
 import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.machine.ElectricCrafter;
 import com.github.relativobr.supreme.machine.ForgeIngot;
 import com.github.relativobr.supreme.machine.ForgeMagical;
 import com.github.relativobr.supreme.machine.Foundry;
+import com.github.relativobr.supreme.machine.ItemConverter;
 import com.github.relativobr.supreme.machine.MagicAltar;
 import com.github.relativobr.supreme.machine.MobCollector;
 import com.github.relativobr.supreme.machine.VirtualAquarium;
@@ -151,6 +154,13 @@ public class SetupMachines {
         .setProcessingSpeed(15).setEnergyConsumption(300).register(sup);
 
     SetupTechMachines.setup(sup);
+
+    if (getSupremeOptions().isEnableItemConverter()) {
+      new ItemConverter(ItemGroups.MACHINES_CATEGORY, ItemConverter.ITEM_CONVERTER_MACHINE,
+          RecipeType.ENHANCED_CRAFTING_TABLE, ItemConverter.RECIPE_ITEM_CONVERTER_MACHINE).setMachineIdentifier(
+              ItemConverter.ITEM_CONVERTER_MACHINE.getItemId()).setCapacity(1).setEnergyConsumption(1)
+          .setProcessingSpeed(1000).register(sup);
+    }
 
   }
 }

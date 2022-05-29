@@ -23,6 +23,7 @@ public class SupremeOptions {
   boolean enableTools;
   boolean enableArmor;
   boolean enableTech;
+  boolean enableItemConverter;
   boolean customBc;
 
 }
