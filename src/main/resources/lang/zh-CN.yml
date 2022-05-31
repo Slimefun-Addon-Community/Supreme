@@ -1,0 +1,23 @@
+categories:
+  main: "&4至尊研究院2.0"
+  resource: "&4资源"
+  components: "&4零件"
+  cards: "&4卡牌"
+  techmob: "&4生物科技"
+  machines: "&4机器"
+  electric: "&4电力"
+  tools: "&4至尊工具"
+  armor: "&4至尊盔甲"
+  weapons: "&4至尊武器"
+items:
+  supreme_sword_supreme:
+    name: "&4&l至尊剑"
+    lore:
+      - ""
+      - "&f&l钍制的至尊之剑"
+      - "&3至尊武器"
+      - ""
+messages:
+  no-input: "&c请在此放入物品"
+  output-no-space: "&c无输出空间!"
+  not-enough-power: "&c无足够电量!"
