@@ -2,6 +2,7 @@ package com.github.relativobr.supreme.machine;
 
 import com.github.relativobr.supreme.machine.recipe.VirtualAquariumMachineRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
+import com.github.relativobr.supreme.resource.magical.SupremeAttribute;
 import com.github.relativobr.supreme.resource.magical.SupremeCetrus;
 import com.github.relativobr.supreme.util.SupremeItemStack;
 import com.github.relativobr.util.UtilMachine;
@@ -68,7 +69,7 @@ public class VirtualAquarium extends AContainer implements RecipeDisplayItem {
       LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE), LoreBuilder.speed(15),
       LoreBuilder.powerBuffer(15000), LoreBuilder.powerPerSecond(300), "", "&3Supreme Machine");
   public static final ItemStack[] RECIPE_VIRTUAL_AQUARIUM_MACHINE_III = new ItemStack[]{SupremeComponents.THORNERITE,
-      SupremeCetrus.CETRUS_LUX, SupremeComponents.THORNERITE, SupremeComponents.SUPREME,
+      SupremeAttribute.getMagic(), SupremeComponents.THORNERITE, SupremeComponents.SUPREME,
       VirtualAquarium.VIRTUAL_AQUARIUM_MACHINE_II, SupremeComponents.SUPREME, SupremeComponents.CRYSTALLIZER_MACHINE,
       SupremeCetrus.CETRUS_LUMIUM, SupremeComponents.CRYSTALLIZER_MACHINE};
 
@@ -151,14 +152,17 @@ public class VirtualAquarium extends AContainer implements RecipeDisplayItem {
             && InvUtils.fits(inv.toInventory(), produce.getOutput()[0], this.getOutputSlots())) {
 
           ItemMeta itemMeta = itemInSlot.getItemMeta();
-          Damageable durability = (Damageable) itemMeta;
-          int current = durability.getDamage();
-          if (current + (2 * this.getSpeed()) >= itemInSlot.getType().getMaxDurability()) {
-            inv.consumeItem(slot);
-          } else {
-            ((Damageable) itemMeta).setDamage(current + (2 * this.getSpeed()));
-            itemInSlot.setItemMeta(itemMeta);
-            inv.replaceExistingItem(slot, itemInSlot);
+
+          if(itemMeta != null && !itemMeta.isUnbreakable()){
+            Damageable durability = (Damageable) itemMeta;
+            int current = durability.getDamage();
+            if (current + 2 >= itemInSlot.getType().getMaxDurability()) {
+              inv.consumeItem(slot);
+            } else {
+              ((Damageable) itemMeta).setDamage(current + 2);
+              itemInSlot.setItemMeta(itemMeta);
+              inv.replaceExistingItem(slot, itemInSlot);
+            }
           }
           return produce;
         }
@@ -186,6 +190,7 @@ public class VirtualAquarium extends AContainer implements RecipeDisplayItem {
           ItemStack material = UtilMachine.getMaterial(processing.get(b).getOutput(), UtilMachine.getRandomInt());
           if (material != null) {
             final ItemStack itemStack = material.clone();
+            itemStack.setAmount(1);
             inv.pushItem(itemStack, getOutputSlots());
           }
           progress.remove(b);

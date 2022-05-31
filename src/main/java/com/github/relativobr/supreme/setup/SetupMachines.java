@@ -68,63 +68,69 @@ public class SetupMachines {
 
     new ForgeIngot(ItemGroups.MACHINES_CATEGORY, ForgeIngot.FORGE_INGOT_MACHINE, RecipeType.ENHANCED_CRAFTING_TABLE,
         ForgeIngot.RECIPE_FORGE_INGOT_MACHINE).setMachineIdentifier(ForgeIngot.FORGE_INGOT_MACHINE.getItemId())
-        .setMachineRecipes(ForgeIngot.getAllRecipe()).setCapacity(1000).setProcessingSpeed(1).setEnergyConsumption(20)
-        .register(sup);
+        .setMachineRecipes(ForgeIngot.getAllRecipe()).setTimeProcess(15).setProcessingSpeed(1).setCapacity(1000)
+        .setEnergyConsumption(20).register(sup);
 
+    //TODO BUG setProcessingSpeed SimpleItemContainerMachine
     new ForgeIngot(ItemGroups.MACHINES_CATEGORY, ForgeIngot.FORGE_INGOT_MACHINE_II, RecipeType.ENHANCED_CRAFTING_TABLE,
         ForgeIngot.RECIPE_FORGE_INGOT_MACHINE_II).setMachineIdentifier(ForgeIngot.FORGE_INGOT_MACHINE_II.getItemId())
-        .setMachineRecipes(ForgeIngot.getAllRecipe()).setCapacity(5000).setProcessingSpeed(5).setEnergyConsumption(100)
-        .register(sup);
+        .setMachineRecipes(ForgeIngot.getAllRecipe()).setTimeProcess(15).setProcessingSpeed(5).setCapacity(5000)
+        .setEnergyConsumption(100).register(sup);
 
+    //TODO BUG setProcessingSpeed SimpleItemContainerMachine
     new ForgeIngot(ItemGroups.MACHINES_CATEGORY, ForgeIngot.FORGE_INGOT_MACHINE_III, RecipeType.ENHANCED_CRAFTING_TABLE,
         ForgeIngot.RECIPE_FORGE_INGOT_MACHINE_III).setMachineIdentifier(ForgeIngot.FORGE_INGOT_MACHINE_III.getItemId())
-        .setMachineRecipes(ForgeIngot.getAllRecipe()).setCapacity(15000).setProcessingSpeed(15)
+        .setMachineRecipes(ForgeIngot.getAllRecipe()).setTimeProcess(15).setProcessingSpeed(15).setCapacity(15000)
         .setEnergyConsumption(300).register(sup);
 
     new ForgeMagical(ItemGroups.MACHINES_CATEGORY, ForgeMagical.FORGE_MAGICAL_MACHINE,
-        RecipeType.ENHANCED_CRAFTING_TABLE, ForgeMagical.RECIPE_FORGE_MAGICAL_MACHINE).setMachineIdentifier(
-            ForgeMagical.FORGE_MAGICAL_MACHINE.getItemId()).setMachineRecipes(ForgeMagical.getAllRecipe()).setCapacity(1000)
-        .setProcessingSpeed(1).setEnergyConsumption(20).register(sup);
+        RecipeType.ENHANCED_CRAFTING_TABLE, ForgeMagical.RECIPE_FORGE_MAGICAL_MACHINE).setTimeProcess(15)
+        .setMachineIdentifier(ForgeMagical.FORGE_MAGICAL_MACHINE.getItemId())
+        .setMachineRecipes(ForgeMagical.getAllRecipe()).setTimeProcess(15).setProcessingSpeed(1).setCapacity(1000)
+        .setEnergyConsumption(20).register(sup);
 
+    //TODO BUG setProcessingSpeed SimpleItemContainerMachine
     new ForgeMagical(ItemGroups.MACHINES_CATEGORY, ForgeMagical.FORGE_MAGICAL_MACHINE_II,
-        RecipeType.ENHANCED_CRAFTING_TABLE, ForgeMagical.RECIPE_FORGE_MAGICAL_MACHINE_II).setMachineIdentifier(
-            ForgeMagical.FORGE_MAGICAL_MACHINE_II.getItemId()).setMachineRecipes(ForgeMagical.getAllRecipe())
-        .setCapacity(5000).setProcessingSpeed(5).setEnergyConsumption(100).register(sup);
+        RecipeType.ENHANCED_CRAFTING_TABLE, ForgeMagical.RECIPE_FORGE_MAGICAL_MACHINE_II).setTimeProcess(15)
+        .setMachineIdentifier(ForgeMagical.FORGE_MAGICAL_MACHINE_II.getItemId())
+        .setMachineRecipes(ForgeMagical.getAllRecipe()).setTimeProcess(15).setProcessingSpeed(5).setCapacity(5000)
+        .setEnergyConsumption(100).register(sup);
 
+    //TODO BUG setProcessingSpeed SimpleItemContainerMachine
     new ForgeMagical(ItemGroups.MACHINES_CATEGORY, ForgeMagical.FORGE_MAGICAL_MACHINE_III,
         RecipeType.ENHANCED_CRAFTING_TABLE, ForgeMagical.RECIPE_FORGE_MAGICAL_MACHINE_III).setMachineIdentifier(
             ForgeMagical.FORGE_MAGICAL_MACHINE_III.getItemId()).setMachineRecipes(ForgeMagical.getAllRecipe())
-        .setCapacity(15000).setProcessingSpeed(15).setEnergyConsumption(300).register(sup);
+        .setTimeProcess(15).setProcessingSpeed(15).setCapacity(15000).setEnergyConsumption(300).register(sup);
 
     new MagicAltar(ItemGroups.MACHINES_CATEGORY, MagicAltar.MAGIC_ALTAR_MACHINE, RecipeType.ENHANCED_CRAFTING_TABLE,
         MagicAltar.RECIPE_MAGIC_ALTAR_MACHINE).setMachineIdentifier(MagicAltar.MAGIC_ALTAR_MACHINE.getItemId())
-        .setMachineRecipes(MagicAltar.getAllRecipe()).setCapacity(40).setEnergyConsumption(20).setProcessingSpeed(1)
-        .register(sup);
+        .setMachineRecipes(MagicAltar.getAllRecipe()).setTimeProcess(15).setProcessingSpeed(1).setCapacity(40)
+        .setEnergyConsumption(20).register(sup);
 
     new MagicAltar(ItemGroups.MACHINES_CATEGORY, MagicAltar.MAGIC_ALTAR_MACHINE_II, RecipeType.ENHANCED_CRAFTING_TABLE,
         MagicAltar.RECIPE_MAGIC_ALTAR_MACHINE_II).setMachineIdentifier(MagicAltar.MAGIC_ALTAR_MACHINE_II.getItemId())
-        .setMachineRecipes(MagicAltar.getAllRecipe()).setCapacity(200).setEnergyConsumption(100).setProcessingSpeed(5)
-        .register(sup);
+        .setMachineRecipes(MagicAltar.getAllRecipe()).setTimeProcess(15).setProcessingSpeed(5).setCapacity(200)
+        .setEnergyConsumption(100).register(sup);
 
     new MagicAltar(ItemGroups.MACHINES_CATEGORY, MagicAltar.MAGIC_ALTAR_MACHINE_III, RecipeType.ENHANCED_CRAFTING_TABLE,
         MagicAltar.RECIPE_MAGIC_ALTAR_MACHINE_III).setMachineIdentifier(MagicAltar.MAGIC_ALTAR_MACHINE_III.getItemId())
-        .setMachineRecipes(MagicAltar.getAllRecipe()).setCapacity(600).setEnergyConsumption(300).setProcessingSpeed(15)
-        .register(sup);
+        .setMachineRecipes(MagicAltar.getAllRecipe()).setTimeProcess(15).setProcessingSpeed(15).setCapacity(600)
+        .setEnergyConsumption(300).register(sup);
 
     new Foundry(ItemGroups.MACHINES_CATEGORY, Foundry.FOUNDRY_MACHINE, RecipeType.ENHANCED_CRAFTING_TABLE,
         Foundry.RECIPE_FOUNDRY_MACHINE).setMachineIdentifier(Foundry.FOUNDRY_MACHINE.getItemId())
-        .setMachineRecipes(Foundry.getAllRecipe()).setCapacity(2000).setEnergyConsumption(1000).setProcessingSpeed(1)
-        .register(sup);
+        .setMachineRecipes(Foundry.getAllRecipe()).setTimeProcess(15).setProcessingSpeed(1).setCapacity(2000)
+        .setEnergyConsumption(1000).register(sup);
 
     new Foundry(ItemGroups.MACHINES_CATEGORY, Foundry.FOUNDRY_MACHINE_II, RecipeType.ENHANCED_CRAFTING_TABLE,
         Foundry.RECIPE_FOUNDRY_MACHINE_II).setMachineIdentifier(Foundry.FOUNDRY_MACHINE_II.getItemId())
-        .setMachineRecipes(Foundry.getAllRecipe()).setCapacity(10000).setEnergyConsumption(5000).setProcessingSpeed(5)
-        .register(sup);
+        .setMachineRecipes(Foundry.getAllRecipe()).setTimeProcess(15).setProcessingSpeed(5).setCapacity(10000)
+        .setEnergyConsumption(5000).register(sup);
 
     new Foundry(ItemGroups.MACHINES_CATEGORY, Foundry.FOUNDRY_MACHINE_III, RecipeType.ENHANCED_CRAFTING_TABLE,
         Foundry.RECIPE_FOUNDRY_MACHINE_III).setMachineIdentifier(Foundry.FOUNDRY_MACHINE_III.getItemId())
-        .setMachineRecipes(Foundry.getAllRecipe()).setCapacity(30000).setEnergyConsumption(15000).setProcessingSpeed(15)
-        .register(sup);
+        .setMachineRecipes(Foundry.getAllRecipe()).setTimeProcess(15).setProcessingSpeed(15).setCapacity(30000)
+        .setEnergyConsumption(15000).register(sup);
 
     new ElectricCrafter(ItemGroups.MACHINES_CATEGORY, ElectricCrafter.ELECTRIC_CRAFTER_MACHINE,
         RecipeType.ENHANCED_CRAFTING_TABLE, ElectricCrafter.RECIPE_ELECTRIC_CRAFTER_MACHINE).setMachineIdentifier(

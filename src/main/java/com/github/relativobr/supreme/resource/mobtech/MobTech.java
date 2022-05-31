@@ -75,17 +75,17 @@ public class MobTech extends SlimefunItem implements Radioactive, NotPlaceable {
 
     if (MobTechType.ROBOTIC_ACCELERATION == mobTechType) {
       return new ItemStack[]{SlimefunItems.PLASTIC_SHEET, SlimefunItems.FIRE_RUNE, SlimefunItems.PLASTIC_SHEET,
-          SlimefunItems.PLASTIC_SHEET, SlimefunItems.PROGRAMMABLE_ANDROID_2, SlimefunItems.PLASTIC_SHEET,
+          SlimefunItems.PLASTIC_SHEET, SlimefunItems.ANDROID_MEMORY_CORE, SlimefunItems.PLASTIC_SHEET,
           SupremeComponents.SYNTHETIC_RUBY, itemStack, SupremeComponents.SYNTHETIC_RUBY};
     }
     if (MobTechType.ROBOTIC_CLONING == mobTechType) {
       return new ItemStack[]{SlimefunItems.PLASTIC_SHEET, SlimefunItems.RAINBOW_RUNE, SlimefunItems.PLASTIC_SHEET,
-          SlimefunItems.PLASTIC_SHEET, SlimefunItems.PROGRAMMABLE_ANDROID_2, SlimefunItems.PLASTIC_SHEET,
+          SlimefunItems.PLASTIC_SHEET, SlimefunItems.ANDROID_MEMORY_CORE, SlimefunItems.PLASTIC_SHEET,
           SupremeComponents.SYNTHETIC_RUBY, itemStack, SupremeComponents.SYNTHETIC_RUBY};
     }
     if (MobTechType.ROBOTIC_EFFICIENCY == mobTechType) {
       return new ItemStack[]{SlimefunItems.PLASTIC_SHEET, SlimefunItems.LIGHTNING_RUNE, SlimefunItems.PLASTIC_SHEET,
-          SlimefunItems.PLASTIC_SHEET, SlimefunItems.PROGRAMMABLE_ANDROID_2, SlimefunItems.PLASTIC_SHEET,
+          SlimefunItems.PLASTIC_SHEET, SlimefunItems.ANDROID_MEMORY_CORE, SlimefunItems.PLASTIC_SHEET,
           SupremeComponents.SYNTHETIC_RUBY, itemStack, SupremeComponents.SYNTHETIC_RUBY};
     }
     return null;

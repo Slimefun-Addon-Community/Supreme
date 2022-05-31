@@ -2,6 +2,7 @@ package com.github.relativobr.supreme.gear;
 
 import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.resource.SupremeComponents;
+import com.github.relativobr.supreme.resource.magical.SupremeAttribute;
 import com.github.relativobr.supreme.resource.magical.SupremeCetrus;
 import com.github.relativobr.supreme.resource.magical.SupremeCore;
 import com.github.relativobr.supreme.resource.mobtech.BeeTech;
@@ -38,14 +39,14 @@ public class MobCollectorTools extends SlimefunItem implements Rechargeable, Not
   public static final SlimefunItemStack MOB_COLLECTOR_II = new SupremeItemStack("SUPREME_MOB_COLLECTOR_TOOL_II",
       Material.DIAMOND_SHOVEL, "&6MobTech Collector II", "", "&fUsed to capture MobTech (Bees and IronGolen)", "",
       LoreBuilder.power(50, " per use"), LoreBuilder.powerCharged(0, 5000));
-  public static final ItemStack[] RECIPE_MOB_COLLECTOR_II = new ItemStack[]{null, SupremeCetrus.CETRUS_AQUA, null, null,
+  public static final ItemStack[] RECIPE_MOB_COLLECTOR_II = new ItemStack[]{null, SupremeCore.CORE_OF_LIFE, null, null,
       MobCollectorTools.MOB_COLLECTOR_I, null, null, SupremeCetrus.CETRUS_VENTUS, null};
 
   public static final SlimefunItemStack MOB_COLLECTOR_III = new SupremeItemStack("SUPREME_MOB_COLLECTOR_TOOL_III",
       Material.NETHERITE_SHOVEL, "&6MobTech Collector III", "", "&fUsed to capture MobTech (Bees and IronGolen)", "",
       LoreBuilder.power(50, " per use"), LoreBuilder.powerCharged(0, 50000));
-  public static final ItemStack[] RECIPE_MOB_COLLECTOR_III = new ItemStack[]{null, SupremeCore.CORE_OF_NATURE, null,
-      null, MobCollectorTools.MOB_COLLECTOR_II, null, null, SupremeCore.CORE_OF_LIFE, null};
+  public static final ItemStack[] RECIPE_MOB_COLLECTOR_III = new ItemStack[]{null, SupremeAttribute.getBomb(), null,
+      null, MobCollectorTools.MOB_COLLECTOR_II, null, null, SupremeCetrus.CETRUS_LUMIUM, null};
   int charge;
   int maxCharge;
   public MobCollectorTools(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {

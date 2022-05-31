@@ -248,7 +248,7 @@ public class TechMutation extends SimpleItemContainerMachine implements Radioact
         }
         progressTime.put(b, time);
 
-        //todo ajustar para progresso parcial nos 3 slots
+        //todo adjust for partial progression in the 3 slots dynamically
         for (int i : InventoryRecipe.TECH_MUTATION_PROGRESS_BAR_SLOT) {
           ChestMenuUtils.updateProgressbar(inv, i, Math.round(ticksLeft / this.getSpeed()),
               Math.round(ticksTotal / this.getSpeed()), result);

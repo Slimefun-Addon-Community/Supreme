@@ -1,6 +1,7 @@
 package com.github.relativobr.supreme;
 
 import static com.github.relativobr.supreme.util.CompatibilySupremeLegacy.getNewIdSupremeLegacy;
+import static com.github.relativobr.supreme.util.CompatibilySupremeLegacy.getOldIdSupremeLegacy;
 import static com.github.relativobr.supreme.util.CompatibilySupremeLegacy.loadComponents;
 import static com.github.relativobr.supreme.util.CompatibilySupremeLegacy.loadCoreResource;
 import static com.github.relativobr.supreme.util.CompatibilySupremeLegacy.loadGear;
@@ -261,15 +262,19 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
         if (checkLimitChance + chance >= 100) {
           chance = 100 - checkLimitChance;
         }
+        final String itemId = itemConfig.getString("item");
         if (itemConfig.getBoolean("is-slimefun")) {
-          final SlimefunItem slimefunItem = SlimefunItem.getById(itemConfig.getString("item"));
+          SlimefunItem slimefunItem = SlimefunItem.getById(itemId);
+          //check Legacy Supreme
+          if(slimefunItem == null && getSupremeOptions().isUseLegacySupremeexpansionItemId()){
+            slimefunItem = SlimefunItem.getById(getOldIdSupremeLegacy(itemId));
+          }
           if (slimefunItem != null) {
             outputItems.add(AbstractQuarryOutputItem.builder().itemStack(slimefunItem.getItem().clone())
                 .chance(getSupremeOptions().isLimitProductionQuarry() ? (chance / 2) : chance).build());
           }
-
         } else {
-          final Material material = Material.matchMaterial(itemConfig.getString("item"));
+          final Material material = Material.matchMaterial(itemId);
           if (material != null) {
             outputItems.add(AbstractQuarryOutputItem.builder().itemStack(new ItemStack(material, 1))
                 .chance(getSupremeOptions().isLimitProductionQuarry() ? (chance / 2) : chance).build());

@@ -4,6 +4,7 @@ import static com.github.relativobr.supreme.Supreme.getSupremeOptions;
 
 import com.github.relativobr.supreme.machine.recipe.MobCollectorMachineRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
+import com.github.relativobr.supreme.resource.magical.SupremeAttribute;
 import com.github.relativobr.supreme.resource.magical.SupremeCetrus;
 import com.github.relativobr.supreme.util.SupremeItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -95,7 +96,7 @@ public class MobCollector extends AContainer implements RecipeDisplayItem {
       LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE), LoreBuilder.speed(15),
       LoreBuilder.powerBuffer(15000), LoreBuilder.powerPerSecond(300), "", "&3Supreme Machine");
   public static final ItemStack[] RECIPE_MOB_COLLECTOR_MACHINE_III = new ItemStack[]{SupremeComponents.THORNERITE,
-      SupremeCetrus.CETRUS_LUX, SupremeComponents.THORNERITE, SupremeComponents.SUPREME,
+      SupremeAttribute.getBomb(), SupremeComponents.THORNERITE, SupremeComponents.SUPREME,
       MobCollector.MOB_COLLECTOR_MACHINE_II, SupremeComponents.SUPREME, SupremeComponents.CRYSTALLIZER_MACHINE,
       SupremeCetrus.CETRUS_LUMIUM, SupremeComponents.CRYSTALLIZER_MACHINE};
 
@@ -300,14 +301,16 @@ public class MobCollector extends AContainer implements RecipeDisplayItem {
               inv.consumeItem(slot, this.getSpeed());
             } else {
               ItemMeta itemMeta = itemInSlot.getItemMeta();
-              Damageable durability = (Damageable) itemMeta;
-              int current = durability.getDamage();
-              if (current + (2 * this.getSpeed()) >= itemInSlot.getType().getMaxDurability()) {
-                inv.consumeItem(slot);
-              } else { //reduce
-                ((Damageable) itemMeta).setDamage(current + (2 * this.getSpeed()));
-                itemInSlot.setItemMeta(itemMeta);
-                inv.replaceExistingItem(slot, itemInSlot);
+              if(itemMeta != null && !itemMeta.isUnbreakable()) {
+                Damageable durability = (Damageable) itemMeta;
+                int current = durability.getDamage();
+                if (current + 2 >= itemInSlot.getType().getMaxDurability()) {
+                  inv.consumeItem(slot);
+                } else { //reduce
+                  ((Damageable) itemMeta).setDamage(current + 2);
+                  itemInSlot.setItemMeta(itemMeta);
+                  inv.replaceExistingItem(slot, itemInSlot);
+                }
               }
             }
             return produce;
