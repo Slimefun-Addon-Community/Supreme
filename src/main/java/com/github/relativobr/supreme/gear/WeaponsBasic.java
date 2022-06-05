@@ -11,17 +11,17 @@ import org.bukkit.inventory.ItemStack;
 public final class WeaponsBasic {
 
   public static final SlimefunItemStack ADAMANTIUM_SWORD = new SupremeItemStack("SUPREME_ADAMANTIUM_SWORD",
-      Material.DIAMOND_SWORD, "&f&lAdamantium Sword", "&f&lA Sword of Adamantium", "", "&3Supreme Weapons");
+      Material.DIAMOND_SWORD);
   public static final ItemStack[] RECIPE_ADAMANTIUM_SWORD = {null, SupremeComponents.ADAMANTIUM_PLATE, null, null,
       SupremeComponents.ADAMANTIUM_PLATE, null, null, new ItemStack(Material.STICK), null};
 
   public static final SlimefunItemStack AURUM_SWORD = new SupremeItemStack("SUPREME_AURUM_SWORD",
-      Material.DIAMOND_SWORD, "&f&lAurum Sword", "&f&lA Sword of Aurum", "", "&3Supreme Weapons");
+      Material.DIAMOND_SWORD);
   public static final ItemStack[] RECIPE_AURUM_SWORD = {null, SupremeComponents.AURUM_PLATE, null, null,
       SupremeComponents.AURUM_PLATE, null, null, new ItemStack(Material.STICK), null};
 
   public static final SlimefunItemStack TITANIUM_SWORD = new SupremeItemStack("SUPREME_TITANIUM_SWORD",
-      Material.DIAMOND_SWORD, "&f&lTitanium Sword", "&f&lA Sword of Titanium", "", "&3Supreme Weapons");
+      Material.DIAMOND_SWORD);
   public static final ItemStack[] RECIPE_TITANIUM_SWORD = {null, SupremeComponents.TITANIUM_PLATE, null, null,
       SupremeComponents.TITANIUM_PLATE, null, null, new ItemStack(Material.STICK), null};
 }

@@ -11,13 +11,531 @@ categories:
   armor: "&4Supreme Armor"
   weapons: "&4Supreme Weapons"
 items:
+  supreme_adamantium_helmet:
+    name: "&f&lAdamantium Helmet"
+    lore:
+      - "&f&lA Helmet of Adamantium"
+      - ""
+      - "&3Supreme Armor"
+  supreme_aurum_helmet:
+    name: "&f&lAurum Helmet"
+    lore:
+      - "&f&lA Helmet of Aurum"
+      - ""
+      - "&3Supreme Armor"
+  supreme_titanium_helmet:
+    name: "&f&lTitanium Helmet"
+    lore:
+      - "&f&lA Helmet of Titanium"
+      - ""
+      - "&3Supreme Armor"
+  supreme_adamantium_chestplate:
+    name: "&f&lAdamantium Chestplate"
+    lore:
+      - "&f&lA Chestplate of Adamantium"
+      - ""
+      - "&3Supreme Armor"
+  supreme_aurum_chestplate:
+    name: "&f&lAurum Chestplate"
+    lore:
+      - "&f&lA Chestplate of Aurum"
+      - ""
+      - "&3Supreme Armor"
+  supreme_titanium_chestplate:
+    name: "&f&lTitanium Chestplate"
+    lore:
+      - "&f&lA Chestplate of Titanium"
+      - ""
+      - "&3Supreme Armor"
+  supreme_adamantium_leggings:
+    name: "&f&lAdamantium Legging"
+    lore:
+      - "&f&lA Legging of Adamantium"
+      - ""
+      - "&3Supreme Armor"
+  supreme_aurum_leggings:
+    name: "&f&lAurum Legging"
+    lore:
+      - "&f&lA Legging of Aurum"
+      - ""
+      - "&3Supreme Armor"
+  supreme_titanium_leggings:
+    name: "&f&lTitanium Legging"
+    lore:
+      - "&f&lA Legging of Titanium"
+      - ""
+      - "&3Supreme Armor"
+  supreme_adamantium_boots:
+    name: "&f&lAdamantium Boots"
+    lore:
+      - "&f&lA Boots of Adamantium"
+      - ""
+      - "&3Supreme Armor"
+  supreme_aurum_boots:
+    name: "&f&lAurum Boots"
+    lore:
+      - "&f&lA Boots of Aurum"
+      - ""
+      - "&3Supreme Armor"
+  supreme_titanium_boots:
+    name: "&f&lTitanium Boots"
+    lore:
+      - "&f&lA Boots of Titanium"
+      - ""
+      - "&3Supreme Armor"
+  supreme_boots_thornium:
+    name: "&f&lThornium boots"
+    lore:
+      - "&f&lA boots of Thornium"
+      - ""
+      - "&3Supreme Armor"
+  supreme_boots_magic:
+    name: "&a&lMagic Boots"
+    lore:
+      - "&f&lA Magic boots of Thornium"
+      - ""
+      - "&3Supreme Armor"
+  supreme_boots_rare:
+    name: "&b&lRare Boots"
+    lore:
+      - "&f&lA Rare boots of Thornium"
+      - ""
+      - "&3Supreme Armor"
+  supreme_boots_epic:
+    name: "&d&lEpic Boots"
+    lore:
+      - "&f&lA Epic boots of Thornium"
+      - ""
+      - "&3Supreme Armor"
+  supreme_boots_legendary:
+    name: "&6&lLegendary Boots"
+    lore:
+      - "&f&lA Legendary boots of Thornium"
+      - ""
+      - "&3Supreme Armor"
+  supreme_boots_supreme:
+    name: "&4&lSupreme Boots"
+    lore:
+      - "&f&lA Supreme boots of Thornium"
+      - ""
+      - "&3Supreme Armor"
+  supreme_chestplate_thornium:
+    name: "&f&lThornium Chestplate"
+    lore:
+      - "&f&lA chestplate of Thornium"
+      - ""
+      - "&3Supreme Armor"
+  supreme_chestplate_magic:
+    name: "&a&lMagic Chestplate"
+    lore:
+      - "&f&lA Magic chestplate of Thornium"
+      - ""
+      - "&3Supreme Armor"
+  supreme_chestplate_rare:
+    name: "&b&lRare Chestplate"
+    lore:
+      - "&f&lA Rare chestplate of Thornium"
+      - ""
+      - "&3Supreme Armor"
+  supreme_chestplate_epic:
+    name: "&d&lEpic Chestplate"
+    lore:
+      - "&f&lA Epic chestplate of Thornium"
+      - ""
+      - "&3Supreme Armor"
+  supreme_chestplate_legendary:
+    name: "&6&lLegendary Chestplate"
+    lore:
+      - "&f&lA Legendary chestplate of Thornium"
+      - ""
+      - "&3Supreme Armor"
+  supreme_chestplate_supreme:
+    name: "&4&lSupreme Chestplate"
+    lore:
+      - "&f&lA Supreme chestplate of Thornium"
+      - ""
+      - "&3Supreme Armor"
+  supreme_helmet_thornium:
+    name: "&f&lThornium Helmet"
+    lore:
+      - "&f&lA helmet of Thornium"
+      - ""
+      - "&3Supreme Armor"
+  supreme_helmet_magic:
+    name: "&a&lMagic Helmet"
+    lore:
+      - "&f&lA Magic helmet of Thornium"
+      - ""
+      - "&3Supreme Armor"
+  supreme_helmet_rare:
+    name: "&b&lRare Helmet"
+    lore:
+      - "&f&lA Rare helmet of Thornium"
+      - ""
+      - "&3Supreme Armor"
+  supreme_helmet_epic:
+    name: "&d&lEpic Helmet"
+    lore:
+      - "&f&lA Epic helmet of Thornium"
+      - ""
+      - "&3Supreme Armor"
+  supreme_helmet_legendary:
+    name: "&6&lLegendary Helmet"
+    lore:
+      - "&f&lA Legendary helmet of Thornium"
+      - ""
+      - "&3Supreme Armor"
+  supreme_helmet_supreme:
+    name: "&4&lSupreme Helmet"
+    lore:
+      - "&f&lA Supreme helmet of Thornium"
+      - ""
+      - "&3Supreme Armor"
+  supreme_leggings_thornium:
+    name: "&f&lThornium Leggings"
+    lore:
+      - "&f&lA leggings of Thornium"
+      - ""
+      - "&3Supreme Armor"
+  supreme_leggings_magic:
+    name: "&a&lMagic Leggings"
+    lore:
+      - "&f&lA Magic leggings of Thornium"
+      - ""
+      - "&3Supreme Armor"
+  supreme_leggings_rare:
+    name: "&b&lRare Leggings"
+    lore:
+      - "&f&lA Rare leggings of Thornium"
+      - ""
+      - "&3Supreme Armor"
+  supreme_leggings_epic:
+    name: "&d&lEpic Leggings"
+    lore:
+      - "&f&lA Epic leggings of Thornium"
+      - ""
+      - "&3Supreme Armor"
+  supreme_leggings_legendary:
+    name: "&6&lLegendary Leggings"
+    lore:
+      - "&f&lA Legendary leggings of Thornium"
+      - ""
+      - "&3Supreme Armor"
+  supreme_leggings_supreme:
+    name: "&4&lSupreme Leggings"
+    lore:
+      - "&f&lA Supreme leggings of Thornium"
+      - ""
+      - "&3Supreme Armor"
+  supreme_adamantium_sword:
+    name: "&f&lAdamantium Sword"
+    lore:
+      - "&f&lA Sword of Adamantium"
+      - ""
+      - "&3Supreme Weapons"
+  supreme_aurum_sword:
+    name: "&f&lAurum Sword"
+    lore:
+      - "&f&lA Sword of Aurum"
+      - ""
+      - "&3Supreme Weapons"
+  supreme_titanium_sword:
+    name: "&f&lTitanium Sword"
+    lore:
+      - "&f&lA Sword of Titanium"
+      - ""
+      - "&3Supreme Weapons"
+  supreme_bow_thornium:
+    name: "&f&lThornium Bow"
+    lore:
+      - "&f&lA Bow of Thornium"
+      - ""
+      - "&3Supreme Weapons"
+  supreme_bow_magic:
+    name: "&a&lMagic Bow"
+    lore:
+      - "&f&lA Magic Bow of Thornium"
+      - ""
+      - "&3Supreme Weapons"
+  supreme_bow_rare:
+    name: "&b&lRare Bow"
+    lore:
+      - "&f&lA Rare Bow of Thornium"
+      - ""
+      - "&3Supreme Weapons"
+  supreme_bow_epic:
+    name: "&d&lEpic Bow"
+    lore:
+      - "&f&lA Epic Bow of Thornium"
+      - ""
+      - "&3Supreme Weapons"
+  supreme_bow_legendary:
+    name: "&6&lLegendary Bow"
+    lore:
+      - "&f&lA Legendary Bow of Thornium"
+      - ""
+      - "&3Supreme Weapons"
+  supreme_bow_supreme:
+    name: "&4&lSupreme Bow"
+    lore:
+      - "&f&lA Supreme Bow of Thornium"
+      - ""
+      - "&3Supreme Weapons"
+  supreme_shield_thornium:
+    name: "&f&lThornium Shield"
+    lore:
+      - "&f&lA Shield of Thornium"
+      - ""
+      - "&3Supreme Weapons"
+  supreme_shield_magic:
+    name: "&a&lMagic Shield"
+    lore:
+      - "&f&lA Magic Shield of Thornium"
+      - ""
+      - "&3Supreme Weapons"
+  supreme_shield_rare:
+    name: "&b&lRare Shield"
+    lore:
+      - "&f&lA Rare Shield of Thornium"
+      - ""
+      - "&3Supreme Weapons"
+  supreme_shield_epic:
+    name: "&d&lEpic Shield"
+    lore:
+      - "&f&lA Epic Shield of Thornium"
+      - ""
+      - "&3Supreme Weapons"
+  supreme_shield_legendary:
+    name: "&6&lLegendary Shield"
+    lore:
+      - "&f&lA Legendary Shield of Thornium"
+      - ""
+      - "&3Supreme Weapons"
+  supreme_shield_supreme:
+    name: "&4&lSupreme Shield"
+    lore:
+      - "&f&lA Supreme Shield of Thornium"
+      - ""
+      - "&3Supreme Weapons"
+  supreme_sword_thornium:
+    name: "&f&lThornium Sword"
+    lore:
+      - "&f&lA Sword of Thornium"
+      - ""
+      - "&3Supreme Weapons"
+  supreme_sword_magic:
+    name: "&a&lMagic Sword"
+    lore:
+      - "&f&lA Magic Sword of Thornium"
+      - ""
+      - "&3Supreme Weapons"
+  supreme_sword_rare:
+    name: "&b&lRare Sword"
+    lore:
+      - "&f&lA Rare Sword of Thornium"
+      - ""
+      - "&3Supreme Weapons"
+  supreme_sword_epic:
+    name: "&d&lEpic Sword"
+    lore:
+      - "&f&lA Epic Sword of Thornium"
+      - ""
+      - "&3Supreme Weapons"
+  supreme_sword_legendary:
+    name: "&6&lLegendary Sword"
+    lore:
+      - "&f&lA Legendary Sword of Thornium"
+      - ""
+      - "&3Supreme Weapons"
   supreme_sword_supreme:
     name: "&4&lSupreme Sword"
     lore:
-      - ""
       - "&f&lA Supreme Sword of Thornium"
-      - "&3Supreme Weapons"
       - ""
+      - "&3Supreme Weapons"
+  supreme_adamantium_axe:
+    name: "&f&lAdamantium Axe"
+    lore:
+      - "&f&lA Axe of Adamantium"
+      - ""
+      - "&3Supreme Tools"
+  supreme_aurum_axe:
+    name: "&f&lAurum Axe"
+    lore:
+      - "&f&lA Axe of Aurum"
+      - ""
+      - "&3Supreme Tools"
+  supreme_titanium_axe:
+    name: "&f&lTitanium Axe"
+    lore:
+      - "&f&lA Axe of Titanium"
+      - ""
+      - "&3Supreme Tools"
+  supreme_adamantium_pickaxe:
+    name: "&f&lAdamantium Pickaxe"
+    lore:
+      - "&f&lA Pickaxe of Adamantium"
+      - ""
+      - "&3Supreme Tools"
+  supreme_aurum_pickaxe:
+    name: "&f&lAurum Pickaxe"
+    lore:
+      - "&f&lA Pickaxe of Aurum"
+      - ""
+      - "&3Supreme Tools"
+  supreme_titanium_pickaxe:
+    name: "&f&lTitanium Pickaxe"
+    lore:
+      - "&f&lA Pickaxe of Titanium"
+      - ""
+      - "&3Supreme Tools"
+  supreme_adamantium_shovel:
+    name: "&f&lAdamantium Shovel"
+    lore:
+      - "&f&lA Shovel of Adamantium"
+      - ""
+      - "&3Supreme Tools"
+  supreme_aurum_shovel:
+    name: "&f&lAurum Shovel"
+    lore:
+      - "&f&lA Shovel of Aurum"
+      - ""
+      - "&3Supreme Tools"
+  supreme_titanium_shovel:
+    name: "&f&lTitanium Shovel"
+    lore:
+      - "&f&lA Shovel of Titanium"
+      - ""
+      - "&3Supreme Tools"
+  supreme_axe_thornium:
+    name: "&f&lThornium Axe"
+    lore:
+      - "&f&lA Axe of Thornium"
+      - ""
+      - "&3Supreme Tools"
+  supreme_axe_magic:
+    name: "&a&lMagic Axe"
+    lore:
+      - "&f&lA Magic Axe of Thornium"
+      - ""
+      - "&3Supreme Tools"
+  supreme_axe_rare:
+    name: "&b&lRare Axe"
+    lore:
+      - "&f&lA Rare Axe of Thornium"
+      - ""
+      - "&3Supreme Tools"
+  supreme_axe_epic:
+    name: "&d&lEpic Axe"
+    lore:
+      - "&f&lA Epic Axe of Thornium"
+      - ""
+      - "&3Supreme Tools"
+  supreme_axe_legendary:
+    name: "&6&lLegendary Axe"
+    lore:
+      - "&f&lA Legendary Axe of Thornium"
+      - ""
+      - "&3Supreme Tools"
+  supreme_axe_supreme:
+    name: "&4&lSupreme Axe"
+    lore:
+      - "&f&lA Supreme Axe of Thornium"
+      - ""
+      - "&3Supreme Tools"
+  supreme_pickaxe_thornium:
+    name: "&f&lThornium Pickaxe"
+    lore:
+      - "&f&lA Pickaxe of Thornium"
+      - ""
+      - "&3Supreme Tools"
+  supreme_pickaxe_magic:
+    name: "&a&lMagic Pickaxe"
+    lore:
+      - "&f&lA Magic Pickaxe of Thornium"
+      - ""
+      - "&3Supreme Tools"
+  supreme_pickaxe_rare:
+    name: "&b&lRare Pickaxe"
+    lore:
+      - "&f&lA Rare Pickaxe of Thornium"
+      - ""
+      - "&3Supreme Tools"
+  supreme_pickaxe_epic:
+    name: "&d&lEpic Pickaxe"
+    lore:
+      - "&f&lA Epic Pickaxe of Thornium"
+      - ""
+      - "&3Supreme Tools"
+  supreme_pickaxe_legendary:
+    name: "&6&lLegendary Pickaxe"
+    lore:
+      - "&f&lA Legendary Pickaxe of Thornium"
+      - ""
+      - "&3Supreme Tools"
+  supreme_pickaxe_supreme:
+    name: "&4&lSupreme Pickaxe"
+    lore:
+      - "&f&lA Supreme Pickaxe of Thornium"
+      - ""
+      - "&3Supreme Tools"
+  supreme_shovel_thornium:
+    name: "&f&lThornium Shovel"
+    lore:
+      - "&f&lA Shovel of Thornium"
+      - ""
+      - "&3Supreme Tools"
+  supreme_shovel_magic:
+    name: "&a&lMagic Shovel"
+    lore:
+      - "&f&lA Magic Shovel of Thornium"
+      - ""
+      - "&3Supreme Tools"
+  supreme_shovel_rare:
+    name: "&b&lRare Shovel"
+    lore:
+      - "&f&lA Rare Shovel of Thornium"
+      - ""
+      - "&3Supreme Tools"
+  thornium_shovel_epic:
+    name: "&d&lEpic Shovel"
+    lore:
+      - "&f&lA Epic Shovel of Thornium"
+      - ""
+      - "&3Supreme Tools"
+  supreme_shovel_legendary:
+    name: "&6&lLegendary Shovel"
+    lore:
+      - "&f&lA Legendary Shovel of Thornium"
+      - ""
+      - "&3Supreme Tools"
+  supreme_shovel_supreme:
+    name: "&4&lSupreme Shovel"
+    lore:
+      - "&f&lA Supreme Shovel of Thornium"
+      - ""
+      - "&3Supreme Tools"
+  supreme_mob_collector_tool_i:
+    name: "&6MobTech Collector I"
+    lore:
+      - ""
+      - "&fUsed to capture MobTech (Bees and IronGolen)"
+      - ""
+      - "&3Supreme Tools"
+  supreme_mob_collector_tool_ii:
+    name: "&6MobTech Collector II"
+    lore:
+      - ""
+      - "&fUsed to capture MobTech (Bees and IronGolen)"
+      - ""
+      - "&3Supreme Tools"
+  supreme_mob_collector_tool_iii:
+    name: "&6MobTech Collector III"
+    lore:
+      - ""
+      - "&fUsed to capture MobTech (Bees and IronGolen)"
+      - ""
+      - "&3Supreme Tools"
 messages:
   no-input: "&cPlease put in items."
   output-no-space: "&cNo output space!"
