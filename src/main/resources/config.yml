@@ -1,7 +1,7 @@
 options:
   auto-update: true
   use-legacy-supremeexpansion-item-id: false
-  enable-item-converter-machine: false
+  enable-item-converter-machine: true
   lang: en-US
   custom-ticker-delay: 2
   enable-generators: true
