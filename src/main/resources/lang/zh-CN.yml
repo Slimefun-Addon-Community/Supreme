@@ -11,339 +11,339 @@ categories:
   weapons: "&4至尊武器"
 items:
   supreme_adamantium_helmet:
-    name: "&f&lAdamantium Helmet"
+    name: "&f&l精金头盔"
     lore:
-      - "&f&lA Helmet of Adamantium"
+      - "&f&l精金制的头盔"
       - ""
       - "&3至尊盔甲"
   supreme_aurum_helmet:
-    name: "&f&lAurum Helmet"
+    name: "&f&l古金头盔"
     lore:
-      - "&f&lA Helmet of Aurum"
+      - "&f&l古金制的头盔"
       - ""
       - "&3至尊盔甲"
   supreme_titanium_helmet:
-    name: "&f&lTitanium Helmet"
+    name: "&f&l钛合金头盔"
     lore:
-      - "&f&lA Helmet of Titanium"
+      - "&f&l钛合金制的头盔"
       - ""
       - "&3至尊盔甲"
   supreme_adamantium_chestplate:
-    name: "&f&lAdamantium Chestplate"
+    name: "&f&l精金胸甲"
     lore:
-      - "&f&lA Chestplate of Adamantium"
+      - "&f&l精金制的胸甲"
       - ""
       - "&3至尊盔甲"
   supreme_aurum_chestplate:
-    name: "&f&lAurum Chestplate"
+    name: "&f&l古金胸甲"
     lore:
-      - "&f&lA Chestplate of Aurum"
+      - "&f&l古金制的胸甲"
       - ""
       - "&3至尊盔甲"
   supreme_titanium_chestplate:
-    name: "&f&lTitanium Chestplate"
+    name: "&f&l钛合金胸甲"
     lore:
-      - "&f&lA Chestplate of Titanium"
+      - "&f&l钛合金制的胸甲"
       - ""
       - "&3至尊盔甲"
   supreme_adamantium_leggings:
-    name: "&f&lAdamantium Legging"
+    name: "&f&l精金护腿"
     lore:
-      - "&f&lA Legging of Adamantium"
+      - "&f&l精金制的护腿"
       - ""
       - "&3至尊盔甲"
   supreme_aurum_leggings:
-    name: "&f&lAurum Legging"
+    name: "&f&l古金护腿"
     lore:
-      - "&f&lA Legging of Aurum"
+      - "&f&l古金制的护腿"
       - ""
       - "&3至尊盔甲"
   supreme_titanium_leggings:
-    name: "&f&lTitanium Legging"
+    name: "&f&l钛合金护腿"
     lore:
-      - "&f&lA Legging of Titanium"
+      - "&f&l钛合金制的护腿"
       - ""
       - "&3至尊盔甲"
   supreme_adamantium_boots:
-    name: "&f&lAdamantium Boots"
+    name: "&f&l精金靴子"
     lore:
-      - "&f&lA Boots of Adamantium"
+      - "&f&l精金制的靴子"
       - ""
       - "&3至尊盔甲"
   supreme_aurum_boots:
-    name: "&f&lAurum Boots"
+    name: "&f&l古金靴子"
     lore:
-      - "&f&lA Boots of Aurum"
+      - "&f&l古金制的靴子"
       - ""
       - "&3至尊盔甲"
   supreme_titanium_boots:
-    name: "&f&lTitanium Boots"
+    name: "&f&l钛合金靴子"
     lore:
-      - "&f&lA Boots of Titanium"
+      - "&f&l钛合金制的靴子"
       - ""
       - "&3至尊盔甲"
   supreme_boots_thornium:
-    name: "&f&lThornium boots"
+    name: "&f&l钍合金靴子"
     lore:
-      - "&f&lA boots of Thornium"
+      - "&f&l钍合金制的靴子"
       - ""
       - "&3至尊盔甲"
   supreme_boots_magic:
-    name: "&a&lMagic Boots"
+    name: "&a&l魔法之靴"
     lore:
-      - "&f&lA Magic boots of Thornium"
+      - "&f&l蕴含着神秘且古老的魔法"
       - ""
       - "&3至尊盔甲"
   supreme_boots_rare:
-    name: "&b&lRare Boots"
+    name: "&b&l珍奇之靴"
     lore:
-      - "&f&lA Rare boots of Thornium"
+      - "&f&l珍奇且珍贵"
       - ""
       - "&3至尊盔甲"
   supreme_boots_epic:
-    name: "&d&lEpic Boots"
+    name: "&d&l史诗之靴"
     lore:
-      - "&f&lA Epic boots of Thornium"
+      - "&f&l由史诗钍合金制成"
       - ""
       - "&3至尊盔甲"
   supreme_boots_legendary:
-    name: "&6&lLegendary Boots"
+    name: "&6&l传奇之靴"
     lore:
-      - "&f&lA Legendary boots of Thornium"
+      - "&f&l传奇的工艺造就了它的一生"
       - ""
       - "&3至尊盔甲"
   supreme_boots_supreme:
-    name: "&4&lSupreme Boots"
+    name: "&4&l至尊之靴"
     lore:
-      - "&f&lA Supreme boots of Thornium"
+      - "&f&l至尊的终极之靴"
       - ""
       - "&3至尊盔甲"
   supreme_chestplate_thornium:
-    name: "&f&lThornium Chestplate"
+    name: "&f&l钍合金胸甲"
     lore:
-      - "&f&lA chestplate of Thornium"
+      - "&f&l钍合金制的胸甲"
       - ""
       - "&3至尊盔甲"
   supreme_chestplate_magic:
-    name: "&a&lMagic Chestplate"
+    name: "&a&l魔法胸甲"
     lore:
-      - "&f&lA Magic chestplate of Thornium"
+      - "&f&l蕴含着神秘且古老的魔法"
       - ""
       - "&3至尊盔甲"
   supreme_chestplate_rare:
-    name: "&b&lRare Chestplate"
+    name: "&b&l珍奇胸甲"
     lore:
-      - "&f&lA Rare chestplate of Thornium"
+      - "&f&l珍奇且珍贵"
       - ""
       - "&3至尊盔甲"
   supreme_chestplate_epic:
-    name: "&d&lEpic Chestplate"
+    name: "&d&l史诗胸甲"
     lore:
-      - "&f&lA Epic chestplate of Thornium"
+      - "&f&l由史诗钍合金制成"
       - ""
       - "&3至尊盔甲"
   supreme_chestplate_legendary:
-    name: "&6&lLegendary Chestplate"
+    name: "&6&l传奇胸甲"
     lore:
-      - "&f&lA Legendary chestplate of Thornium"
+      - "&f&l传奇的工艺造就了它的一生"
       - ""
       - "&3至尊盔甲"
   supreme_chestplate_supreme:
-    name: "&4&lSupreme Chestplate"
+    name: "&4&l至尊胸甲"
     lore:
-      - "&f&lA Supreme chestplate of Thornium"
+      - "&f&l至尊的终极胸甲"
       - ""
       - "&3至尊盔甲"
   supreme_helmet_thornium:
-    name: "&f&lThornium Helmet"
+    name: "&f&l钍合金头盔"
     lore:
-      - "&f&lA helmet of Thornium"
+      - "&f&l钍合金制的头盔"
       - ""
       - "&3至尊盔甲"
   supreme_helmet_magic:
-    name: "&a&lMagic Helmet"
+    name: "&a&l魔法头盔"
     lore:
-      - "&f&lA Magic helmet of Thornium"
+      - "&f&l蕴含着神秘且古老的魔法"
       - ""
       - "&3至尊盔甲"
   supreme_helmet_rare:
-    name: "&b&lRare Helmet"
+    name: "&b&l珍奇头盔"
     lore:
-      - "&f&lA Rare helmet of Thornium"
+      - "&f&l珍奇且珍贵"
       - ""
       - "&3至尊盔甲"
   supreme_helmet_epic:
-    name: "&d&lEpic Helmet"
+    name: "&d&l史诗头盔"
     lore:
-      - "&f&lA Epic helmet of Thornium"
+      - "&f&l由史诗钍合金制成"
       - ""
       - "&3至尊盔甲"
   supreme_helmet_legendary:
-    name: "&6&lLegendary Helmet"
+    name: "&6&l传奇头盔"
     lore:
-      - "&f&lA Legendary helmet of Thornium"
+      - "&f&l传奇的工艺造就了它的一生"
       - ""
       - "&3至尊盔甲"
   supreme_helmet_supreme:
-    name: "&4&lSupreme Helmet"
+    name: "&4&l至尊头盔"
     lore:
-      - "&f&lA Supreme helmet of Thornium"
+      - "&f&l至尊的终极头盔"
       - ""
       - "&3至尊盔甲"
   supreme_leggings_thornium:
-    name: "&f&lThornium Leggings"
+    name: "&f&l钍合金护腿"
     lore:
-      - "&f&lA leggings of Thornium"
+      - "&f&l钍合金制的护腿"
       - ""
       - "&3至尊盔甲"
   supreme_leggings_magic:
-    name: "&a&lMagic Leggings"
+    name: "&a&l魔法护腿"
     lore:
-      - "&f&lA Magic leggings of Thornium"
+      - "&f&l蕴含着古老且神秘的魔法"
       - ""
       - "&3至尊盔甲"
   supreme_leggings_rare:
-    name: "&b&lRare Leggings"
+    name: "&b&l珍奇护腿"
     lore:
-      - "&f&lA Rare leggings of Thornium"
+      - "&f&l珍奇且珍贵"
       - ""
       - "&3至尊盔甲"
   supreme_leggings_epic:
-    name: "&d&lEpic Leggings"
+    name: "&d&l史诗护腿"
     lore:
-      - "&f&lA Epic leggings of Thornium"
+      - "&f&l由史诗钍合金制成"
       - ""
       - "&3至尊盔甲"
   supreme_leggings_legendary:
-    name: "&6&lLegendary Leggings"
+    name: "&6&l传奇护腿"
     lore:
-      - "&f&lA Legendary leggings of Thornium"
+      - "&f&l传奇的工艺造就了它的一生"
       - ""
       - "&3至尊盔甲"
   supreme_leggings_supreme:
-    name: "&4&lSupreme Leggings"
+    name: "&4&l至尊护腿"
     lore:
-      - "&f&lA Supreme leggings of Thornium"
+      - "&f&l至尊的终极护腿"
       - ""
       - "&3至尊盔甲"
   supreme_adamantium_sword:
-    name: "&f&lAdamantium Sword"
+    name: "&f&l精金剑"
     lore:
-      - "&f&lA Sword of Adamantium"
+      - "&f&l精金制的剑"
       - ""
       - "&3至尊武器"
   supreme_aurum_sword:
-    name: "&f&lAurum Sword"
+    name: "&f&l古金剑"
     lore:
-      - "&f&lA Sword of Aurum"
+      - "&f&l古金制的剑"
       - ""
       - "&3至尊武器"
   supreme_titanium_sword:
-    name: "&f&lTitanium Sword"
+    name: "&f&l钛合金剑"
     lore:
-      - "&f&lA Sword of Titanium"
+      - "&f&l钛合金制的剑"
       - ""
       - "&3至尊武器"
   supreme_bow_thornium:
-    name: "&f&lThornium Bow"
+    name: "&f&l钍合金弓"
     lore:
-      - "&f&lA Bow of Thornium"
+      - "&f&l钍合金制的弓"
       - ""
       - "&3至尊武器"
   supreme_bow_magic:
-    name: "&a&lMagic Bow"
+    name: "&a&l魔法之弓"
     lore:
-      - "&f&lA Magic Bow of Thornium"
+      - "&f&l蕴含着古老且神秘的魔法"
       - ""
       - "&3至尊武器"
   supreme_bow_rare:
-    name: "&b&lRare Bow"
+    name: "&b&l珍奇之弓"
     lore:
-      - "&f&lA Rare Bow of Thornium"
+      - "&f&l珍奇且珍贵"
       - ""
       - "&3至尊武器"
   supreme_bow_epic:
-    name: "&d&lEpic Bow"
+    name: "&d&l史诗之弓"
     lore:
-      - "&f&lA Epic Bow of Thornium"
+      - "&f&l史诗般的缠丝工艺"
       - ""
       - "&3至尊武器"
   supreme_bow_legendary:
-    name: "&6&lLegendary Bow"
+    name: "&6&l传奇之弓"
     lore:
-      - "&f&lA Legendary Bow of Thornium"
+      - "&f&l传奇的工艺早就了它的一生"
       - ""
       - "&3至尊武器"
   supreme_bow_supreme:
-    name: "&4&lSupreme Bow"
+    name: "&4&l至尊之弓"
     lore:
-      - "&f&lA Supreme Bow of Thornium"
+      - "&f&l至尊的终极之弓"
       - ""
       - "&3至尊武器"
   supreme_shield_thornium:
-    name: "&f&lThornium Shield"
+    name: "&f&l钍合金盾牌"
     lore:
-      - "&f&lA Shield of Thornium"
+      - "&f&l钍合金制的盾牌"
       - ""
       - "&3至尊武器"
   supreme_shield_magic:
-    name: "&a&lMagic Shield"
+    name: "&a&l魔法盾牌"
     lore:
-      - "&f&lA Magic Shield of Thornium"
+      - "&f&l蕴含着神秘且古老的魔法"
       - ""
       - "&3至尊武器"
   supreme_shield_rare:
-    name: "&b&lRare Shield"
+    name: "&b&l珍奇盾牌"
     lore:
-      - "&f&lA Rare Shield of Thornium"
+      - "&f&l珍奇且珍贵"
       - ""
       - "&3至尊武器"
   supreme_shield_epic:
-    name: "&d&lEpic Shield"
+    name: "&d&l史诗盾牌"
     lore:
-      - "&f&lA Epic Shield of Thornium"
+      - "&f&l史诗般的防御工程"
       - ""
       - "&3至尊武器"
   supreme_shield_legendary:
-    name: "&6&lLegendary Shield"
+    name: "&6&l传奇盾牌"
     lore:
-      - "&f&lA Legendary Shield of Thornium"
+      - "&f&l传奇的工艺造就了它的一生"
       - ""
       - "&3至尊武器"
   supreme_shield_supreme:
-    name: "&4&lSupreme Shield"
+    name: "&4&l至尊盾牌"
     lore:
-      - "&f&lA Supreme Shield of Thornium"
+      - "&f&l至尊的终极盾牌"
       - ""
       - "&3至尊武器"
   supreme_sword_thornium:
-    name: "&f&lThornium Sword"
+    name: "&f&l钍合金剑"
     lore:
-      - "&f&lA Sword of Thornium"
+      - "&f&l钍合金制的盾牌"
       - ""
       - "&3至尊武器"
   supreme_sword_magic:
-    name: "&a&lMagic Sword"
+    name: "&a&l魔法剑"
     lore:
-      - "&f&lA Magic Sword of Thornium"
+      - "&f&l蕴含着神秘且古老的魔法"
       - ""
       - "&3至尊武器"
   supreme_sword_rare:
-    name: "&b&lRare Sword"
+    name: "&b&l珍奇剑"
     lore:
-      - "&f&lA Rare Sword of Thornium"
+      - "&f&l珍奇且珍贵"
       - ""
       - "&3至尊武器"
   supreme_sword_epic:
-    name: "&d&lEpic Sword"
+    name: "&d&l史诗剑"
     lore:
-      - "&f&lA Epic Sword of Thornium"
+      - "&f&l锋芒毕露"
       - ""
       - "&3至尊武器"
   supreme_sword_legendary:
-    name: "&6&lLegendary Sword"
+    name: "&6&l传奇之剑"
     lore:
-      - "&f&lA Legendary Sword of Thornium"
+      - "&f&l传奇的工艺造就了它的一生"
       - ""
       - "&3至尊武器"
   supreme_sword_supreme:
@@ -353,315 +353,315 @@ items:
       - ""
       - "&3至尊武器"
   supreme_adamantium_axe:
-    name: "&f&lAdamantium Axe"
+    name: "&f&l精金斧"
     lore:
-      - "&f&lA Axe of Adamantium"
+      - "&f&l精金制的斧头"
       - ""
       - "&3至尊工具"
   supreme_aurum_axe:
-    name: "&f&lAurum Axe"
+    name: "&f&l古金斧"
     lore:
-      - "&f&lA Axe of Aurum"
+      - "&f&l古金制的斧头"
       - ""
       - "&3至尊工具"
   supreme_titanium_axe:
-    name: "&f&lTitanium Axe"
+    name: "&f&l钛合金斧"
     lore:
-      - "&f&lA Axe of Titanium"
+      - "&f&l钛合金制的斧头"
       - ""
       - "&3至尊工具"
   supreme_adamantium_pickaxe:
-    name: "&f&lAdamantium Pickaxe"
+    name: "&f&l精金镐"
     lore:
-      - "&f&lA Pickaxe of Adamantium"
+      - "&f&l精金制的镐子"
       - ""
       - "&3至尊工具"
   supreme_aurum_pickaxe:
-    name: "&f&lAurum Pickaxe"
+    name: "&f&l古金镐"
     lore:
-      - "&f&lA Pickaxe of Aurum"
+      - "&f&l古金制的镐子"
       - ""
       - "&3至尊工具"
   supreme_titanium_pickaxe:
-    name: "&f&lTitanium Pickaxe"
+    name: "&f&l钛合金镐"
     lore:
-      - "&f&lA Pickaxe of Titanium"
+      - "&f&l钛合金制的镐子"
       - ""
       - "&3至尊工具"
   supreme_adamantium_shovel:
-    name: "&f&lAdamantium Shovel"
+    name: "&f&l精金锹"
     lore:
-      - "&f&lA Shovel of Adamantium"
+      - "&f&l精金制的铲子"
       - ""
       - "&3至尊工具"
   supreme_aurum_shovel:
-    name: "&f&lAurum Shovel"
+    name: "&f&l古金锹"
     lore:
-      - "&f&lA Shovel of Aurum"
+      - "&f&l古金制的铲子"
       - ""
       - "&3至尊工具"
   supreme_titanium_shovel:
-    name: "&f&lTitanium Shovel"
+    name: "&f&l钛合金锹"
     lore:
-      - "&f&lA Shovel of Titanium"
+      - "&f&l钛合金制的铲子"
       - ""
       - "&3至尊工具"
   supreme_axe_thornium:
-    name: "&f&lThornium Axe"
+    name: "&f&l钍合金斧"
     lore:
-      - "&f&lA Axe of Thornium"
+      - "&f&l钍合金制的斧头"
       - ""
       - "&3至尊工具"
   supreme_axe_magic:
-    name: "&a&lMagic Axe"
+    name: "&a&l魔法斧"
     lore:
-      - "&f&lA Magic Axe of Thornium"
+      - "&f&l蕴含着古老且神秘的魔法"
       - ""
       - "&3至尊工具"
   supreme_axe_rare:
-    name: "&b&lRare Axe"
+    name: "&b&l珍奇斧"
     lore:
-      - "&f&lA Rare Axe of Thornium"
+      - "&f&l珍奇且珍贵"
       - ""
       - "&3至尊工具"
   supreme_axe_epic:
-    name: "&d&lEpic Axe"
+    name: "&d&l史诗斧"
     lore:
-      - "&f&lA Epic Axe of Thornium"
+      - "&f&l史诗般的破刃工艺"
       - ""
       - "&3至尊工具"
   supreme_axe_legendary:
-    name: "&6&lLegendary Axe"
+    name: "&6&l传奇斧"
     lore:
-      - "&f&lA Legendary Axe of Thornium"
+      - "&f&l传奇的工艺造就了它的一生"
       - ""
       - "&3至尊工具"
   supreme_axe_supreme:
-    name: "&4&lSupreme Axe"
+    name: "&4&l至尊斧"
     lore:
-      - "&f&lA Supreme Axe of Thornium"
+      - "&f&l至尊的终极之斧"
       - ""
       - "&3至尊工具"
   supreme_pickaxe_thornium:
-    name: "&f&lThornium Pickaxe"
+    name: "&f&l钍合金镐"
     lore:
-      - "&f&lA Pickaxe of Thornium"
+      - "&f&l钍合金制的镐子"
       - ""
       - "&3至尊工具"
   supreme_pickaxe_magic:
-    name: "&a&lMagic Pickaxe"
+    name: "&a&l魔法镐"
     lore:
-      - "&f&lA Magic Pickaxe of Thornium"
+      - "&f&l蕴含着古老且神秘的魔法"
       - ""
       - "&3至尊工具"
   supreme_pickaxe_rare:
-    name: "&b&lRare Pickaxe"
+    name: "&b&l珍奇镐"
     lore:
-      - "&f&lA Rare Pickaxe of Thornium"
+      - "&f&l珍奇且珍贵"
       - ""
       - "&3至尊工具"
   supreme_pickaxe_epic:
-    name: "&d&lEpic Pickaxe"
+    name: "&d&l史诗镐"
     lore:
-      - "&f&lA Epic Pickaxe of Thornium"
+      - "&f&l史诗般的打磨工艺"
       - ""
       - "&3至尊工具"
   supreme_pickaxe_legendary:
-    name: "&6&lLegendary Pickaxe"
+    name: "&6&l传奇镐"
     lore:
-      - "&f&lA Legendary Pickaxe of Thornium"
+      - "&f&l传奇的工艺早就了它的一生"
       - ""
       - "&3至尊工具"
   supreme_pickaxe_supreme:
-    name: "&4&lSupreme Pickaxe"
+    name: "&4&l至尊镐"
     lore:
-      - "&f&lA Supreme Pickaxe of Thornium"
+      - "&f&l至尊的终极之镐"
       - ""
       - "&3至尊工具"
   supreme_shovel_thornium:
-    name: "&f&lThornium Shovel"
+    name: "&f&l钍合金锹"
     lore:
-      - "&f&lA Shovel of Thornium"
+      - "&f&l钍合金制的铲子"
       - ""
       - "&3至尊工具"
   supreme_shovel_magic:
-    name: "&a&lMagic Shovel"
+    name: "&a&l魔法锹"
     lore:
-      - "&f&lA Magic Shovel of Thornium"
+      - "&f&l蕴含着古老且神秘的魔法"
       - ""
       - "&3至尊工具"
   supreme_shovel_rare:
-    name: "&b&lRare Shovel"
+    name: "&b&l珍奇锹"
     lore:
-      - "&f&lA Rare Shovel of Thornium"
+      - "&f&l珍奇且珍贵"
       - ""
       - "&3至尊工具"
   thornium_shovel_epic:
-    name: "&d&lEpic Shovel"
+    name: "&d&l史诗锹"
     lore:
-      - "&f&lA Epic Shovel of Thornium"
+      - "&f&l史诗般的榫卯技术"
       - ""
       - "&3至尊工具"
   supreme_shovel_legendary:
-    name: "&6&lLegendary Shovel"
+    name: "&6&l传奇锹"
     lore:
-      - "&f&lA Legendary Shovel of Thornium"
+      - "&f&l传奇的工艺早就了它的一生"
       - ""
       - "&3至尊工具"
   supreme_shovel_supreme:
-    name: "&4&lSupreme Shovel"
+    name: "&4&l至尊锹"
     lore:
-      - "&f&lA Supreme Shovel of Thornium"
+      - "&f&l至尊的终极之锹"
       - ""
       - "&3至尊工具"
   supreme_mob_collector_tool_i:
-    name: "&6MobTech Collector I"
+    name: "&6生物科技捕捉器 I"
     lore:
       - ""
-      - "&fUsed to capture MobTech (Bees and IronGolen)"
+      - "&f用于捕捉蜜蜂和铁傀儡"
       - ""
       - "&3至尊工具"
   supreme_mob_collector_tool_ii:
-    name: "&6MobTech Collector II"
+    name: "&6生物科技捕捉器 II"
     lore:
       - ""
-      - "&fUsed to capture MobTech (Bees and IronGolen)"
+      - "&f用于捕捉蜜蜂和铁傀儡"
       - ""
       - "&3至尊工具"
   supreme_mob_collector_tool_iii:
-    name: "&6MobTech Collector III"
+    name: "&6生物科技捕捉器 III"
     lore:
       - ""
-      - "&fUsed to capture MobTech (Bees and IronGolen)"
+      - "&f用于捕捉蜜蜂和铁傀儡"
       - ""
       - "&3至尊工具"
   supreme_generator_mob_basic:
-    name: "&bGenerator Mob Basic"
+    name: "&b基础生物沼气发电机"
     lore:
-      - "&fGenerates energy from the methane"
-      - "&fgenerated by Pigs, Cows and Sheep"
-      - "&8(needs to be within 3 blocks of distance)"
+      - "&f从牛、猪、羊的粪便中收集沼气"
+      - "&f通过燃烧沼气来发电"
+      - "&8(需要动物在距发电机3格以内)"
       - ""
-      - "&3至尊机"
+      - "&3至尊机器"
   supreme_generator_mob_medium:
-    name: "&bGenerator Mob Medium"
+    name: "&b中级生物沼气发电机"
     lore:
-      - "&fGenerates energy from the methane"
-      - "&fgenerated by Pigs, Cows and Sheep"
-      - "&8(needs to be within 6 blocks of distance)"
+      - "&f从牛、猪、羊的粪便中收集沼气"
+      - "&f通过燃烧沼气来发电"
+      - "&8(需要动物在距发电机6格以内)"
       - ""
-      - "&3至尊机"
+      - "&3至尊机器"
   supreme_generator_mob_advanced:
-    name: "&bGenerator Mob Advanced"
+    name: "&b高级生物沼气发电机"
     lore:
-      - "&fGenerates energy from the methane"
-      - "&fgenerated by Pigs, Cows and Sheep"
-      - "&8(needs to be within 9 blocks of distance)"
+      - "&f从牛、猪、羊的粪便中收集沼气"
+      - "&f通过燃烧沼气来发电"
+      - "&8(需要动物在距发电机9格以内)"
       - ""
-      - "&3至尊机"
+      - "&3至尊机器"
   supreme_aurum_capacitor:
-    name: "&9Aurum Capacitor"
+    name: "&9古金电容"
     lore:
       - ""
-      - "&3至尊机"
+      - "&3至尊机器"
   supreme_titanium_capacitor:
-    name: "&9Titanium Capacitor"
+    name: "&9钛合金电容"
     lore:
       - ""
-      - "&3至尊机"
+      - "&3至尊机器"
   supreme_adamantium_capacitor:
-    name: "&9Adamantium Capacitor"
+    name: "&9精金电容"
     lore:
       - ""
-      - "&3至尊机"
+      - "&3至尊机器"
   supreme_thornium_capacitor:
-    name: "&9Thornium Capacitor"
+    name: "&9钍合金电容"
     lore:
       - ""
-      - "&3至尊机"
+      - "&3至尊机器"
   supreme_supreme_capacitor:
-    name: "&9Supreme Capacitor"
+    name: "&9至尊电容"
     lore:
-      - "&c&oDo not use more than "
-      - "&c&o1 per energy network"
+      - "&c&o建议每个能源网络中"
+      - "&c&o不要使用该电容超过一个"
       - ""
-      - "&3至尊机"
+      - "&3至尊机器"
   supreme_basic_ignis_generator:
-    name: "&9Basic Ignis Generator"
+    name: "&9基础火电发电机"
     lore:
-      - "&fNeed fire under this block to work"
+      - "&f下方须点火"
       - ""
-      - "&3至尊机"
+      - "&3至尊机器"
   supreme_ignis_generator:
-    name: "&9Ignis Generator"
+    name: "&9至尊火电发电机"
     lore:
-      - "&fNeed fire under this block to work"
+      - "&f下方须点火"
       - ""
-      - "&3至尊机"
+      - "&3至尊机器"
   supreme_basic_ventus_generator:
-    name: "&9Basic Ventus Generator"
+    name: "&9基础风力发电机"
     lore:
-      - "&fIt needs to be with its faces"
-      - "&fin the wind to work"
+      - "&f需将发电机"
+      - "&f置于迎风面中"
       - ""
-      - "&3至尊机"
+      - "&3至尊机器"
   supreme_ventus_generator:
-    name: "&9Ventus Generator"
+    name: "&9至尊风力发电机"
     lore:
-      - "&fIt needs to be with its faces"
-      - "&fin the wind to work"
+      - "&f需将发电机"
+      - "&f置于迎风面中"
       - ""
-      - "&3至尊机"
+      - "&3至尊机器"
   supreme_basic_aqua_generator:
-    name: "&9Basic Aqua Generator"
+    name: "&9基础水利发电机"
     lore:
-      - "&fNeed water under this block to work"
+      - "&f下方须有水源"
       - ""
-      - "&3至尊机"
+      - "&3至尊机器"
   supreme_aqua_generator:
-    name: "&9Aqua Generator"
+    name: "&9至尊水利发电机"
     lore:
-      - "&fNeed water under this block to work"
+      - "&f下方须有水源"
       - ""
-      - "&3至尊机"
+      - "&3至尊机器"
   supreme_basic_lux_generator:
-    name: "&9Basic Lux Generator"
+    name: "&9基础光能发电机"
     lore:
-      - "&fNeeds to receive sunlight"
-      - "&for moonlight to work"
+      - "&f须将其敞天置于"
+      - "&f日光或月光之下"
       - ""
-      - "&3至尊机"
+      - "&3至尊机器"
   supreme_lux_generator:
-    name: "&9Lux Generator"
+    name: "&9至尊光能发电机"
     lore:
-      - "&fNeeds to receive sunlight"
-      - "&for moonlight to work"
+      - "&f需将发电机"
+      - "&f置于迎风面中"
       - ""
-      - "&3至尊机"
+      - "&3至尊机器"
   supreme_basic_lumium_generator:
-    name: "&9Basic Lumium Generator"
+    name: "&9基础地能发电机"
     lore:
-      - "&fNeeds to be below ground to work"
+      - "&f须将其埋入地下"
       - ""
-      - "&3至尊机"
+      - "&3至尊机器"
   supreme_lumium_generator:
-    name: "&9Lumium Generator"
+    name: "&9至尊地能发电机"
     lore:
-      - "&fNeeds to be below ground to work"
+      - "&f须将其埋入地下"
       - ""
-      - "&3至尊机"
+      - "&3至尊机器"
   supreme_thornium_generator:
-    name: "&9Thornium Generator"
+    name: "&9基础万用发电机"
     lore:
-      - "&fGenerates energy anywhere"
+      - "&f在任何地方都可以发电"
       - ""
-      - "&3至尊机"
+      - "&3至尊机器"
   supreme_supreme_generator:
-    name: "&9Supreme Generator"
+    name: "&9至尊万用发电机"
     lore:
-      - "&fGenerates energy anywhere"
+      - "&f在任何地方都可以发电"
       - ""
-      - "&3至尊机"
+      - "&3至尊机器"
 messages:
   no-input: "&c请在此放入物品"
   output-no-space: "&c无输出空间!"
