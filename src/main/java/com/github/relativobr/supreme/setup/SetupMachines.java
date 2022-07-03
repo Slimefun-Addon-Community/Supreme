@@ -65,25 +65,25 @@ public class SetupMachines {
         .setMachineRecipes(ElectricMagicalFabricator.getAllRecipe()).setCapacity(600).setEnergyConsumption(300)
         .setProcessingSpeed(15).register(sup);
 
-    new ElectricGearFabricator(ItemGroups.MACHINES_CATEGORY, ElectricGearFabricator.ELECTRIC_GEAR_MACHINE,
-        RecipeType.ENHANCED_CRAFTING_TABLE, ElectricGearFabricator.RECIPE_ELECTRIC_GEAR_MACHINE).setMachineIdentifier(
-            ElectricGearFabricator.ELECTRIC_GEAR_MACHINE.getItemId())
-        .setMachineRecipes(ElectricGearFabricator.getAllRecipe()).setCapacity(40).setEnergyConsumption(20)
-        .setProcessingSpeed(1).register(sup);
-
-    new ElectricGearFabricator(ItemGroups.MACHINES_CATEGORY, ElectricGearFabricator.ELECTRIC_GEAR_MACHINE_II,
-        RecipeType.ENHANCED_CRAFTING_TABLE,
-        ElectricGearFabricator.RECIPE_ELECTRIC_GEAR_MACHINE_II).setMachineIdentifier(
-            ElectricGearFabricator.ELECTRIC_GEAR_MACHINE_II.getItemId())
-        .setMachineRecipes(ElectricGearFabricator.getAllRecipe()).setCapacity(200).setEnergyConsumption(100)
-        .setProcessingSpeed(5).register(sup);
-
-    new ElectricGearFabricator(ItemGroups.MACHINES_CATEGORY, ElectricGearFabricator.ELECTRIC_GEAR_MACHINE_III,
-        RecipeType.ENHANCED_CRAFTING_TABLE,
-        ElectricGearFabricator.RECIPE_ELECTRIC_GEAR_MACHINE_III).setMachineIdentifier(
-            ElectricGearFabricator.ELECTRIC_GEAR_MACHINE_III.getItemId())
-        .setMachineRecipes(ElectricGearFabricator.getAllRecipe()).setCapacity(600).setEnergyConsumption(300)
-        .setProcessingSpeed(15).register(sup);
+//    new ElectricGearFabricator(ItemGroups.MACHINES_CATEGORY, ElectricGearFabricator.ELECTRIC_GEAR_MACHINE,
+//        RecipeType.ENHANCED_CRAFTING_TABLE, ElectricGearFabricator.RECIPE_ELECTRIC_GEAR_MACHINE).setMachineIdentifier(
+//            ElectricGearFabricator.ELECTRIC_GEAR_MACHINE.getItemId())
+//        .setMachineRecipes(ElectricGearFabricator.getAllRecipe()).setCapacity(40).setEnergyConsumption(20)
+//        .setProcessingSpeed(1).register(sup);
+//
+//    new ElectricGearFabricator(ItemGroups.MACHINES_CATEGORY, ElectricGearFabricator.ELECTRIC_GEAR_MACHINE_II,
+//        RecipeType.ENHANCED_CRAFTING_TABLE,
+//        ElectricGearFabricator.RECIPE_ELECTRIC_GEAR_MACHINE_II).setMachineIdentifier(
+//            ElectricGearFabricator.ELECTRIC_GEAR_MACHINE_II.getItemId())
+//        .setMachineRecipes(ElectricGearFabricator.getAllRecipe()).setCapacity(200).setEnergyConsumption(100)
+//        .setProcessingSpeed(5).register(sup);
+//
+//    new ElectricGearFabricator(ItemGroups.MACHINES_CATEGORY, ElectricGearFabricator.ELECTRIC_GEAR_MACHINE_III,
+//        RecipeType.ENHANCED_CRAFTING_TABLE,
+//        ElectricGearFabricator.RECIPE_ELECTRIC_GEAR_MACHINE_III).setMachineIdentifier(
+//            ElectricGearFabricator.ELECTRIC_GEAR_MACHINE_III.getItemId())
+//        .setMachineRecipes(ElectricGearFabricator.getAllRecipe()).setCapacity(600).setEnergyConsumption(300)
+//        .setProcessingSpeed(15).register(sup);
 
     new MobCollector(ItemGroups.MACHINES_CATEGORY, MobCollector.MOB_COLLECTOR_MACHINE,
         RecipeType.ENHANCED_CRAFTING_TABLE, MobCollector.RECIPE_MOB_COLLECTOR_MACHINE).setMobRange(4).setCapacity(1000)

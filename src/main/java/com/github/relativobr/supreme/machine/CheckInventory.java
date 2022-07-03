@@ -151,7 +151,7 @@ public class CheckInventory extends SlimefunItem implements InventoryBlock {
           final int amountMatch = Arrays.stream(targetInv.getContents()).filter(Objects::nonNull)
               .filter(itemInv -> (SlimefunUtils.isItemSimilar(itemStack, itemInv, false, false)))
               .mapToInt(ItemStack::getAmount).sum();
-          changeLightable(block, itemStack.getAmount() == amountMatch);
+          changeLightable(block, itemStack.getAmount() <= amountMatch);
         } else {
           changeLightable(block, false);
         }
