@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -83,7 +84,9 @@ public class VirtualGarden extends AContainer implements NotHopperable, RecipeDi
   @Override
   protected void registerDefaultRecipes() {
     this.recipes.clear();
-    VirtualGardenMachineRecipe.getAllRecipe().forEach(recipe -> {
+    VirtualGardenMachineRecipe.getAllRecipe()
+        .stream().filter(Objects::nonNull)
+        .forEach(recipe -> {
       this.addProduce(new VirtualGardenMachineRecipe(recipe));
     });
   }
@@ -99,7 +102,9 @@ public class VirtualGarden extends AContainer implements NotHopperable, RecipeDi
   @Override
   public List<ItemStack> getDisplayRecipes() {
     List<ItemStack> displayRecipes = new ArrayList();
-    VirtualGardenMachineRecipe.getAllRecipe().forEach(recipe -> {
+    VirtualGardenMachineRecipe.getAllRecipe()
+        .stream().filter(Objects::nonNull)
+        .forEach(recipe -> {
       displayRecipes.add(new CustomItemStack(recipe.getFirstMaterialInput(), null, "&fRequires &bto cultivate"));
       displayRecipes.add(new ItemStack(recipe.getFirstMaterialOutput()));
     });
@@ -173,9 +178,11 @@ public class VirtualGarden extends AContainer implements NotHopperable, RecipeDi
         } else {
           inv.replaceExistingItem(22, new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, " "));
           for (ItemStack output : processing.get(b).getOutput()) {
-            ItemStack clone = output.clone();
-            clone.setAmount(1);
-            inv.pushItem(clone, getOutputSlots());
+            if(output != null){
+              ItemStack clone = output.clone();
+              clone.setAmount(1);
+              inv.pushItem(clone, getOutputSlots());
+            }
           }
           progress.remove(b);
           processing.remove(b);

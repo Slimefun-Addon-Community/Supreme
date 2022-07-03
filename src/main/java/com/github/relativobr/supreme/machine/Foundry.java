@@ -23,6 +23,7 @@ import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.annotation.Nonnull;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -140,7 +141,9 @@ public class Foundry extends MediumContainerMachine {
   @Override
   public List<ItemStack> getDisplayRecipes() {
     List<ItemStack> displayRecipes = new ArrayList();
-    machineRecipes.forEach(recipe -> {
+    machineRecipes
+        .stream().filter(Objects::nonNull)
+        .forEach(recipe -> {
       ItemStack itemStack1 = new CustomItemStack(Material.WHITE_STAINED_GLASS_PANE, " ");
       ItemStack itemStack2 = new CustomItemStack(Material.WHITE_STAINED_GLASS_PANE, " ");
       if (recipe.getItemInput(0) != null) {

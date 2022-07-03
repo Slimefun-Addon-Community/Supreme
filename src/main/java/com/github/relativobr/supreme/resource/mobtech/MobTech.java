@@ -3,7 +3,7 @@ package com.github.relativobr.supreme.resource.mobtech;
 import com.github.relativobr.generic.MobTechGeneric;
 import com.github.relativobr.generic.MobTechGeneric.MobTechType;
 import com.github.relativobr.supreme.Supreme;
-import com.github.relativobr.supreme.gear.MobCollectorTools;
+import com.github.relativobr.supreme.tools.MobCollectorTools;
 import com.github.relativobr.supreme.machine.tech.TechMutation;
 import com.github.relativobr.supreme.machine.tech.TechRobotic;
 import com.github.relativobr.supreme.resource.SupremeComponents;

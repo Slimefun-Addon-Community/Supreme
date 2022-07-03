@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
@@ -271,7 +272,9 @@ public class TechMutation extends SimpleItemContainerMachine implements Radioact
   public List<ItemStack> getDisplayRecipes() {
     final CustomItemStack separator = new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, " ");
     List<ItemStack> displayRecipes = new ArrayList();
-    this.recipes.forEach(recipe -> {
+    this.recipes
+        .stream().filter(Objects::nonNull)
+        .forEach(recipe -> {
       int chance = recipe.getChance() * getUpgradeLuck();
       if (chance > 100) {
         chance = 100;

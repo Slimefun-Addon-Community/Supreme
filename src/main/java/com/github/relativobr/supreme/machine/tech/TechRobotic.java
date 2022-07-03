@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nonnull;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
@@ -256,7 +257,9 @@ public class TechRobotic extends SimpleItemContainerMachine implements Radioacti
   @Override
   public List<ItemStack> getDisplayRecipes() {
     List<ItemStack> displayRecipes = new ArrayList();
-    this.recipes.forEach(recipe -> {
+    this.recipes
+        .stream().filter(Objects::nonNull)
+        .forEach(recipe -> {
       ItemStack itemStack = recipe.getFirstItemOutput().clone();
       itemStack.setAmount(getAmoundUpgrade());
       displayRecipes.add(itemStack);

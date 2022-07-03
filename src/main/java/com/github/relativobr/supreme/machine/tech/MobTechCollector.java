@@ -1,7 +1,7 @@
 package com.github.relativobr.supreme.machine.tech;
 
 import com.github.relativobr.supreme.Supreme;
-import com.github.relativobr.supreme.gear.MobCollectorTools;
+import com.github.relativobr.supreme.tools.MobCollectorTools;
 import com.github.relativobr.supreme.machine.recipe.MobTechCollectorMachineRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.magical.SupremeCetrus;

@@ -6,7 +6,6 @@ import java.util.List;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
 import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
 
 public class VirtualGardenMachineRecipe extends MachineRecipe {
 
@@ -58,6 +57,8 @@ public class VirtualGardenMachineRecipe extends MachineRecipe {
       Material.MELON);
   public static final AbstractItemRecipe RECIPE_GARDEN_PUMPKIN = new AbstractItemRecipe(Material.PUMPKIN_SEEDS,
       Material.PUMPKIN);
+  public static final AbstractItemRecipe RECIPE_GARDEN_CARVED_PUMPKIN = new AbstractItemRecipe(Material.PUMPKIN,
+      Material.CARVED_PUMPKIN);
   public static final AbstractItemRecipe RECIPE_GARDEN_APPLE = new AbstractItemRecipe(Material.APPLE, Material.APPLE);
   public static final AbstractItemRecipe RECIPE_GARDEN_DARK_OAK_SAPLING = new AbstractItemRecipe(
       Material.DARK_OAK_SAPLING, null, Material.DARK_OAK_LOG, Material.DARK_OAK_LEAVES);
@@ -96,9 +97,7 @@ public class VirtualGardenMachineRecipe extends MachineRecipe {
 
   @ParametersAreNonnullByDefault
   public VirtualGardenMachineRecipe(AbstractItemRecipe recipe) {
-    super(15, recipe.getInput(),
-        (recipe.getOutput()[0].getType() == recipe.getOutput()[1].getType()) ? new ItemStack[]{recipe.getOutput()[0]}
-            : recipe.getOutput());
+    super(15, recipe.getInput(), recipe.getOutput());
   }
 
   public static List<AbstractItemRecipe> getAllRecipe() {
@@ -127,6 +126,7 @@ public class VirtualGardenMachineRecipe extends MachineRecipe {
     list.add(RECIPE_GARDEN_SWEET_BERRIES);
     list.add(RECIPE_GARDEN_MELON);
     list.add(RECIPE_GARDEN_PUMPKIN);
+    list.add(RECIPE_GARDEN_CARVED_PUMPKIN);
     list.add(RECIPE_GARDEN_APPLE);
     list.add(RECIPE_GARDEN_DARK_OAK_SAPLING);
     list.add(RECIPE_GARDEN_JUNGLE_SAPLING);

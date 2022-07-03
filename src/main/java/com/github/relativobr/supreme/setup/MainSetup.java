@@ -4,8 +4,9 @@ import static com.github.relativobr.supreme.Supreme.getSupremeOptions;
 
 import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.gear.AbstractArmor;
-import com.github.relativobr.supreme.gear.AbstractTools;
+import com.github.relativobr.supreme.tools.AbstractTools;
 import com.github.relativobr.supreme.gear.AbstractWeapons;
+import com.github.relativobr.supreme.tools.CheckInventory;
 
 public class MainSetup {
 
@@ -25,6 +26,7 @@ public class MainSetup {
 
     if (getSupremeOptions().isEnableTools()) {
       AbstractTools.setup(sup);
+      CheckInventory.setup(sup);
     }
 
     if (getSupremeOptions().isEnableArmor()) {

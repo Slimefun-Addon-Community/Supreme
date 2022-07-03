@@ -1,4 +1,4 @@
-package com.github.relativobr.supreme.gear;
+package com.github.relativobr.supreme.tools;
 
 import static com.github.relativobr.supreme.Supreme.getSupremeOptions;
 

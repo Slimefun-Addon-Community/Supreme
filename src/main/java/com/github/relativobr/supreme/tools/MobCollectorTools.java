@@ -1,6 +1,7 @@
-package com.github.relativobr.supreme.gear;
+package com.github.relativobr.supreme.tools;
 
 import com.github.relativobr.supreme.Supreme;
+import com.github.relativobr.supreme.gear.WeaponsBasic;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.magical.SupremeAttribute;
 import com.github.relativobr.supreme.resource.magical.SupremeCetrus;
