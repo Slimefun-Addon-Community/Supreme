@@ -4,6 +4,8 @@ import com.github.relativobr.machine.SimpleItemContainerMachine;
 import com.github.relativobr.recipe.InventoryRecipe;
 import com.github.relativobr.recipe.AbstractItemRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
+import com.github.relativobr.supreme.resource.magical.SupremeAttribute;
+import com.github.relativobr.supreme.resource.magical.SupremeCetrus;
 import com.github.relativobr.supreme.resource.magical.SupremeCore;
 import com.github.relativobr.supreme.util.ItemGroups;
 import com.github.relativobr.supreme.util.SupremeItemStack;
@@ -44,17 +46,40 @@ public class TechRobotic extends SimpleItemContainerMachine implements Radioacti
 
   public static final SlimefunItemStack TECH_ROBOTIC = new SupremeItemStack("SUPREME_TECH_ROBOTIC",
       Material.POLISHED_BLACKSTONE, "&bTech Robotic", "", "&fUse beginner level robots ",
-      "&fto progress to higher levels", "", LoreBuilder.radioactive(Radioactivity.VERY_HIGH), "",
+      "&fto progress to higher levels", "&fneed 64x to upgrade", "", LoreBuilder.radioactive(Radioactivity.VERY_HIGH), "",
       LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE), UtilEnergy.energyPowerPerSecond(500), "",
       "&3Supreme Machine");
   public static final ItemStack[] RECIPE_TECH_ROBOTIC = {SupremeComponents.INDUCTIVE_MACHINE,
       SupremeComponents.SYNTHETIC_RUBY, SupremeComponents.INDUCTIVE_MACHINE, SlimefunItems.REINFORCED_PLATE,
       SlimefunItems.ELECTRIC_MOTOR, SlimefunItems.REINFORCED_PLATE, SupremeComponents.RUSTLESS_MACHINE,
       SupremeCore.CORE_OF_BLOCK, SupremeComponents.RUSTLESS_MACHINE};
+
+  public static final SlimefunItemStack TECH_ROBOTIC_II = new SupremeItemStack("SUPREME_TECH_ROBOTIC_II",
+      Material.POLISHED_BLACKSTONE, "&bTech Robotic II", "", "&fUse beginner level robots ",
+      "&fto progress to higher levels", "&fneed 32x to upgrade", "", LoreBuilder.radioactive(Radioactivity.VERY_HIGH), "",
+      LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE), UtilEnergy.energyPowerPerSecond(500), "",
+      "&3Supreme Machine");
+  public static final ItemStack[] RECIPE_TECH_ROBOTIC_II = new ItemStack[]{SupremeComponents.CONVEYANCE_MACHINE,
+      SupremeCetrus.CETRUS_LUMIUM, SupremeComponents.CONVEYANCE_MACHINE, SupremeComponents.INDUCTOR_MACHINE,
+      TechRobotic.TECH_ROBOTIC, SupremeComponents.INDUCTOR_MACHINE, SupremeComponents.THORNERITE,
+      SupremeCetrus.CETRUS_IGNIS, SupremeComponents.THORNERITE};
+
+  public static final SlimefunItemStack TECH_ROBOTIC_III = new SupremeItemStack("SUPREME_TECH_ROBOTIC_III",
+      Material.POLISHED_BLACKSTONE, "&bTech Robotic III", "", "&fUse beginner level robots ",
+      "&fto progress to higher levels", "&fneed 16x to upgrade", "", LoreBuilder.radioactive(Radioactivity.VERY_HIGH), "",
+      LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE), UtilEnergy.energyPowerPerSecond(500), "",
+      "&3Supreme Machine");
+  public static final ItemStack[] RECIPE_TECH_ROBOTIC_III = new ItemStack[]{SupremeComponents.THORNERITE,
+      SupremeAttribute.getImpetus(), SupremeComponents.THORNERITE, SupremeComponents.SUPREME,
+      TechRobotic.TECH_ROBOTIC_II, SupremeComponents.SUPREME, SupremeComponents.CRYSTALLIZER_MACHINE,
+      SupremeCetrus.CETRUS_LUMIUM, SupremeComponents.CRYSTALLIZER_MACHINE};
+
   public static final List<AbstractItemRecipe> recipes = new ArrayList<>();
   private Map<Block, ItemStack> processing = new HashMap<Block, ItemStack>();
   private Map<Block, Integer> progressTime = new HashMap<Block, Integer>();
   private int speed = 1;
+  private int amoundUpgrade = 64;
+
   public TechRobotic(SlimefunItemStack item, ItemStack[] recipe) {
     super(ItemGroups.MACHINES_CATEGORY, item, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
   }
@@ -145,44 +170,35 @@ public class TechRobotic extends SimpleItemContainerMachine implements Radioacti
 
     BlockMenu inv = BlockStorage.getInventory(b);
 
-    // verifica se não está processando nada
     final ItemStack itemNaReceita = validRecipeItem(inv);
     final ItemStack itemProduzindo = processing.get(b);
     if (itemProduzindo == null) {
 
       if (itemNaReceita != null) {
 
-        // consome os 64 robotic tier anterior
-        inv.consumeItem(getInputSlots()[0], 64);
+        inv.consumeItem(getInputSlots()[0], getAmoundUpgrade());
 
-        //INICIO PRODUÇÃO
         invalidProgressBar(inv, itemNaReceita.getType(), " ");
 
-        // indica no block o processamento
         processing.put(b, itemNaReceita);
         progressTime.put(b, (getTimeProcess() * 2));
 
       } else {
 
-        invalidProgressBar(inv, "&cTechRobotic de receita não identificados");
+        invalidProgressBar(inv, "&cTechRobotic unidentified recipe");
 
       }
 
-      // caso já tenha algo em processamento
     } else {
 
-      // verifica se deve finalizar
       if (this.getProgressTime(b) <= 0) {
 
-        //CRIAÇÃO DO ITEM
         inv.pushItem(itemProduzindo.clone(), this.getOutputSlots());
 
-        //TÉRMINO PRODUÇÃO
         processing.put(b, null);
         progressTime.put(b, 0);
         invalidProgressBar(inv, Material.BLACK_STAINED_GLASS_PANE, " ");
 
-        // realiza consulmo de energia e ticks
       } else {
 
         this.processTicks(b, inv, itemProduzindo);
@@ -201,7 +217,7 @@ public class TechRobotic extends SimpleItemContainerMachine implements Radioacti
     int ticksTotal = getTimeProcess() * 2;
     int ticksLeft = this.getProgressTime(b);
     if (ticksLeft > 0) {
-      // verifica se há energia
+
       if (this.takeCharge(b.getLocation())) {
 
         int time = ticksLeft - this.getSpeed();
@@ -210,23 +226,24 @@ public class TechRobotic extends SimpleItemContainerMachine implements Radioacti
         }
         progressTime.put(b, time);
 
+        //todo adjust for partial progression in the 3 slots dynamically
         for (int i : InventoryRecipe.TECH_ROBOTIC_PROGRESS_BAR_SLOT) {
           ChestMenuUtils.updateProgressbar(inv, i, Math.round(ticksLeft / this.getSpeed()),
               Math.round(ticksTotal / this.getSpeed()), result);
         }
       } else {
-        invalidProgressBar(inv, "&cSem energia para maquina");
+        invalidProgressBar(inv, "&cNo power to machine");
       }
     } else {
-      invalidProgressBar(inv, "&cFalha no tempo da maquina");
+      invalidProgressBar(inv, "&cMachine time failure");
     }
   }
 
   private ItemStack validRecipeItem(BlockMenu inv) {
-    // percore as possíveis receitas
+
     for (AbstractItemRecipe produce : this.recipes) {
       ItemStack itemStack = produce.getFirstItemOutput().clone();
-      itemStack.setAmount(64);
+      itemStack.setAmount(getAmoundUpgrade());
       if (SlimefunUtils.isItemSimilar(inv.getItemInSlot(getInputSlots()[0]), itemStack, false, true)) {
         return produce.getFirstItemOutput();
       }
@@ -241,7 +258,7 @@ public class TechRobotic extends SimpleItemContainerMachine implements Radioacti
     List<ItemStack> displayRecipes = new ArrayList();
     this.recipes.forEach(recipe -> {
       ItemStack itemStack = recipe.getFirstItemOutput().clone();
-      itemStack.setAmount(64);
+      itemStack.setAmount(getAmoundUpgrade());
       displayRecipes.add(itemStack);
       displayRecipes.add(recipe.getFirstItemOutput());
     });
@@ -254,6 +271,15 @@ public class TechRobotic extends SimpleItemContainerMachine implements Radioacti
 
   public TechRobotic setSpeed(int speed) {
     this.speed = speed;
+    return this;
+  }
+
+  public int getAmoundUpgrade() {
+    return amoundUpgrade;
+  }
+
+  public TechRobotic setAmoundUpgrade(int amoundUpgrade) {
+    this.amoundUpgrade = amoundUpgrade;
     return this;
   }
 

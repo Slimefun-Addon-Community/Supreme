@@ -137,13 +137,13 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
   }
 
   public List<AbstractItemRecipe> getReceitasParaExibir() {
-    // ordena para receitas com maior quantidade de itens
+
     return receitasParaProduzir.stream().filter(o -> o.getInput() != null)
         .sorted((o1, o2) -> Integer.compare(o1.getInput().length, o2.getInput().length)).collect(Collectors.toList());
   }
 
   public List<AbstractItemRecipe> getReceitasParaProduzir() {
-    // ordena para receitas com maior quantidade de itens
+
     return receitasParaProduzir.stream().filter(o -> o.getInput() != null)
         .sorted((o1, o2) -> Integer.compare(o2.getInput().length, o1.getInput().length)).collect(Collectors.toList());
   }
@@ -218,51 +218,41 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
 
     BlockMenu inv = BlockStorage.getInventory(b);
 
-    // verifica se não está processando nada
     final ItemStack itemNaReceita = validRecipeItem(inv);
     final ItemStack itemProduzindo = processing.get(b);
     if (itemProduzindo == null) {
 
       if (itemNaReceita != null) {
 
-        //INICIO PRODUÇÃO
         invalidSituacao(inv, itemNaReceita.getType(), " ");
 
-        // indica no block o processamento
         processing.put(b, itemNaReceita);
         progressTime.put(b, (getTimeProcess() * 2));
 
       } else {
 
-        invalidSituacao(inv, "&cCards de receita não identificados");
+        invalidSituacao(inv, "&cCards unidentified");
 
       }
 
-      // caso já tenha algo em processamento
     } else {
 
-      // verifica se deve finalizar
       if (this.getProgressTime(b) <= 0) {
 
-        //CRIAÇÃO DO ITEM
         checkCloneOutput(inv, itemProduzindo.clone());
 
-        //TÉRMINO PRODUÇÃO
         processing.put(b, null);
         progressTime.put(b, 0);
         invalidSituacao(inv, Material.BLACK_STAINED_GLASS_PANE, " ");
 
-        // realiza consulmo de energia e ticks
       } else {
 
-        // verifica está com mesmo data card
         if (SlimefunUtils.isItemSimilar(itemNaReceita, itemProduzindo, false, false)) {
 
           this.processTicks(b, inv, itemProduzindo);
 
         } else {
 
-          //TÉRMINO PRODUÇÃO
           processing.put(b, null);
           progressTime.put(b, 0);
           invalidSituacao(inv, Material.BLACK_STAINED_GLASS_PANE, " ");
@@ -373,7 +363,6 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
     int ticksLeft = this.getProgressTime(b);
     if (ticksLeft > 0) {
 
-      // verifica se há energia
       if (takeCharge(b.getLocation(), inv)) {
 
         int time = checkUpTime(ticksLeft, inv);
@@ -389,10 +378,10 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
         }
       } else {
         final int consumption = checkDownConsumption(this.getEnergyConsumption(), inv);
-        invalidSituacao(inv, "&cSem energia na maquina (" + consumption + " j/s)");
+        invalidSituacao(inv, "&cNo power on the machine (" + consumption + " j/s)");
       }
     } else {
-      invalidSituacao(inv, "&cFalha no tempo da maquina");
+      invalidSituacao(inv, "&cMachine time failure");
     }
   }
 
@@ -537,7 +526,7 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
   }
 
   private ItemStack validRecipeItem(BlockMenu inv) {
-    // percore as possíveis receitas
+
     for (AbstractItemRecipe produce : this.getReceitasParaProduzir()) {
       if (SlimefunUtils.isItemSimilar(inv.getItemInSlot(getInputSlots()[0]), produce.getFirstItemInput(), false, true)) {
         return produce.getFirstItemOutput();

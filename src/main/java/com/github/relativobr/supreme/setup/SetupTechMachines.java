@@ -44,7 +44,15 @@ public class SetupTechMachines {
           .setMachineIdentifier(TechGenerator.TECH_GENERATOR.getItemId()).setCapacity(5000).setEnergyConsumption(2000)
           .register(sup);
 
-      new TechRobotic(TechRobotic.TECH_ROBOTIC, TechRobotic.RECIPE_TECH_ROBOTIC).setTimeProcess(60)
+      new TechRobotic(TechRobotic.TECH_ROBOTIC, TechRobotic.RECIPE_TECH_ROBOTIC).setAmoundUpgrade(64).setTimeProcess(60)
+          .setMachineIdentifier(TechRobotic.TECH_ROBOTIC.getItemId()).setCapacity(500).setEnergyConsumption(500)
+          .register(sup);
+
+      new TechRobotic(TechRobotic.TECH_ROBOTIC_II, TechRobotic.RECIPE_TECH_ROBOTIC_II).setAmoundUpgrade(32).setTimeProcess(60)
+          .setMachineIdentifier(TechRobotic.TECH_ROBOTIC.getItemId()).setCapacity(500).setEnergyConsumption(500)
+          .register(sup);
+
+      new TechRobotic(TechRobotic.TECH_ROBOTIC_III, TechRobotic.RECIPE_TECH_ROBOTIC_III).setAmoundUpgrade(16).setTimeProcess(60)
           .setMachineIdentifier(TechRobotic.TECH_ROBOTIC.getItemId()).setCapacity(500).setEnergyConsumption(500)
           .register(sup);
 
