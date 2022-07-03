@@ -47,6 +47,7 @@ Make a new issue, pull request, or contact me on discord @RelativoBR#9577
 - **Tech Mutation** - Generator mutation to progress mobtech (heads) to higher levels, through mutation types, where there is a success probability depending on the machine level that varies from 20% to 25% in tier I and from 80% to 100% in tier III.
 - **Tech Robotic** - Similar to the previous mutation machine, but it doesn't deal with luck, it works with science where a specific amount of resources can be used to evolve the mobtech, being 64x for tier I, tier II with 32 and tier III with 16x
 - **Tech Generator** - Using power and a specific crafting card to generate materials slowly, but with mobtech the bees, golem and zombie, mutant or robotics can speed up this process to more satisfying levels
+- **CheckInventory** - A lamp that helps you see if a certain item and amound is present in a chest
 - **Cobblestone Quarry** - Generate Cobblestone
 - **Coal Quarry** - Generate basic resource
 - **Iron Quarry** - Generate basic resource
