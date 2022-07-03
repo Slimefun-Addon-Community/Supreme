@@ -130,8 +130,8 @@ public class ElectricCoreFabricator extends MediumContainerMachine {
         customCoreRecipe.getSecondItem().getMaxStackSize());
     final ItemStack itemStack3 = new ItemStack(customCoreRecipe.getLastItem(),
         customCoreRecipe.getLastItem().getMaxStackSize());
-    return new AbstractItemRecipe(customCoreRecipe.getMaterial(),
+    return new AbstractItemRecipe(
         new ItemStack[]{itemStack1, itemStack1, itemStack1, itemStack2, itemStack2, itemStack2, itemStack3, itemStack3,
-            itemStack3});
+            itemStack3}, customCoreRecipe.getMaterial());
   }
 }

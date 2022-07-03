@@ -35,6 +35,7 @@ Make a new issue, pull request, or contact me on discord @RelativoBR#9577
 - **Gear Fabricator** - MultiBlock Machine - You can craft weapons, armor and tools here
 - **Magical Fabricator** - MultiBlock Machine - You can craft magical here
 - **Electric Core Machine** - Craft resource of core
+- **Electric Magical Machine** - Craft resource of magical
 - **Forge Ingot** - This machine allows you to forge ingot resources
 - **Forge Magical** - This machine allows you to forge magical resources
 - **Foundry** - Foundry and Synthesizer Items
