@@ -26,7 +26,7 @@ public class MainSetup {
 
     if (getSupremeOptions().isEnableTools()) {
       AbstractTools.setup(sup);
-      CheckInventory.setup(sup);
+//      CheckInventory.setup(sup);
     }
 
     if (getSupremeOptions().isEnableArmor()) {
