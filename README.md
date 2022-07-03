@@ -1,20 +1,19 @@
 # Supreme 2.0
 Supreme is an addon for Slimefun which adds 100+ various new resources that will allow you to craft powerful new items, weapons, tools and armor. These can be made up from titanium, aurum, adamantium, thornium with some being magical, rare, epic, legendary or supreme! It also adds 12 new electric generators, 5 new capacitors and even more... 
 
-
-## Important information
-This addon "Supreme 2.0" compatible with the old addon "SupremeExpansion" change in config `use-legacy-supremeexpansion-item-id` to `true`
-
 ## Requirements
 
-Minecraft Version: 1.17+ 
+Minecraft Version: 1.17 ~ 1.19
 
-Slimefun Version: RC-31
+Slimefun Version: RC-32
 
 
 ### [Download](https://thebusybiscuit.github.io/builds/RelativoBR/Supreme/main/)
 [![Build Status](https://thebusybiscuit.github.io/builds/RelativoBR/Supreme/main/badge.svg)](https://thebusybiscuit.github.io/builds/RelativoBR/Supreme/main)
 
+
+## Important information
+This addon "Supreme 2.0" compatible with the old addon "SupremeExpansion" change in config `use-legacy-supremeexpansion-item-id` to `true`
 
 
 ## Bugs/Suggestions
@@ -135,6 +134,7 @@ Make a new issue, pull request, or contact me on discord @RelativoBR#9577
 - **limit-production-generators** - To reduce the efficiency of generators (factor 5x)
 - **enable-quarry** - Indication whether to enable the quarry machine
 - **limit-production-quarry** - To reduce quarry production (hard mode 50% failure)
+- **quarry-custom-output** - Can be adjusted all item productions in Quarry
 - **enable-weapons** - Indication whether to enable the weapons
 - **enable-tools** - Indication whether to enable the tools
 - **enable-armor** - Indication whether to enable the armor
