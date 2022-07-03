@@ -46,8 +46,8 @@ public class CheckInventory extends SlimefunItem implements InventoryBlock {
 
   public static void setup(Supreme plugin) {
 
-    new CheckInventory(ItemGroups.MACHINES_CATEGORY, CheckInventory.CHECK_INVENTORY, RecipeType.ENHANCED_CRAFTING_TABLE,
-        CheckInventory.RECIPE_CHECK_INVENTORY).register(plugin);
+//    new CheckInventory(ItemGroups.MACHINES_CATEGORY, CheckInventory.CHECK_INVENTORY, RecipeType.ENHANCED_CRAFTING_TABLE,
+//        CheckInventory.RECIPE_CHECK_INVENTORY).register(plugin);
 
   }
 
