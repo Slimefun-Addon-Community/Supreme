@@ -1,5 +1,6 @@
 package com.github.relativobr.supreme.machine.tech;
 
+import com.github.relativobr.machine.SimpleItemWithLargeContainerMachine;
 import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.tools.MobCollectorTools;
 import com.github.relativobr.supreme.machine.recipe.MobTechCollectorMachineRecipe;
@@ -45,7 +46,7 @@ import org.bukkit.inventory.ItemStack;
 import org.springframework.scheduling.annotation.Async;
 
 @Async
-public class MobTechCollector extends AContainer implements RecipeDisplayItem {
+public class MobTechCollector extends SimpleItemWithLargeContainerMachine {
 
   public static final SlimefunItemStack MOB_TECH_COLLECTOR_MACHINE_I = new SupremeItemStack(
       "MOB_TECH_COLLECTOR_MACHINE", Material.NETHER_GOLD_ORE, "&bMobTech Collector I", "",

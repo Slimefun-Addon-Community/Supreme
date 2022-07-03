@@ -1,5 +1,6 @@
 package com.github.relativobr.supreme.machine;
 
+import com.github.relativobr.machine.SimpleItemWithLargeContainerMachine;
 import com.github.relativobr.supreme.machine.recipe.VirtualGardenMachineRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.magical.SupremeAttribute;
@@ -41,7 +42,7 @@ import org.bukkit.inventory.ItemStack;
 import org.springframework.scheduling.annotation.Async;
 
 @Async
-public class VirtualGarden extends AContainer implements NotHopperable, RecipeDisplayItem {
+public class VirtualGarden extends SimpleItemWithLargeContainerMachine {
 
   public static final SlimefunItemStack VIRTUAL_GARDEN_MACHINE = new SupremeItemStack("SUPREME_VIRTUAL_GARDEN_I",
       Material.STRIPPED_WARPED_HYPHAE, "&bVirtual Garden", "", "&fThis machine allows you to",

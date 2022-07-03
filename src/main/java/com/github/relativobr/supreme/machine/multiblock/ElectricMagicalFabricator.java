@@ -25,7 +25,7 @@ import org.bukkit.inventory.ItemStack;
 public class ElectricMagicalFabricator extends MediumContainerMachine {
 
   public static final SlimefunItemStack ELECTRIC_MAGICAL_MACHINE = new SupremeItemStack("SUPREME_ELECTRIC_MAGICAL_I",
-      Material.CRYING_OBSIDIAN, "&bElectric Magical Machine", "", "&fCraft resource of magica", "",
+      Material.CRYING_OBSIDIAN, "&bElectric Magical Machine", "", "&fCraft resource of magical", "",
       LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE), LoreBuilder.speed(1),
       UtilEnergy.energyPowerPerSecond(20), "", "&3Supreme Machine");
 
@@ -37,7 +37,7 @@ public class ElectricMagicalFabricator extends MediumContainerMachine {
 
   public static final SlimefunItemStack ELECTRIC_MAGICAL_MACHINE_II = new SupremeItemStack(
       "SUPREME_ELECTRIC_MAGICAL_II", Material.CRYING_OBSIDIAN, "&bElectric Magical Machine II", "",
-      "&fAdvanced craft resource of magica", "", LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
+      "&fAdvanced craft resource of magical", "", LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
       LoreBuilder.speed(5), UtilEnergy.energyPowerPerSecond(100), "", "&3Supreme Machine");
 
   public static final ItemStack[] RECIPE_ELECTRIC_MAGICAL_MACHINE_II = new ItemStack[]{
@@ -48,7 +48,7 @@ public class ElectricMagicalFabricator extends MediumContainerMachine {
 
   public static final SlimefunItemStack ELECTRIC_MAGICAL_MACHINE_III = new SupremeItemStack(
       "SUPREME_ELECTRIC_MAGICAL_III", Material.CRYING_OBSIDIAN, "&bElectric Magical Machine III", "",
-      "&fAdvanced craft resource of magica", "", LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
+      "&fAdvanced craft resource of magical", "", LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
       LoreBuilder.speed(15), UtilEnergy.energyPowerPerSecond(300), "", "&3Supreme Machine");
 
   public static final ItemStack[] RECIPE_ELECTRIC_MAGICAL_MACHINE_III = new ItemStack[]{SupremeComponents.THORNERITE,

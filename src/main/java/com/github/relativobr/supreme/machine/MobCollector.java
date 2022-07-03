@@ -2,6 +2,7 @@ package com.github.relativobr.supreme.machine;
 
 import static com.github.relativobr.supreme.Supreme.getSupremeOptions;
 
+import com.github.relativobr.machine.SimpleItemWithLargeContainerMachine;
 import com.github.relativobr.supreme.machine.recipe.MobCollectorMachineRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.magical.SupremeAttribute;
@@ -68,7 +69,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.springframework.scheduling.annotation.Async;
 
 @Async
-public class MobCollector extends AContainer implements RecipeDisplayItem {
+public class MobCollector extends SimpleItemWithLargeContainerMachine {
 
 
   public static final SlimefunItemStack MOB_COLLECTOR_MACHINE = new SupremeItemStack("SUPREME_MOB_COLLECTOR_MACHINE_I",

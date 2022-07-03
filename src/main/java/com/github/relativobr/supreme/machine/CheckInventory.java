@@ -11,8 +11,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
-import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -29,8 +27,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.block.BlockState;
 import org.bukkit.block.data.Lightable;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
@@ -46,8 +46,8 @@ public class CheckInventory extends SlimefunItem implements InventoryBlock {
 
   public static void setup(Supreme plugin) {
 
-//    new CheckInventory(ItemGroups.MACHINES_CATEGORY, CheckInventory.CHECK_INVENTORY, RecipeType.ENHANCED_CRAFTING_TABLE,
-//        CheckInventory.RECIPE_CHECK_INVENTORY).register(plugin);
+    new CheckInventory(ItemGroups.MACHINES_CATEGORY, CheckInventory.CHECK_INVENTORY, RecipeType.ENHANCED_CRAFTING_TABLE,
+        CheckInventory.RECIPE_CHECK_INVENTORY).register(plugin);
 
   }
 
@@ -123,25 +123,27 @@ public class CheckInventory extends SlimefunItem implements InventoryBlock {
       return;
     }
 
-    final List<Block> filterBlocks = Stream.of(b.getRelative(BlockFace.DOWN), b.getRelative(BlockFace.UP),
-            b.getRelative(BlockFace.NORTH), b.getRelative(BlockFace.EAST), b.getRelative(BlockFace.SOUTH),
-            b.getRelative(BlockFace.WEST))
-        .filter(x -> Material.TRAPPED_CHEST.equals(x.getType()) || Material.CHEST.equals(x.getType()))
-        .collect(Collectors.toList());
+    final Block blockTarget = Stream.of(b.getRelative(BlockFace.DOWN), b.getRelative(BlockFace.UP),
+        b.getRelative(BlockFace.NORTH), b.getRelative(BlockFace.EAST), b.getRelative(BlockFace.SOUTH),
+        b.getRelative(BlockFace.WEST)).filter(
+        x -> Material.TRAPPED_CHEST.equals(x.getType()) || Material.CHEST.equals(x.getType()) || Material.BARREL.equals(
+            x.getType())).findFirst().orElse(null);
 
-    checkItemInInventory(itemStack, b, filterBlocks);
+    checkItemInInventory(itemStack, b, blockTarget);
   }
 
-  public static void checkItemInInventory(@Nonnull ItemStack itemStack, @Nonnull Block block,
-      List<Block> filterBlocks) {
-    Bukkit.getScheduler().scheduleSyncDelayedTask(Supreme.inst(), (Runnable) () -> {
-      boolean active = filterBlocks.stream().map(Block::getState).filter(InventoryHolder.class::isInstance)
-          .map(inv -> ((InventoryHolder) inv).getInventory())
-          .anyMatch(inv -> !inv.isEmpty() && inv.contains(itemStack, itemStack.getAmount()));
-      if (isLight() != active) {
-        changeLightable(block, active);
-      }
-    }, 1);
+  public static void checkItemInInventory(@Nonnull ItemStack itemStack, @Nonnull Block block, Block blockTarget) {
+    if (blockTarget != null) {
+      Bukkit.getScheduler().scheduleSyncDelayedTask(Supreme.inst(), (Runnable) () -> {
+        final BlockState targetState = blockTarget.getState();
+        if (targetState instanceof InventoryHolder) {
+          final Inventory targetInv = ((InventoryHolder) ((InventoryHolder) targetState).getInventory()).getInventory();
+          changeLightable(block, targetInv.contains(itemStack));
+        } else {
+          changeLightable(block, false);
+        }
+      }, 2);
+    }
   }
 
   private static void changeLightable(Block b, boolean status) {
