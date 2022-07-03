@@ -71,6 +71,8 @@ public class MobTech extends SlimefunItem implements Radioactive, NotPlaceable {
       itemStack = Supreme.buildItemFromMobTechDTO(BeeTech.SIMPLE_BEE, 0);
     } else if (mobTech.getId().contains("_GOLEM")) {
       itemStack = Supreme.buildItemFromMobTechDTO(IronGolemTech.SIMPLE_GOLEM, 0);
+    } else if (mobTech.getId().contains("_ZOMBIE")) {
+      itemStack = Supreme.buildItemFromMobTechDTO(ZombieTech.SIMPLE_ZOMBIE, 0);
     }
 
     if (MobTechType.ROBOTIC_ACCELERATION == mobTechType) {
@@ -104,6 +106,8 @@ public class MobTech extends SlimefunItem implements Radioactive, NotPlaceable {
       simpleInput = Supreme.buildItemFromMobTechDTO(BeeTech.SIMPLE_BEE, 0);
     } else if (item.getId().contains("_GOLEM")) {
       simpleInput = Supreme.buildItemFromMobTechDTO(IronGolemTech.SIMPLE_GOLEM, 0);
+    } else if (item.getId().contains("_ZOMBIE")) {
+      simpleInput = Supreme.buildItemFromMobTechDTO(ZombieTech.SIMPLE_ZOMBIE, 0);
     }
 
     final SlimefunItemStack geneMutation = getGeneMutation(item.getMobTechType());

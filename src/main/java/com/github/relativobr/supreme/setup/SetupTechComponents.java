@@ -10,6 +10,7 @@ import com.github.relativobr.supreme.machine.tech.TechMutation;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.mobtech.BeeTech;
 import com.github.relativobr.supreme.resource.mobtech.IronGolemTech;
+import com.github.relativobr.supreme.resource.mobtech.ZombieTech;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 
 public class SetupTechComponents {
@@ -44,6 +45,7 @@ public class SetupTechComponents {
 
       BeeTech.setup(sup);
       IronGolemTech.setup(sup);
+      ZombieTech.setup(sup);
 
       SetupSimpleCard.setup(sup);
       SetupAdvancedCard.setup(sup);

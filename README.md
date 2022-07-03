@@ -42,10 +42,10 @@ Make a new issue, pull request, or contact me on discord @RelativoBR#9577
 - **Mob Collector** - This machine allows you to collect items from nearby mobs
 - **Virtual Aquarium** - This machine allows you to collect items that are collected at sea
 - **Virtual Garden** - This machine allows you to cultivate some resources
-- **MobTech Collector** - This machine allows you to collect MobTech head nearby mobs
-- **Tech Mutation** - Use generator mutation to progress to higher levels
-- **Tech Robotic** - Use beginner level robots to progress to higher levels
-- **Tech Generator** - Using power and bees/golem, slowly generates materials
+- **MobTech Collector** - This machine allows you to collect mobs nearby, an item used to increase the performance of machines, whether reducing time, increasing production or saving energy.
+- **Tech Mutation** - Generator mutation to progress mobtech (heads) to higher levels, through mutation types, where there is a success probability depending on the machine level that varies from 20% to 25% in tier I and from 80% to 100% in tier III.
+- **Tech Robotic** - Similar to the previous mutation machine, but it doesn't deal with luck, it works with science where a specific amount of resources can be used to evolve the mobtech, being 64x for tier I, tier II with 32 and tier III with 16x
+- **Tech Generator** - Using power and a specific crafting card to generate materials slowly, but with mobtech the bees, golem and zombie, mutant or robotics can speed up this process to more satisfying levels
 - **Cobblestone Quarry** - Generate Cobblestone
 - **Coal Quarry** - Generate basic resource
 - **Iron Quarry** - Generate basic resource
