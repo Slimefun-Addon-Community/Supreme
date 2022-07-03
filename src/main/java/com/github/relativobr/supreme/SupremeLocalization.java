@@ -10,7 +10,7 @@ import net.guizhanss.guizhanlib.utils.StringUtil;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.TextComponent;
-import org.apache.commons.lang.Validate;
+import io.github.thebusybiscuit.slimefun4.libraries.commons.lang.Validate;
 import org.bukkit.entity.Player;
 
 public class SupremeLocalization extends Localization {

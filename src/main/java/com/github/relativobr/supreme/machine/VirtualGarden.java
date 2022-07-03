@@ -32,7 +32,7 @@ import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecip
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
-import org.apache.commons.lang.Validate;
+import io.github.thebusybiscuit.slimefun4.libraries.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -100,8 +100,8 @@ public class VirtualGarden extends AContainer implements NotHopperable, RecipeDi
   public List<ItemStack> getDisplayRecipes() {
     List<ItemStack> displayRecipes = new ArrayList();
     VirtualGardenMachineRecipe.getAllRecipe().forEach(recipe -> {
-      displayRecipes.add(new CustomItemStack(recipe.getMaterial(), null, "&fRequires &bto cultivate"));
-      displayRecipes.add(new ItemStack(recipe.getMainItem()));
+      displayRecipes.add(new CustomItemStack(recipe.getFirstMaterialInput(), null, "&fRequires &bto cultivate"));
+      displayRecipes.add(new ItemStack(recipe.getFirstMaterialOutput()));
     });
     return displayRecipes;
   }

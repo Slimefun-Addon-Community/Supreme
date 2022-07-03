@@ -12,7 +12,7 @@ import java.util.function.Predicate;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
-import org.apache.commons.lang.Validate;
+import io.github.thebusybiscuit.slimefun4.libraries.commons.lang.Validate;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
 

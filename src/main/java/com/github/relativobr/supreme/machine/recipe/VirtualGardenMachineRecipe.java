@@ -1,6 +1,6 @@
 package com.github.relativobr.supreme.machine.recipe;
 
-import com.github.relativobr.recipe.DoubleMaterialRecipe;
+import com.github.relativobr.recipe.AbstractItemRecipe;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -10,99 +10,99 @@ import org.bukkit.inventory.ItemStack;
 
 public class VirtualGardenMachineRecipe extends MachineRecipe {
 
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_WHITE_DYE = new DoubleMaterialRecipe(
-      Material.LILY_OF_THE_VALLEY, Material.WHITE_DYE);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_ORANGE_DYE = new DoubleMaterialRecipe(Material.ORANGE_TULIP,
+  public static final AbstractItemRecipe RECIPE_GARDEN_WHITE_DYE = new AbstractItemRecipe(Material.LILY_OF_THE_VALLEY,
+      Material.WHITE_DYE);
+  public static final AbstractItemRecipe RECIPE_GARDEN_ORANGE_DYE = new AbstractItemRecipe(Material.ORANGE_TULIP,
       Material.ORANGE_DYE);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_MAGENTA_DYE = new DoubleMaterialRecipe(Material.ALLIUM,
+  public static final AbstractItemRecipe RECIPE_GARDEN_MAGENTA_DYE = new AbstractItemRecipe(Material.ALLIUM,
       Material.MAGENTA_DYE);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_LIGHT_BLUE_DYE = new DoubleMaterialRecipe(Material.BLUE_ORCHID,
+  public static final AbstractItemRecipe RECIPE_GARDEN_LIGHT_BLUE_DYE = new AbstractItemRecipe(Material.BLUE_ORCHID,
       Material.LIGHT_BLUE_DYE);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_YELLOW_DYE = new DoubleMaterialRecipe(Material.DANDELION,
+  public static final AbstractItemRecipe RECIPE_GARDEN_YELLOW_DYE = new AbstractItemRecipe(Material.DANDELION,
       Material.YELLOW_DYE);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_LIME_DYE = new DoubleMaterialRecipe(Material.BAMBOO,
+  public static final AbstractItemRecipe RECIPE_GARDEN_LIME_DYE = new AbstractItemRecipe(Material.BAMBOO,
       Material.LIME_DYE);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_PINK_DYE = new DoubleMaterialRecipe(Material.PINK_TULIP,
+  public static final AbstractItemRecipe RECIPE_GARDEN_PINK_DYE = new AbstractItemRecipe(Material.PINK_TULIP,
       Material.PINK_DYE);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_GRAY_DYE = new DoubleMaterialRecipe(Material.BROWN_MUSHROOM,
+  public static final AbstractItemRecipe RECIPE_GARDEN_GRAY_DYE = new AbstractItemRecipe(Material.BROWN_MUSHROOM,
       Material.GRAY_DYE);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_LIGHT_GRAY_DYE = new DoubleMaterialRecipe(Material.WHITE_TULIP,
+  public static final AbstractItemRecipe RECIPE_GARDEN_LIGHT_GRAY_DYE = new AbstractItemRecipe(Material.WHITE_TULIP,
       Material.LIGHT_GRAY_DYE);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_CYAN_DYE = new DoubleMaterialRecipe(Material.TWISTING_VINES,
+  public static final AbstractItemRecipe RECIPE_GARDEN_CYAN_DYE = new AbstractItemRecipe(Material.TWISTING_VINES,
       Material.CYAN_DYE);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_PURPLE_DYE = new DoubleMaterialRecipe(Material.CHORUS_FRUIT,
+  public static final AbstractItemRecipe RECIPE_GARDEN_PURPLE_DYE = new AbstractItemRecipe(Material.CHORUS_FRUIT,
       Material.PURPLE_DYE);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_BLUE_DYE = new DoubleMaterialRecipe(Material.CORNFLOWER,
+  public static final AbstractItemRecipe RECIPE_GARDEN_BLUE_DYE = new AbstractItemRecipe(Material.CORNFLOWER,
       Material.BLUE_DYE);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_BROWN_DYE = new DoubleMaterialRecipe(Material.COCOA_BEANS,
+  public static final AbstractItemRecipe RECIPE_GARDEN_BROWN_DYE = new AbstractItemRecipe(Material.COCOA_BEANS,
       Material.BROWN_DYE);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_GREEN_DYE = new DoubleMaterialRecipe(Material.CACTUS,
+  public static final AbstractItemRecipe RECIPE_GARDEN_GREEN_DYE = new AbstractItemRecipe(Material.CACTUS,
       Material.GREEN_DYE);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_RED_DYE = new DoubleMaterialRecipe(Material.POPPY,
+  public static final AbstractItemRecipe RECIPE_GARDEN_RED_DYE = new AbstractItemRecipe(Material.POPPY,
       Material.RED_DYE);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_BLACK_DYE = new DoubleMaterialRecipe(Material.INK_SAC,
+  public static final AbstractItemRecipe RECIPE_GARDEN_BLACK_DYE = new AbstractItemRecipe(Material.INK_SAC,
       Material.BLACK_DYE);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_POTATO = new DoubleMaterialRecipe(Material.POTATO,
+  public static final AbstractItemRecipe RECIPE_GARDEN_POTATO = new AbstractItemRecipe(Material.POTATO,
       Material.POTATO);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_CARROT = new DoubleMaterialRecipe(Material.CARROT,
+  public static final AbstractItemRecipe RECIPE_GARDEN_CARROT = new AbstractItemRecipe(Material.CARROT,
       Material.CARROT);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_BEETROOT = new DoubleMaterialRecipe(Material.BEETROOT_SEEDS,
+  public static final AbstractItemRecipe RECIPE_GARDEN_BEETROOT = new AbstractItemRecipe(Material.BEETROOT_SEEDS,
       Material.BEETROOT);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_WHEAT = new DoubleMaterialRecipe(Material.WHEAT_SEEDS,
+  public static final AbstractItemRecipe RECIPE_GARDEN_WHEAT = new AbstractItemRecipe(Material.WHEAT_SEEDS,
       Material.WHEAT);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_SUGAR_CANE = new DoubleMaterialRecipe(Material.SUGAR_CANE,
+  public static final AbstractItemRecipe RECIPE_GARDEN_SUGAR_CANE = new AbstractItemRecipe(Material.SUGAR_CANE,
       Material.SUGAR_CANE);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_SWEET_BERRIES = new DoubleMaterialRecipe(
-      Material.SWEET_BERRIES, Material.SWEET_BERRIES);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_MELON = new DoubleMaterialRecipe(Material.MELON_SEEDS,
+  public static final AbstractItemRecipe RECIPE_GARDEN_SWEET_BERRIES = new AbstractItemRecipe(Material.SWEET_BERRIES,
+      Material.SWEET_BERRIES);
+  public static final AbstractItemRecipe RECIPE_GARDEN_MELON = new AbstractItemRecipe(Material.MELON_SEEDS,
       Material.MELON);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_PUMPKIN = new DoubleMaterialRecipe(Material.PUMPKIN_SEEDS,
+  public static final AbstractItemRecipe RECIPE_GARDEN_PUMPKIN = new AbstractItemRecipe(Material.PUMPKIN_SEEDS,
       Material.PUMPKIN);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_APPLE = new DoubleMaterialRecipe(Material.APPLE,
-      Material.APPLE);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_DARK_OAK_SAPLING = new DoubleMaterialRecipe(
-      Material.DARK_OAK_SAPLING, Material.DARK_OAK_LOG, Material.DARK_OAK_LEAVES);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_JUNGLE_SAPLING = new DoubleMaterialRecipe(
-      Material.JUNGLE_SAPLING, Material.JUNGLE_LOG, Material.JUNGLE_LEAVES);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_BIRCH_SAPLING = new DoubleMaterialRecipe(
-      Material.BIRCH_SAPLING, Material.BIRCH_LOG, Material.BIRCH_LEAVES);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_SPRUCE_SAPLING = new DoubleMaterialRecipe(
-      Material.SPRUCE_SAPLING, Material.SPRUCE_LOG, Material.SPRUCE_LEAVES);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_ACACIA_SAPLING = new DoubleMaterialRecipe(
-      Material.ACACIA_SAPLING, Material.ACACIA_LOG, Material.ACACIA_LEAVES);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_OAK_SAPLING = new DoubleMaterialRecipe(Material.OAK_SAPLING,
+  public static final AbstractItemRecipe RECIPE_GARDEN_APPLE = new AbstractItemRecipe(Material.APPLE, Material.APPLE);
+  public static final AbstractItemRecipe RECIPE_GARDEN_DARK_OAK_SAPLING = new AbstractItemRecipe(
+      Material.DARK_OAK_SAPLING, null, Material.DARK_OAK_LOG, Material.DARK_OAK_LEAVES);
+  public static final AbstractItemRecipe RECIPE_GARDEN_JUNGLE_SAPLING = new AbstractItemRecipe(Material.JUNGLE_SAPLING,
+      null, Material.JUNGLE_LOG, Material.JUNGLE_LEAVES);
+  public static final AbstractItemRecipe RECIPE_GARDEN_BIRCH_SAPLING = new AbstractItemRecipe(Material.BIRCH_SAPLING,
+      null, Material.BIRCH_LOG, Material.BIRCH_LEAVES);
+  public static final AbstractItemRecipe RECIPE_GARDEN_SPRUCE_SAPLING = new AbstractItemRecipe(Material.SPRUCE_SAPLING,
+      null, Material.SPRUCE_LOG, Material.SPRUCE_LEAVES);
+  public static final AbstractItemRecipe RECIPE_GARDEN_ACACIA_SAPLING = new AbstractItemRecipe(Material.ACACIA_SAPLING,
+      null, Material.ACACIA_LOG, Material.ACACIA_LEAVES);
+  public static final AbstractItemRecipe RECIPE_GARDEN_OAK_SAPLING = new AbstractItemRecipe(Material.OAK_SAPLING, null,
       Material.OAK_LOG, Material.OAK_LEAVES);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_CRIMSON_FUNGUS = new DoubleMaterialRecipe(
-      Material.CRIMSON_FUNGUS, Material.CRIMSON_STEM);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_WARPED_FUNGUS = new DoubleMaterialRecipe(
-      Material.WARPED_FUNGUS, Material.WARPED_STEM);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_WITHER_ROSE = new DoubleMaterialRecipe(Material.WITHER_ROSE,
+  public static final AbstractItemRecipe RECIPE_GARDEN_CRIMSON_FUNGUS = new AbstractItemRecipe(Material.CRIMSON_FUNGUS,
+      Material.CRIMSON_STEM);
+  public static final AbstractItemRecipe RECIPE_GARDEN_WARPED_FUNGUS = new AbstractItemRecipe(Material.WARPED_FUNGUS,
+      Material.WARPED_STEM);
+  public static final AbstractItemRecipe RECIPE_GARDEN_WITHER_ROSE = new AbstractItemRecipe(Material.WITHER_ROSE,
       Material.WITHER_ROSE);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_NETHER_WART = new DoubleMaterialRecipe(Material.NETHER_WART,
+  public static final AbstractItemRecipe RECIPE_GARDEN_NETHER_WART = new AbstractItemRecipe(Material.NETHER_WART,
       Material.NETHER_WART);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_HONEY_BOTTLE = new DoubleMaterialRecipe(Material.HONEY_BLOCK,
+  public static final AbstractItemRecipe RECIPE_GARDEN_HONEY_BOTTLE = new AbstractItemRecipe(Material.HONEY_BLOCK,
       Material.HONEY_BOTTLE);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_CLAY_BALL = new DoubleMaterialRecipe(Material.CLAY,
+  public static final AbstractItemRecipe RECIPE_GARDEN_CLAY_BALL = new AbstractItemRecipe(Material.CLAY,
       Material.CLAY_BALL);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_SNOWBALL = new DoubleMaterialRecipe(Material.SNOW_BLOCK,
+  public static final AbstractItemRecipe RECIPE_GARDEN_SNOWBALL = new AbstractItemRecipe(Material.SNOW_BLOCK,
       Material.SNOWBALL);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_END_STONE = new DoubleMaterialRecipe(Material.END_CRYSTAL,
+  public static final AbstractItemRecipe RECIPE_GARDEN_END_STONE = new AbstractItemRecipe(Material.END_CRYSTAL,
       Material.END_STONE);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_GRANITE = new DoubleMaterialRecipe(Material.POLISHED_GRANITE,
+  public static final AbstractItemRecipe RECIPE_GARDEN_GRANITE = new AbstractItemRecipe(Material.POLISHED_GRANITE,
       Material.GRANITE);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_DIORITE = new DoubleMaterialRecipe(Material.POLISHED_DIORITE,
+  public static final AbstractItemRecipe RECIPE_GARDEN_DIORITE = new AbstractItemRecipe(Material.POLISHED_DIORITE,
       Material.DIORITE);
-  public static final DoubleMaterialRecipe RECIPE_GARDEN_ANDESITE = new DoubleMaterialRecipe(Material.POLISHED_ANDESITE,
+  public static final AbstractItemRecipe RECIPE_GARDEN_ANDESITE = new AbstractItemRecipe(Material.POLISHED_ANDESITE,
       Material.ANDESITE);
+
   @ParametersAreNonnullByDefault
-  public VirtualGardenMachineRecipe(DoubleMaterialRecipe recipe) {
+  public VirtualGardenMachineRecipe(AbstractItemRecipe recipe) {
     super(15, recipe.getInput(),
         (recipe.getOutput()[0].getType() == recipe.getOutput()[1].getType()) ? new ItemStack[]{recipe.getOutput()[0]}
             : recipe.getOutput());
   }
 
-  public static List<DoubleMaterialRecipe> getAllRecipe() {
-    List<DoubleMaterialRecipe> list = new ArrayList<>();
+  public static List<AbstractItemRecipe> getAllRecipe() {
+    List<AbstractItemRecipe> list = new ArrayList<>();
     list.add(RECIPE_GARDEN_WHITE_DYE);
     list.add(RECIPE_GARDEN_ORANGE_DYE);
     list.add(RECIPE_GARDEN_MAGENTA_DYE);

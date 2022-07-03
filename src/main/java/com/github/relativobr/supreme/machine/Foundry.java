@@ -1,7 +1,7 @@
 package com.github.relativobr.supreme.machine;
 
 import com.github.relativobr.machine.MediumContainerMachine;
-import com.github.relativobr.recipe.SimpleRecipe;
+import com.github.relativobr.recipe.AbstractItemRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.core.SupremeCoreAlloy;
 import com.github.relativobr.supreme.resource.core.SupremeCoreBlock;
@@ -56,7 +56,7 @@ public class Foundry extends MediumContainerMachine {
       Foundry.FOUNDRY_MACHINE_II, SupremeComponents.SUPREME, SupremeComponents.CRYSTALLIZER_MACHINE,
       SupremeCetrus.CETRUS_LUMIUM, SupremeComponents.CRYSTALLIZER_MACHINE};
 
-  public static final SimpleRecipe RECIPE_BLISTERING_INGOT_3 = new SimpleRecipe(
+  public static final AbstractItemRecipe RECIPE_BLISTERING_INGOT_3 = new AbstractItemRecipe(
       new SlimefunItemStack(SlimefunItems.BLISTERING_INGOT_3, 64),
       new ItemStack[]{new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_EMERALD),
           new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_EMERALD), new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_EMERALD),
@@ -64,7 +64,7 @@ public class Foundry extends MediumContainerMachine {
           new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_GOLD), new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_EMERALD),
           new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_EMERALD),
           new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_EMERALD)});
-  public static final SimpleRecipe RECIPE_REDSTONE_ALLOY = new SimpleRecipe(
+  public static final AbstractItemRecipe RECIPE_REDSTONE_ALLOY = new AbstractItemRecipe(
       new SlimefunItemStack(SlimefunItems.REDSTONE_ALLOY, 64),
       new ItemStack[]{new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_REDSTONE),
           new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_REDSTONE),
@@ -73,14 +73,14 @@ public class Foundry extends MediumContainerMachine {
           new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_REDSTONE),
           new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_REDSTONE),
           new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_REDSTONE)});
-  public static final SimpleRecipe RECIPE_HARDENED_METAL_INGOT = new SimpleRecipe(
+  public static final AbstractItemRecipe RECIPE_HARDENED_METAL_INGOT = new AbstractItemRecipe(
       new SlimefunItemStack(SlimefunItems.HARDENED_METAL_INGOT, 64),
       new ItemStack[]{new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_LAPIS),
           new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_LAPIS), new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_LAPIS),
           new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_DIAMOND), new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_DIAMOND),
           new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_DIAMOND), new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_LAPIS),
           new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_LAPIS), new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_LAPIS)});
-  public static final SimpleRecipe RECIPE_REINFORCED_ALLOY_INGOT = new SimpleRecipe(
+  public static final AbstractItemRecipe RECIPE_REINFORCED_ALLOY_INGOT = new AbstractItemRecipe(
       new SlimefunItemStack(SlimefunItems.REINFORCED_ALLOY_INGOT, 64),
       new ItemStack[]{new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_NETHERITE),
           new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_NETHERITE),
@@ -90,28 +90,28 @@ public class Foundry extends MediumContainerMachine {
           new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_NETHERITE),
           new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_NETHERITE),
           new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_NETHERITE)});
-  public static final SimpleRecipe RECIPE_ENCHANTED_GOLDEN_APPLE = new SimpleRecipe(
+  public static final AbstractItemRecipe RECIPE_ENCHANTED_GOLDEN_APPLE = new AbstractItemRecipe(
       new ItemStack(Material.ENCHANTED_GOLDEN_APPLE, 64),
       new ItemStack[]{new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_GOLD),
           new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_GOLD), new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_GOLD),
           new ItemStack(SupremeCoreLife.RESOURCE_CORE_APPLE), new ItemStack(SupremeCoreLife.RESOURCE_CORE_APPLE),
           new ItemStack(SupremeCoreLife.RESOURCE_CORE_APPLE), new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_GOLD),
           new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_GOLD), new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_GOLD)});
-  public static final SimpleRecipe RECIPE_SOLAR_PANEL = new SimpleRecipe(
+  public static final AbstractItemRecipe RECIPE_SOLAR_PANEL = new AbstractItemRecipe(
       new SlimefunItemStack(SlimefunItems.SOLAR_PANEL, 64),
       new ItemStack[]{new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_QUARTZ),
           new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_QUARTZ), new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_QUARTZ),
           new ItemStack(SupremeCoreDeath.RESOURCE_CORE_STRING), new ItemStack(SupremeCoreDeath.RESOURCE_CORE_STRING),
           new ItemStack(SupremeCoreDeath.RESOURCE_CORE_STRING), new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_QUARTZ),
           new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_QUARTZ), new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_QUARTZ)});
-  public static final SimpleRecipe RECIPE_OIL_BUCKET = new SimpleRecipe(
+  public static final AbstractItemRecipe RECIPE_OIL_BUCKET = new AbstractItemRecipe(
       new SlimefunItemStack(SlimefunItems.OIL_BUCKET, 64),
       new ItemStack[]{new ItemStack(SupremeCoreColor.RESOURCE_CORE_BLACK),
           new ItemStack(SupremeCoreColor.RESOURCE_CORE_BLACK), new ItemStack(SupremeCoreColor.RESOURCE_CORE_BLACK),
           new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_IRON), new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_IRON),
           new ItemStack(SupremeCoreAlloy.RESOURCE_CORE_IRON), new ItemStack(SupremeCoreColor.RESOURCE_CORE_BLACK),
           new ItemStack(SupremeCoreColor.RESOURCE_CORE_BLACK), new ItemStack(SupremeCoreColor.RESOURCE_CORE_BLACK)});
-  public static final SimpleRecipe RECIPE_PLASTIC_SHEET = new SimpleRecipe(
+  public static final AbstractItemRecipe RECIPE_PLASTIC_SHEET = new AbstractItemRecipe(
       new SlimefunItemStack(SlimefunItems.PLASTIC_SHEET, 64),
       new ItemStack[]{new ItemStack(SupremeCoreDeath.RESOURCE_CORE_STRING),
           new ItemStack(SupremeCoreDeath.RESOURCE_CORE_STRING), new ItemStack(SupremeCoreDeath.RESOURCE_CORE_STRING),
@@ -123,8 +123,8 @@ public class Foundry extends MediumContainerMachine {
     super(category, item, recipeType, recipe);
   }
 
-  public static List<SimpleRecipe> getAllRecipe() {
-    List<SimpleRecipe> list = new ArrayList<>();
+  public static List<AbstractItemRecipe> getAllRecipe() {
+    List<AbstractItemRecipe> list = new ArrayList<>();
     list.add(RECIPE_BLISTERING_INGOT_3);
     list.add(RECIPE_REDSTONE_ALLOY);
     list.add(RECIPE_HARDENED_METAL_INGOT);
@@ -136,7 +136,6 @@ public class Foundry extends MediumContainerMachine {
     return list;
   }
 
-
   @Nonnull
   @Override
   public List<ItemStack> getDisplayRecipes() {
@@ -144,18 +143,18 @@ public class Foundry extends MediumContainerMachine {
     machineRecipes.forEach(recipe -> {
       ItemStack itemStack1 = new CustomItemStack(Material.WHITE_STAINED_GLASS_PANE, " ");
       ItemStack itemStack2 = new CustomItemStack(Material.WHITE_STAINED_GLASS_PANE, " ");
-      if (recipe.getRecipe().length > 0 && recipe.getRecipe()[0] != null) {
-        itemStack1 = recipe.getRecipe()[0].clone();
+      if (recipe.getItemInput(0) != null) {
+        itemStack1 = recipe.getItemInput(0).clone();
         itemStack1.setAmount(6);
       }
-      if (recipe.getRecipe().length > 3 && recipe.getRecipe()[0] != null) {
-        itemStack2 = recipe.getRecipe()[3].clone();
+      if (recipe.getItemInput(3) != null) {
+        itemStack2 = recipe.getItemInput(3).clone();
         itemStack2.setAmount(3);
       }
       displayRecipes.add(itemStack1);
-      displayRecipes.add(recipe.getItem());
+      displayRecipes.add(recipe.getFirstItemOutput());
       displayRecipes.add(itemStack2);
-      displayRecipes.add(recipe.getItem());
+      displayRecipes.add(recipe.getFirstItemOutput());
       displayRecipes.add(new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, " "));
       displayRecipes.add(new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, " "));
     });

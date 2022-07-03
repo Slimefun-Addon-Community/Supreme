@@ -1,8 +1,8 @@
 package com.github.relativobr.supreme.machine.multiblock;
 
 import com.github.relativobr.machine.MediumContainerMachine;
+import com.github.relativobr.recipe.AbstractItemRecipe;
 import com.github.relativobr.recipe.CustomCoreRecipe;
-import com.github.relativobr.recipe.SimpleRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.core.SupremeCoreAlloy;
 import com.github.relativobr.supreme.resource.core.SupremeCoreBlock;
@@ -64,8 +64,8 @@ public class ElectricCoreFabricator extends MediumContainerMachine {
     super(category, item, recipeType, recipe);
   }
 
-  public static List<SimpleRecipe> getAllRecipe() {
-    List<SimpleRecipe> list = new ArrayList<>();
+  public static List<AbstractItemRecipe> getAllRecipe() {
+    List<AbstractItemRecipe> list = new ArrayList<>();
     list.add(addRecipe(SupremeCoreBlock.RECIPE_RESOURCE_CORE_STONE));
     list.add(addRecipe(SupremeCoreBlock.RECIPE_RESOURCE_CORE_GRANITE));
     list.add(addRecipe(SupremeCoreBlock.RECIPE_RESOURCE_CORE_DIORITE));
@@ -123,14 +123,14 @@ public class ElectricCoreFabricator extends MediumContainerMachine {
     return list;
   }
 
-  private static SimpleRecipe addRecipe(CustomCoreRecipe customCoreRecipe) {
+  private static AbstractItemRecipe addRecipe(CustomCoreRecipe customCoreRecipe) {
     final ItemStack itemStack1 = new ItemStack(customCoreRecipe.getMainItem(),
         customCoreRecipe.getMainItem().getMaxStackSize());
     final ItemStack itemStack2 = new ItemStack(customCoreRecipe.getSecondItem(),
         customCoreRecipe.getSecondItem().getMaxStackSize());
     final ItemStack itemStack3 = new ItemStack(customCoreRecipe.getLastItem(),
         customCoreRecipe.getLastItem().getMaxStackSize());
-    return new SimpleRecipe(customCoreRecipe.getMaterial(),
+    return new AbstractItemRecipe(customCoreRecipe.getMaterial(),
         new ItemStack[]{itemStack1, itemStack1, itemStack1, itemStack2, itemStack2, itemStack2, itemStack3, itemStack3,
             itemStack3});
   }
