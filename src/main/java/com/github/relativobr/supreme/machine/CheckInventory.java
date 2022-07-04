@@ -10,7 +10,9 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.MachineTier;
 import io.github.thebusybiscuit.slimefun4.core.attributes.MachineType;
+import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.implementation.handlers.SimpleBlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
@@ -73,6 +75,7 @@ public class CheckInventory extends SlimefunItem implements InventoryBlock {
   @ParametersAreNonnullByDefault
   public CheckInventory(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
     super(itemGroup, item, recipeType, recipe);
+    addItemHandler(onBlockBreak());
     new BlockMenuPreset(getId(), getItemName()) {
 
       @Override
@@ -190,4 +193,16 @@ public class CheckInventory extends SlimefunItem implements InventoryBlock {
     return new int[]{MAIN_SLOT};
   }
 
+  @Nonnull
+  protected BlockBreakHandler onBlockBreak() {
+    return new SimpleBlockBreakHandler() {
+      public void onBlockBreak(Block b) {
+        BlockMenu inv = BlockStorage.getInventory(b);
+        if (inv != null) {
+          inv.dropItems(b.getLocation(), getInputSlots());
+          inv.dropItems(b.getLocation(), getOutputSlots());
+        }
+      }
+    };
+  }
 }
