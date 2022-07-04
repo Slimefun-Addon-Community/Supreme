@@ -1,5 +1,6 @@
 package com.github.relativobr.supreme.machine;
 
+import com.github.relativobr.machine.SimpleItemWithLargeContainerMachine;
 import com.github.relativobr.supreme.machine.recipe.VirtualAquariumMachineRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.magical.SupremeAttribute;
@@ -12,7 +13,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.MachineTier;
 import io.github.thebusybiscuit.slimefun4.core.attributes.MachineType;
-import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.inventory.InvUtils;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
@@ -27,12 +27,11 @@ import java.util.Set;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
-import org.apache.commons.lang.Validate;
+import io.github.thebusybiscuit.slimefun4.libraries.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -42,7 +41,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.springframework.scheduling.annotation.Async;
 
 @Async
-public class VirtualAquarium extends AContainer implements RecipeDisplayItem {
+public class VirtualAquarium extends SimpleItemWithLargeContainerMachine {
 
   public static final SlimefunItemStack VIRTUAL_AQUARIUM_MACHINE = new SupremeItemStack("SUPREME_VIRTUAL_AQUARIUM_I",
       Material.DARK_PRISMARINE, "&bVirtual Aquarium", "", "&fThis machine allows you to collect ",
@@ -179,14 +178,14 @@ public class VirtualAquarium extends AContainer implements RecipeDisplayItem {
       if (takeCharge(b.getLocation())) {
         int timeleft = progress.get(b);
         if (timeleft > 0) {
-          ChestMenuUtils.updateProgressbar(inv, 22, timeleft, processing.get(b).getTicks(), getProgressBar());
+          ChestMenuUtils.updateProgressbar(inv, this.getStatusSlot(), timeleft, processing.get(b).getTicks(), getProgressBar());
           int time = timeleft - getSpeed();
           if (time < 0) {
             time = 0;
           }
           progress.put(b, time);
         } else {
-          inv.replaceExistingItem(22, new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, " "));
+          inv.replaceExistingItem(this.getStatusSlot(), new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, " "));
           ItemStack material = UtilMachine.getMaterial(processing.get(b).getOutput(), UtilMachine.getRandomInt());
           if (material != null) {
             final ItemStack itemStack = material.clone();

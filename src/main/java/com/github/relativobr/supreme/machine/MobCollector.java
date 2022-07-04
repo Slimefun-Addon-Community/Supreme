@@ -2,6 +2,7 @@ package com.github.relativobr.supreme.machine;
 
 import static com.github.relativobr.supreme.Supreme.getSupremeOptions;
 
+import com.github.relativobr.machine.SimpleItemWithLargeContainerMachine;
 import com.github.relativobr.supreme.machine.recipe.MobCollectorMachineRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.magical.SupremeAttribute;
@@ -13,23 +14,26 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.MachineTier;
 import io.github.thebusybiscuit.slimefun4.core.attributes.MachineType;
-import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import io.github.thebusybiscuit.slimefun4.libraries.commons.lang.Validate;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.inventory.InvUtils;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
+import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.function.Predicate;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
+import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
-import org.apache.commons.lang.Validate;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -68,8 +72,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.springframework.scheduling.annotation.Async;
 
 @Async
-public class MobCollector extends AContainer implements RecipeDisplayItem {
-
+public class MobCollector extends SimpleItemWithLargeContainerMachine {
 
   public static final SlimefunItemStack MOB_COLLECTOR_MACHINE = new SupremeItemStack("SUPREME_MOB_COLLECTOR_MACHINE_I",
       Material.RESPAWN_ANCHOR, "&bMob Collector", "", "&fThis machine allows you to collect ",
@@ -100,6 +103,8 @@ public class MobCollector extends AContainer implements RecipeDisplayItem {
       MobCollector.MOB_COLLECTOR_MACHINE_II, SupremeComponents.SUPREME, SupremeComponents.CRYSTALLIZER_MACHINE,
       SupremeCetrus.CETRUS_LUMIUM, SupremeComponents.CRYSTALLIZER_MACHINE};
 
+  public static Map<Block, MachineRecipe> processing = new HashMap<>();
+  public static Map<Block, Integer> progress = new HashMap<>();
   private final Set<MobCollectorMachineRecipe> mobCollectorMachineRecipes = new HashSet();
   private int mobRange = 4;
 
@@ -334,6 +339,46 @@ public class MobCollector extends AContainer implements RecipeDisplayItem {
     return n instanceof LivingEntity && predicate.test((LivingEntity) n);
   }
 
+  public final MobCollector setMobRange(int value) {
+    this.mobRange = value;
+    return this;
+  }
+
+  @Override
+  protected void tick(Block b) {
+    BlockMenu inv = BlockStorage.getInventory(b);
+    if (isProcessing(b)) {
+      if (takeCharge(b.getLocation())) {
+        int timeleft = progress.get(b);
+        if (timeleft > 0) {
+          ChestMenuUtils.updateProgressbar(inv, getStatusSlot(), timeleft, processing.get(b).getTicks(), getProgressBar());
+          int time = timeleft - getSpeed();
+          if (time < 0) {
+            time = 0;
+          }
+          progress.put(b, time);
+        } else {
+          inv.replaceExistingItem(getStatusSlot(), new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, " "));
+          for (ItemStack output : processing.get(b).getOutput()) {
+            if(output != null){
+              ItemStack clone = output.clone();
+              clone.setAmount(1);
+              inv.pushItem(clone, getOutputSlots());
+            }
+          }
+          progress.remove(b);
+          processing.remove(b);
+        }
+      }
+    } else {
+      MachineRecipe next = findNextRecipe(inv);
+      if (next != null) {
+        processing.put(b, next);
+        progress.put(b, next.getTicks());
+      }
+    }
+  }
+
   @Nonnull
   @Override
   public String getMachineIdentifier() {
@@ -345,10 +390,12 @@ public class MobCollector extends AContainer implements RecipeDisplayItem {
     return new ItemStack(Material.IRON_SWORD);
   }
 
+  public MachineRecipe getProcessing(Block b) {
+    return processing.get(b);
+  }
 
-  public final MobCollector setMobRange(int value) {
-    this.mobRange = value;
-    return this;
+  public boolean isProcessing(Block b) {
+    return getProcessing(b) != null;
   }
 
 }

@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
@@ -178,37 +179,30 @@ public class TechMutation extends SimpleItemContainerMachine implements Radioact
 
     BlockMenu inv = BlockStorage.getInventory(b);
 
-    // verifica se não está processando nada
     final MobTechMutationGeneric itemNaReceita = validRecipeItem(inv);
     final MobTechMutationGeneric itemProduzindo = processing.get(b);
     if (itemProduzindo == null) {
 
       if (itemNaReceita != null) {
 
-        // consome os 1 mutante tier anterior
         inv.consumeItem(getInputSlots()[0], 1);
         inv.consumeItem(getInputSlots()[1], 1);
 
-        //INICIO PRODUÇÃO
         invalidProgressBar(inv, itemNaReceita.getOutput().getType(), " ");
 
-        // indica no block o processamento
         processing.put(b, itemNaReceita);
         progressTime.put(b, (getTimeProcess() * 2));
 
       } else {
 
-        invalidProgressBar(inv, "&cTechMutation de receita não identificados");
+        invalidProgressBar(inv, "&cTechMutation unidentified recipe");
 
       }
 
-      // caso já tenha algo em processamento
     } else {
 
-      // verifica se deve finalizar
       if (this.getProgressTime(b) <= 0) {
 
-        //CRIAÇÃO DO ITEM
         if (UtilMachine.getRandomInt() <= (itemProduzindo.getChance() * getUpgradeLuck())) {
           inv.pushItem(itemProduzindo.getOutput().clone(), this.getOutputSlots());
           invalidProgressBar(inv, Material.BLACK_STAINED_GLASS_PANE, " Success! ");
@@ -216,11 +210,9 @@ public class TechMutation extends SimpleItemContainerMachine implements Radioact
           invalidProgressBar(inv, Material.BLACK_STAINED_GLASS_PANE, " Fail! ");
         }
 
-        //TÉRMINO PRODUÇÃO
         processing.put(b, null);
         progressTime.put(b, 0);
 
-        // realiza consulmo de energia e ticks
       } else {
 
         this.processTicks(b, inv, itemProduzindo.getOutput());
@@ -239,7 +231,7 @@ public class TechMutation extends SimpleItemContainerMachine implements Radioact
     int ticksTotal = getTimeProcess() * 2;
     int ticksLeft = this.getProgressTime(b);
     if (ticksLeft > 0) {
-      // verifica se há energia
+
       if (this.takeCharge(b.getLocation())) {
 
         int time = ticksLeft - this.getSpeed();
@@ -254,15 +246,15 @@ public class TechMutation extends SimpleItemContainerMachine implements Radioact
               Math.round(ticksTotal / this.getSpeed()), result);
         }
       } else {
-        invalidProgressBar(inv, "&cSem energia para maquina");
+        invalidProgressBar(inv, "&cNo power to machine");
       }
     } else {
-      invalidProgressBar(inv, "&cFalha no tempo da maquina");
+      invalidProgressBar(inv, "&cMachine time failure");
     }
   }
 
   private MobTechMutationGeneric validRecipeItem(BlockMenu inv) {
-    // percore as possíveis receitas
+
     for (MobTechMutationGeneric produce : this.recipes) {
       ItemStack input1 = produce.getInput1().clone();
       ItemStack input2 = produce.getInput2().clone();
@@ -280,7 +272,9 @@ public class TechMutation extends SimpleItemContainerMachine implements Radioact
   public List<ItemStack> getDisplayRecipes() {
     final CustomItemStack separator = new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, " ");
     List<ItemStack> displayRecipes = new ArrayList();
-    this.recipes.forEach(recipe -> {
+    this.recipes
+        .stream().filter(Objects::nonNull)
+        .forEach(recipe -> {
       int chance = recipe.getChance() * getUpgradeLuck();
       if (chance > 100) {
         chance = 100;

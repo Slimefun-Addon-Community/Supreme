@@ -4,9 +4,10 @@ import static com.github.relativobr.supreme.util.CompatibilySupremeLegacy.getOld
 
 import com.github.relativobr.supreme.Supreme;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.libraries.commons.lang.ArrayUtils;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.apache.commons.lang.ArrayUtils;
+
 import org.bukkit.Material;
 
 public class SupremeItemStack extends SlimefunItemStack {

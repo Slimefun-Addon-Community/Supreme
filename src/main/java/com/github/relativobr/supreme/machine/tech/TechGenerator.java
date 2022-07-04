@@ -3,7 +3,7 @@ package com.github.relativobr.supreme.machine.tech;
 import com.github.relativobr.generic.MobTechGeneric.MobTechType;
 import com.github.relativobr.machine.SimpleItemContainerMachine;
 import com.github.relativobr.recipe.InventoryRecipe;
-import com.github.relativobr.recipe.SimpleRecipe;
+import com.github.relativobr.recipe.AbstractItemRecipe;
 import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.mobtech.MobTech;
@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
@@ -36,7 +37,7 @@ import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
-import org.apache.commons.lang.Validate;
+import io.github.thebusybiscuit.slimefun4.libraries.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -56,7 +57,7 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
       SupremeComponents.SYNTHETIC_RUBY, SupremeComponents.INDUCTIVE_MACHINE, SlimefunItems.REINFORCED_ALLOY_INGOT,
       new ItemStack(Material.LOOM), SlimefunItems.REINFORCED_ALLOY_INGOT, SupremeComponents.CARRIAGE_MACHINE,
       SlimefunItems.HEATING_COIL, SupremeComponents.CARRIAGE_MACHINE};
-  public static final List<SimpleRecipe> receitasParaProduzir = new ArrayList<>();
+  public static final List<AbstractItemRecipe> receitasParaProduzir = new ArrayList<>();
   private Map<Block, ItemStack> processing = new HashMap<Block, ItemStack>();
   private Map<Block, Integer> progressTime = new HashMap<Block, Integer>();
   private int speed = 1;
@@ -65,11 +66,11 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
   }
 
   public static void addReceitasParaProduzir(ItemStack receita, ItemStack item) {
-    receitasParaProduzir.add(new SimpleRecipe(item, new ItemStack[]{receita}));
+    receitasParaProduzir.add(new AbstractItemRecipe(item, new ItemStack[]{receita}));
   }
 
   public static void addReceitasParaProduzir(ItemStack[] receita, ItemStack item) {
-    receitasParaProduzir.add(new SimpleRecipe(item, receita));
+    receitasParaProduzir.add(new AbstractItemRecipe(item, receita));
   }
 
   public static void preSetup(Supreme plugin, SlimefunItemStack item, Material input, Material output) {
@@ -136,16 +137,16 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
     }
   }
 
-  public List<SimpleRecipe> getReceitasParaExibir() {
-    // ordena para receitas com maior quantidade de itens
-    return receitasParaProduzir.stream()
-        .sorted((o1, o2) -> Integer.compare(o1.getRecipe().length, o2.getRecipe().length)).collect(Collectors.toList());
+  public List<AbstractItemRecipe> getReceitasParaExibir() {
+
+    return receitasParaProduzir.stream().filter(o -> o.getInput() != null)
+        .sorted((o1, o2) -> Integer.compare(o1.getInput().length, o2.getInput().length)).collect(Collectors.toList());
   }
 
-  public List<SimpleRecipe> getReceitasParaProduzir() {
-    // ordena para receitas com maior quantidade de itens
-    return receitasParaProduzir.stream()
-        .sorted((o1, o2) -> Integer.compare(o2.getRecipe().length, o1.getRecipe().length)).collect(Collectors.toList());
+  public List<AbstractItemRecipe> getReceitasParaProduzir() {
+
+    return receitasParaProduzir.stream().filter(o -> o.getInput() != null)
+        .sorted((o1, o2) -> Integer.compare(o2.getInput().length, o1.getInput().length)).collect(Collectors.toList());
   }
 
   @Override
@@ -218,51 +219,41 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
 
     BlockMenu inv = BlockStorage.getInventory(b);
 
-    // verifica se não está processando nada
     final ItemStack itemNaReceita = validRecipeItem(inv);
     final ItemStack itemProduzindo = processing.get(b);
     if (itemProduzindo == null) {
 
       if (itemNaReceita != null) {
 
-        //INICIO PRODUÇÃO
         invalidSituacao(inv, itemNaReceita.getType(), " ");
 
-        // indica no block o processamento
         processing.put(b, itemNaReceita);
         progressTime.put(b, (getTimeProcess() * 2));
 
       } else {
 
-        invalidSituacao(inv, "&cCards de receita não identificados");
+        invalidSituacao(inv, "&cCards unidentified");
 
       }
 
-      // caso já tenha algo em processamento
     } else {
 
-      // verifica se deve finalizar
       if (this.getProgressTime(b) <= 0) {
 
-        //CRIAÇÃO DO ITEM
         checkCloneOutput(inv, itemProduzindo.clone());
 
-        //TÉRMINO PRODUÇÃO
         processing.put(b, null);
         progressTime.put(b, 0);
         invalidSituacao(inv, Material.BLACK_STAINED_GLASS_PANE, " ");
 
-        // realiza consulmo de energia e ticks
       } else {
 
-        // verifica está com mesmo data card
         if (SlimefunUtils.isItemSimilar(itemNaReceita, itemProduzindo, false, false)) {
 
           this.processTicks(b, inv, itemProduzindo);
 
         } else {
 
-          //TÉRMINO PRODUÇÃO
           processing.put(b, null);
           progressTime.put(b, 0);
           invalidSituacao(inv, Material.BLACK_STAINED_GLASS_PANE, " ");
@@ -373,7 +364,6 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
     int ticksLeft = this.getProgressTime(b);
     if (ticksLeft > 0) {
 
-      // verifica se há energia
       if (takeCharge(b.getLocation(), inv)) {
 
         int time = checkUpTime(ticksLeft, inv);
@@ -383,17 +373,16 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
         }
         progressTime.put(b, time);
 
-        //todo adjust for partial progression in the 3 slots dynamically
         for (int i : InventoryRecipe.TECH_GENERATOR_PROGRESS_BAR_SLOT) {
           ChestMenuUtils.updateProgressbar(inv, i, Math.round(ticksLeft / this.getSpeed()),
               Math.round(ticksTotal / this.getSpeed()), result);
         }
       } else {
         final int consumption = checkDownConsumption(this.getEnergyConsumption(), inv);
-        invalidSituacao(inv, "&cSem energia na maquina (" + consumption + " j/s)");
+        invalidSituacao(inv, "&cNo power on the machine (" + consumption + " j/s)");
       }
     } else {
-      invalidSituacao(inv, "&cFalha no tempo da maquina");
+      invalidSituacao(inv, "&cMachine time failure");
     }
   }
 
@@ -538,10 +527,10 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
   }
 
   private ItemStack validRecipeItem(BlockMenu inv) {
-    // percore as possíveis receitas
-    for (SimpleRecipe produce : this.getReceitasParaProduzir()) {
-      if (SlimefunUtils.isItemSimilar(inv.getItemInSlot(getInputSlots()[0]), produce.getRecipe()[0], false, true)) {
-        return produce.getItem();
+
+    for (AbstractItemRecipe produce : this.getReceitasParaProduzir()) {
+      if (SlimefunUtils.isItemSimilar(inv.getItemInSlot(getInputSlots()[0]), produce.getFirstItemInput(), false, true)) {
+        return produce.getFirstItemOutput();
       }
 
     }
@@ -552,10 +541,12 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
   @Override
   public List<ItemStack> getDisplayRecipes() {
     List<ItemStack> displayRecipes = new ArrayList();
-    this.getReceitasParaExibir().forEach(recipe -> {
-      ItemStack itemStack = recipe.getItem().clone();
+    this.getReceitasParaExibir()
+        .stream().filter(Objects::nonNull)
+        .forEach(recipe -> {
+      ItemStack itemStack = recipe.getFirstItemOutput().clone();
       itemStack.setAmount(64);
-      displayRecipes.add(recipe.getRecipe()[0]);
+      displayRecipes.add(recipe.getFirstItemInput());
       displayRecipes.add(itemStack);
 
     });

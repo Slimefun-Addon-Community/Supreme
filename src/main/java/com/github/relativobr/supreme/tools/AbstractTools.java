@@ -1,4 +1,4 @@
-package com.github.relativobr.supreme.gear;
+package com.github.relativobr.supreme.tools;
 
 import static com.github.relativobr.supreme.Supreme.getSupremeOptions;
 
@@ -46,19 +46,19 @@ public class AbstractTools extends SlimefunItem implements Soulbound, NotPlaceab
     final AbstractTools axe = new AbstractTools(ToolsThornium.THORNIUM_AXE, ToolsThornium.RECIPE_THORNIUM_AXE);
     axe.register(sup);
     final AbstractTools axeMagic = new AbstractTools(ToolsThornium.THORNIUM_AXE_MAGIC,
-        ItemTier.getMagic(ToolsThornium.THORNIUM_AXE));
+        ItemTier.getMagicRecipe(ToolsThornium.THORNIUM_AXE));
     axeMagic.register(sup);
     final AbstractTools axeRare = new AbstractTools(ToolsThornium.THORNIUM_AXE_RARE,
-        ItemTier.getRare(ToolsThornium.THORNIUM_AXE_MAGIC));
+        ItemTier.getRareRecipe(ToolsThornium.THORNIUM_AXE_MAGIC));
     axeRare.register(sup);
     final AbstractTools axeEpic = new AbstractTools(ToolsThornium.THORNIUM_AXE_EPIC,
-        ItemTier.getEpic(ToolsThornium.THORNIUM_AXE_RARE));
+        ItemTier.getEpicRecipe(ToolsThornium.THORNIUM_AXE_RARE));
     axeEpic.register(sup);
     final AbstractTools axeLegendary = new AbstractTools(ToolsThornium.THORNIUM_AXE_LEGENDARY,
-        ItemTier.getLegendary(ToolsThornium.THORNIUM_AXE_EPIC));
+        ItemTier.getLegendaryRecipe(ToolsThornium.THORNIUM_AXE_EPIC));
     axeLegendary.register(sup);
     final AbstractTools axeSupreme = new AbstractTools(ToolsThornium.THORNIUM_AXE_SUPREME,
-        ItemTier.getSupreme(ToolsThornium.THORNIUM_AXE_LEGENDARY));
+        ItemTier.getSupremeRecipe(ToolsThornium.THORNIUM_AXE_LEGENDARY));
     axeSupreme.register(sup);
 
     final AbstractTools titaniumPickaxe = new AbstractTools(ToolsBasic.TITANIUM_PICKAXE,
@@ -73,19 +73,19 @@ public class AbstractTools extends SlimefunItem implements Soulbound, NotPlaceab
         ToolsThornium.RECIPE_THORNIUM_PICKAXE);
     pickaxe.register(sup);
     final AbstractTools pickaxeMagic = new AbstractTools(ToolsThornium.THORNIUM_PICKAXE_MAGIC,
-        ItemTier.getMagic(ToolsThornium.THORNIUM_PICKAXE));
+        ItemTier.getMagicRecipe(ToolsThornium.THORNIUM_PICKAXE));
     pickaxeMagic.register(sup);
     final AbstractTools pickaxeRare = new AbstractTools(ToolsThornium.THORNIUM_PICKAXE_RARE,
-        ItemTier.getRare(ToolsThornium.THORNIUM_PICKAXE_MAGIC));
+        ItemTier.getRareRecipe(ToolsThornium.THORNIUM_PICKAXE_MAGIC));
     pickaxeRare.register(sup);
     final AbstractTools pickaxeEpic = new AbstractTools(ToolsThornium.THORNIUM_PICKAXE_EPIC,
-        ItemTier.getEpic(ToolsThornium.THORNIUM_PICKAXE_RARE));
+        ItemTier.getEpicRecipe(ToolsThornium.THORNIUM_PICKAXE_RARE));
     pickaxeEpic.register(sup);
     final AbstractTools pickaxeLegendary = new AbstractTools(ToolsThornium.THORNIUM_PICKAXE_LEGENDARY,
-        ItemTier.getLegendary(ToolsThornium.THORNIUM_PICKAXE_EPIC));
+        ItemTier.getLegendaryRecipe(ToolsThornium.THORNIUM_PICKAXE_EPIC));
     pickaxeLegendary.register(sup);
     final AbstractTools pickaxeSupreme = new AbstractTools(ToolsThornium.THORNIUM_PICKAXE_SUPREME,
-        ItemTier.getSupreme(ToolsThornium.THORNIUM_PICKAXE_LEGENDARY));
+        ItemTier.getSupremeRecipe(ToolsThornium.THORNIUM_PICKAXE_LEGENDARY));
     pickaxeSupreme.register(sup);
 
     final AbstractTools titaniumShovel = new AbstractTools(ToolsBasic.TITANIUM_SHOVEL,
@@ -99,19 +99,19 @@ public class AbstractTools extends SlimefunItem implements Soulbound, NotPlaceab
     final AbstractTools shovel = new AbstractTools(ToolsThornium.THORNIUM_SHOVEL, ToolsThornium.RECIPE_THORNIUM_SHOVEL);
     shovel.register(sup);
     final AbstractTools shovelMagic = new AbstractTools(ToolsThornium.THORNIUM_SHOVEL_MAGIC,
-        ItemTier.getMagic(ToolsThornium.THORNIUM_SHOVEL));
+        ItemTier.getMagicRecipe(ToolsThornium.THORNIUM_SHOVEL));
     shovelMagic.register(sup);
     final AbstractTools shovelRare = new AbstractTools(ToolsThornium.THORNIUM_SHOVEL_RARE,
-        ItemTier.getRare(ToolsThornium.THORNIUM_SHOVEL_MAGIC));
+        ItemTier.getRareRecipe(ToolsThornium.THORNIUM_SHOVEL_MAGIC));
     shovelRare.register(sup);
     final AbstractTools shovelEpic = new AbstractTools(ToolsThornium.THORNIUM_SHOVEL_EPIC,
-        ItemTier.getEpic(ToolsThornium.THORNIUM_SHOVEL_RARE));
+        ItemTier.getEpicRecipe(ToolsThornium.THORNIUM_SHOVEL_RARE));
     shovelEpic.register(sup);
     final AbstractTools shovelLegendary = new AbstractTools(ToolsThornium.THORNIUM_SHOVEL_LEGENDARY,
-        ItemTier.getLegendary(ToolsThornium.THORNIUM_SHOVEL_EPIC));
+        ItemTier.getLegendaryRecipe(ToolsThornium.THORNIUM_SHOVEL_EPIC));
     shovelLegendary.register(sup);
     final AbstractTools shovelSupreme = new AbstractTools(ToolsThornium.THORNIUM_SHOVEL_SUPREME,
-        ItemTier.getSupreme(ToolsThornium.THORNIUM_SHOVEL_LEGENDARY));
+        ItemTier.getSupremeRecipe(ToolsThornium.THORNIUM_SHOVEL_LEGENDARY));
     shovelSupreme.register(sup);
 
     if (getSupremeOptions().isEnableTech()) {

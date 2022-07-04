@@ -3,6 +3,7 @@ package com.github.relativobr.supreme.setup;
 import static com.github.relativobr.supreme.Supreme.getSupremeOptions;
 
 import com.github.relativobr.supreme.Supreme;
+import com.github.relativobr.supreme.machine.CheckInventory;
 import com.github.relativobr.supreme.machine.ElectricCrafter;
 import com.github.relativobr.supreme.machine.ForgeIngot;
 import com.github.relativobr.supreme.machine.ForgeMagical;
@@ -13,6 +14,8 @@ import com.github.relativobr.supreme.machine.MobCollector;
 import com.github.relativobr.supreme.machine.VirtualAquarium;
 import com.github.relativobr.supreme.machine.VirtualGarden;
 import com.github.relativobr.supreme.machine.multiblock.ElectricCoreFabricator;
+import com.github.relativobr.supreme.machine.multiblock.ElectricGearFabricator;
+import com.github.relativobr.supreme.machine.multiblock.ElectricMagicalFabricator;
 import com.github.relativobr.supreme.util.ItemGroups;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 
@@ -41,6 +44,46 @@ public class SetupMachines {
             ElectricCoreFabricator.ELECTRIC_CORE_MACHINE_III.getItemId())
         .setMachineRecipes(ElectricCoreFabricator.getAllRecipe()).setCapacity(600).setEnergyConsumption(300)
         .setProcessingSpeed(15).register(sup);
+
+    new ElectricMagicalFabricator(ItemGroups.MACHINES_CATEGORY, ElectricMagicalFabricator.ELECTRIC_MAGICAL_MACHINE,
+        RecipeType.ENHANCED_CRAFTING_TABLE, ElectricMagicalFabricator.RECIPE_ELECTRIC_MAGICAL_MACHINE).setMachineIdentifier(
+            ElectricMagicalFabricator.ELECTRIC_MAGICAL_MACHINE.getItemId())
+        .setMachineRecipes(ElectricMagicalFabricator.getAllRecipe()).setCapacity(40).setEnergyConsumption(20)
+        .setProcessingSpeed(1).register(sup);
+
+    new ElectricMagicalFabricator(ItemGroups.MACHINES_CATEGORY, ElectricMagicalFabricator.ELECTRIC_MAGICAL_MACHINE_II,
+        RecipeType.ENHANCED_CRAFTING_TABLE,
+        ElectricMagicalFabricator.RECIPE_ELECTRIC_MAGICAL_MACHINE_II).setMachineIdentifier(
+            ElectricMagicalFabricator.ELECTRIC_MAGICAL_MACHINE_II.getItemId())
+        .setMachineRecipes(ElectricMagicalFabricator.getAllRecipe()).setCapacity(200).setEnergyConsumption(100)
+        .setProcessingSpeed(5).register(sup);
+
+    new ElectricMagicalFabricator(ItemGroups.MACHINES_CATEGORY, ElectricMagicalFabricator.ELECTRIC_MAGICAL_MACHINE_III,
+        RecipeType.ENHANCED_CRAFTING_TABLE,
+        ElectricMagicalFabricator.RECIPE_ELECTRIC_MAGICAL_MACHINE_III).setMachineIdentifier(
+            ElectricMagicalFabricator.ELECTRIC_MAGICAL_MACHINE_III.getItemId())
+        .setMachineRecipes(ElectricMagicalFabricator.getAllRecipe()).setCapacity(600).setEnergyConsumption(300)
+        .setProcessingSpeed(15).register(sup);
+
+//    new ElectricGearFabricator(ItemGroups.MACHINES_CATEGORY, ElectricGearFabricator.ELECTRIC_GEAR_MACHINE,
+//        RecipeType.ENHANCED_CRAFTING_TABLE, ElectricGearFabricator.RECIPE_ELECTRIC_GEAR_MACHINE).setMachineIdentifier(
+//            ElectricGearFabricator.ELECTRIC_GEAR_MACHINE.getItemId())
+//        .setMachineRecipes(ElectricGearFabricator.getAllRecipe()).setCapacity(40).setEnergyConsumption(20)
+//        .setProcessingSpeed(1).register(sup);
+//
+//    new ElectricGearFabricator(ItemGroups.MACHINES_CATEGORY, ElectricGearFabricator.ELECTRIC_GEAR_MACHINE_II,
+//        RecipeType.ENHANCED_CRAFTING_TABLE,
+//        ElectricGearFabricator.RECIPE_ELECTRIC_GEAR_MACHINE_II).setMachineIdentifier(
+//            ElectricGearFabricator.ELECTRIC_GEAR_MACHINE_II.getItemId())
+//        .setMachineRecipes(ElectricGearFabricator.getAllRecipe()).setCapacity(200).setEnergyConsumption(100)
+//        .setProcessingSpeed(5).register(sup);
+//
+//    new ElectricGearFabricator(ItemGroups.MACHINES_CATEGORY, ElectricGearFabricator.ELECTRIC_GEAR_MACHINE_III,
+//        RecipeType.ENHANCED_CRAFTING_TABLE,
+//        ElectricGearFabricator.RECIPE_ELECTRIC_GEAR_MACHINE_III).setMachineIdentifier(
+//            ElectricGearFabricator.ELECTRIC_GEAR_MACHINE_III.getItemId())
+//        .setMachineRecipes(ElectricGearFabricator.getAllRecipe()).setCapacity(600).setEnergyConsumption(300)
+//        .setProcessingSpeed(15).register(sup);
 
     new MobCollector(ItemGroups.MACHINES_CATEGORY, MobCollector.MOB_COLLECTOR_MACHINE,
         RecipeType.ENHANCED_CRAFTING_TABLE, MobCollector.RECIPE_MOB_COLLECTOR_MACHINE).setMobRange(4).setCapacity(1000)
@@ -71,13 +114,11 @@ public class SetupMachines {
         .setMachineRecipes(ForgeIngot.getAllRecipe()).setTimeProcess(15).setProcessingSpeed(1).setCapacity(1000)
         .setEnergyConsumption(20).register(sup);
 
-    //TODO BUG setProcessingSpeed SimpleItemContainerMachine
     new ForgeIngot(ItemGroups.MACHINES_CATEGORY, ForgeIngot.FORGE_INGOT_MACHINE_II, RecipeType.ENHANCED_CRAFTING_TABLE,
         ForgeIngot.RECIPE_FORGE_INGOT_MACHINE_II).setMachineIdentifier(ForgeIngot.FORGE_INGOT_MACHINE_II.getItemId())
         .setMachineRecipes(ForgeIngot.getAllRecipe()).setTimeProcess(15).setProcessingSpeed(5).setCapacity(5000)
         .setEnergyConsumption(100).register(sup);
 
-    //TODO BUG setProcessingSpeed SimpleItemContainerMachine
     new ForgeIngot(ItemGroups.MACHINES_CATEGORY, ForgeIngot.FORGE_INGOT_MACHINE_III, RecipeType.ENHANCED_CRAFTING_TABLE,
         ForgeIngot.RECIPE_FORGE_INGOT_MACHINE_III).setMachineIdentifier(ForgeIngot.FORGE_INGOT_MACHINE_III.getItemId())
         .setMachineRecipes(ForgeIngot.getAllRecipe()).setTimeProcess(15).setProcessingSpeed(15).setCapacity(15000)
@@ -89,14 +130,12 @@ public class SetupMachines {
         .setMachineRecipes(ForgeMagical.getAllRecipe()).setTimeProcess(15).setProcessingSpeed(1).setCapacity(1000)
         .setEnergyConsumption(20).register(sup);
 
-    //TODO BUG setProcessingSpeed SimpleItemContainerMachine
     new ForgeMagical(ItemGroups.MACHINES_CATEGORY, ForgeMagical.FORGE_MAGICAL_MACHINE_II,
         RecipeType.ENHANCED_CRAFTING_TABLE, ForgeMagical.RECIPE_FORGE_MAGICAL_MACHINE_II).setTimeProcess(15)
         .setMachineIdentifier(ForgeMagical.FORGE_MAGICAL_MACHINE_II.getItemId())
         .setMachineRecipes(ForgeMagical.getAllRecipe()).setTimeProcess(15).setProcessingSpeed(5).setCapacity(5000)
         .setEnergyConsumption(100).register(sup);
 
-    //TODO BUG setProcessingSpeed SimpleItemContainerMachine
     new ForgeMagical(ItemGroups.MACHINES_CATEGORY, ForgeMagical.FORGE_MAGICAL_MACHINE_III,
         RecipeType.ENHANCED_CRAFTING_TABLE, ForgeMagical.RECIPE_FORGE_MAGICAL_MACHINE_III).setMachineIdentifier(
             ForgeMagical.FORGE_MAGICAL_MACHINE_III.getItemId()).setMachineRecipes(ForgeMagical.getAllRecipe())
@@ -167,6 +206,8 @@ public class SetupMachines {
               ItemConverter.ITEM_CONVERTER_MACHINE.getItemId()).setCapacity(1).setEnergyConsumption(1)
           .setProcessingSpeed(1000).register(sup);
     }
+
+      CheckInventory.setup(sup);
 
   }
 }

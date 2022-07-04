@@ -1,5 +1,7 @@
 package com.github.relativobr.supreme.resource.magical;
 
+import static com.github.relativobr.supreme.Supreme.getSupremeOptions;
+
 import com.github.relativobr.supreme.util.SupremeItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import lombok.experimental.UtilityClass;
@@ -48,33 +50,33 @@ public class SupremeAttribute {
 
   public static SlimefunItemStack getMagic() {
     final SlimefunItemStack attributeMagic = SupremeAttribute.ATTRIBUTE_MAGIC;
-    attributeMagic.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 20);
-    attributeMagic.addUnsafeEnchantment(Enchantment.DURABILITY, 20);
-    attributeMagic.addUnsafeEnchantment(Enchantment.MENDING, 10);
+    attributeMagic.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, getSupremeOptions().isCustomBc() ? 10 : 20);
+    attributeMagic.addUnsafeEnchantment(Enchantment.DURABILITY, getSupremeOptions().isCustomBc() ? 10 : 20);
+    attributeMagic.addUnsafeEnchantment(Enchantment.MENDING, getSupremeOptions().isCustomBc() ? 2 : 10);
     return attributeMagic;
   }
 
   public static SlimefunItemStack getBomb() {
     final SlimefunItemStack attributeBomb = SupremeAttribute.ATTRIBUTE_BOMB;
-    attributeBomb.addUnsafeEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 20);
-    attributeBomb.addUnsafeEnchantment(Enchantment.PROTECTION_FIRE, 20);
-    attributeBomb.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, 20);
-    attributeBomb.addUnsafeEnchantment(Enchantment.THORNS, 10);
+    attributeBomb.addUnsafeEnchantment(Enchantment.PROTECTION_EXPLOSIONS, getSupremeOptions().isCustomBc() ? 10 : 20);
+    attributeBomb.addUnsafeEnchantment(Enchantment.PROTECTION_FIRE, getSupremeOptions().isCustomBc() ? 10 : 20);
+    attributeBomb.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, getSupremeOptions().isCustomBc() ? 10 : 20);
+    attributeBomb.addUnsafeEnchantment(Enchantment.THORNS, getSupremeOptions().isCustomBc() ? 5 : 10);
     return attributeBomb;
   }
 
   public static SlimefunItemStack getFortune() {
     final SlimefunItemStack attributeFortune = SupremeAttribute.ATTRIBUTE_FORTUNE;
-    attributeFortune.addUnsafeEnchantment(Enchantment.DIG_SPEED, 20);
-    attributeFortune.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 10);
+    attributeFortune.addUnsafeEnchantment(Enchantment.DIG_SPEED, getSupremeOptions().isCustomBc() ? 10 : 20);
+    attributeFortune.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, getSupremeOptions().isCustomBc() ? 3 : 10);
     return attributeFortune;
   }
 
   public static SlimefunItemStack getImpetus() {
     final SlimefunItemStack attributeImpetus = SupremeAttribute.ATTRIBUTE_IMPETUS;
-    attributeImpetus.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 20);
-    attributeImpetus.addUnsafeEnchantment(Enchantment.FIRE_ASPECT, 10);
-    attributeImpetus.addUnsafeEnchantment(Enchantment.LOOT_BONUS_MOBS, 10);
+    attributeImpetus.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, getSupremeOptions().isCustomBc() ? 10 : 20);
+    attributeImpetus.addUnsafeEnchantment(Enchantment.FIRE_ASPECT, getSupremeOptions().isCustomBc() ? 5 : 10);
+    attributeImpetus.addUnsafeEnchantment(Enchantment.LOOT_BONUS_MOBS, getSupremeOptions().isCustomBc() ? 3 : 10);
     return attributeImpetus;
   }
 }

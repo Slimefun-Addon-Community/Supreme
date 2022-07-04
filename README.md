@@ -1,20 +1,19 @@
 # Supreme 2.0
 Supreme is an addon for Slimefun which adds 100+ various new resources that will allow you to craft powerful new items, weapons, tools and armor. These can be made up from titanium, aurum, adamantium, thornium with some being magical, rare, epic, legendary or supreme! It also adds 12 new electric generators, 5 new capacitors and even more... 
 
-
-## Important information
-This addon "Supreme 2.0" compatible with the old addon "SupremeExpansion" change in config `use-legacy-supremeexpansion-item-id` to `true`
-
 ## Requirements
 
-Minecraft Version: 1.17+ 
+Minecraft Version: 1.17 ~ 1.19
 
-Slimefun Version: RC-31
+Slimefun Version: RC-32
 
 
 ### [Download](https://thebusybiscuit.github.io/builds/RelativoBR/Supreme/main/)
 [![Build Status](https://thebusybiscuit.github.io/builds/RelativoBR/Supreme/main/badge.svg)](https://thebusybiscuit.github.io/builds/RelativoBR/Supreme/main)
 
+
+## Important information
+This addon "Supreme 2.0" compatible with the old addon "SupremeExpansion" change in config `use-legacy-supremeexpansion-item-id` to `true`
 
 
 ## Bugs/Suggestions
@@ -36,6 +35,7 @@ Make a new issue, pull request, or contact me on discord @RelativoBR#9577
 - **Gear Fabricator** - MultiBlock Machine - You can craft weapons, armor and tools here
 - **Magical Fabricator** - MultiBlock Machine - You can craft magical here
 - **Electric Core Machine** - Craft resource of core
+- **Electric Magical Machine** - Craft resource of magical
 - **Forge Ingot** - This machine allows you to forge ingot resources
 - **Forge Magical** - This machine allows you to forge magical resources
 - **Foundry** - Foundry and Synthesizer Items
@@ -43,10 +43,11 @@ Make a new issue, pull request, or contact me on discord @RelativoBR#9577
 - **Mob Collector** - This machine allows you to collect items from nearby mobs
 - **Virtual Aquarium** - This machine allows you to collect items that are collected at sea
 - **Virtual Garden** - This machine allows you to cultivate some resources
-- **MobTech Collector** - This machine allows you to collect MobTech head nearby mobs
-- **Tech Mutation** - Use generator mutation to progress to higher levels
-- **Tech Robotic** - Use beginner level robots to progress to higher levels
-- **Tech Generator** - Using power and bees/golem, slowly generates materials
+- **MobTech Collector** - This machine allows you to collect mobs nearby, an item used to increase the performance of machines, whether reducing time, increasing production or saving energy.
+- **Tech Mutation** - Generator mutation to progress mobtech (heads) to higher levels, through mutation types, where there is a success probability depending on the machine level that varies from 20% to 25% in tier I and from 80% to 100% in tier III.
+- **Tech Robotic** - Similar to the previous mutation machine, but it doesn't deal with luck, it works with science where a specific amount of resources can be used to evolve the mobtech, being 64x for tier I, tier II with 32 and tier III with 16x
+- **Tech Generator** - Using power and a specific crafting card to generate materials slowly, but with mobtech the bees, golem and zombie, mutant or robotics can speed up this process to more satisfying levels
+- **CheckInventory** - A lamp that helps you see if a certain item and amound is present in a chest
 - **Cobblestone Quarry** - Generate Cobblestone
 - **Coal Quarry** - Generate basic resource
 - **Iron Quarry** - Generate basic resource
@@ -135,6 +136,7 @@ Make a new issue, pull request, or contact me on discord @RelativoBR#9577
 - **limit-production-generators** - To reduce the efficiency of generators (factor 5x)
 - **enable-quarry** - Indication whether to enable the quarry machine
 - **limit-production-quarry** - To reduce quarry production (hard mode 50% failure)
+- **quarry-custom-output** - Can be adjusted all item productions in Quarry
 - **enable-weapons** - Indication whether to enable the weapons
 - **enable-tools** - Indication whether to enable the tools
 - **enable-armor** - Indication whether to enable the armor

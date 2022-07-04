@@ -4,7 +4,7 @@ import static com.github.relativobr.supreme.Supreme.getSupremeOptions;
 
 import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.gear.AbstractArmor;
-import com.github.relativobr.supreme.gear.AbstractTools;
+import com.github.relativobr.supreme.tools.AbstractTools;
 import com.github.relativobr.supreme.gear.AbstractWeapons;
 
 public class MainSetup {

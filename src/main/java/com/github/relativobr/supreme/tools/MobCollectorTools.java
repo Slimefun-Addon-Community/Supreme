@@ -1,12 +1,14 @@
-package com.github.relativobr.supreme.gear;
+package com.github.relativobr.supreme.tools;
 
 import com.github.relativobr.supreme.Supreme;
+import com.github.relativobr.supreme.gear.WeaponsBasic;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.magical.SupremeAttribute;
 import com.github.relativobr.supreme.resource.magical.SupremeCetrus;
 import com.github.relativobr.supreme.resource.magical.SupremeCore;
 import com.github.relativobr.supreme.resource.mobtech.BeeTech;
 import com.github.relativobr.supreme.resource.mobtech.IronGolemTech;
+import com.github.relativobr.supreme.resource.mobtech.ZombieTech;
 import com.github.relativobr.supreme.util.ItemGroups;
 import com.github.relativobr.supreme.util.SupremeItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -26,6 +28,7 @@ import org.bukkit.entity.Bee;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Golem;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Zombie;
 import org.bukkit.inventory.ItemStack;
 
 public class MobCollectorTools extends SlimefunItem implements Rechargeable, NotPlaceable {
@@ -109,6 +112,13 @@ public class MobCollectorTools extends SlimefunItem implements Rechargeable, Not
       if (entity instanceof Golem) {
         entity.getWorld()
             .dropItemNaturally(entity.getLocation(), Supreme.buildItemFromMobTechDTO(IronGolemTech.SIMPLE_GOLEM, 0));
+        entity.remove();
+        removeItemCharge(item, getCharge());
+        p.playSound(p.getLocation(), Sound.BLOCK_ANVIL_FALL, 1, 1);
+      }
+      if (entity instanceof Zombie) {
+        entity.getWorld()
+            .dropItemNaturally(entity.getLocation(), Supreme.buildItemFromMobTechDTO(ZombieTech.SIMPLE_ZOMBIE, 0));
         entity.remove();
         removeItemCharge(item, getCharge());
         p.playSound(p.getLocation(), Sound.BLOCK_ANVIL_FALL, 1, 1);
