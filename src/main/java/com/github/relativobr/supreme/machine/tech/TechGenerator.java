@@ -9,7 +9,7 @@ import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.mobtech.MobTech;
 import com.github.relativobr.supreme.util.ItemGroups;
 import com.github.relativobr.supreme.util.SupremeItemStack;
-import com.github.relativobr.util.ItemNotPlaceable;
+import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
 import com.github.relativobr.util.UtilEnergy;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -85,7 +85,7 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
 
   public static void preSetup(Supreme plugin, int tierCard, SlimefunItemStack item, ItemStack input1, ItemStack input2,
       ItemStack output) {
-    new ItemNotPlaceable(ItemGroups.CARDS_CATEGORY, item, RecipeType.ENHANCED_CRAFTING_TABLE,
+    new UnplaceableBlock(ItemGroups.CARDS_CATEGORY, item, RecipeType.ENHANCED_CRAFTING_TABLE,
         new ItemStack[]{new ItemStack(input1), new ItemStack(input2), new ItemStack(input1), new ItemStack(input2),
             getCardTier(tierCard), new ItemStack(input2), new ItemStack(input1), new ItemStack(input2),
             new ItemStack(input1)}).register(plugin);

@@ -4,7 +4,7 @@ import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.machine.multiblock.MultiBlockCoreFabricator;
 import com.github.relativobr.supreme.machine.multiblock.MultiBlockMagicalFabricator;
 import com.github.relativobr.supreme.machine.tech.TechMutation;
-import com.github.relativobr.util.ItemNotPlaceable;
+import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -21,7 +21,7 @@ public class RegisterItem {
 
   @ParametersAreNonnullByDefault
   public static void registerSmeltery(ItemGroup itemGroup, SlimefunItemStack itemStack, ItemStack[] recipe) {
-    new ItemNotPlaceable(itemGroup, itemStack, RecipeType.SMELTERY, recipe).register(Supreme.inst());
+    new UnplaceableBlock(itemGroup, itemStack, RecipeType.SMELTERY, recipe).register(Supreme.inst());
   }
 
   @ParametersAreNonnullByDefault
@@ -31,7 +31,7 @@ public class RegisterItem {
 
   @ParametersAreNonnullByDefault
   public static void registerEnhancedCraft(ItemGroup itemGroup, SlimefunItemStack itemStack, ItemStack[] recipe) {
-    new ItemNotPlaceable(itemGroup, itemStack, RecipeType.ENHANCED_CRAFTING_TABLE, recipe).register(Supreme.inst());
+    new UnplaceableBlock(itemGroup, itemStack, RecipeType.ENHANCED_CRAFTING_TABLE, recipe).register(Supreme.inst());
   }
 
   @ParametersAreNonnullByDefault
@@ -41,7 +41,7 @@ public class RegisterItem {
 
   @ParametersAreNonnullByDefault
   public static void registerNullRecipe(ItemGroup itemGroup, SlimefunItemStack itemStack, ItemStack[] recipe) {
-    new ItemNotPlaceable(itemGroup, itemStack, RecipeType.NULL, recipe).register(Supreme.inst());
+    new UnplaceableBlock(itemGroup, itemStack, RecipeType.NULL, recipe).register(Supreme.inst());
   }
 
   @ParametersAreNonnullByDefault
@@ -63,7 +63,7 @@ public class RegisterItem {
 
   @ParametersAreNonnullByDefault
   public static void registerMagicalFabricator(ItemGroup itemGroup, SlimefunItemStack itemStack, ItemStack[] recipe) {
-    new ItemNotPlaceable(itemGroup, itemStack, MultiBlockMagicalFabricator.getMachine(), recipe).register(
+    new UnplaceableBlock(itemGroup, itemStack, MultiBlockMagicalFabricator.getMachine(), recipe).register(
         Supreme.inst());
   }
 
@@ -74,12 +74,12 @@ public class RegisterItem {
 
   @ParametersAreNonnullByDefault
   public static void registerCoreFabricator(ItemGroup itemGroup, SlimefunItemStack itemStack, ItemStack[] recipe) {
-    new ItemNotPlaceable(itemGroup, itemStack, MultiBlockCoreFabricator.getMachine(), recipe).register(Supreme.inst());
+    new UnplaceableBlock(itemGroup, itemStack, MultiBlockCoreFabricator.getMachine(), recipe).register(Supreme.inst());
   }
 
   @ParametersAreNonnullByDefault
   public static void registerTechMutation(SlimefunItemStack itemStack) {
-    new ItemNotPlaceable(ItemGroups.COMPONENTS_CATEGORY, itemStack, RecipeType.NULL,
+    new UnplaceableBlock(ItemGroups.COMPONENTS_CATEGORY, itemStack, RecipeType.NULL,
         new ItemStack[]{TechMutation.TECH_MUTATION_I}).register(Supreme.inst());
   }
 

@@ -85,8 +85,8 @@ public class TechRobotic extends SimpleItemContainerMachine implements Radioacti
     super(ItemGroups.MACHINES_CATEGORY, item, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
   }
 
-  public static void addRecipe(ItemStack recipe, ItemStack item) {
-    recipes.add(new AbstractItemRecipe(item, new ItemStack[]{recipe}));
+  public static void addRecipe(ItemStack input, ItemStack output) {
+    recipes.add(new AbstractItemRecipe(input, output));
   }
 
   private static void invalidProgressBar(BlockMenu menu, String txt) {
@@ -171,17 +171,15 @@ public class TechRobotic extends SimpleItemContainerMachine implements Radioacti
 
     BlockMenu inv = BlockStorage.getInventory(b);
 
-    final ItemStack itemNaReceita = validRecipeItem(inv);
-    final ItemStack itemProduzindo = processing.get(b);
-    if (itemProduzindo == null) {
+    final ItemStack itemProcess = processing.get(b);
+    if (itemProcess == null) {
 
-      if (itemNaReceita != null) {
+      final ItemStack itemOutput = validRecipeItem(inv);
+      if (itemOutput != null) {
 
-        inv.consumeItem(getInputSlots()[0], getAmoundUpgrade());
+        invalidProgressBar(inv, itemOutput.getType(), " ");
 
-        invalidProgressBar(inv, itemNaReceita.getType(), " ");
-
-        processing.put(b, itemNaReceita);
+        processing.put(b, itemOutput);
         progressTime.put(b, (getTimeProcess() * 2));
 
       } else {
@@ -194,7 +192,7 @@ public class TechRobotic extends SimpleItemContainerMachine implements Radioacti
 
       if (this.getProgressTime(b) <= 0) {
 
-        inv.pushItem(itemProduzindo.clone(), this.getOutputSlots());
+        inv.pushItem(itemProcess.clone(), this.getOutputSlots());
 
         processing.put(b, null);
         progressTime.put(b, 0);
@@ -202,7 +200,7 @@ public class TechRobotic extends SimpleItemContainerMachine implements Radioacti
 
       } else {
 
-        this.processTicks(b, inv, itemProduzindo);
+        this.processTicks(b, inv, itemProcess);
 
       }
 
@@ -243,9 +241,10 @@ public class TechRobotic extends SimpleItemContainerMachine implements Radioacti
   private ItemStack validRecipeItem(BlockMenu inv) {
 
     for (AbstractItemRecipe produce : this.recipes) {
-      ItemStack itemStack = produce.getFirstItemOutput().clone();
+      ItemStack itemStack = produce.getFirstItemInput().clone();
       itemStack.setAmount(getAmoundUpgrade());
       if (SlimefunUtils.isItemSimilar(inv.getItemInSlot(getInputSlots()[0]), itemStack, false, true)) {
+        inv.consumeItem(getInputSlots()[0], getAmoundUpgrade());
         return produce.getFirstItemOutput();
       }
 
