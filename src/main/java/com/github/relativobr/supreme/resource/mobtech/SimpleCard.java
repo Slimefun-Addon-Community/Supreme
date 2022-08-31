@@ -54,7 +54,7 @@ public class SimpleCard {
 
 
   public static final SlimefunItemStack CARD_CLAY = new SupremeItemStack("SUPREME_CARD_CLAY", Material.MUSIC_DISC_STRAD,
-      "&bCard Machine Glay", "", "&fChange to Production Glay", "",
+      "&bCard Machine Clay", "", "&fChange to Production Clay", "",
       LoreBuilder.machine(MachineTier.BASIC, MachineType.MACHINE), "", "&3Supreme Component");
 
 

@@ -83,7 +83,7 @@ public class AdvancedCard {
 
   public static final SlimefunItemStack CARD_ALUMINUM_BRASS_INGOT = new SupremeItemStack("SUPREME_CARD_ALUMINUM_BRASS",
       Material.MUSIC_DISC_CHIRP, "&bCard Machine Aluminum Brass Ingot", "",
-      "&fAltera para Aluminum Produção de Brass Ingot", "",
+      "&fChange to Production Aluminum Brass Ingot", "",
       LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE), "", "&3Supreme Component");
 
 
@@ -94,7 +94,7 @@ public class AdvancedCard {
 
 
   public static final SlimefunItemStack CARD_GOLD24K = new SupremeItemStack("SUPREME_CARD_GOLD24K",
-      Material.MUSIC_DISC_CHIRP, "&bCard Machine Gold 24k", "", "&fChange to Production Ouro 24k", "",
+      Material.MUSIC_DISC_CHIRP, "&bCard Machine Gold 24k", "", "&fChange to Production Gold 24k", "",
       LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE), "", "&3Supreme Component");
 
 
