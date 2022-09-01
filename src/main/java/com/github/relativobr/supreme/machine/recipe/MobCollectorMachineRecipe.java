@@ -35,7 +35,7 @@ public class MobCollectorMachineRecipe extends MachineRecipe implements Predicat
     displayRecipes.add(new CustomItemStack(Material.GLASS_BOTTLE, null, "&fRequires &bGlowSquid &fnearby"));
     displayRecipes.add(new ItemStack(Material.GLOW_INK_SAC));
     displayRecipes.add(new CustomItemStack(Material.GLASS_BOTTLE, null, "&fRequires &bWither &fnearby"));
-    displayRecipes.add(new ItemStack(Material.EXPERIENCE_BOTTLE));
+    displayRecipes.add(SlimefunItems.FILLED_FLASK_OF_KNOWLEDGE);
     displayRecipes.add(new CustomItemStack(Material.GLASS_BOTTLE, null, "&fRequires &bEnderDragon &fnearby"));
     displayRecipes.add(new ItemStack(Material.DRAGON_BREATH));
     displayRecipes.add(new CustomItemStack(Material.SHEARS, null, "&fRequires &bBee &fnearby"));

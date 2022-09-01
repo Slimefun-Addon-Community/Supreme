@@ -160,11 +160,11 @@ public class MagicAltar extends MediumContainerMachine {
           new ItemStack(SlimefunItems.ELYTRA_SCALE), new ItemStack(SlimefunItems.AIR_RUNE),
           new ItemStack(SlimefunItems.ELYTRA_SCALE)}, new ItemStack(Material.ELYTRA, 1));
   public static final AbstractItemRecipe RECIPE_INFUSED_ELYTRA = new AbstractItemRecipe(
-      new ItemStack[]{new ItemStack(SlimefunItems.FLASK_OF_KNOWLEDGE), new ItemStack(SlimefunItems.ELYTRA_SCALE),
-          new ItemStack(SlimefunItems.FLASK_OF_KNOWLEDGE), new ItemStack(SlimefunItems.FLASK_OF_KNOWLEDGE),
-          new ItemStack(Material.ELYTRA), new ItemStack(SlimefunItems.FLASK_OF_KNOWLEDGE),
-          new ItemStack(SlimefunItems.FLASK_OF_KNOWLEDGE), new ItemStack(SlimefunItems.ELYTRA_SCALE),
-          new ItemStack(SlimefunItems.FLASK_OF_KNOWLEDGE)}, new SlimefunItemStack(SlimefunItems.INFUSED_ELYTRA, 1));
+      new ItemStack[]{new ItemStack(SlimefunItems.FILLED_FLASK_OF_KNOWLEDGE), new ItemStack(SlimefunItems.ELYTRA_SCALE),
+          new ItemStack(SlimefunItems.FILLED_FLASK_OF_KNOWLEDGE), new ItemStack(SlimefunItems.FILLED_FLASK_OF_KNOWLEDGE),
+          new ItemStack(Material.ELYTRA), new ItemStack(SlimefunItems.FILLED_FLASK_OF_KNOWLEDGE),
+          new ItemStack(SlimefunItems.FILLED_FLASK_OF_KNOWLEDGE), new ItemStack(SlimefunItems.ELYTRA_SCALE),
+          new ItemStack(SlimefunItems.FILLED_FLASK_OF_KNOWLEDGE)}, new SlimefunItemStack(SlimefunItems.INFUSED_ELYTRA, 1));
 
   public MagicAltar(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
     super(category, item, recipeType, recipe);
