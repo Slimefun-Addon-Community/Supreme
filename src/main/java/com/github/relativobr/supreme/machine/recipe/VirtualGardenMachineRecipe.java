@@ -1,6 +1,6 @@
 package com.github.relativobr.supreme.machine.recipe;
 
-import com.github.relativobr.recipe.AbstractItemRecipe;
+import com.github.relativobr.generic.recipe.AbstractItemRecipe;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.ParametersAreNonnullByDefault;

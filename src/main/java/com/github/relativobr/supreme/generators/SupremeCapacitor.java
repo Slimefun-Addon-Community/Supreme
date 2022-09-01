@@ -4,7 +4,7 @@ import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.core.SupremeCoreAlloy;
 import com.github.relativobr.supreme.resource.magical.SupremeCetrus;
 import com.github.relativobr.supreme.util.SupremeItemStack;
-import com.github.relativobr.util.UtilEnergy;
+import com.github.relativobr.generic.util.UtilEnergy;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.core.attributes.MachineTier;
 import io.github.thebusybiscuit.slimefun4.core.attributes.MachineType;

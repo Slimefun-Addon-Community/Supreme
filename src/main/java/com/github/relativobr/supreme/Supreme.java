@@ -8,8 +8,8 @@ import static com.github.relativobr.supreme.util.CompatibilySupremeLegacy.loadGe
 import static com.github.relativobr.supreme.util.CompatibilySupremeLegacy.loadGenerators;
 import static com.github.relativobr.supreme.util.CompatibilySupremeLegacy.loadMachines;
 
-import com.github.relativobr.generic.MobTechGeneric;
-import com.github.relativobr.generic.MobTechGeneric.MobTechType;
+import com.github.relativobr.supreme.util.MobTechGeneric;
+import com.github.relativobr.supreme.util.MobTechGeneric.MobTechType;
 import com.github.relativobr.supreme.machine.AbstractQuarryOutput;
 import com.github.relativobr.supreme.machine.AbstractQuarryOutputItem;
 import com.github.relativobr.supreme.setup.MainSetup;

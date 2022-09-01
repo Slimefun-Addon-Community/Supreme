@@ -1,18 +1,15 @@
 package com.github.relativobr.supreme.machine.multiblock;
 
-import com.github.relativobr.machine.FlexItemContainerMachine;
-import com.github.relativobr.recipe.AbstractItemRecipe;
-import com.github.relativobr.supreme.gear.ArmorBasic;
+import com.github.relativobr.generic.machine.FlexItemContainerMachine;
+import com.github.relativobr.generic.recipe.AbstractItemRecipe;
 import com.github.relativobr.supreme.gear.ArmorThornium;
-import com.github.relativobr.supreme.gear.WeaponsBasic;
 import com.github.relativobr.supreme.gear.WeaponsThornium;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.magical.SupremeCetrus;
-import com.github.relativobr.supreme.tools.ToolsBasic;
 import com.github.relativobr.supreme.tools.ToolsThornium;
 import com.github.relativobr.supreme.util.ItemTier;
 import com.github.relativobr.supreme.util.SupremeItemStack;
-import com.github.relativobr.util.UtilEnergy;
+import com.github.relativobr.generic.util.UtilEnergy;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;

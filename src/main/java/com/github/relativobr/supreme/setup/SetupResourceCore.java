@@ -2,7 +2,7 @@ package com.github.relativobr.supreme.setup;
 
 import static com.github.relativobr.supreme.util.RegisterItem.registerCoreFabricator;
 
-import com.github.relativobr.recipe.CustomCoreRecipe;
+import com.github.relativobr.generic.recipe.CustomCoreRecipe;
 import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.resource.core.SupremeCoreAlloy;
 import com.github.relativobr.supreme.resource.core.SupremeCoreBlock;

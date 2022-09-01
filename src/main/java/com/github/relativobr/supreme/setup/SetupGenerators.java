@@ -3,8 +3,8 @@ package com.github.relativobr.supreme.setup;
 import static com.github.relativobr.supreme.Supreme.getSupremeOptions;
 import static com.github.relativobr.supreme.Supreme.getValueGeneratorsWithLimit;
 
-import com.github.relativobr.electric.EnergyCapacitor;
-import com.github.relativobr.electric.EnergyGenerator;
+import com.github.relativobr.generic.electric.EnergyCapacitor;
+import com.github.relativobr.generic.electric.EnergyGenerator;
 import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.generators.GeneratorMob;
 import com.github.relativobr.supreme.generators.SupremeCapacitor;

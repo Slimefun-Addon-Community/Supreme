@@ -2,7 +2,7 @@ package com.github.relativobr.supreme.machine;
 
 import static com.github.relativobr.supreme.Supreme.getSupremeOptions;
 
-import com.github.relativobr.machine.SimpleItemWithLargeContainerMachine;
+import com.github.relativobr.generic.machine.SimpleItemWithLargeContainerMachine;
 import com.github.relativobr.supreme.machine.recipe.MobCollectorMachineRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.magical.SupremeAttribute;

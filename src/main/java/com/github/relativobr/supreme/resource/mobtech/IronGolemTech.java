@@ -1,7 +1,7 @@
 package com.github.relativobr.supreme.resource.mobtech;
 
-import com.github.relativobr.generic.MobTechGeneric;
-import com.github.relativobr.generic.MobTechGeneric.MobTechType;
+import com.github.relativobr.supreme.util.MobTechGeneric;
+import com.github.relativobr.supreme.util.MobTechGeneric.MobTechType;
 import com.github.relativobr.supreme.Supreme;
 import lombok.experimental.UtilityClass;
 

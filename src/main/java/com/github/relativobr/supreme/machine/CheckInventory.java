@@ -3,7 +3,7 @@ package com.github.relativobr.supreme.machine;
 import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.util.ItemGroups;
-import com.github.relativobr.util.UtilEnergy;
+import com.github.relativobr.generic.util.UtilEnergy;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;

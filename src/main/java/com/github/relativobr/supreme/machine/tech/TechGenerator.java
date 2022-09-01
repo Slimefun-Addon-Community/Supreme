@@ -1,16 +1,16 @@
 package com.github.relativobr.supreme.machine.tech;
 
-import com.github.relativobr.generic.MobTechGeneric.MobTechType;
-import com.github.relativobr.machine.SimpleItemContainerMachine;
-import com.github.relativobr.recipe.InventoryRecipe;
-import com.github.relativobr.recipe.AbstractItemRecipe;
+import com.github.relativobr.supreme.util.MobTechGeneric.MobTechType;
+import com.github.relativobr.generic.machine.SimpleItemContainerMachine;
+import com.github.relativobr.generic.recipe.InventoryRecipe;
+import com.github.relativobr.generic.recipe.AbstractItemRecipe;
 import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.mobtech.MobTech;
 import com.github.relativobr.supreme.util.ItemGroups;
 import com.github.relativobr.supreme.util.SupremeItemStack;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
-import com.github.relativobr.util.UtilEnergy;
+import com.github.relativobr.generic.util.UtilEnergy;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
