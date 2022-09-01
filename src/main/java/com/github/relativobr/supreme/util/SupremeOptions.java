@@ -17,6 +17,7 @@ public class SupremeOptions {
   int customTickerDelay;
   boolean enableGenerators;
   boolean limitProductionGenerators;
+  int delayCheckGenerators;
   boolean enableQuarry;
   boolean limitProductionQuarry;
   boolean enableWeapons;

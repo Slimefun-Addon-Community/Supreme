@@ -134,6 +134,7 @@ Make a new issue, pull request, or contact me on discord @RelativoBR#9577
 - **use-legacy-supremeexpansion-item-id** - Indication use compatibily old item from addon SupremeExpanssion
 - **enable-generators** - Indication whether to enable the power generators
 - **limit-production-generators** - To reduce the efficiency of generators (factor 5x)
+- **delay-check-generators** - To set the generator verification time
 - **enable-quarry** - Indication whether to enable the quarry machine
 - **limit-production-quarry** - To reduce quarry production (hard mode 50% failure)
 - **quarry-custom-output** - Can be adjusted all item productions in Quarry

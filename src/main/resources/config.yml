@@ -6,6 +6,7 @@ options:
   custom-ticker-delay: 2
   enable-generators: true
   limit-production-generators: false
+  delay-check-generators: 600
   enable-quarry: true
   limit-production-quarry: false
   enable-weapons: true

@@ -56,6 +56,7 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
             .lang(typeSection.getString("lang")).customTickerDelay(typeSection.getInt("custom-ticker-delay"))
             .enableGenerators(typeSection.getBoolean("enable-generators"))
             .limitProductionGenerators(typeSection.getBoolean("limit-production-generators"))
+            .delayCheckGenerators(typeSection.getInt("delay-check-generators"))
             .enableQuarry(typeSection.getBoolean("enable-quarry"))
             .limitProductionQuarry(typeSection.getBoolean("limit-production-quarry"))
             .enableWeapons(typeSection.getBoolean("enable-weapons")).enableTools(typeSection.getBoolean("enable-tools"))
