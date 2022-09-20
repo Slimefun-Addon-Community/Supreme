@@ -2,10 +2,10 @@ package com.github.relativobr.supreme.machine;
 
 import static com.github.relativobr.supreme.Supreme.getSupremeOptions;
 
-import com.github.relativobr.recipe.InventoryRecipe;
+import com.github.relativobr.supreme.generic.recipe.InventoryRecipe;
 import com.github.relativobr.supreme.util.ItemUtil;
-import com.github.relativobr.util.UtilEnergy;
-import com.github.relativobr.util.UtilMachine;
+import com.github.relativobr.supreme.util.UtilEnergy;
+import com.github.relativobr.supreme.util.UtilMachine;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemState;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;

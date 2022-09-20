@@ -1,16 +1,15 @@
 package com.github.relativobr.supreme.machine.tech;
 
-import com.github.relativobr.generic.MobTechMutationGeneric;
-import com.github.relativobr.machine.SimpleItemContainerMachine;
-import com.github.relativobr.recipe.InventoryRecipe;
+import com.github.relativobr.supreme.generic.machine.SimpleItemContainerMachine;
+import com.github.relativobr.supreme.generic.recipe.InventoryRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.magical.SupremeAttribute;
 import com.github.relativobr.supreme.resource.magical.SupremeCetrus;
 import com.github.relativobr.supreme.resource.magical.SupremeCore;
 import com.github.relativobr.supreme.util.ItemGroups;
 import com.github.relativobr.supreme.util.SupremeItemStack;
-import com.github.relativobr.util.UtilEnergy;
-import com.github.relativobr.util.UtilMachine;
+import com.github.relativobr.supreme.util.UtilEnergy;
+import com.github.relativobr.supreme.util.UtilMachine;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;

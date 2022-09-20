@@ -17,11 +17,14 @@ import com.github.relativobr.supreme.machine.multiblock.ElectricCoreFabricator;
 import com.github.relativobr.supreme.machine.multiblock.ElectricGearFabricator;
 import com.github.relativobr.supreme.machine.multiblock.ElectricMagicalFabricator;
 import com.github.relativobr.supreme.util.ItemGroups;
+import com.github.relativobr.supreme.util.SupremeOptions;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 
 public class SetupMachines {
 
   public static void setup(Supreme sup) {
+
+    SupremeOptions supremeOptions = getSupremeOptions();
 
     SetupMultiBlockMachine.setup(sup);
 
@@ -85,28 +88,38 @@ public class SetupMachines {
         .setMachineRecipes(ElectricGearFabricator.getAllRecipe()).setCapacity(600).setEnergyConsumption(300)
         .setProcessingSpeed(15).register(sup);
 
+    final int baseTimeMobCollector = supremeOptions.getBaseTimeMobCollector();
+
     new MobCollector(ItemGroups.MACHINES_CATEGORY, MobCollector.MOB_COLLECTOR_MACHINE,
-        RecipeType.ENHANCED_CRAFTING_TABLE, MobCollector.RECIPE_MOB_COLLECTOR_MACHINE).setMobRange(4).setCapacity(1000)
+        RecipeType.ENHANCED_CRAFTING_TABLE, MobCollector.RECIPE_MOB_COLLECTOR_MACHINE)
+        .setMobRange(4).setTimeProcess(baseTimeMobCollector).setCapacity(1000)
         .setProcessingSpeed(1).setEnergyConsumption(20).register(sup);
 
     new MobCollector(ItemGroups.MACHINES_CATEGORY, MobCollector.MOB_COLLECTOR_MACHINE_II,
-        RecipeType.ENHANCED_CRAFTING_TABLE, MobCollector.RECIPE_MOB_COLLECTOR_MACHINE_II).setMobRange(8)
+        RecipeType.ENHANCED_CRAFTING_TABLE, MobCollector.RECIPE_MOB_COLLECTOR_MACHINE_II)
+        .setMobRange(8).setTimeProcess(baseTimeMobCollector)
         .setCapacity(5000).setProcessingSpeed(5).setEnergyConsumption(100).register(sup);
 
     new MobCollector(ItemGroups.MACHINES_CATEGORY, MobCollector.MOB_COLLECTOR_MACHINE_III,
-        RecipeType.ENHANCED_CRAFTING_TABLE, MobCollector.RECIPE_MOB_COLLECTOR_MACHINE_III).setMobRange(16)
+        RecipeType.ENHANCED_CRAFTING_TABLE, MobCollector.RECIPE_MOB_COLLECTOR_MACHINE_III)
+        .setMobRange(16).setTimeProcess(baseTimeMobCollector)
         .setCapacity(15000).setProcessingSpeed(15).setEnergyConsumption(300).register(sup);
 
+    final int baseTimeVirtualGarden = supremeOptions.getBaseTimeVirtualGarden();
+
     new VirtualGarden(ItemGroups.MACHINES_CATEGORY, VirtualGarden.VIRTUAL_GARDEN_MACHINE,
-        RecipeType.ENHANCED_CRAFTING_TABLE, VirtualGarden.RECIPE_VIRTUAL_GARDEN_MACHINE).setCapacity(1000)
+        RecipeType.ENHANCED_CRAFTING_TABLE, VirtualGarden.RECIPE_VIRTUAL_GARDEN_MACHINE)
+        .setTimeProcess(baseTimeVirtualGarden).setCapacity(1000)
         .setProcessingSpeed(1).setEnergyConsumption(20).register(sup);
 
     new VirtualGarden(ItemGroups.MACHINES_CATEGORY, VirtualGarden.VIRTUAL_GARDEN_MACHINE_II,
-        RecipeType.ENHANCED_CRAFTING_TABLE, VirtualGarden.RECIPE_VIRTUAL_GARDEN_MACHINE_II).setCapacity(5000)
+        RecipeType.ENHANCED_CRAFTING_TABLE, VirtualGarden.RECIPE_VIRTUAL_GARDEN_MACHINE_II)
+        .setTimeProcess(baseTimeVirtualGarden).setCapacity(5000)
         .setProcessingSpeed(5).setEnergyConsumption(100).register(sup);
 
     new VirtualGarden(ItemGroups.MACHINES_CATEGORY, VirtualGarden.VIRTUAL_GARDEN_MACHINE_III,
-        RecipeType.ENHANCED_CRAFTING_TABLE, VirtualGarden.RECIPE_VIRTUAL_GARDEN_MACHINE_III).setCapacity(15000)
+        RecipeType.ENHANCED_CRAFTING_TABLE, VirtualGarden.RECIPE_VIRTUAL_GARDEN_MACHINE_III)
+        .setTimeProcess(baseTimeVirtualGarden).setCapacity(15000)
         .setProcessingSpeed(15).setEnergyConsumption(300).register(sup);
 
     new ForgeIngot(ItemGroups.MACHINES_CATEGORY, ForgeIngot.FORGE_INGOT_MACHINE, RecipeType.ENHANCED_CRAFTING_TABLE,
@@ -186,21 +199,26 @@ public class SetupMachines {
             ElectricCrafter.ELECTRIC_CRAFTER_MACHINE_III.getItemId()).setMachineRecipes(ElectricCrafter.getAllRecipe())
         .setCapacity(15000).setProcessingSpeed(15).setEnergyConsumption(300).register(sup);
 
+    final int baseTimeVirtualAquarium = supremeOptions.getBaseTimeVirtualAquarium();
+
     new VirtualAquarium(ItemGroups.MACHINES_CATEGORY, VirtualAquarium.VIRTUAL_AQUARIUM_MACHINE,
-        RecipeType.ENHANCED_CRAFTING_TABLE, VirtualAquarium.RECIPE_VIRTUAL_AQUARIUM_MACHINE).setCapacity(1000)
+        RecipeType.ENHANCED_CRAFTING_TABLE, VirtualAquarium.RECIPE_VIRTUAL_AQUARIUM_MACHINE)
+        .setTimeProcess(baseTimeVirtualAquarium).setCapacity(1000)
         .setProcessingSpeed(1).setEnergyConsumption(20).register(sup);
 
     new VirtualAquarium(ItemGroups.MACHINES_CATEGORY, VirtualAquarium.VIRTUAL_AQUARIUM_MACHINE_II,
-        RecipeType.ENHANCED_CRAFTING_TABLE, VirtualAquarium.RECIPE_VIRTUAL_AQUARIUM_MACHINE_II).setCapacity(5000)
+        RecipeType.ENHANCED_CRAFTING_TABLE, VirtualAquarium.RECIPE_VIRTUAL_AQUARIUM_MACHINE_II)
+        .setTimeProcess(baseTimeVirtualAquarium).setCapacity(5000)
         .setProcessingSpeed(5).setEnergyConsumption(100).register(sup);
 
     new VirtualAquarium(ItemGroups.MACHINES_CATEGORY, VirtualAquarium.VIRTUAL_AQUARIUM_MACHINE_III,
-        RecipeType.ENHANCED_CRAFTING_TABLE, VirtualAquarium.RECIPE_VIRTUAL_AQUARIUM_MACHINE_III).setCapacity(15000)
+        RecipeType.ENHANCED_CRAFTING_TABLE, VirtualAquarium.RECIPE_VIRTUAL_AQUARIUM_MACHINE_III)
+        .setTimeProcess(baseTimeVirtualAquarium).setCapacity(15000)
         .setProcessingSpeed(15).setEnergyConsumption(300).register(sup);
 
     SetupTechMachines.setup(sup);
 
-    if (getSupremeOptions().isEnableItemConverter()) {
+    if (supremeOptions.isEnableItemConverter()) {
       new ItemConverter(ItemGroups.MACHINES_CATEGORY, ItemConverter.ITEM_CONVERTER_MACHINE,
           RecipeType.ENHANCED_CRAFTING_TABLE, ItemConverter.RECIPE_ITEM_CONVERTER_MACHINE).setMachineIdentifier(
               ItemConverter.ITEM_CONVERTER_MACHINE.getItemId()).setCapacity(1).setEnergyConsumption(1)

@@ -1,16 +1,16 @@
 package com.github.relativobr.supreme.machine.tech;
 
-import com.github.relativobr.generic.MobTechGeneric.MobTechType;
-import com.github.relativobr.machine.SimpleItemContainerMachine;
-import com.github.relativobr.recipe.InventoryRecipe;
-import com.github.relativobr.recipe.AbstractItemRecipe;
+import com.github.relativobr.supreme.machine.tech.MobTechGeneric.MobTechType;
+import com.github.relativobr.supreme.generic.machine.SimpleItemContainerMachine;
+import com.github.relativobr.supreme.generic.recipe.InventoryRecipe;
+import com.github.relativobr.supreme.generic.recipe.AbstractItemRecipe;
 import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.mobtech.MobTech;
 import com.github.relativobr.supreme.util.ItemGroups;
 import com.github.relativobr.supreme.util.SupremeItemStack;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
-import com.github.relativobr.util.UtilEnergy;
+import com.github.relativobr.supreme.util.UtilEnergy;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -196,15 +196,15 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
 
     BlockMenu inv = BlockStorage.getInventory(b);
 
-    final ItemStack itemNaReceita = validRecipeItem(inv);
-    final ItemStack itemProduzindo = processing.get(b);
-    if (itemProduzindo == null) {
+    final ItemStack validRecipeItem = validRecipeItem(inv);
+    final ItemStack itemProduction = processing.get(b);
+    if (itemProduction == null) {
 
-      if (itemNaReceita != null) {
+      if (validRecipeItem != null) {
 
-        invalidStatus(inv, itemNaReceita.getType(), " ");
+        invalidStatus(inv, validRecipeItem.getType(), " ");
 
-        processing.put(b, itemNaReceita);
+        processing.put(b, validRecipeItem);
         progressTime.put(b, (getTimeProcess() * 2));
 
       } else {
@@ -217,7 +217,7 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
 
       if (this.getProgressTime(b) <= 0) {
 
-        checkCloneOutput(inv, itemProduzindo.clone());
+        checkCloneOutput(inv, itemProduction.clone());
 
         processing.put(b, null);
         progressTime.put(b, 0);
@@ -225,9 +225,9 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
 
       } else {
 
-        if (SlimefunUtils.isItemSimilar(itemNaReceita, itemProduzindo, false, false)) {
+        if (SlimefunUtils.isItemSimilar(validRecipeItem, itemProduction, false, false)) {
 
-          this.processTicks(b, inv, itemProduzindo);
+          this.processTicks(b, inv, itemProduction);
 
         } else {
 

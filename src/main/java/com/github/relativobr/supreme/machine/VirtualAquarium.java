@@ -1,12 +1,12 @@
 package com.github.relativobr.supreme.machine;
 
-import com.github.relativobr.machine.SimpleItemWithLargeContainerMachine;
+import com.github.relativobr.supreme.generic.machine.SimpleItemWithLargeContainerMachine;
 import com.github.relativobr.supreme.machine.recipe.VirtualAquariumMachineRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.magical.SupremeAttribute;
 import com.github.relativobr.supreme.resource.magical.SupremeCetrus;
 import com.github.relativobr.supreme.util.SupremeItemStack;
-import com.github.relativobr.util.UtilMachine;
+import com.github.relativobr.supreme.util.UtilMachine;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;

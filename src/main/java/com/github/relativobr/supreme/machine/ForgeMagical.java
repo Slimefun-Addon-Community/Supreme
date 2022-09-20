@@ -1,7 +1,7 @@
 package com.github.relativobr.supreme.machine;
 
-import com.github.relativobr.machine.SimpleItemWithLargeContainerMachine;
-import com.github.relativobr.recipe.AbstractItemRecipe;
+import com.github.relativobr.supreme.generic.machine.SimpleItemWithLargeContainerMachine;
+import com.github.relativobr.supreme.generic.recipe.AbstractItemRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.magical.SupremeAttribute;
 import com.github.relativobr.supreme.resource.magical.SupremeCetrus;

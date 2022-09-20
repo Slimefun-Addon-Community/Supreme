@@ -17,6 +17,10 @@ public class SupremeOptions {
   int customTickerDelay;
   boolean enableGenerators;
   boolean limitProductionGenerators;
+  int baseTimeVirtualGarden;
+  int baseTimeVirtualAquarium;
+  int baseTimeMobCollector;
+  int baseTimeTechGenerator;
   boolean enableQuarry;
   boolean limitProductionQuarry;
   boolean enableWeapons;

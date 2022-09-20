@@ -1,5 +1,7 @@
 package com.github.relativobr.supreme.setup;
 
+import static com.github.relativobr.supreme.Supreme.getSupremeOptions;
+
 import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.machine.tech.TechGenerator;
 import com.github.relativobr.supreme.resource.mobtech.SimpleCard;
@@ -11,6 +13,8 @@ import org.bukkit.Material;
 public class SetupSimpleCard {
 
   public static void setup(Supreme plugin) {
+
+    boolean customBc = getSupremeOptions().isCustomBc();
 
     // setup cards
     TechGenerator.preSetup(plugin, SimpleCard.CARD_STONE, Material.STONE, Material.COBBLESTONE);
@@ -51,7 +55,11 @@ public class SetupSimpleCard {
 
     TechGenerator.preSetup(plugin, SimpleCard.CARD_EMERALD, Material.EMERALD_BLOCK, Material.EMERALD);
 
-    TechGenerator.preSetup(plugin, SimpleCard.CARD_NETHERITE, Material.NETHERITE_BLOCK, Material.NETHERITE_INGOT);
+    if(customBc){
+      TechGenerator.preSetup(plugin, SimpleCard.CARD_NETHERITE, Material.NETHERITE_BLOCK, Material.NETHERITE_SCRAP);
+    } else {
+      TechGenerator.preSetup(plugin, SimpleCard.CARD_NETHERITE, Material.NETHERITE_BLOCK, Material.NETHERITE_INGOT);
+    }
 
     TechGenerator.preSetup(plugin, SimpleCard.CARD_AMETHYST, Material.AMETHYST_BLOCK, Material.AMETHYST_SHARD);
 

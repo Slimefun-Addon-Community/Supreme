@@ -1,6 +1,6 @@
 package com.github.relativobr.supreme.machine.tech;
 
-import com.github.relativobr.machine.SimpleItemWithLargeContainerMachine;
+import com.github.relativobr.supreme.generic.machine.SimpleItemWithLargeContainerMachine;
 import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.tools.MobCollectorTools;
 import com.github.relativobr.supreme.machine.recipe.MobTechCollectorMachineRecipe;
@@ -16,7 +16,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.MachineTier;
 import io.github.thebusybiscuit.slimefun4.core.attributes.MachineType;
-import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.inventory.InvUtils;
 import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;
@@ -29,7 +28,6 @@ import java.util.function.Predicate;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;

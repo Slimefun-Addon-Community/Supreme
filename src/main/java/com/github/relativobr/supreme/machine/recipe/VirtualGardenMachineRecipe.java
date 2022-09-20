@@ -1,6 +1,8 @@
 package com.github.relativobr.supreme.machine.recipe;
 
-import com.github.relativobr.recipe.AbstractItemRecipe;
+import com.github.relativobr.supreme.Supreme;
+import com.github.relativobr.supreme.generic.recipe.AbstractItemRecipe;
+import com.github.relativobr.supreme.util.SupremeOptions;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -97,7 +99,7 @@ public class VirtualGardenMachineRecipe extends MachineRecipe {
 
   @ParametersAreNonnullByDefault
   public VirtualGardenMachineRecipe(AbstractItemRecipe recipe) {
-    super(15, recipe.getInput(), recipe.getOutput());
+    super(Supreme.getSupremeOptions().getBaseTimeVirtualGarden(), recipe.getInput(), recipe.getOutput());
   }
 
   public static List<AbstractItemRecipe> getAllRecipe() {

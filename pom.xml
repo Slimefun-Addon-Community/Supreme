@@ -67,12 +67,6 @@
             <version>5.3.19</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.github.RelativoBR</groupId>
-            <artifactId>SlimefunRelativeLib</artifactId>
-            <version>v1.6.1</version>
-        </dependency>
-
         <!-- tradução -->
         <dependency>
             <groupId>net.guizhanss</groupId>

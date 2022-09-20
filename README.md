@@ -136,6 +136,11 @@ Make a new issue, pull request, or contact me on discord @RelativoBR#9577
 - **limit-production-generators** - To reduce the efficiency of generators (factor 5x)
 - **enable-quarry** - Indication whether to enable the quarry machine
 - **limit-production-quarry** - To reduce quarry production (hard mode 50% failure)
+- **custom-ticker-delay** - To change the quarry production delay
+- **base-time-virtual-garden** - To change the Virtual Garden base processing time
+- **base-time-virtual-aquarium** - To change the Virtual Aquarium base processing time
+- **base-time-mob-collector** - To change the Mob Collector base processing time
+- **base-time-tech-generator** - To change the Tech Generator base processing time
 - **quarry-custom-output** - Can be adjusted all item productions in Quarry
 - **enable-weapons** - Indication whether to enable the weapons
 - **enable-tools** - Indication whether to enable the tools

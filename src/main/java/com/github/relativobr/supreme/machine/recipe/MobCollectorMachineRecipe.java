@@ -2,6 +2,8 @@ package com.github.relativobr.supreme.machine.recipe;
 
 import static com.github.relativobr.supreme.Supreme.getSupremeOptions;
 
+import com.github.relativobr.supreme.Supreme;
+import com.github.relativobr.supreme.util.SupremeOptions;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import java.util.ArrayList;
@@ -21,12 +23,15 @@ public class MobCollectorMachineRecipe extends MachineRecipe implements Predicat
 
   @ParametersAreNonnullByDefault
   public MobCollectorMachineRecipe(ItemStack input, ItemStack result, Predicate<LivingEntity> predicate) {
-    super(15, new ItemStack[]{input}, new ItemStack[]{result});
+    super(Supreme.getSupremeOptions().getBaseTimeMobCollector(), new ItemStack[]{input}, new ItemStack[]{result});
     Validate.notNull(predicate, "The Predicate must not be null");
     this.predicate = predicate;
   }
 
   public static List<ItemStack> getAllRecipe() {
+
+    SupremeOptions supremeOptions = getSupremeOptions();
+
     List<ItemStack> displayRecipes = new ArrayList();
     displayRecipes.add(new CustomItemStack(Material.GLASS_BOTTLE, null, "&fRequires &bBee &fnearby"));
     displayRecipes.add(new ItemStack(Material.HONEY_BOTTLE));
@@ -54,7 +59,7 @@ public class MobCollectorMachineRecipe extends MachineRecipe implements Predicat
     displayRecipes.add(new ItemStack(Material.COAL));
     displayRecipes.add(new CustomItemStack(Material.SHEARS, null, "&fRequires &bWither &fnearby"));
     displayRecipes.add(SlimefunItems.COMPRESSED_CARBON);
-    if (!getSupremeOptions().isCustomBc()) {
+    if (!supremeOptions.isCustomBc()) {
       displayRecipes.add(new CustomItemStack(Material.SHEARS, null, "&fRequires &bIronGolem &fnearby"));
       displayRecipes.add(SlimefunItems.BASIC_CIRCUIT_BOARD);
     }
@@ -64,13 +69,13 @@ public class MobCollectorMachineRecipe extends MachineRecipe implements Predicat
     displayRecipes.add(new ItemStack(Material.BONE));
     displayRecipes.add(new CustomItemStack(Material.IRON_SWORD, null, "&fRequires &bCreeper &fnearby"));
     displayRecipes.add(new ItemStack(Material.GUNPOWDER));
-    if (!getSupremeOptions().isCustomBc()) {
+    if (!supremeOptions.isCustomBc()) {
       displayRecipes.add(new CustomItemStack(Material.IRON_SWORD, null, "&fRequires &bSlime &fnearby"));
       displayRecipes.add(new ItemStack(Material.SLIME_BALL));
     }
     displayRecipes.add(new CustomItemStack(Material.IRON_SWORD, null, "&fRequires &bSpider &fnearby"));
     displayRecipes.add(new ItemStack(Material.STRING));
-    if (!getSupremeOptions().isCustomBc()) {
+    if (!supremeOptions.isCustomBc()) {
       displayRecipes.add(new CustomItemStack(Material.IRON_SWORD, null, "&fRequires &bWither Skeleton &fnearby"));
       displayRecipes.add(new ItemStack(Material.WITHER_SKELETON_SKULL));
     }
@@ -80,7 +85,7 @@ public class MobCollectorMachineRecipe extends MachineRecipe implements Predicat
     displayRecipes.add(new ItemStack(Material.BLAZE_ROD));
     displayRecipes.add(new CustomItemStack(Material.IRON_SWORD, null, "&fRequires &bMagmaCube &fnearby"));
     displayRecipes.add(new ItemStack(Material.MAGMA_CREAM));
-    if (!getSupremeOptions().isCustomBc()) {
+    if (!supremeOptions.isCustomBc()) {
       displayRecipes.add(new CustomItemStack(Material.IRON_SWORD, null, "&fRequires &bWither &fnearby"));
       displayRecipes.add(new ItemStack(Material.NETHER_STAR));
       displayRecipes.add(new CustomItemStack(Material.IRON_SWORD, null, "&fRequires &bGhast &fnearby"));
@@ -102,7 +107,7 @@ public class MobCollectorMachineRecipe extends MachineRecipe implements Predicat
     displayRecipes.add(new ItemStack(Material.IRON_INGOT));
     displayRecipes.add(new CustomItemStack(Material.IRON_SWORD, null, "&fRequires &bDrowned &fnearby"));
     displayRecipes.add(new ItemStack(Material.NAUTILUS_SHELL));
-    if (!getSupremeOptions().isCustomBc()) {
+    if (!supremeOptions.isCustomBc()) {
       displayRecipes.add(new CustomItemStack(Material.IRON_SWORD, null, "&fRequires &bGuardian &fnearby"));
       displayRecipes.add(new ItemStack(Material.PRISMARINE_SHARD));
       displayRecipes.add(new CustomItemStack(Material.IRON_SWORD, null, "&fRequires &bElderGuardian &fnearby"));

@@ -8,8 +8,8 @@ import static com.github.relativobr.supreme.util.CompatibilySupremeLegacy.loadGe
 import static com.github.relativobr.supreme.util.CompatibilySupremeLegacy.loadGenerators;
 import static com.github.relativobr.supreme.util.CompatibilySupremeLegacy.loadMachines;
 
-import com.github.relativobr.generic.MobTechGeneric;
-import com.github.relativobr.generic.MobTechGeneric.MobTechType;
+import com.github.relativobr.supreme.machine.tech.MobTechGeneric;
+import com.github.relativobr.supreme.machine.tech.MobTechGeneric.MobTechType;
 import com.github.relativobr.supreme.machine.AbstractQuarryOutput;
 import com.github.relativobr.supreme.machine.AbstractQuarryOutputItem;
 import com.github.relativobr.supreme.setup.MainSetup;
@@ -52,16 +52,23 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
       ConfigurationSection typeSection = inst().getConfig().getConfigurationSection("options");
       if (typeSection != null) {
         supremeOptions = SupremeOptions.builder().autoUpdate(typeSection.getBoolean("auto-update"))
-            .useLegacySupremeexpansionItemId(typeSection.getBoolean("use-legacy-supremeexpansion-item-id"))
-            .lang(typeSection.getString("lang")).customTickerDelay(typeSection.getInt("custom-ticker-delay"))
-            .enableGenerators(typeSection.getBoolean("enable-generators"))
-            .limitProductionGenerators(typeSection.getBoolean("limit-production-generators"))
-            .enableQuarry(typeSection.getBoolean("enable-quarry"))
-            .limitProductionQuarry(typeSection.getBoolean("limit-production-quarry"))
-            .enableWeapons(typeSection.getBoolean("enable-weapons")).enableTools(typeSection.getBoolean("enable-tools"))
-            .enableArmor(typeSection.getBoolean("enable-armor")).enableTech(typeSection.getBoolean("enable-tech"))
-            .enableItemConverter(typeSection.getBoolean("enable-item-converter-machine"))
-            .customBc(typeSection.getBoolean("custom-bc")).build();
+                .useLegacySupremeexpansionItemId(typeSection.getBoolean("use-legacy-supremeexpansion-item-id", false))
+                .lang(typeSection.getString("lang", "en-US"))
+                .customTickerDelay(typeSection.getInt("custom-ticker-delay"))
+                .enableGenerators(typeSection.getBoolean("enable-generators", true))
+                .limitProductionGenerators(typeSection.getBoolean("limit-production-generators", false))
+                .enableQuarry(typeSection.getBoolean("enable-quarry", true))
+                .limitProductionQuarry(typeSection.getBoolean("limit-production-quarry", false))
+                .baseTimeVirtualGarden(typeSection.getInt("base-time-virtual-garden", 15))
+                .baseTimeVirtualAquarium(typeSection.getInt("base-time-virtual-aquarium", 15))
+                .baseTimeMobCollector(typeSection.getInt("base-time-mob-collector", 15))
+                .baseTimeTechGenerator(typeSection.getInt("base-time-tech-generator", 1800))
+                .enableWeapons(typeSection.getBoolean("enable-weapons", true))
+                .enableTools(typeSection.getBoolean("enable-tools", true))
+                .enableArmor(typeSection.getBoolean("enable-armor", true))
+                .enableTech(typeSection.getBoolean("enable-tech", true))
+                .enableItemConverter(typeSection.getBoolean("enable-item-converter-machine", true))
+                .customBc(typeSection.getBoolean("custom-bc", false)).build();
       }
     }
     return supremeOptions;

@@ -1,11 +1,11 @@
 package com.github.relativobr.supreme.machine;
 
-import com.github.relativobr.machine.FlexItemContainerMachine;
-import com.github.relativobr.recipe.AbstractItemRecipe;
+import com.github.relativobr.supreme.generic.machine.FlexItemContainerMachine;
+import com.github.relativobr.supreme.generic.recipe.AbstractItemRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.magical.SupremeCetrus;
 import com.github.relativobr.supreme.util.SupremeItemStack;
-import com.github.relativobr.util.UtilEnergy;
+import com.github.relativobr.supreme.util.UtilEnergy;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;

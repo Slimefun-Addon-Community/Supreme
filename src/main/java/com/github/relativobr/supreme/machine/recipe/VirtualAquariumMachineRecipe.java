@@ -1,5 +1,6 @@
 package com.github.relativobr.supreme.machine.recipe;
 
+import com.github.relativobr.supreme.Supreme;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ public class VirtualAquariumMachineRecipe extends MachineRecipe {
 
   @ParametersAreNonnullByDefault
   public VirtualAquariumMachineRecipe(ItemStack input, ItemStack[] result) {
-    super(15, new ItemStack[]{input}, result);
+    super(Supreme.getSupremeOptions().getBaseTimeVirtualAquarium(), new ItemStack[]{input}, result);
   }
 
   public static List<ItemStack> getAllRecipe() {

@@ -3,9 +3,9 @@ package com.github.relativobr.supreme.machine;
 import static com.github.relativobr.supreme.util.CompatibilySupremeLegacy.getNewIdSupremeLegacy;
 import static com.github.relativobr.supreme.util.CompatibilySupremeLegacy.getOldIdSupremeLegacy;
 
-import com.github.relativobr.machine.SimpleItemContainerMachine;
+import com.github.relativobr.supreme.generic.machine.SimpleItemContainerMachine;
 import com.github.relativobr.supreme.util.SupremeItemStack;
-import com.github.relativobr.util.UtilEnergy;
+import com.github.relativobr.supreme.util.UtilEnergy;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;

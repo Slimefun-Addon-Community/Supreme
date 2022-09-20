@@ -6,6 +6,7 @@ import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.gear.AbstractArmor;
 import com.github.relativobr.supreme.tools.AbstractTools;
 import com.github.relativobr.supreme.gear.AbstractWeapons;
+import com.github.relativobr.supreme.util.SupremeOptions;
 
 public class MainSetup {
 
@@ -15,23 +16,25 @@ public class MainSetup {
     SetupSupremeComponents.setup(sup);
     SetupMachines.setup(sup);
 
-    if (getSupremeOptions().isEnableGenerators()) {
+    SupremeOptions supremeOptions = getSupremeOptions();
+
+    if (supremeOptions.isEnableGenerators()) {
       SetupGenerators.setup(sup);
     }
 
-    if (getSupremeOptions().isEnableWeapons()) {
+    if (supremeOptions.isEnableWeapons()) {
       AbstractWeapons.setup(sup);
     }
 
-    if (getSupremeOptions().isEnableTools()) {
+    if (supremeOptions.isEnableTools()) {
       AbstractTools.setup(sup);
     }
 
-    if (getSupremeOptions().isEnableArmor()) {
+    if (supremeOptions.isEnableArmor()) {
       AbstractArmor.setup(sup);
     }
 
-    if (getSupremeOptions().isEnableQuarry()) {
+    if (supremeOptions.isEnableQuarry()) {
       SetupSupremeQuarry.setup(sup);
     }
 

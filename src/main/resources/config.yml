@@ -6,6 +6,10 @@ options:
   custom-ticker-delay: 2
   enable-generators: true
   limit-production-generators: false
+  base-time-virtual-garden: 15
+  base-time-virtual-aquarium: 15
+  base-time-mob-collector: 15
+  base-time-tech-generator: 1800
   enable-quarry: true
   limit-production-quarry: false
   enable-weapons: true
