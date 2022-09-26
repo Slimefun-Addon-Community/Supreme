@@ -13,6 +13,7 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.MachineTier;
 import io.github.thebusybiscuit.slimefun4.core.attributes.MachineType;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import java.util.ArrayList;
@@ -164,10 +165,20 @@ public class ItemConverter extends SimpleItemContainerMachine {
 
   private void pushOutputItem(BlockMenu inv, int inputSlot, int amount, ItemStack itemStack, int outputSlot) {
     ItemStack inputItem = inv.getItemInSlot(inputSlot);
-    if (inputItem != null && inputItem.getAmount() >= amount) {
+
+    if(checkIgnoreItem(inputItem)){
+      inv.consumeItem(inputSlot, inputItem.getAmount());
+      inv.pushItem(inputItem, outputSlot);
+
+    } else if (inputItem != null && inputItem.getAmount() >= amount) {
       inv.consumeItem(inputSlot, amount);
       itemStack.setAmount(amount);
       inv.pushItem(itemStack, outputSlot);
     }
+  }
+
+  private boolean checkIgnoreItem(ItemStack inputItem) {
+    return SlimefunItems.REPAIRED_SPAWNER.isSimilar(inputItem)
+        || SlimefunItems.BROKEN_SPAWNER.isSimilar(inputItem);
   }
 }
