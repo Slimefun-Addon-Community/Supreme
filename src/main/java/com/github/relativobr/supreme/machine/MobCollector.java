@@ -191,6 +191,9 @@ public class MobCollector extends SimpleItemWithLargeContainerMachine {
           (n) -> n.getType() == EntityType.IRON_GOLEM));
     }
     this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
+        new ItemStack(Material.PHANTOM_MEMBRANE, this.getSpeed()),
+        (n) -> n.getType() == EntityType.PHANTOM));
+    this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
         new ItemStack(Material.ROTTEN_FLESH, this.getSpeed()),
         (n) -> n.getType() == EntityType.ZOMBIE));
     this.addProduce(
