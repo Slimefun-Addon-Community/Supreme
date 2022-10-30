@@ -189,17 +189,18 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
   }
 
   public static String buildLoreType(MobTechType mobTechType, Integer tier) {
+    String tierString = String.valueOf(tier + 1);
     switch (mobTechType) {
       case MUTATION_BERSERK:
       case ROBOTIC_ACCELERATION:
-        return ChatColor.YELLOW + String.valueOf(tier + 1) + "x " + ChatColor.GRAY
-            + "increase speed " + ChatColor.GRAY + "increase energy";
+        return ChatColor.YELLOW + tierString + "x " + ChatColor.GRAY
+            + "increase speed and " + tierString + "0% increase energy";
       case MUTATION_LUCK:
       case ROBOTIC_CLONING:
         return buildLoreTypeLuckAndCloning(tier);
       case MUTATION_INTELLIGENCE:
       case ROBOTIC_EFFICIENCY:
-        return ChatColor.YELLOW + String.valueOf(tier + 1) + "0% " + ChatColor.GRAY
+        return ChatColor.YELLOW + tierString + "0% " + ChatColor.GRAY
             + " decrease energy";
       case SIMPLE:
       default:
@@ -220,24 +221,20 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
   }
 
   private static String buildLoreTypeAmount(MobTechType mobTechType, Integer tier) {
+    String tierString = String.valueOf(tier + 1);
     switch (mobTechType) {
       case MUTATION_BERSERK:
       case ROBOTIC_ACCELERATION:
-        return ChatColor.YELLOW + "increase speed (" + String.valueOf(tier + 1)
-            + " x amount stack x 0.5)  "
-            + "increase energy (" + String.valueOf(tier + 1) + " x amount stack x 0.15625)"
-            + ChatColor.GRAY
-            + " value process";
+        return ChatColor.YELLOW + "increase speed (" + tierString+ " x amount stack x 0.5)  "
+            + ChatColor.GRAY + " value process";
       case MUTATION_INTELLIGENCE:
       case ROBOTIC_EFFICIENCY:
-        return ChatColor.YELLOW + "decrease energy (" + String.valueOf(tier + 1)
-            + " x amount stack x 0.15625)" + ChatColor.GRAY
-            + " value process";
+        return ChatColor.YELLOW + "decrease energy (" + tierString + " x amount stack x 0.15625)"
+            + ChatColor.GRAY + " value process";
       case MUTATION_LUCK:
       case ROBOTIC_CLONING:
-        return ChatColor.YELLOW + "(" + String.valueOf(tier + 1) + "x amount stack)"
-            + ChatColor.GRAY
-            + " value process (limit 64x)";
+        return ChatColor.YELLOW + "(" + tierString + "x amount stack)"
+            + ChatColor.GRAY + " value process (limit 64x)";
       case SIMPLE:
       default:
         return ChatColor.YELLOW + "1x amount stack" + ChatColor.GRAY + " value process";
@@ -282,6 +279,9 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
           chance = 100 - checkLimitChance;
         }
         final String itemId = itemConfig.getString("item");
+        if(itemId == null){
+          continue;
+        }
         if (itemConfig.getBoolean("is-slimefun")) {
           SlimefunItem slimefunItem = SlimefunItem.getById(itemId);
           //check Legacy Supreme
