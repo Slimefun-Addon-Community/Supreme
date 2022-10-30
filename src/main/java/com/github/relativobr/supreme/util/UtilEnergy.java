@@ -31,6 +31,11 @@ public class UtilEnergy {
   }
 
   @Nonnull
+  public static String energyPowerPerTick(int energy) {
+    return "&8⇨ &b⚡ &7" + format(energy) + " J/tick";
+  }
+
+  @Nonnull
   public static String energyPowerPerItem(int energy) {
     return "&8⇨ &b⚡ &7" + format(energy) + " J/item";
   }

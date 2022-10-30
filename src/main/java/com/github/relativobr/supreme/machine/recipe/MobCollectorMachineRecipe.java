@@ -63,6 +63,8 @@ public class MobCollectorMachineRecipe extends MachineRecipe implements Predicat
       displayRecipes.add(new CustomItemStack(Material.SHEARS, null, "&fRequires &bIronGolem &fnearby"));
       displayRecipes.add(SlimefunItems.BASIC_CIRCUIT_BOARD);
     }
+    displayRecipes.add(new CustomItemStack(Material.IRON_SWORD, null, "&fRequires &bPhantom &fnearby"));
+    displayRecipes.add(new ItemStack(Material.PHANTOM_MEMBRANE));
     displayRecipes.add(new CustomItemStack(Material.IRON_SWORD, null, "&fRequires &bZombie &fnearby"));
     displayRecipes.add(new ItemStack(Material.ROTTEN_FLESH));
     displayRecipes.add(new CustomItemStack(Material.IRON_SWORD, null, "&fRequires &bSkeleton &fnearby"));
