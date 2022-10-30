@@ -54,7 +54,7 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
       "&bTech Generator", "", "&fUsing power and bees/golem, ", "&fslowly generates materials.", "",
       LoreBuilder.radioactive(Radioactivity.HIGH), "",
       LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
-      UtilEnergy.energyPowerPerSecond(2000), "", "&3Supreme Machine");
+      UtilEnergy.energyPowerPerTick(2000), "", "&3Supreme Machine");
 
   public static final ItemStack[] RECIPE_TECH_GENERATOR = {SupremeComponents.INDUCTIVE_MACHINE,
       SupremeComponents.SYNTHETIC_RUBY, SupremeComponents.INDUCTIVE_MACHINE,
