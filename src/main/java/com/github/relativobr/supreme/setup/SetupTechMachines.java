@@ -66,7 +66,7 @@ public class SetupTechMachines {
       new TechGenerator(TechGenerator.TECH_GENERATOR,
           TechGenerator.RECIPE_TECH_GENERATOR).setTimeProcess(
               supremeOptions.getBaseTimeTechGenerator())
-          .setMachineIdentifier(TechGenerator.TECH_GENERATOR.getItemId()).setCapacity(5000)
+          .setMachineIdentifier(TechGenerator.TECH_GENERATOR.getItemId()).setCapacity(32000)
           .setEnergyConsumption(2000).register(sup);
 
     }
