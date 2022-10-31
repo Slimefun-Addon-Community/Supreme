@@ -337,9 +337,7 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
         final MobTech mobTech = (MobTech) slimefunItem;
         if (mobTech.getMobTechType() == MobTechType.ROBOTIC_ACCELERATION
             || mobTech.getMobTechType() == MobTechType.MUTATION_BERSERK) {
-          time -= Math.round(((mobTech.getMobTechTier() + 1) * input.getAmount()) * 0.5);
-        } else {
-          time -= Math.round(input.getAmount() * 0.5);
+          time -= Math.round((mobTech.getMobTechTier() + 1) * input.getAmount() * 0.015625F);
         }
       }
     }

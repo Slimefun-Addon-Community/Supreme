@@ -193,8 +193,8 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
     switch (mobTechType) {
       case MUTATION_BERSERK:
       case ROBOTIC_ACCELERATION:
-        return ChatColor.YELLOW + tierString + "x " + ChatColor.GRAY
-            + "increase speed and " + tierString + "0% increase energy";
+        return ChatColor.YELLOW + tierString + "x " + ChatColor.GRAY + "increase speed and " +
+            ChatColor.YELLOW + tierString + "0%" + ChatColor.GRAY +" increase energy";
       case MUTATION_LUCK:
       case ROBOTIC_CLONING:
         return buildLoreTypeLuckAndCloning(tier);
