@@ -131,19 +131,23 @@ Make a new issue, pull request, or contact me on discord @RelativoBR#9577
 
 ## Customize Configuration (config.yml)
 
-- **use-legacy-supremeexpansion-item-id** - Indication use compatibily old item from addon SupremeExpanssion
-- **enable-generators** - Indication whether to enable the power generators
-- **limit-production-generators** - To reduce the efficiency of generators (factor 5x)
-- **enable-quarry** - Indication whether to enable the quarry machine
-- **limit-production-quarry** - To reduce quarry production (hard mode 50% failure)
-- **custom-ticker-delay** - To change the quarry production delay
-- **base-time-virtual-garden** - To change the Virtual Garden base processing time
-- **base-time-virtual-aquarium** - To change the Virtual Aquarium base processing time
-- **base-time-mob-collector** - To change the Mob Collector base processing time
-- **base-time-tech-generator** - To change the Tech Generator base processing time
+- **use-legacy-supremeexpansion-item-id** - Indication use compatibily old item from addon SupremeExpanssion (default: false)
+- **enable-generators** - Indication whether to enable the power generators (default: true)
+- **limit-production-generators** - To reduce the efficiency of generators (factor 5x) (default: false)
+- **enable-quarry** - Indication whether to enable the quarry machine (default: true)
+- **limit-production-quarry** - To reduce quarry production (hard mode 50% failure) (default: false)
+- **custom-ticker-delay** - To change the quarry production delay (default: 2)
+- **base-time-virtual-garden** - To change the Virtual Garden base processing time (default: 15)
+- **base-time-virtual-aquarium** - To change the Virtual Aquarium base processing time (default: 15)
+- **base-time-mob-collector** - To change the Mob Collector base processing time (default: 15)
+- **base-time-tech-generator** - To change the Tech Generator base processing time (default: 1800)
+- **tech-generator-max-amount** - To change the Tech Generator base result item amount (default: 64)
+- **mob-tech-enable-bee** - Indication whether to enable the Bee in Mob Tech (default: true)
+- **mob-tech-enable-iron-golem** - Indication whether to enable the Iron Golem in Mob Tech (default: true)
+- **mob-tech-enable-zombie** - Indication whether to enable the Zombie in Mob Tech (default: true)
 - **quarry-custom-output** - Can be adjusted all item productions in Quarry
-- **enable-weapons** - Indication whether to enable the weapons
-- **enable-tools** - Indication whether to enable the tools
-- **enable-armor** - Indication whether to enable the armor
-- **enable-tech** - Indication whether to enable new machine and resource to clonnig item
-- **enable-item-converter-machine** - Converter Item by ID, restore values of name and meta item converting to a new item (maintaining current enchantments and durability)
+- **enable-weapons** - Indication whether to enable the weapons (default: true)
+- **enable-tools** - Indication whether to enable the tools (default: true)
+- **enable-armor** - Indication whether to enable the armor (default: true)
+- **enable-tech** - Indication whether to enable new machine and resource to clonnig item (default: true)
+- **enable-item-converter-machine** - Converter Item by ID, restore values of name and meta item converting to a new item (maintaining current enchantments and durability) (default: true)

@@ -11,13 +11,16 @@ import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.mobtech.BeeTech;
 import com.github.relativobr.supreme.resource.mobtech.IronGolemTech;
 import com.github.relativobr.supreme.resource.mobtech.ZombieTech;
+import com.github.relativobr.supreme.util.SupremeOptions;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 
 public class SetupTechComponents {
 
   public static void setup(Supreme sup) {
 
-    if (getSupremeOptions().isEnableTech()) {
+    SupremeOptions supremeOptions = getSupremeOptions();
+
+    if (supremeOptions.isEnableTech()) {
 
       registerEnhancedCraft(SupremeComponents.CENTER_CARD_SIMPLE, SupremeComponents.RECIPE_CENTER_CARD_SIMPLE);
       registerEnhancedCraft(SupremeComponents.CENTER_CARD_ADVANCED, SupremeComponents.RECIPE_CENTER_CARD_ADVANCED);
@@ -43,9 +46,15 @@ public class SetupTechComponents {
       TechMutation.addRecipeTechMutation(SlimefunItems.NEPTUNIUM, SlimefunItems.NEPTUNIUM, SlimefunItems.PLUTONIUM);
       TechMutation.addRecipeTechMutation(SlimefunItems.PLUTONIUM, SlimefunItems.URANIUM, SlimefunItems.BOOSTED_URANIUM);
 
-      BeeTech.setup(sup);
-      IronGolemTech.setup(sup);
-      ZombieTech.setup(sup);
+      if (supremeOptions.isMobTechEnableBee()) {
+        BeeTech.setup(sup);
+      }
+      if (supremeOptions.isMobTechEnableIronGolem()) {
+        IronGolemTech.setup(sup);
+      }
+      if (supremeOptions.isMobTechEnableZombie()) {
+        ZombieTech.setup(sup);
+      }
 
       SetupSimpleCard.setup(sup);
       SetupAdvancedCard.setup(sup);

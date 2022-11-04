@@ -21,6 +21,10 @@ public class SupremeOptions {
   int baseTimeVirtualAquarium;
   int baseTimeMobCollector;
   int baseTimeTechGenerator;
+  int maxAmountTechGenerator;
+  boolean mobTechEnableBee;
+  boolean mobTechEnableIronGolem;
+  boolean mobTechEnableZombie;
   boolean enableQuarry;
   boolean limitProductionQuarry;
   boolean enableWeapons;

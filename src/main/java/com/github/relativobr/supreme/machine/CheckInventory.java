@@ -51,8 +51,8 @@ public class CheckInventory extends SlimefunItem implements InventoryBlock {
       Material.REDSTONE_LAMP, "&bCheckInventory", "", "&fChecks if the nearby chest has the filter item",
       "&fall faces are being considered (find first)", "&fif found, this block will light up", LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE),
       LoreBuilder.speed(1), UtilEnergy.energyPowerPerSecond(0), "", "&3Supreme Machine");
-  private static final ItemStack[] RECIPE_CHECK_INVENTORY = new ItemStack[]{SupremeComponents.AURUM_PLATE,
-      new ItemStack(Material.REDSTONE_LAMP), SupremeComponents.AURUM_PLATE, SupremeComponents.INDUCTIVE_MACHINE,
+  private static final ItemStack[] RECIPE_CHECK_INVENTORY = new ItemStack[]{SupremeComponents.ALLOY_AURUM,
+      new ItemStack(Material.REDSTONE_LAMP), SupremeComponents.ALLOY_AURUM, SupremeComponents.INDUCTIVE_MACHINE,
       SupremeComponents.SYNTHETIC_RUBY, SupremeComponents.INDUCTIVE_MACHINE, new ItemStack(Material.REDSTONE_BLOCK),
       new ItemStack(Material.COMPARATOR), new ItemStack(Material.REDSTONE_BLOCK)};
 

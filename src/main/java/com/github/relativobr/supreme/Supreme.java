@@ -64,6 +64,10 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
             .baseTimeVirtualAquarium(typeSection.getInt("base-time-virtual-aquarium", 15))
             .baseTimeMobCollector(typeSection.getInt("base-time-mob-collector", 15))
             .baseTimeTechGenerator(typeSection.getInt("base-time-tech-generator", 1800))
+            .maxAmountTechGenerator(typeSection.getInt("tech-generator-max-amount", 64))
+            .mobTechEnableBee(typeSection.getBoolean("mob-tech-enable-bee", true))
+            .mobTechEnableIronGolem(typeSection.getBoolean("mob-tech-enable-iron-golem", true))
+            .mobTechEnableZombie(typeSection.getBoolean("mob-tech-enable-zombie", true))
             .enableWeapons(typeSection.getBoolean("enable-weapons", true))
             .enableTools(typeSection.getBoolean("enable-tools", true))
             .enableArmor(typeSection.getBoolean("enable-armor", true))
@@ -193,15 +197,14 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
     switch (mobTechType) {
       case MUTATION_BERSERK:
       case ROBOTIC_ACCELERATION:
-        return ChatColor.YELLOW + tierString + "x " + ChatColor.GRAY + "increase speed and " +
-            ChatColor.YELLOW + tierString + "0%" + ChatColor.GRAY +" increase energy";
+        return ChatColor.GREEN + tierString + "x " + ChatColor.GRAY + "increase speed " +
+            ChatColor.RED + tierString + "0%" + ChatColor.GRAY +" increase energy";
       case MUTATION_LUCK:
       case ROBOTIC_CLONING:
         return buildLoreTypeLuckAndCloning(tier);
       case MUTATION_INTELLIGENCE:
       case ROBOTIC_EFFICIENCY:
-        return ChatColor.YELLOW + tierString + "0% " + ChatColor.GRAY
-            + " decrease energy";
+        return ChatColor.GREEN + tierString + "0% " + ChatColor.GRAY + " decrease energy";
       case SIMPLE:
       default:
         return ChatColor.GRAY + "Increases processing speed";
@@ -209,14 +212,14 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
   }
 
   private static String buildLoreTypeLuckAndCloning(Integer tier) {
-    if (tier >= 8) {
-      return ChatColor.YELLOW + "5x " + ChatColor.GRAY + "Stack clone";
+    if (tier >= 9) {
+      return ChatColor.GREEN + "+4 stack" + ChatColor.GRAY + " clone";
     } else if (tier >= 6) {
-      return ChatColor.YELLOW + "4x " + ChatColor.GRAY + "Stack clone";
+      return ChatColor.GREEN + "+3 stack" + ChatColor.GRAY + " clone";
     } else if (tier >= 4) {
-      return ChatColor.YELLOW + "3x " + ChatColor.GRAY + "Stack clone";
+      return ChatColor.GREEN + "+2 stack" + ChatColor.GRAY + " clone";
     } else {
-      return ChatColor.YELLOW + "2x " + ChatColor.GRAY + "Stack clone";
+      return ChatColor.GREEN + "+1 stack" + ChatColor.GRAY + " clone";
     }
   }
 
@@ -225,19 +228,18 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
     switch (mobTechType) {
       case MUTATION_BERSERK:
       case ROBOTIC_ACCELERATION:
-        return ChatColor.YELLOW + "increase speed (" + tierString+ " x amount stack x 0.5)  "
-            + ChatColor.GRAY + " value process";
       case MUTATION_INTELLIGENCE:
       case ROBOTIC_EFFICIENCY:
-        return ChatColor.YELLOW + "decrease energy (" + tierString + " x amount stack x 0.15625)"
-            + ChatColor.GRAY + " value process";
+        return ChatColor.GRAY + "Value process " + ChatColor.YELLOW
+            + "(" + tierString+ " * amount stack * 0.15625)" ;
       case MUTATION_LUCK:
       case ROBOTIC_CLONING:
-        return ChatColor.YELLOW + "(" + tierString + "x amount stack)"
-            + ChatColor.GRAY + " value process (limit 64x)";
+        return ChatColor.GRAY + "Value process " + ChatColor.YELLOW
+            + "(" + Supreme.getSupremeOptions().getMaxAmountTechGenerator() + "x per stack)";
       case SIMPLE:
       default:
-        return ChatColor.YELLOW + "1x amount stack" + ChatColor.GRAY + " value process";
+        return ChatColor.GRAY + "Value process " + ChatColor.YELLOW
+            + "(amount stack * 0.15625)" ;
     }
   }
 

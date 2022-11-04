@@ -265,9 +265,9 @@ public final class InventoryRecipe {
 
   //techgerator
   public static final int[] TECH_GENERATOR_BORDER = new int[] {
-      27, 28, 29, 30,
-      36,     38, 39,
-      45, 46, 47, 48
+      27, 28, 29,
+      36,     38,
+      45, 46, 47
   };
   public static final int[] TECH_GENERATOR_BORDER_IN = new int[] {
       0,   1,  2,  3,  4,  5,  6,  7,  8,
@@ -275,9 +275,9 @@ public final class InventoryRecipe {
       18, 19, 20, 21, 22, 23, 24, 25, 26
   };
   public static final int[] TECH_GENERATOR_BORDER_OUT = new int[] {
-      31, 32, 33, 34, 35,
-      40,             44,
-      49,             53
+      30, 31, 32, 33, 34, 35,
+      39,
+      48,
   };
   public static final int[] TECH_GENERATOR_PROGRESS_BAR_SLOT = new int[] {
       37
@@ -287,8 +287,8 @@ public final class InventoryRecipe {
 
   };
   public static final int[] TECH_GENERATOR_OUTPUT_SLOTS = new int[] {
-      41, 42, 43,
-      50, 51, 52
+      40, 41, 42, 43, 44,
+      49, 50, 51, 52, 53
   };
 
   //techmutation

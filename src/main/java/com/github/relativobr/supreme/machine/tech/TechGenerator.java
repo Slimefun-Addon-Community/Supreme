@@ -51,8 +51,9 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
 
   public static final SlimefunItemStack TECH_GENERATOR = new SupremeItemStack(
       "SUPREME_TECH_GENERATOR", Material.LOOM,
-      "&bTech Generator", "", "&fUsing power and bees/golem, ", "&fslowly generates materials.", "",
-      LoreBuilder.radioactive(Radioactivity.HIGH), "",
+      "&bTech Generator", "", "&fUsing power and bees/golem/zombie, ", "&fslowly generates "
+      + "materials.", "",
+      LoreBuilder.radioactive(Radioactivity.LOW), "",
       LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
       UtilEnergy.energyPowerPerTick(2000), "", "&3Supreme Machine");
 
@@ -254,7 +255,7 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
   }
 
   private void checkCloneOutput(BlockMenu inv, ItemStack itemStack) {
-    itemStack.setAmount(64);
+    itemStack.setAmount(Supreme.getSupremeOptions().getMaxAmountTechGenerator());
     inv.pushItem(itemStack, this.getOutputSlots());
     buildSlotProcess(inv.getItemInSlot(getInputSlots()[1]), itemStack, inv);
     buildSlotProcess(inv.getItemInSlot(getInputSlots()[2]), itemStack, inv);
@@ -269,7 +270,8 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
         final MobTech mobTech = (MobTech) slimefunItem;
         if (mobTech.getMobTechType() == MobTechType.ROBOTIC_CLONING
             || mobTech.getMobTechType() == MobTechType.MUTATION_LUCK) {
-          int amount = Math.max(input.getAmount() * mobTech.getMobTechTier(), 64);
+          int amount = Math.min(input.getAmount() * mobTech.getMobTechTier(),
+              Supreme.getSupremeOptions().getMaxAmountTechGenerator());
           itemStack.setAmount(amount);
           inv.pushItem(itemStack, this.getOutputSlots());
           if (mobTech.getMobTechTier() >= 4) {
@@ -278,7 +280,7 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
           if (mobTech.getMobTechTier() >= 6) {
             inv.pushItem(itemStack, this.getOutputSlots());
           }
-          if (mobTech.getMobTechTier() >= 8) {
+          if (mobTech.getMobTechTier() >= 9) {
             inv.pushItem(itemStack, this.getOutputSlots());
           }
         }
@@ -334,10 +336,13 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
     if (input != null) {
       SlimefunItem slimefunItem = SlimefunItem.getByItem(input);
       if (slimefunItem instanceof MobTech) {
+        int roundTimeAmount = Math.round(input.getAmount() * 0.015625F);
         final MobTech mobTech = (MobTech) slimefunItem;
         if (mobTech.getMobTechType() == MobTechType.ROBOTIC_ACCELERATION
             || mobTech.getMobTechType() == MobTechType.MUTATION_BERSERK) {
-          time -= Math.round((mobTech.getMobTechTier() + 1) * input.getAmount() * 0.015625F);
+          time = time - (mobTech.getMobTechTier() + 1) * roundTimeAmount;
+        } else {
+          time = time - roundTimeAmount;
         }
       }
     }
@@ -408,7 +413,7 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
         .stream().filter(Objects::nonNull)
         .forEach(recipe -> {
           ItemStack itemStack = recipe.getFirstItemOutput().clone();
-          itemStack.setAmount(64);
+          itemStack.setAmount(Supreme.getSupremeOptions().getMaxAmountTechGenerator());
           displayRecipes.add(recipe.getFirstItemInput());
           displayRecipes.add(itemStack);
 
@@ -428,6 +433,6 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
   @Nonnull
   @Override
   public Radioactivity getRadioactivity() {
-    return Radioactivity.HIGH;
+    return Radioactivity.LOW;
   }
 }

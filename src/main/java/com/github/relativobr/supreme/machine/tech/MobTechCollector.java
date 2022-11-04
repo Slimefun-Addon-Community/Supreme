@@ -10,6 +10,7 @@ import com.github.relativobr.supreme.resource.mobtech.BeeTech;
 import com.github.relativobr.supreme.resource.mobtech.IronGolemTech;
 import com.github.relativobr.supreme.resource.mobtech.ZombieTech;
 import com.github.relativobr.supreme.util.SupremeItemStack;
+import com.github.relativobr.supreme.util.SupremeOptions;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -90,12 +91,19 @@ public class MobTechCollector extends SimpleItemWithLargeContainerMachine {
   @Override
   protected void registerDefaultRecipes() {
     this.recipes.clear();
-    this.addProduce(new MobTechCollectorMachineRecipe(SupremeComponents.EMPTY_MOBTECH,
-        Supreme.buildItemFromMobTechDTO(BeeTech.SIMPLE_BEE, 0), (n) -> n instanceof Bee));
-    this.addProduce(new MobTechCollectorMachineRecipe(SupremeComponents.EMPTY_MOBTECH,
-        Supreme.buildItemFromMobTechDTO(IronGolemTech.SIMPLE_GOLEM, 0), (n) -> n instanceof IronGolem));
-    this.addProduce(new MobTechCollectorMachineRecipe(SupremeComponents.EMPTY_MOBTECH,
-        Supreme.buildItemFromMobTechDTO(ZombieTech.SIMPLE_ZOMBIE, 0), (n) -> n instanceof Zombie));
+    SupremeOptions supremeOptions = Supreme.getSupremeOptions();
+    if (supremeOptions.isMobTechEnableBee()) {
+      this.addProduce(new MobTechCollectorMachineRecipe(SupremeComponents.EMPTY_MOBTECH,
+          Supreme.buildItemFromMobTechDTO(BeeTech.SIMPLE_BEE, 0), (n) -> n instanceof Bee));
+    }
+    if (supremeOptions.isMobTechEnableIronGolem()) {
+      this.addProduce(new MobTechCollectorMachineRecipe(SupremeComponents.EMPTY_MOBTECH,
+          Supreme.buildItemFromMobTechDTO(IronGolemTech.SIMPLE_GOLEM, 0), (n) -> n instanceof IronGolem));
+    }
+    if (supremeOptions.isMobTechEnableZombie()) {
+      this.addProduce(new MobTechCollectorMachineRecipe(SupremeComponents.EMPTY_MOBTECH,
+          Supreme.buildItemFromMobTechDTO(ZombieTech.SIMPLE_ZOMBIE, 0), (n) -> n instanceof Zombie));
+    }
   }
 
 

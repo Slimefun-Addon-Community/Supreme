@@ -10,6 +10,10 @@ options:
   base-time-virtual-aquarium: 15
   base-time-mob-collector: 15
   base-time-tech-generator: 1800
+  tech-generator-max-amount: 64
+  mob-tech-enable-bee: true
+  mob-tech-enable-iron-golem: true
+  mob-tech-enable-zombie: true
   enable-quarry: true
   limit-production-quarry: false
   enable-weapons: true

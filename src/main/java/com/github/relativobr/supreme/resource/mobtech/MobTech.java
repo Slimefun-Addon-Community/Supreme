@@ -19,6 +19,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import javax.annotation.Nonnull;
 import lombok.Getter;
 import lombok.Setter;
+import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 public class MobTech extends SlimefunItem implements Radioactive, NotPlaceable {
@@ -87,7 +88,7 @@ public class MobTech extends SlimefunItem implements Radioactive, NotPlaceable {
 
   private static ItemStack[] getRoboticStartRecipe(MobTechGeneric mobTech) {
     MobTechType mobTechType = mobTech.getMobTechType();
-    SlimefunItemStack itemStack = getItemStackMobTechSimple(mobTech);
+    ItemStack itemStack = getItemStackMobTechSimpleRobotic(mobTech);
     if (itemStack == null) {
       return null;
     }
@@ -116,7 +117,19 @@ public class MobTech extends SlimefunItem implements Radioactive, NotPlaceable {
     return null;
   }
 
-  private static SlimefunItemStack getItemStackMobTechSimple(MobTechGeneric mobTech) {
+  private static ItemStack getItemStackMobTechSimpleRobotic(MobTechGeneric mobTech) {
+    ItemStack itemStack = null;
+    if (mobTech.getId().contains("_BEE")) {
+      itemStack = new ItemStack(Material.HONEYCOMB);
+    } else if (mobTech.getId().contains("_GOLEM")) {
+      itemStack = new ItemStack(Material.POPPY);
+    } else if (mobTech.getId().contains("_ZOMBIE")) {
+      itemStack = new ItemStack(Material.ROTTEN_FLESH);
+    }
+    return itemStack;
+  }
+
+  private static SlimefunItemStack getItemStackMobTechSimpleMutation(MobTechGeneric mobTech) {
     SlimefunItemStack itemStack = null;
     if (mobTech.getId().contains("_BEE")) {
       itemStack = Supreme.buildItemFromMobTechDTO(BeeTech.SIMPLE_BEE, 0);
@@ -138,7 +151,7 @@ public class MobTech extends SlimefunItem implements Radioactive, NotPlaceable {
     mobTech.setMobTechTier(1);
     mobTech.register(plugin);
 
-    SlimefunItemStack simpleInput = getItemStackMobTechSimple(item);
+    SlimefunItemStack simpleInput = getItemStackMobTechSimpleMutation(item);
     if (simpleInput == null) {
       return;
     }

@@ -5,6 +5,7 @@ import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.mobtech.BeeTech;
 import com.github.relativobr.supreme.resource.mobtech.IronGolemTech;
 import com.github.relativobr.supreme.resource.mobtech.ZombieTech;
+import com.github.relativobr.supreme.util.SupremeOptions;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import java.util.ArrayList;
@@ -31,18 +32,28 @@ public class MobTechCollectorMachineRecipe extends MachineRecipe implements Pred
 
   public static List<ItemStack> getAllRecipe() {
     List<ItemStack> displayRecipes = new ArrayList();
-    displayRecipes.add(
-        new CustomItemStack(SupremeComponents.EMPTY_MOBTECH.getType(), SupremeComponents.EMPTY_MOBTECH.getDisplayName(),
-            "", "&fRequires &bBee &fnearby", ""));
-    displayRecipes.add(Supreme.buildItemFromMobTechDTO(BeeTech.SIMPLE_BEE, 0));
-    displayRecipes.add(
-        new CustomItemStack(SupremeComponents.EMPTY_MOBTECH.getType(), SupremeComponents.EMPTY_MOBTECH.getDisplayName(),
-            "", "&fRequires &bIronGolen &fnearby", ""));
-    displayRecipes.add(Supreme.buildItemFromMobTechDTO(IronGolemTech.SIMPLE_GOLEM, 0));
-    displayRecipes.add(
-        new CustomItemStack(SupremeComponents.EMPTY_MOBTECH.getType(), SupremeComponents.EMPTY_MOBTECH.getDisplayName(),
-            "", "&fRequires &bZombie &fnearby", ""));
-    displayRecipes.add(Supreme.buildItemFromMobTechDTO(ZombieTech.SIMPLE_ZOMBIE, 0));
+    SupremeOptions supremeOptions = Supreme.getSupremeOptions();
+    if (supremeOptions.isMobTechEnableBee()) {
+      displayRecipes.add(
+          new CustomItemStack(SupremeComponents.EMPTY_MOBTECH.getType(),
+              SupremeComponents.EMPTY_MOBTECH.getDisplayName(),
+              "", "&fRequires &bBee &fnearby", ""));
+      displayRecipes.add(Supreme.buildItemFromMobTechDTO(BeeTech.SIMPLE_BEE, 0));
+    }
+    if (supremeOptions.isMobTechEnableIronGolem()) {
+      displayRecipes.add(
+          new CustomItemStack(SupremeComponents.EMPTY_MOBTECH.getType(),
+              SupremeComponents.EMPTY_MOBTECH.getDisplayName(),
+              "", "&fRequires &bIronGolen &fnearby", ""));
+      displayRecipes.add(Supreme.buildItemFromMobTechDTO(IronGolemTech.SIMPLE_GOLEM, 0));
+    }
+    if (supremeOptions.isMobTechEnableZombie()) {
+      displayRecipes.add(
+          new CustomItemStack(SupremeComponents.EMPTY_MOBTECH.getType(),
+              SupremeComponents.EMPTY_MOBTECH.getDisplayName(),
+              "", "&fRequires &bZombie &fnearby", ""));
+      displayRecipes.add(Supreme.buildItemFromMobTechDTO(ZombieTech.SIMPLE_ZOMBIE, 0));
+    }
     return displayRecipes;
   }
 
