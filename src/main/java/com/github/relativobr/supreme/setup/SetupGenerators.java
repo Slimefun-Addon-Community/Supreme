@@ -9,6 +9,7 @@ import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.generators.GeneratorMob;
 import com.github.relativobr.supreme.generators.SupremeCapacitor;
 import com.github.relativobr.supreme.generators.SupremeGenerator;
+import com.github.relativobr.supreme.generic.electric.GenerationType;
 import com.github.relativobr.supreme.util.ItemGroups;
 
 public class SetupGenerators {
@@ -36,68 +37,68 @@ public class SetupGenerators {
     new EnergyGenerator(ItemGroups.ELECTRIC_CATEGORY, SupremeGenerator.BASIC_IGNIS_GENERATOR,
         SupremeGenerator.RECIPE_BASIC_IGNIS_GENERATOR).setBuffer(
             getValueGeneratorsWithLimit(SupremeGenerator.BASIC_IGNIS_BUFFER))
-        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.BASIC_IGNIS_ENERGY)).setType(EnergyGenerator.Type.FIRE)
+        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.BASIC_IGNIS_ENERGY)).setType(GenerationType.FIRE)
         .register(sup);
 
     new EnergyGenerator(ItemGroups.ELECTRIC_CATEGORY, SupremeGenerator.IGNIS_GENERATOR,
         SupremeGenerator.RECIPE_IGNIS_GENERATOR).setBuffer(getValueGeneratorsWithLimit(SupremeGenerator.IGNIS_BUFFER))
-        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.IGNIS_ENERGY)).setType(EnergyGenerator.Type.FIRE)
+        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.IGNIS_ENERGY)).setType(GenerationType.FIRE)
         .register(sup);
 
     new EnergyGenerator(ItemGroups.ELECTRIC_CATEGORY, SupremeGenerator.BASIC_VENTUS_GENERATOR,
         SupremeGenerator.RECIPE_BASIC_VENTUS_GENERATOR).setBuffer(
             getValueGeneratorsWithLimit(SupremeGenerator.BASIC_VENTUS_BUFFER))
-        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.BASIC_VENTUS_ENERGY)).setType(EnergyGenerator.Type.WIND)
+        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.BASIC_VENTUS_ENERGY)).setType(GenerationType.WIND)
         .register(sup);
 
     new EnergyGenerator(ItemGroups.ELECTRIC_CATEGORY, SupremeGenerator.VENTUS_GENERATOR,
         SupremeGenerator.RECIPE_VENTUS_GENERATOR).setBuffer(getValueGeneratorsWithLimit(SupremeGenerator.VENTUS_BUFFER))
-        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.VENTUS_ENERGY)).setType(EnergyGenerator.Type.WIND)
+        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.VENTUS_ENERGY)).setType(GenerationType.WIND)
         .register(sup);
 
     new EnergyGenerator(ItemGroups.ELECTRIC_CATEGORY, SupremeGenerator.BASIC_AQUA_GENERATOR,
         SupremeGenerator.RECIPE_BASIC_AQUA_GENERATOR).setBuffer(
             getValueGeneratorsWithLimit(SupremeGenerator.BASIC_AQUA_BUFFER))
-        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.BASIC_AQUA_ENERGY)).setType(EnergyGenerator.Type.WATER)
+        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.BASIC_AQUA_ENERGY)).setType(GenerationType.WATER)
         .register(sup);
 
     new EnergyGenerator(ItemGroups.ELECTRIC_CATEGORY, SupremeGenerator.AQUA_GENERATOR,
         SupremeGenerator.RECIPE_AQUA_GENERATOR).setBuffer(getValueGeneratorsWithLimit(SupremeGenerator.AQUA_BUFFER))
-        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.AQUA_ENERGY)).setType(EnergyGenerator.Type.WATER)
+        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.AQUA_ENERGY)).setType(GenerationType.WATER)
         .register(sup);
 
     new EnergyGenerator(ItemGroups.ELECTRIC_CATEGORY, SupremeGenerator.BASIC_LUX_GENERATOR,
         SupremeGenerator.RECIPE_BASIC_LUX_GENERATOR).setBuffer(
             getValueGeneratorsWithLimit(SupremeGenerator.BASIC_LUX_BUFFER))
-        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.BASIC_LUX_ENERGY)).setType(EnergyGenerator.Type.SKY)
+        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.BASIC_LUX_ENERGY)).setType(GenerationType.SKY)
         .register(sup);
 
     new EnergyGenerator(ItemGroups.ELECTRIC_CATEGORY, SupremeGenerator.LUX_GENERATOR,
         SupremeGenerator.RECIPE_LUX_GENERATOR).setBuffer(getValueGeneratorsWithLimit(SupremeGenerator.LUX_BUFFER))
-        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.LUX_ENERGY)).setType(EnergyGenerator.Type.SKY)
+        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.LUX_ENERGY)).setType(GenerationType.SKY)
         .register(sup);
 
     new EnergyGenerator(ItemGroups.ELECTRIC_CATEGORY, SupremeGenerator.BASIC_LUMIUM_GENERATOR,
         SupremeGenerator.RECIPE_BASIC_LUMIUM_GENERATOR).setBuffer(
             getValueGeneratorsWithLimit(SupremeGenerator.BASIC_LUMIUM_BUFFER))
-        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.BASIC_LUMIUM_ENERGY)).setType(EnergyGenerator.Type.DARK)
+        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.BASIC_LUMIUM_ENERGY)).setType(GenerationType.DARK)
         .register(sup);
 
     new EnergyGenerator(ItemGroups.ELECTRIC_CATEGORY, SupremeGenerator.LUMIUM_GENERATOR,
         SupremeGenerator.RECIPE_LUMIUM_GENERATOR).setBuffer(getValueGeneratorsWithLimit(SupremeGenerator.LUMIUM_BUFFER))
-        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.LUMIUM_ENERGY)).setType(EnergyGenerator.Type.DARK)
+        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.LUMIUM_ENERGY)).setType(GenerationType.DARK)
         .register(sup);
 
     new EnergyGenerator(ItemGroups.ELECTRIC_CATEGORY, SupremeGenerator.THORNIUM_GENERATOR,
         SupremeGenerator.RECIPE_THORNIUM_GENERATOR).setBuffer(
             getValueGeneratorsWithLimit(SupremeGenerator.THORNIUM_BUFFER))
-        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.THORNIUM_ENERGY)).setType(EnergyGenerator.Type.EVERY)
+        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.THORNIUM_ENERGY)).setType(GenerationType.EVERY)
         .register(sup);
 
     new EnergyGenerator(ItemGroups.ELECTRIC_CATEGORY, SupremeGenerator.SUPREME_GENERATOR,
         SupremeGenerator.RECIPE_SUPREME_GENERATOR).setBuffer(
             getValueGeneratorsWithLimit(SupremeGenerator.SUPREME_BUFFER))
-        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.SUPREME_ENERGY)).setType(EnergyGenerator.Type.EVERY)
+        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.SUPREME_ENERGY)).setType(GenerationType.EVERY)
         .register(sup);
 
     new EnergyCapacitor(ItemGroups.ELECTRIC_CATEGORY, SupremeCapacitor.AURUM_CAPACITOR,

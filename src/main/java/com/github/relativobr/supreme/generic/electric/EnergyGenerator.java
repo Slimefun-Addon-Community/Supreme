@@ -1,57 +1,50 @@
 package com.github.relativobr.supreme.generic.electric;
 
+import com.github.relativobr.supreme.util.UtilEnergy;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetProvider;
 import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNetComponentType;
 import javax.annotation.Nonnull;
+
+import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
+import me.mrCookieSlime.Slimefun.api.BlockStorage;
+import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
+import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
+import net.guizhanss.guizhanlib.slimefun.machines.MenuBlock;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.World;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
-import org.bukkit.block.data.Waterlogged;
 import org.bukkit.inventory.ItemStack;
 
-public final class EnergyGenerator extends SlimefunItem implements EnergyNetProvider {
+public final class EnergyGenerator extends MenuBlock implements EnergyNetProvider {
 
   private int energy;
   private int buffer;
-  private Type type;
-//  private static Location location;
-//  private static Block blockMachine;
-//  private static Block blockDown;
-//  private static Block blockNorth;
-//  private static Block blockEast;
-//  private static Block blockSouth;
-//  private static Block blockWest;
-//  private static World world;
-//  private static BlockData blockData;
+  private GenerationType type;
 
 
   public EnergyGenerator(ItemGroup categories, SlimefunItemStack item, ItemStack[] recipe) {
     super(categories, item, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
   }
 
-  public Type getType() {
+  public GenerationType getType() {
     return type;
   }
 
-  public final EnergyGenerator setType(Type value) {
+  public EnergyGenerator setType(GenerationType value) {
     this.type = value;
     return this;
   }
 
-  public final EnergyGenerator setEnergy(int value) {
-    final int i = value / 2;
-    this.energy = Math.round(i);
+  public EnergyGenerator setEnergy(int value) {
+    this.energy = value;
     return this;
   }
 
-  public final EnergyGenerator setBuffer(int value) {
+  public EnergyGenerator setBuffer(int value) {
     this.buffer = value;
     return this;
   }
@@ -63,8 +56,58 @@ public final class EnergyGenerator extends SlimefunItem implements EnergyNetProv
   }
 
   @Override
-  public int getGeneratedOutput(Location l, Config config) {
-    return validateLocation(l) ? energy : 0;
+  protected void setup(BlockMenuPreset blockMenuPreset) {
+    blockMenuPreset.drawBackground(new int[] {
+            0, 1, 2, 3, 4, 5, 6, 7, 8,
+            9, 10, 11, 12, 13, 14, 15, 16, 17,
+            18, 19, 20, 21, 22, 23, 24, 25, 26
+    });
+  }
+
+  @Nonnull
+  @Override
+  protected int[] getInputSlots(DirtyChestMenu dirtyChestMenu, ItemStack itemStack) {
+    return new int[0];
+  }
+
+  @Override
+  protected int[] getInputSlots() {
+    return new int[0];
+  }
+
+  @Override
+  protected int[] getOutputSlots() {
+    return new int[0];
+  }
+
+  @Override
+  public int getGeneratedOutput(Location l, Config data) {
+
+    int gen = this.type.generate(l.getWorld(), l.getBlock(), this.energy);
+
+    BlockMenu inv = BlockStorage.getInventory(l);
+    if (inv != null && inv.hasViewer()) {
+      if (gen == 0) {
+        inv.replaceExistingItem(13, new CustomItemStack(
+                Material.RED_STAINED_GLASS_PANE,
+                "&cNot generating",
+                "&7Type: &6" + this.type,
+                "&7Stored: &6" + UtilEnergy.format(getCharge(l)) + " J",
+                "&7Capacity: &6" + UtilEnergy.format(this.buffer) + " J"
+        ));
+      } else {
+        inv.replaceExistingItem(13, new CustomItemStack(
+                Material.GREEN_STAINED_GLASS_PANE,
+                "&aGeneration",
+                "&7Type: &6" + this.type,
+                "&7Generating: &6" + UtilEnergy.format(gen) + " J/s ",
+                "&7Stored: &6" + UtilEnergy.format(getCharge(l)) + " J",
+                "&7Capacity: &6" + UtilEnergy.format(this.buffer) + " J"
+        ));
+      }
+    }
+
+    return gen/2;
   }
 
   @Override
@@ -72,123 +115,5 @@ public final class EnergyGenerator extends SlimefunItem implements EnergyNetProv
     return this.buffer;
   }
 
-  private boolean validateLocation(Location l) {
-    Block b = l.getBlock();
-    final Type generatorType = this.type;
-    if (generatorType == Type.EVERY) {
-      return true;
-    } else if (generatorType == Type.DAY) {
-      return checkDay(b) && checkSky(b);
-    } else if (generatorType == Type.NIGHT) {
-      return checkNight(b) && checkSky(b);
-    } else if (generatorType == Type.SKY) {
-      return checkSky(b);
-    } else if (generatorType == Type.FIRE) {
-      return checkUnderFire(b);
-    } else if (generatorType == Type.WATER) {
-      return checkUnderWater(b);
-    } else if (generatorType == Type.WIND) {
-      return checkWind(b);
-    } else if (generatorType == Type.DARK) {
-      return checkDark(b);
-    }
-    return false;
-  }
-
-  public enum Type {
-    DAY,
-    NIGHT,
-    FIRE,
-    WATER,
-    WIND,
-    SKY,
-    DARK,
-    EVERY,
-  }
-
-  public static boolean checkUnderWater(@Nonnull Block b) {
-    return b.getRelative(BlockFace.DOWN).getType().equals(Material.WATER);
-  }
-
-  public static boolean checkInWater(@Nonnull Block b) {
-    if (b.getBlockData() instanceof Waterlogged) {
-      Waterlogged waterLogged = (Waterlogged) b.getBlockData();
-      return waterLogged.isWaterlogged();
-    }
-    return false;
-  }
-
-  public static boolean checkUnderFire(@Nonnull Block b) {
-    final Material material = b.getRelative(BlockFace.DOWN).getType();
-    return material.equals(Material.FIRE)
-        || material.equals(Material.SOUL_FIRE)
-        || material.equals(Material.LAVA)
-        || material.equals(Material.CAMPFIRE)
-        || material.equals(Material.SOUL_CAMPFIRE);
-  }
-
-  public static boolean checkWind(@Nonnull Block b) {
-    World world = b.getLocation().getWorld();
-    if (world != null && world.getEnvironment() == World.Environment.THE_END) {
-      return false;
-    } else {
-      return b.getRelative(BlockFace.NORTH).getType().equals(Material.AIR)
-          || b.getRelative(BlockFace.EAST).getType().equals(Material.AIR)
-          || b.getRelative(BlockFace.SOUTH).getType().equals(Material.AIR)
-          || b.getRelative(BlockFace.WEST).getType().equals(Material.AIR);
-    }
-  }
-
-  public static boolean checkDay(@Nonnull Block b) {
-    World world = b.getLocation().getWorld();
-    if (world != null) {
-      if (world.getEnvironment() == World.Environment.NETHER) {
-        return false;
-      } else if (world.getEnvironment() == World.Environment.THE_END) {
-        return false;
-      } else {
-        return !world.hasStorm() && !world.isThundering() && world.getTime() <= 13000;
-      }
-    }
-    return false;
-  }
-
-  public static boolean checkNight(@Nonnull Block b) {
-    World world = b.getLocation().getWorld();
-    if (world != null) {
-      if (world.getEnvironment() == World.Environment.NETHER) {
-        return true;
-      } else if (world.getEnvironment() == World.Environment.THE_END) {
-        return true;
-      } else {
-        return world.hasStorm() && world.isThundering() && world.getTime() >= 13000;
-      }
-    }
-    return false;
-  }
-
-  public static boolean checkDark(@Nonnull Block b) {
-    Location location = b.getLocation();
-    World world = location.getWorld();
-    if (world != null) {
-      if (world.getEnvironment() == World.Environment.NETHER) {
-        return true;
-      } else if (world.getEnvironment() == World.Environment.THE_END) {
-        return true;
-      } else {
-        return (location.add(0, 1, 0).getBlock().getLightFromSky() != 15);
-      }
-    }
-    return false;
-  }
-
-  public static boolean checkSky(@Nonnull Block b) {
-    Location location = b.getLocation();
-    World world = location.getWorld();
-    if (world != null) {
-      return (location.add(0, 1, 0).getBlock().getLightFromSky() >= 15);
-    }
-    return false;
-  }
 
 }
