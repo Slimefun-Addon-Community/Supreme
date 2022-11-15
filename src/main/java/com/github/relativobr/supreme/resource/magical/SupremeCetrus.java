@@ -15,7 +15,7 @@ public class SupremeCetrus {
   public static final ItemStack[] RECIPE_CETRUS_LUX = {new ItemStack(Material.FLINT, 64),
       new ItemStack(Material.GLOWSTONE, 64), new ItemStack(Material.TORCH, 64), new ItemStack(Material.CAMPFIRE, 64),
       new SlimefunItemStack(SupremeCore.CORE_OF_LIFE, 1), new ItemStack(Material.SEA_LANTERN, 64),
-      new ItemStack(Material.REDSTONE_LAMP, 64), new ItemStack(Material.SEA_LANTERN, 64),
+      new ItemStack(Material.REDSTONE_LAMP, 64), new ItemStack(Material.SOUL_CAMPFIRE, 64),
       new ItemStack(Material.SHROOMLIGHT, 64)};
 
   public static final SlimefunItemStack CETRUS_VENTUS = new SupremeItemStack("SUPREME_CETRUS_VENTUS",
