@@ -1,6 +1,6 @@
 package com.github.relativobr.supreme.setup;
 
-import static com.github.relativobr.supreme.Supreme.getOutputQuarry;
+import static com.github.relativobr.supreme.util.ItemUtil.getOutputQuarry;
 
 import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.machine.AbstractQuarry;

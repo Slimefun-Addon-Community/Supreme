@@ -10,6 +10,7 @@ import com.github.relativobr.supreme.resource.mobtech.BeeTech;
 import com.github.relativobr.supreme.resource.mobtech.IronGolemTech;
 import com.github.relativobr.supreme.resource.mobtech.ZombieTech;
 import com.github.relativobr.supreme.util.ItemGroups;
+import com.github.relativobr.supreme.util.ItemUtil;
 import com.github.relativobr.supreme.util.SupremeItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -104,21 +105,21 @@ public class MobCollectorTools extends SlimefunItem implements Rechargeable, Not
       Player p = e.getPlayer();
       if (entity instanceof Bee) {
         entity.getWorld()
-            .dropItemNaturally(entity.getLocation(), Supreme.buildItemFromMobTechDTO(BeeTech.SIMPLE_BEE, 0));
+            .dropItemNaturally(entity.getLocation(), ItemUtil.buildItemFromMobTechDTO(BeeTech.SIMPLE_BEE, 0));
         entity.remove();
         removeItemCharge(item, getCharge());
         p.playSound(p.getLocation(), Sound.BLOCK_ANVIL_FALL, 1, 1);
       }
       if (entity instanceof Golem) {
         entity.getWorld()
-            .dropItemNaturally(entity.getLocation(), Supreme.buildItemFromMobTechDTO(IronGolemTech.SIMPLE_GOLEM, 0));
+            .dropItemNaturally(entity.getLocation(), ItemUtil.buildItemFromMobTechDTO(IronGolemTech.SIMPLE_GOLEM, 0));
         entity.remove();
         removeItemCharge(item, getCharge());
         p.playSound(p.getLocation(), Sound.BLOCK_ANVIL_FALL, 1, 1);
       }
       if (entity instanceof Zombie) {
         entity.getWorld()
-            .dropItemNaturally(entity.getLocation(), Supreme.buildItemFromMobTechDTO(ZombieTech.SIMPLE_ZOMBIE, 0));
+            .dropItemNaturally(entity.getLocation(), ItemUtil.buildItemFromMobTechDTO(ZombieTech.SIMPLE_ZOMBIE, 0));
         entity.remove();
         removeItemCharge(item, getCharge());
         p.playSound(p.getLocation(), Sound.BLOCK_ANVIL_FALL, 1, 1);

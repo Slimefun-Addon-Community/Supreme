@@ -225,7 +225,7 @@ quarry-custom-output:
 # supreme-enchant
 # -------------------------------
 # unbreakable: true = Item does not break
-# unbreakable: false = Item can breakr
+# unbreakable: false = Item can break
 # -------------------------------
 # 0 = disable enchantment
 # 1 - 100 = enchantment level
@@ -910,3 +910,66 @@ supreme-enchant:
     unbreaking: 50
     mending: 20
     thorns: 20
+# -------------------------------
+# supreme-effects
+# -------------------------------
+# 1 - 10 = amplifier effect
+# false = disable effect
+# true = enable effect
+# -------------------------------
+#   speed
+#   slow
+#   fast_digging
+#   slow_digging
+#   increase_damage
+#   heal
+#   harm
+#   jump
+#   confusion
+#   regeneration
+#   damage_resistance
+#   fire_resistance
+#   water_breathing
+#   invisibility
+#   blindness
+#   night_vision
+#   hunger
+#   weakness
+#   poison
+#   wither
+#   health_boost
+#   absorption
+#   saturation
+#   glowing
+#   levitation
+#   luck
+#   unluck
+#   slow_falling
+#   conduit_power
+#   dolphins_grace
+#   bad_omen
+#   hero_of_the_village
+#   darkness
+# -------------------------------
+supreme-effect:
+  amplifier_supreme: 3
+  amplifier_legendary: 3
+  amplifier_epic: 2
+  amplifier_rare: 2
+  amplifier_magic: 1
+  amplifier_thornium: 1
+  helmet:
+    night_vision: true
+    conduit_power: true
+    water_breathing: true
+  chestplate:
+    damage_resistance: true
+    increase_damage: true
+    saturation: true
+  leggings:
+    speed: true
+    fast_digging: true
+    regeneration: true
+  boots:
+    dolphins_grace: true
+    fire_resistance: true

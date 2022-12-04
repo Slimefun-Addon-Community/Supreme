@@ -4,6 +4,7 @@ import static com.github.relativobr.supreme.Supreme.getSupremeOptions;
 
 import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.machine.multiblock.MultiBlockGearFabricator;
+import com.github.relativobr.supreme.util.EnchantsAndEffectsUtil;
 import com.github.relativobr.supreme.util.ItemGroups;
 import com.github.relativobr.supreme.util.ItemTier;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -24,12 +25,12 @@ public class AbstractTools extends SlimefunItem implements Soulbound, NotPlaceab
   public static void setup(Supreme sup) {
 
     // add Enchant
-    sup.addGearEnchants(ToolsBasic.TITANIUM_PICKAXE, ToolsBasic.AURUM_PICKAXE, ToolsBasic.ADAMANTIUM_PICKAXE,
+    EnchantsAndEffectsUtil.addGearBasicEnchants(ToolsBasic.TITANIUM_PICKAXE, ToolsBasic.AURUM_PICKAXE, ToolsBasic.ADAMANTIUM_PICKAXE,
         ToolsBasic.TITANIUM_AXE, ToolsBasic.AURUM_AXE, ToolsBasic.ADAMANTIUM_AXE, ToolsBasic.TITANIUM_SHOVEL,
         ToolsBasic.AURUM_SHOVEL, ToolsBasic.ADAMANTIUM_SHOVEL);
 
     // add Enchant
-    sup.addSupremeEnchantsAndSoulbound(ToolsThornium.THORNIUM_AXE, ToolsThornium.THORNIUM_AXE_MAGIC,
+    EnchantsAndEffectsUtil.addGearThorniumEnchants(ToolsThornium.THORNIUM_AXE, ToolsThornium.THORNIUM_AXE_MAGIC,
         ToolsThornium.THORNIUM_AXE_RARE, ToolsThornium.THORNIUM_AXE_EPIC, ToolsThornium.THORNIUM_AXE_LEGENDARY,
         ToolsThornium.THORNIUM_AXE_SUPREME, ToolsThornium.THORNIUM_PICKAXE, ToolsThornium.THORNIUM_PICKAXE_MAGIC,
         ToolsThornium.THORNIUM_PICKAXE_RARE, ToolsThornium.THORNIUM_PICKAXE_EPIC,

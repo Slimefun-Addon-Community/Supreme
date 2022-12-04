@@ -2,9 +2,9 @@ package com.github.relativobr.supreme.gear;
 
 import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.machine.multiblock.MultiBlockGearFabricator;
+import com.github.relativobr.supreme.util.EnchantsAndEffectsUtil;
 import com.github.relativobr.supreme.util.ItemGroups;
 import com.github.relativobr.supreme.util.ItemTier;
-import com.github.relativobr.supreme.util.ItemUtil;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
 import io.github.thebusybiscuit.slimefun4.core.attributes.ProtectionType;
@@ -21,19 +21,19 @@ public class AbstractArmor extends SlimefunArmorPiece implements ProtectiveArmor
   @ParametersAreNonnullByDefault
   private AbstractArmor(SlimefunItemStack item, ItemStack[] recipe) {
     super(ItemGroups.ARMOR_CATEGORY, item, MultiBlockGearFabricator.getMachine(), recipe,
-        ItemUtil.getSupremeEffects(item));
+            EnchantsAndEffectsUtil.getPotionEffects(item));
   }
 
   public static void setup(Supreme sup) {
 
     // add Enchant
-    sup.addGearEnchants(ArmorBasic.TITANIUM_HELMET, ArmorBasic.AURUM_HELMET, ArmorBasic.ADAMANTIUM_HELMET,
+    EnchantsAndEffectsUtil.addGearBasicEnchants(ArmorBasic.TITANIUM_HELMET, ArmorBasic.AURUM_HELMET, ArmorBasic.ADAMANTIUM_HELMET,
         ArmorBasic.TITANIUM_CHESTPLATE, ArmorBasic.AURUM_CHESTPLATE, ArmorBasic.ADAMANTIUM_CHESTPLATE,
         ArmorBasic.TITANIUM_LEGGINGS, ArmorBasic.AURUM_LEGGINGS, ArmorBasic.ADAMANTIUM_LEGGINGS,
         ArmorBasic.TITANIUM_BOOTS, ArmorBasic.AURUM_BOOTS, ArmorBasic.ADAMANTIUM_BOOTS);
 
     // add Enchant
-    sup.addSupremeEnchantsAndSoulbound(ArmorThornium.THORNIUM_HELMET, ArmorThornium.THORNIUM_HELMET_MAGIC,
+    EnchantsAndEffectsUtil.addGearThorniumEnchants(ArmorThornium.THORNIUM_HELMET, ArmorThornium.THORNIUM_HELMET_MAGIC,
         ArmorThornium.THORNIUM_HELMET_RARE, ArmorThornium.THORNIUM_HELMET_EPIC, ArmorThornium.THORNIUM_HELMET_LEGENDARY,
         ArmorThornium.THORNIUM_HELMET_SUPREME, ArmorThornium.THORNIUM_CHESTPLATE,
         ArmorThornium.THORNIUM_CHESTPLATE_MAGIC, ArmorThornium.THORNIUM_CHESTPLATE_RARE,

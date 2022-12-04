@@ -1,6 +1,6 @@
 package com.github.relativobr.supreme.generators;
 
-import static com.github.relativobr.supreme.Supreme.getValueGeneratorsWithLimit;
+import static com.github.relativobr.supreme.util.ItemUtil.getValueGeneratorsWithLimit;
 
 import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.resource.SupremeComponents;

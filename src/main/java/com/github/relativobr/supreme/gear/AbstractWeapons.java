@@ -2,6 +2,7 @@ package com.github.relativobr.supreme.gear;
 
 import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.machine.multiblock.MultiBlockGearFabricator;
+import com.github.relativobr.supreme.util.EnchantsAndEffectsUtil;
 import com.github.relativobr.supreme.util.ItemGroups;
 import com.github.relativobr.supreme.util.ItemTier;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -22,10 +23,10 @@ public class AbstractWeapons extends SlimefunItem implements Soulbound, NotPlace
   public static void setup(Supreme sup) {
 
     // add Enchant
-    sup.addGearEnchants(WeaponsBasic.TITANIUM_SWORD, WeaponsBasic.AURUM_SWORD, WeaponsBasic.ADAMANTIUM_SWORD);
+    EnchantsAndEffectsUtil.addGearBasicEnchants(WeaponsBasic.TITANIUM_SWORD, WeaponsBasic.AURUM_SWORD, WeaponsBasic.ADAMANTIUM_SWORD);
 
     // add Enchant
-    sup.addSupremeEnchantsAndSoulbound(WeaponsThornium.THORNIUM_BOW, WeaponsThornium.THORNIUM_BOW_MAGIC,
+    EnchantsAndEffectsUtil.addGearThorniumEnchants(WeaponsThornium.THORNIUM_BOW, WeaponsThornium.THORNIUM_BOW_MAGIC,
         WeaponsThornium.THORNIUM_BOW_RARE, WeaponsThornium.THORNIUM_BOW_EPIC, WeaponsThornium.THORNIUM_BOW_LEGENDARY,
         WeaponsThornium.THORNIUM_BOW_SUPREME, WeaponsThornium.THORNIUM_SWORD, WeaponsThornium.THORNIUM_SWORD_MAGIC,
         WeaponsThornium.THORNIUM_SWORD_RARE, WeaponsThornium.THORNIUM_SWORD_EPIC,

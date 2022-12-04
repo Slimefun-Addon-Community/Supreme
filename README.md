@@ -151,3 +151,5 @@ Make a new issue, pull request, or contact me on discord @RelativoBR#9577
 - **enable-armor** - Indication whether to enable the armor (default: true)
 - **enable-tech** - Indication whether to enable new machine and resource to clonnig item (default: true)
 - **enable-item-converter-machine** - Converter Item by ID, restore values of name and meta item converting to a new item (maintaining current enchantments and durability) (default: true)
+- **supreme-enchant** - Indication Enchantment of the gear and tools
+- **supreme-effects** - Indication Effects of the gear

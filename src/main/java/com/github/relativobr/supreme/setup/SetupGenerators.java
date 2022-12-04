@@ -1,7 +1,7 @@
 package com.github.relativobr.supreme.setup;
 
 import static com.github.relativobr.supreme.Supreme.getSupremeOptions;
-import static com.github.relativobr.supreme.Supreme.getValueGeneratorsWithLimit;
+import static com.github.relativobr.supreme.util.ItemUtil.getValueGeneratorsWithLimit;
 
 import com.github.relativobr.supreme.generic.electric.EnergyCapacitor;
 import com.github.relativobr.supreme.generic.electric.EnergyGenerator;
