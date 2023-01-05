@@ -3,6 +3,7 @@ package com.github.relativobr.supreme.machine;
 import static com.github.relativobr.supreme.Supreme.getSupremeOptions;
 
 import com.github.relativobr.supreme.generic.recipe.InventoryRecipe;
+import com.github.relativobr.supreme.util.SupremeQuarryOutput;
 import com.github.relativobr.supreme.util.ItemUtil;
 import com.github.relativobr.supreme.util.UtilEnergy;
 import com.github.relativobr.supreme.util.UtilMachine;
@@ -57,7 +58,7 @@ public class AbstractQuarry extends SlimefunItem implements EnergyNetComponent {
   private boolean effect = true;
   private int delaySpeed = 1;
 
-  private AbstractQuarryOutput output;
+  private SupremeQuarryOutput output;
 
   @ParametersAreNonnullByDefault
   public AbstractQuarry(ItemGroup category, SlimefunItemStack machine, ItemStack[] recipe) {
@@ -248,11 +249,11 @@ public class AbstractQuarry extends SlimefunItem implements EnergyNetComponent {
     return EnergyNetComponentType.CONSUMER;
   }
 
-  public AbstractQuarryOutput getOutput() {
+  public SupremeQuarryOutput getOutput() {
     return output;
   }
 
-  public AbstractQuarry setOutput(AbstractQuarryOutput output) {
+  public AbstractQuarry setOutput(SupremeQuarryOutput output) {
     this.output = output;
     return this;
   }
