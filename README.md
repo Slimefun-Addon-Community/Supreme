@@ -1,4 +1,4 @@
-# Supreme 2.0
+# Supreme
 Supreme is an addon for Slimefun which adds 100+ various new resources that will allow you to craft powerful new items, weapons, tools and armor. These can be made up from titanium, aurum, adamantium, thornium with some being magical, rare, epic, legendary or supreme! It also adds 12 new electric generators, 5 new capacitors and even more... 
 
 ## Requirements
@@ -12,13 +12,9 @@ Slimefun Version: RC-32
 [![Build Status](https://thebusybiscuit.github.io/builds/RelativoBR/Supreme/main/badge.svg)](https://thebusybiscuit.github.io/builds/RelativoBR/Supreme/main)
 
 
-## Important information
-This addon "Supreme 2.0" compatible with the old addon "SupremeExpansion" change in config `use-legacy-supremeexpansion-item-id` to `true`
-
-
 ## Bugs/Suggestions
 
-Make a new issue, pull request, or contact me on discord @RelativoBR#9577
+Make a new issue, pull request, or discord Slimefun-Addon-Community
 
 <p>
   <a href="https://discord.gg/slimefun">
@@ -153,3 +149,4 @@ Make a new issue, pull request, or contact me on discord @RelativoBR#9577
 - **enable-item-converter-machine** - Converter Item by ID, restore values of name and meta item converting to a new item (maintaining current enchantments and durability) (default: true)
 - **supreme-enchant** - Indication Enchantment of the gear and tools
 - **supreme-effects** - Indication Effects of the gear
+- **power-section** - Customizable Capacity, Buffer and Energy of the capacitor and generator

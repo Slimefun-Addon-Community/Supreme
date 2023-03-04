@@ -62,6 +62,29 @@ public class SimpleCard {
       "&bCard Machine Snow", "", "&fChange to Production Snow", "",
       LoreBuilder.machine(MachineTier.BASIC, MachineType.MACHINE), "", "&3Supreme Component");
 
+  public static final SlimefunItemStack CARD_NETHER_STAR = new SupremeItemStack("SUPREME_CARD_NETHER_STAR", Material.MUSIC_DISC_STRAD,
+          "&bCard Machine Nether Star", "", "&fChange to Production Nether Star", "",
+          LoreBuilder.machine(MachineTier.BASIC, MachineType.MACHINE), "", "&3Supreme Component");
+
+  public static final SlimefunItemStack CARD_WITHER_ROSE = new SupremeItemStack("SUPREME_CARD_WITHER_ROSE", Material.MUSIC_DISC_STRAD,
+          "&bCard Machine Wither Rose", "", "&fChange to Production Wither Rose", "",
+          LoreBuilder.machine(MachineTier.BASIC, MachineType.MACHINE), "", "&3Supreme Component");
+
+  public static final SlimefunItemStack CARD_SLIME_BALL = new SupremeItemStack("SUPREME_CARD_SLIME_BALL", Material.MUSIC_DISC_STRAD,
+          "&bCard Machine Slime Ball", "", "&fChange to Production Slime Ball", "",
+          LoreBuilder.machine(MachineTier.BASIC, MachineType.MACHINE), "", "&3Supreme Component");
+
+  public static final SlimefunItemStack CARD_INK_SAC = new SupremeItemStack("SUPREME_CARD_INK_SAC", Material.MUSIC_DISC_STRAD,
+          "&bCard Machine Ink Sac", "", "&fChange to Production Ink Sac", "",
+          LoreBuilder.machine(MachineTier.BASIC, MachineType.MACHINE), "", "&3Supreme Component");
+
+  public static final SlimefunItemStack CARD_GLOW_INK_SAC = new SupremeItemStack("SUPREME_CARD_GLOW_INK_SAC", Material.MUSIC_DISC_STRAD,
+          "&bCard Machine Glow Ink Sac", "", "&fChange to Production Glow Ink Sac", "",
+          LoreBuilder.machine(MachineTier.BASIC, MachineType.MACHINE), "", "&3Supreme Component");
+
+  public static final SlimefunItemStack CARD_HONEY_BOTTLE = new SupremeItemStack("SUPREME_CARD_HONEY_BOTTLE", Material.MUSIC_DISC_STRAD,
+          "&bCard Machine Honey Bottle", "", "&fChange to Production Honey Bottle", "",
+          LoreBuilder.machine(MachineTier.BASIC, MachineType.MACHINE), "", "&3Supreme Component");
 
   public static final SlimefunItemStack CARD_COAL = new SupremeItemStack("SUPREME_CARD_COAL", Material.MUSIC_DISC_13,
       "&bCard Machine Coal", "", "&fChange to Production Coal", "",

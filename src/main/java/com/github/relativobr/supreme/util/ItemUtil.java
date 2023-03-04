@@ -6,7 +6,6 @@ import static com.github.relativobr.supreme.util.CompatibilySupremeLegacy.getOld
 
 import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.machine.AbstractQuarry;
-import com.github.relativobr.supreme.machine.AbstractQuarryOutput;
 import com.github.relativobr.supreme.machine.AbstractQuarryOutputItem;
 import com.github.relativobr.supreme.machine.tech.MobTechGeneric;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -27,10 +26,10 @@ public class ItemUtil {
 
 
     public static int getValueGeneratorsWithLimit(int value) {
-        return getSupremeOptions().isLimitProductionGenerators() ? (value / 5) : value;
+        return Math.min((getSupremeOptions().isLimitProductionGenerators() ? (value / 5) : value), 16000000);
     }
 
-    public static AbstractQuarryOutput getOutputQuarry(@Nonnull SlimefunItemStack item) {
+    public static SupremeQuarryOutput getOutputQuarry(@Nonnull SlimefunItemStack item) {
 
         ConfigurationSection typeSection = Supreme.inst().getConfig()
                 .getConfigurationSection("quarry-custom-output");
@@ -88,7 +87,7 @@ public class ItemUtil {
                     "Config section for " + itemPath + " missing, Check your config and report this!");
         }
 
-        return AbstractQuarryOutput.builder().outputItems(outputItems).build();
+        return SupremeQuarryOutput.builder().outputItems(outputItems).build();
     }
 
     public static void addLoreQuarry(@Nonnull AbstractQuarry quarry) {
@@ -101,7 +100,7 @@ public class ItemUtil {
         if (meta.hasLore()) {
             lastElementLore = Optional.of(meta.getLore());
         }
-        final AbstractQuarryOutput output = quarry.getOutput();
+        final SupremeQuarryOutput output = quarry.getOutput();
         final List<AbstractQuarryOutputItem> outputItems = output.getOutputItems().stream().filter(Objects::nonNull)
                 .collect(Collectors.toList());
         for (AbstractQuarryOutputItem outputItem : outputItems) {
@@ -130,7 +129,7 @@ public class ItemUtil {
     }
 
 
-    public static ItemStack getItemQuarry(AbstractQuarryOutput output, int randomInt) {
+    public static ItemStack getItemQuarry(SupremeQuarryOutput output, int randomInt) {
         AtomicInteger startValue = new AtomicInteger(0);
         AtomicInteger nextValue = new AtomicInteger(0);
         ItemStack item = null;

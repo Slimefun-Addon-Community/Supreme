@@ -36,90 +36,90 @@ public class SetupGenerators {
 
     new EnergyGenerator(ItemGroups.ELECTRIC_CATEGORY, SupremeGenerator.BASIC_IGNIS_GENERATOR,
         SupremeGenerator.RECIPE_BASIC_IGNIS_GENERATOR).setBuffer(
-            getValueGeneratorsWithLimit(SupremeGenerator.BASIC_IGNIS_BUFFER))
-        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.BASIC_IGNIS_ENERGY)).setType(GenerationType.FIRE)
+            getValueGeneratorsWithLimit(Supreme.getSupremePowerSection().getGeneratorBasicIgnisBuffer()))
+        .setEnergy(getValueGeneratorsWithLimit(Supreme.getSupremePowerSection().getGeneratorBasicIgnisEnergy())).setType(GenerationType.FIRE)
         .register(sup);
 
     new EnergyGenerator(ItemGroups.ELECTRIC_CATEGORY, SupremeGenerator.IGNIS_GENERATOR,
-        SupremeGenerator.RECIPE_IGNIS_GENERATOR).setBuffer(getValueGeneratorsWithLimit(SupremeGenerator.IGNIS_BUFFER))
-        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.IGNIS_ENERGY)).setType(GenerationType.FIRE)
+        SupremeGenerator.RECIPE_IGNIS_GENERATOR).setBuffer(getValueGeneratorsWithLimit(Supreme.getSupremePowerSection().getGeneratorIgnisBuffer()))
+        .setEnergy(getValueGeneratorsWithLimit(Supreme.getSupremePowerSection().getGeneratorIgnisEnergy())).setType(GenerationType.FIRE)
         .register(sup);
 
     new EnergyGenerator(ItemGroups.ELECTRIC_CATEGORY, SupremeGenerator.BASIC_VENTUS_GENERATOR,
         SupremeGenerator.RECIPE_BASIC_VENTUS_GENERATOR).setBuffer(
-            getValueGeneratorsWithLimit(SupremeGenerator.BASIC_VENTUS_BUFFER))
-        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.BASIC_VENTUS_ENERGY)).setType(GenerationType.WIND)
+            getValueGeneratorsWithLimit(Supreme.getSupremePowerSection().getGeneratorBasicVentusBuffer()))
+        .setEnergy(getValueGeneratorsWithLimit(Supreme.getSupremePowerSection().getGeneratorBasicVentusEnergy())).setType(GenerationType.WIND)
         .register(sup);
 
     new EnergyGenerator(ItemGroups.ELECTRIC_CATEGORY, SupremeGenerator.VENTUS_GENERATOR,
-        SupremeGenerator.RECIPE_VENTUS_GENERATOR).setBuffer(getValueGeneratorsWithLimit(SupremeGenerator.VENTUS_BUFFER))
-        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.VENTUS_ENERGY)).setType(GenerationType.WIND)
+        SupremeGenerator.RECIPE_VENTUS_GENERATOR).setBuffer(getValueGeneratorsWithLimit(Supreme.getSupremePowerSection().getGeneratorVentusBuffer()))
+        .setEnergy(getValueGeneratorsWithLimit(Supreme.getSupremePowerSection().getGeneratorVentusEnergy())).setType(GenerationType.WIND)
         .register(sup);
 
     new EnergyGenerator(ItemGroups.ELECTRIC_CATEGORY, SupremeGenerator.BASIC_AQUA_GENERATOR,
         SupremeGenerator.RECIPE_BASIC_AQUA_GENERATOR).setBuffer(
-            getValueGeneratorsWithLimit(SupremeGenerator.BASIC_AQUA_BUFFER))
-        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.BASIC_AQUA_ENERGY)).setType(GenerationType.WATER)
+            getValueGeneratorsWithLimit(Supreme.getSupremePowerSection().getGeneratorBasicAquaBuffer()))
+        .setEnergy(getValueGeneratorsWithLimit(Supreme.getSupremePowerSection().getGeneratorBasicAquaEnergy())).setType(GenerationType.WATER)
         .register(sup);
 
     new EnergyGenerator(ItemGroups.ELECTRIC_CATEGORY, SupremeGenerator.AQUA_GENERATOR,
-        SupremeGenerator.RECIPE_AQUA_GENERATOR).setBuffer(getValueGeneratorsWithLimit(SupremeGenerator.AQUA_BUFFER))
-        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.AQUA_ENERGY)).setType(GenerationType.WATER)
+        SupremeGenerator.RECIPE_AQUA_GENERATOR).setBuffer(getValueGeneratorsWithLimit(Supreme.getSupremePowerSection().getGeneratorAquaBuffer()))
+        .setEnergy(getValueGeneratorsWithLimit(Supreme.getSupremePowerSection().getGeneratorAquaEnergy())).setType(GenerationType.WATER)
         .register(sup);
 
     new EnergyGenerator(ItemGroups.ELECTRIC_CATEGORY, SupremeGenerator.BASIC_LUX_GENERATOR,
         SupremeGenerator.RECIPE_BASIC_LUX_GENERATOR).setBuffer(
-            getValueGeneratorsWithLimit(SupremeGenerator.BASIC_LUX_BUFFER))
-        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.BASIC_LUX_ENERGY)).setType(GenerationType.SKY)
+            getValueGeneratorsWithLimit(Supreme.getSupremePowerSection().getGeneratorBasicLuxBuffer()))
+        .setEnergy(getValueGeneratorsWithLimit(Supreme.getSupremePowerSection().getGeneratorBasicLuxEnergy())).setType(GenerationType.SKY)
         .register(sup);
 
     new EnergyGenerator(ItemGroups.ELECTRIC_CATEGORY, SupremeGenerator.LUX_GENERATOR,
-        SupremeGenerator.RECIPE_LUX_GENERATOR).setBuffer(getValueGeneratorsWithLimit(SupremeGenerator.LUX_BUFFER))
-        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.LUX_ENERGY)).setType(GenerationType.SKY)
+        SupremeGenerator.RECIPE_LUX_GENERATOR).setBuffer(getValueGeneratorsWithLimit(Supreme.getSupremePowerSection().getGeneratorLuxBuffer()))
+        .setEnergy(getValueGeneratorsWithLimit(Supreme.getSupremePowerSection().getGeneratorLuxEnergy())).setType(GenerationType.SKY)
         .register(sup);
 
     new EnergyGenerator(ItemGroups.ELECTRIC_CATEGORY, SupremeGenerator.BASIC_LUMIUM_GENERATOR,
         SupremeGenerator.RECIPE_BASIC_LUMIUM_GENERATOR).setBuffer(
-            getValueGeneratorsWithLimit(SupremeGenerator.BASIC_LUMIUM_BUFFER))
-        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.BASIC_LUMIUM_ENERGY)).setType(GenerationType.DARK)
+            getValueGeneratorsWithLimit(Supreme.getSupremePowerSection().getGeneratorBasicLumiumBuffer()))
+        .setEnergy(getValueGeneratorsWithLimit(Supreme.getSupremePowerSection().getGeneratorBasicLumiumEnergy())).setType(GenerationType.DARK)
         .register(sup);
 
     new EnergyGenerator(ItemGroups.ELECTRIC_CATEGORY, SupremeGenerator.LUMIUM_GENERATOR,
-        SupremeGenerator.RECIPE_LUMIUM_GENERATOR).setBuffer(getValueGeneratorsWithLimit(SupremeGenerator.LUMIUM_BUFFER))
-        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.LUMIUM_ENERGY)).setType(GenerationType.DARK)
+        SupremeGenerator.RECIPE_LUMIUM_GENERATOR).setBuffer(getValueGeneratorsWithLimit(Supreme.getSupremePowerSection().getGeneratorLumiumBuffer()))
+        .setEnergy(getValueGeneratorsWithLimit(Supreme.getSupremePowerSection().getGeneratorLumiumEnergy())).setType(GenerationType.DARK)
         .register(sup);
 
     new EnergyGenerator(ItemGroups.ELECTRIC_CATEGORY, SupremeGenerator.THORNIUM_GENERATOR,
         SupremeGenerator.RECIPE_THORNIUM_GENERATOR).setBuffer(
-            getValueGeneratorsWithLimit(SupremeGenerator.THORNIUM_BUFFER))
-        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.THORNIUM_ENERGY)).setType(GenerationType.EVERY)
+            getValueGeneratorsWithLimit(Supreme.getSupremePowerSection().getGeneratorThorniumBuffer()))
+        .setEnergy(getValueGeneratorsWithLimit(Supreme.getSupremePowerSection().getGeneratorThorniumEnergy())).setType(GenerationType.EVERY)
         .register(sup);
 
     new EnergyGenerator(ItemGroups.ELECTRIC_CATEGORY, SupremeGenerator.SUPREME_GENERATOR,
         SupremeGenerator.RECIPE_SUPREME_GENERATOR).setBuffer(
-            getValueGeneratorsWithLimit(SupremeGenerator.SUPREME_BUFFER))
-        .setEnergy(getValueGeneratorsWithLimit(SupremeGenerator.SUPREME_ENERGY)).setType(GenerationType.EVERY)
+            getValueGeneratorsWithLimit(Supreme.getSupremePowerSection().getGeneratorSupremeBuffer()))
+        .setEnergy(getValueGeneratorsWithLimit(Supreme.getSupremePowerSection().getGeneratorSupremeEnergy())).setType(GenerationType.EVERY)
         .register(sup);
 
     new EnergyCapacitor(ItemGroups.ELECTRIC_CATEGORY, SupremeCapacitor.AURUM_CAPACITOR,
         SupremeCapacitor.MACHINE_AURUM_CAPACITOR,
-        getValueGeneratorsWithLimit(SupremeCapacitor.AURUM_CAPACITY)).register(sup);
+        getValueGeneratorsWithLimit(Supreme.getSupremePowerSection().getCapacitorAurumCapacity())).register(sup);
 
     new EnergyCapacitor(ItemGroups.ELECTRIC_CATEGORY, SupremeCapacitor.TITANIUM_CAPACITOR,
         SupremeCapacitor.MACHINE_TITANIUM_CAPACITOR,
-        getValueGeneratorsWithLimit(SupremeCapacitor.TITANIUM_CAPACITY)).register(sup);
+        getValueGeneratorsWithLimit(Supreme.getSupremePowerSection().getCapacitorTitaniumCapacity())).register(sup);
 
     new EnergyCapacitor(ItemGroups.ELECTRIC_CATEGORY, SupremeCapacitor.ADAMANTIUM_CAPACITOR,
         SupremeCapacitor.MACHINE_ADAMANTIUM_CAPACITOR,
-        getValueGeneratorsWithLimit(SupremeCapacitor.ADAMANTIUM_CAPACITY)).register(sup);
+        getValueGeneratorsWithLimit(Supreme.getSupremePowerSection().getCapacitorAdamantiumCapacity())).register(sup);
 
     new EnergyCapacitor(ItemGroups.ELECTRIC_CATEGORY, SupremeCapacitor.THORNIUM_CAPACITOR,
         SupremeCapacitor.MACHINE_THORNIUM_CAPACITOR,
-        getValueGeneratorsWithLimit(SupremeCapacitor.THORNIUM_CAPACITY)).register(sup);
+        getValueGeneratorsWithLimit(Supreme.getSupremePowerSection().getCapacitorThorniumCapacity())).register(sup);
 
     new EnergyCapacitor(ItemGroups.ELECTRIC_CATEGORY, SupremeCapacitor.SUPREME_CAPACITOR,
         SupremeCapacitor.MACHINE_SUPREME_CAPACITOR,
-        getValueGeneratorsWithLimit(SupremeCapacitor.SUPREME_CAPACITY)).register(sup);
+        getValueGeneratorsWithLimit(Supreme.getSupremePowerSection().getCapacitorSupremeCapacity())).register(sup);
 
   }
 }
