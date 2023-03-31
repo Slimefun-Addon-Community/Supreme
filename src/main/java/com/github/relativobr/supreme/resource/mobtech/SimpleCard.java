@@ -186,6 +186,11 @@ public class SimpleCard {
 
   public static final SlimefunItemStack CARD_ZINC_DUST = new SupremeItemStack("SUPREME_CARD_ZINC_DUST",
       Material.MUSIC_DISC_MELLOHI, "&bCard Machine Zinc Dust", "", "&fChange to Production Zinc Dust", "",
+      LoreBuilder.machine(MachineTier.MEDIUM, MachineType.MACHINE), "", "&3Supreme Component"); 
+  
+  
+  public static final SlimefunItemStack CARD_ENERGY_CONNECTOR = new SupremeItemStack("SUPREME_CARD_ENERGY_CONNECTOR",
+      Material.MUSIC_DISC_MELLOHI, "&bCard Machine Energy Connector", "", "&fChange to Production Energy Connector", "",
       LoreBuilder.machine(MachineTier.MEDIUM, MachineType.MACHINE), "", "&3Supreme Component");
 
 }
