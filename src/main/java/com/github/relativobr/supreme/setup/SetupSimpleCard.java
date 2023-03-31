@@ -34,6 +34,8 @@ public class SetupSimpleCard {
     TechGenerator.preSetup(plugin, SimpleCard.CARD_CLAY, Material.CLAY, Material.CLAY);
 
     TechGenerator.preSetup(plugin, SimpleCard.CARD_SNOW, Material.SNOW_BLOCK, Material.SNOW_BLOCK);
+    
+    TechGenerator.preSetup(plugin, SimpleCard.CARD_APPLE, Material.APPLE, Material.APPLE);
 
     TechGenerator.preSetup(plugin, SimpleCard.CARD_NETHER_STAR, Material.NETHER_STAR, Material.NETHER_STAR);
 
