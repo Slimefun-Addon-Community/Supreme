@@ -67,7 +67,7 @@ public class SimpleCard {
       LoreBuilder.machine(MachineTier.BASIC, MachineType.MACHINE), "", "&3Supreme Component");
   
   public static final SlimefunItemStack CARD_NETHER_STAR = new SupremeItemStack("SUPREME_CARD_NETHER_STAR", Material.MUSIC_DISC_STRAD,
-          "&bCard Machine Apple", "", "&fChange to Production Apple", "",
+          "&bCard Machine Nether Star", "", "&fChange to Production Nether Star", "",
           LoreBuilder.machine(MachineTier.BASIC, MachineType.MACHINE), "", "&3Supreme Component");
 
   public static final SlimefunItemStack CARD_WITHER_ROSE = new SupremeItemStack("SUPREME_CARD_WITHER_ROSE", Material.MUSIC_DISC_STRAD,
