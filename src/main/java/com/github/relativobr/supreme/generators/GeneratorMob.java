@@ -86,6 +86,8 @@ public class GeneratorMob extends AbstractEnergyProvider {
       if (!isAnimalNearby(uuid)) {
         uuid = locateEntity(l);
         cachedEntity.put(p, uuid);
+      } else {
+        return true;
       }
 
       return isAnimalNearby(uuid);
