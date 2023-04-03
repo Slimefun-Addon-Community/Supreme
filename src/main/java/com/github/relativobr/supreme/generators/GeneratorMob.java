@@ -81,16 +81,22 @@ public class GeneratorMob extends AbstractEnergyProvider {
   @ParametersAreNonnullByDefault
   private boolean isAnimalNearby(Location l) {
     try {
-      UUID uuid = cachedEntity.computeIfAbsent(new BlockPosition(l), this::locateEntity);
-      boolean isAnimalNearby = uuid != null && Bukkit.getEntity(uuid) != null && l.distanceSquared(Bukkit.getEntity(uuid).getLocation()) <= Math.pow(mobRange, 2);
-      if (!isAnimalNearby) {
-        cachedEntity.remove(new BlockPosition(l));
+      BlockPosition p = new BlockPosition(l);
+      UUID uuid = cachedEntity.get(p);
+      if (!isAnimalNearby(uuid)) {
+        uuid = locateEntity(l);
+        cachedEntity.put(p, uuid);
       }
-      return isAnimalNearby;
+
+      return isAnimalNearby(uuid);
     } catch (Exception e) {
       e.printStackTrace();
       return false;
     }
+  }
+
+  private boolean isAnimalNearby(UUID uuid) {
+    return uuid != null && Bukkit.getEntity(uuid) != null && l.distanceSquared(Bukkit.getEntity(uuid).getLocation()) <= Math.pow(mobRange, 2);
   }
 
   @ParametersAreNonnullByDefault
@@ -149,7 +155,7 @@ public class GeneratorMob extends AbstractEnergyProvider {
   }
 
   @ParametersAreNonnullByDefault
-  private UUID locateEntity(BlockPosition p) {
-    return p.getWorld().getNearbyEntities(p.toLocation(), mobRange, mobRange, mobRange, this::isValidAnimal).stream().findFirst().map(Entity::getUniqueId).orElse(null);
+  private UUID locateEntity(Location l) {
+    return l.getWorld().getNearbyEntities(l, mobRange, mobRange, mobRange, this::isValidAnimal).stream().findFirst().map(Entity::getUniqueId).orElse(null);
   }
 }
