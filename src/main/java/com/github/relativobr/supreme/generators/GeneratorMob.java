@@ -8,6 +8,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.MachineTier;
 import io.github.thebusybiscuit.slimefun4.core.attributes.MachineType;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.AbstractEnergyProvider;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.blocks.BlockPosition;
@@ -27,6 +28,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicReference;
 
 import static com.github.relativobr.supreme.util.ItemUtil.getValueGeneratorsWithLimit;
 
@@ -158,6 +160,8 @@ public class GeneratorMob extends AbstractEnergyProvider {
 
   @ParametersAreNonnullByDefault
   private UUID locateEntity(Location l) {
-    return l.getWorld().getNearbyEntities(l, mobRange, mobRange, mobRange, this::isValidAnimal).stream().findFirst().map(Entity::getUniqueId).orElse(null);
+    final AtomicReference<UUID> uuid = new AtomicReference<>();
+    Slimefun.runSync(() -> uuid.set(l.getWorld().getNearbyEntities(l, mobRange, mobRange, mobRange, this::isValidAnimal).stream().findFirst().map(Entity::getUniqueId).orElse(null)));
+    return uuid.get();
   }
 }
