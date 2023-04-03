@@ -68,7 +68,7 @@ public class GeneratorMob extends AbstractEnergyProvider {
       SlimefunItems.CARBONADO, GeneratorMob.GENERATOR_MOB_MEDIUM, SlimefunItems.HEATING_COIL, SlimefunItems.PLUTONIUM,
       SlimefunItems.HEATING_COIL, GeneratorMob.GENERATOR_MOB_MEDIUM, SupremeComponents.INDUCTIVE_MACHINE,
       GeneratorMob.GENERATOR_MOB_MEDIUM};
-  public static final Map<BlockPosition, UUID> cachedEntity = new HashMap<>();
+  protected static final Map<BlockPosition, UUID> cachedEntity = new HashMap<>();
 
   private int energy;
   private int buffer;
