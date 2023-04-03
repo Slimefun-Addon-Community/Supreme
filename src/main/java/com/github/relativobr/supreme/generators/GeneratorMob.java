@@ -83,21 +83,21 @@ public class GeneratorMob extends AbstractEnergyProvider {
     try {
       BlockPosition p = new BlockPosition(l);
       UUID uuid = cachedEntity.get(p);
-      if (!isAnimalNearby(uuid)) {
+      if (!isAnimalNearby(l, uuid)) {
         uuid = locateEntity(l);
         cachedEntity.put(p, uuid);
       } else {
         return true;
       }
 
-      return isAnimalNearby(uuid);
+      return isAnimalNearby(l, uuid);
     } catch (Exception e) {
       e.printStackTrace();
       return false;
     }
   }
 
-  private boolean isAnimalNearby(UUID uuid) {
+  private boolean isAnimalNearby(Location l, UUID uuid) {
     return uuid != null && Bukkit.getEntity(uuid) != null && l.distanceSquared(Bukkit.getEntity(uuid).getLocation()) <= Math.pow(mobRange, 2);
   }
 
