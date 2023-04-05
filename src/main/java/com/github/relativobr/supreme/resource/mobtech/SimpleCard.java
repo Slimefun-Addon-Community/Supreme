@@ -192,5 +192,4 @@ public class SimpleCard {
       Material.MUSIC_DISC_MELLOHI, "&bCard Machine Zinc Dust", "", "&fChange to Production Zinc Dust", "",
       LoreBuilder.machine(MachineTier.MEDIUM, MachineType.MACHINE), "", "&3Supreme Component"); 
 
-      
 }
