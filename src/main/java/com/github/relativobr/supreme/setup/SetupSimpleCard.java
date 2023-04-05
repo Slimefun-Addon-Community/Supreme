@@ -96,6 +96,5 @@ public class SetupSimpleCard {
     TechGenerator.preSetup(plugin, SimpleCard.CARD_TIN_DUST, SlimefunItems.TIN_DUST, SlimefunItems.TIN_DUST);
 
     TechGenerator.preSetup(plugin, SimpleCard.CARD_ZINC_DUST, SlimefunItems.ZINC_DUST, SlimefunItems.ZINC_DUST);
-    
   }
 }
