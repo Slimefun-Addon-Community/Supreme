@@ -1,5 +1,6 @@
 package com.github.relativobr.supreme.machine.tech;
 
+import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.generic.machine.SimpleItemContainerMachine;
 import com.github.relativobr.supreme.generic.recipe.InventoryRecipe;
 import com.github.relativobr.supreme.generic.recipe.AbstractItemRecipe;
@@ -10,6 +11,7 @@ import com.github.relativobr.supreme.resource.magical.SupremeCore;
 import com.github.relativobr.supreme.util.ItemGroups;
 import com.github.relativobr.supreme.util.SupremeItemStack;
 import com.github.relativobr.supreme.util.UtilEnergy;
+import com.github.relativobr.supreme.util.UtilMachine;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -17,6 +19,7 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.MachineTier;
 import io.github.thebusybiscuit.slimefun4.core.attributes.MachineType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactive;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactivity;
+import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
@@ -35,9 +38,11 @@ import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.springframework.scheduling.annotation.Async;
@@ -79,10 +84,12 @@ public class TechRobotic extends SimpleItemContainerMachine implements Radioacti
   private Map<Block, ItemStack> processing = new HashMap<Block, ItemStack>();
   private Map<Block, Integer> progressTime = new HashMap<Block, Integer>();
   private int speed = 1;
-  private int amoundUpgrade = 64;
+  private int amountUpgrade = 64;
 
   public TechRobotic(SlimefunItemStack item, ItemStack[] recipe) {
     super(ItemGroups.MACHINES_CATEGORY, item, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
+
+    addItemHandler(onBlockPlace());
   }
 
   public static void addRecipe(ItemStack input, ItemStack output) {
@@ -242,9 +249,9 @@ public class TechRobotic extends SimpleItemContainerMachine implements Radioacti
 
     for (AbstractItemRecipe produce : this.recipes) {
       ItemStack itemStack = produce.getFirstItemInput().clone();
-      itemStack.setAmount(getAmoundUpgrade());
+      itemStack.setAmount(getAmountUpgrade());
       if (SlimefunUtils.isItemSimilar(inv.getItemInSlot(getInputSlots()[0]), itemStack, false, true)) {
-        inv.consumeItem(getInputSlots()[0], getAmoundUpgrade());
+        inv.consumeItem(getInputSlots()[0], getAmountUpgrade());
         return produce.getFirstItemOutput();
       }
 
@@ -260,7 +267,7 @@ public class TechRobotic extends SimpleItemContainerMachine implements Radioacti
         .stream().filter(Objects::nonNull)
         .forEach(recipe -> {
       ItemStack itemStack = recipe.getFirstItemOutput().clone();
-      itemStack.setAmount(getAmoundUpgrade());
+      itemStack.setAmount(getAmountUpgrade());
       displayRecipes.add(itemStack);
       displayRecipes.add(recipe.getFirstItemOutput());
     });
@@ -276,12 +283,12 @@ public class TechRobotic extends SimpleItemContainerMachine implements Radioacti
     return this;
   }
 
-  public int getAmoundUpgrade() {
-    return amoundUpgrade;
+  public int getAmountUpgrade() {
+    return amountUpgrade;
   }
 
-  public TechRobotic setAmoundUpgrade(int amoundUpgrade) {
-    this.amoundUpgrade = amoundUpgrade;
+  public TechRobotic setAmountUpgrade(int amountUpgrade) {
+    this.amountUpgrade = amountUpgrade;
     return this;
   }
 
@@ -291,4 +298,24 @@ public class TechRobotic extends SimpleItemContainerMachine implements Radioacti
     return Radioactivity.VERY_HIGH;
   }
 
+
+  @Nonnull
+  private BlockPlaceHandler onBlockPlace() {
+    return new BlockPlaceHandler(false) {
+      @Override
+      public void onPlayerPlace(@Nonnull BlockPlaceEvent event) {
+        Block block = event.getBlock();
+        //check number in chuck
+        if(UtilMachine.containsLimitMaterialInChunk(block.getChunk(),
+                Supreme.getSupremeOptions().getChunkLimitMaxTechRobotic(),
+                TECH_ROBOTIC.getType())){
+          BlockStorage.clearBlockInfo(block.getLocation(), true);
+          event.setCancelled(true);
+          event.getPlayer().sendMessage(ChatColor.WHITE + "TechRobotic: " +
+                  ChatColor.RED + "Reached the machine limit for Chuck (" +
+                  Supreme.getSupremeOptions().getChunkLimitMaxTechRobotic() + "x Material)");
+        }
+      }
+    };
+  }
 }

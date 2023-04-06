@@ -9,6 +9,8 @@ import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.mobtech.MobTech;
 import com.github.relativobr.supreme.util.ItemGroups;
 import com.github.relativobr.supreme.util.SupremeItemStack;
+import com.github.relativobr.supreme.util.UtilMachine;
+import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
 import com.github.relativobr.supreme.util.UtilEnergy;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -38,10 +40,12 @@ import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import io.github.thebusybiscuit.slimefun4.libraries.commons.lang.Validate;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.springframework.scheduling.annotation.Async;
@@ -71,6 +75,8 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
 
   public TechGenerator(SlimefunItemStack item, ItemStack[] recipe) {
     super(ItemGroups.MACHINES_CATEGORY, item, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
+
+    addItemHandler(onBlockPlace());
   }
 
   public static void addRecipesToProcess(ItemStack input, ItemStack output) {
@@ -434,5 +440,25 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
   @Override
   public Radioactivity getRadioactivity() {
     return Radioactivity.LOW;
+  }
+
+  @Nonnull
+  private BlockPlaceHandler onBlockPlace() {
+    return new BlockPlaceHandler(false) {
+      @Override
+      public void onPlayerPlace(@Nonnull BlockPlaceEvent event) {
+        Block block = event.getBlock();
+        //check number in chuck
+        if(UtilMachine.containsLimitMaterialInChunk(block.getChunk(),
+                Supreme.getSupremeOptions().getChunkLimitMaxTechGenerator(),
+                TECH_GENERATOR.getType())){
+          BlockStorage.clearBlockInfo(block.getLocation(), true);
+          event.setCancelled(true);
+          event.getPlayer().sendMessage(ChatColor.WHITE + "TechGenerator: " +
+                  ChatColor.RED + "Reached the machine limit for Chuck (" +
+                  Supreme.getSupremeOptions().getChunkLimitMaxTechGenerator() + "x Material)");
+        }
+      }
+    };
   }
 }

@@ -11,6 +11,10 @@ options:
   base-time-mob-collector: 15
   base-time-tech-generator: 1800
   tech-generator-max-amount: 64
+  chunk-limit-max-tech-generator: 100
+  chunk-limit-max-tech-mutation: 100
+  chunk-limit-max-tech-robotic: 100
+  chunk-limit-max-mob-tech-collector: 100
   mob-tech-enable-bee: true
   mob-tech-enable-iron-golem: true
   mob-tech-enable-zombie: true

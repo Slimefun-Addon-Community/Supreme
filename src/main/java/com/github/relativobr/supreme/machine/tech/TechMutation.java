@@ -1,5 +1,6 @@
 package com.github.relativobr.supreme.machine.tech;
 
+import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.generic.machine.SimpleItemContainerMachine;
 import com.github.relativobr.supreme.generic.recipe.InventoryRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
@@ -17,6 +18,7 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.MachineTier;
 import io.github.thebusybiscuit.slimefun4.core.attributes.MachineType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactive;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactivity;
+import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
@@ -36,9 +38,11 @@ import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.springframework.scheduling.annotation.Async;
@@ -82,6 +86,8 @@ public class TechMutation extends SimpleItemContainerMachine implements Radioact
   private int upgradeLuck = 1;
   public TechMutation(SlimefunItemStack item, ItemStack[] recipe) {
     super(ItemGroups.MACHINES_CATEGORY, item, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
+
+    addItemHandler(onBlockPlace());
   }
 
   @ParametersAreNonnullByDefault
@@ -178,18 +184,18 @@ public class TechMutation extends SimpleItemContainerMachine implements Radioact
 
     BlockMenu inv = BlockStorage.getInventory(b);
 
-    final MobTechMutationGeneric itemNaReceita = validRecipeItem(inv);
-    final MobTechMutationGeneric itemProduzindo = processing.get(b);
-    if (itemProduzindo == null) {
+    final MobTechMutationGeneric itemRecipe = validRecipeItem(inv);
+    final MobTechMutationGeneric itemProcessing = processing.get(b);
+    if (itemProcessing == null) {
 
-      if (itemNaReceita != null) {
+      if (itemRecipe != null) {
 
         inv.consumeItem(getInputSlots()[0], 1);
         inv.consumeItem(getInputSlots()[1], 1);
 
-        invalidProgressBar(inv, itemNaReceita.getOutput().getType(), " ");
+        invalidProgressBar(inv, itemRecipe.getOutput().getType(), " ");
 
-        processing.put(b, itemNaReceita);
+        processing.put(b, itemRecipe);
         progressTime.put(b, (getTimeProcess() * 2));
 
       } else {
@@ -202,8 +208,8 @@ public class TechMutation extends SimpleItemContainerMachine implements Radioact
 
       if (this.getProgressTime(b) <= 0) {
 
-        if (UtilMachine.getRandomInt() <= (itemProduzindo.getChance() * getUpgradeLuck())) {
-          inv.pushItem(itemProduzindo.getOutput().clone(), this.getOutputSlots());
+        if (UtilMachine.getRandomInt() <= (itemProcessing.getChance() * getUpgradeLuck())) {
+          inv.pushItem(itemProcessing.getOutput().clone(), this.getOutputSlots());
           invalidProgressBar(inv, Material.BLACK_STAINED_GLASS_PANE, " Success! ");
         } else {
           invalidProgressBar(inv, Material.BLACK_STAINED_GLASS_PANE, " Fail! ");
@@ -214,7 +220,7 @@ public class TechMutation extends SimpleItemContainerMachine implements Radioact
 
       } else {
 
-        this.processTicks(b, inv, itemProduzindo.getOutput());
+        this.processTicks(b, inv, itemProcessing.getOutput());
 
       }
 
@@ -315,6 +321,26 @@ public class TechMutation extends SimpleItemContainerMachine implements Radioact
   @Override
   public Radioactivity getRadioactivity() {
     return Radioactivity.VERY_HIGH;
+  }
+
+  @Nonnull
+  private BlockPlaceHandler onBlockPlace() {
+    return new BlockPlaceHandler(false) {
+      @Override
+      public void onPlayerPlace(@Nonnull BlockPlaceEvent event) {
+        Block block = event.getBlock();
+        //check number in chuck
+        if(UtilMachine.containsLimitMaterialInChunk(block.getChunk(),
+                Supreme.getSupremeOptions().getChunkLimitMaxTechMutation(),
+                TECH_MUTATION_I.getType())){
+          BlockStorage.clearBlockInfo(block.getLocation(), true);
+          event.setCancelled(true);
+          event.getPlayer().sendMessage(ChatColor.WHITE + "TechMutation: " +
+                  ChatColor.RED + "Reached the machine limit for Chuck (" +
+                  Supreme.getSupremeOptions().getChunkLimitMaxTechMutation() + "x Material)");
+        }
+      }
+    };
   }
 
 }

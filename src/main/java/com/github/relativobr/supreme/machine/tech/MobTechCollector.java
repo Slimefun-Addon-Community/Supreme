@@ -12,12 +12,14 @@ import com.github.relativobr.supreme.resource.mobtech.ZombieTech;
 import com.github.relativobr.supreme.util.ItemUtil;
 import com.github.relativobr.supreme.util.SupremeItemStack;
 import com.github.relativobr.supreme.util.SupremeOptions;
+import com.github.relativobr.supreme.util.UtilMachine;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.MachineTier;
 import io.github.thebusybiscuit.slimefun4.core.attributes.MachineType;
+import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.inventory.InvUtils;
 import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;
@@ -32,8 +34,10 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
+import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import io.github.thebusybiscuit.slimefun4.libraries.commons.lang.Validate;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Bee;
@@ -42,6 +46,7 @@ import org.bukkit.entity.IronGolem;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Zombie;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 import org.springframework.scheduling.annotation.Async;
 
@@ -86,6 +91,8 @@ public class MobTechCollector extends SimpleItemWithLargeContainerMachine {
   @ParametersAreNonnullByDefault
   public MobTechCollector(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
     super(category, item, recipeType, recipe);
+
+    addItemHandler(onBlockPlace());
   }
 
 
@@ -199,4 +206,23 @@ public class MobTechCollector extends SimpleItemWithLargeContainerMachine {
     return this;
   }
 
+  @Nonnull
+  private BlockPlaceHandler onBlockPlace() {
+    return new BlockPlaceHandler(false) {
+      @Override
+      public void onPlayerPlace(@Nonnull BlockPlaceEvent event) {
+        Block block = event.getBlock();
+        //check number in chuck
+        if(UtilMachine.containsLimitMaterialInChunk(block.getChunk(),
+                Supreme.getSupremeOptions().getChunkLimitMaxMobTechCollector(),
+                MOB_TECH_COLLECTOR_MACHINE_I.getType())){
+          BlockStorage.clearBlockInfo(block.getLocation(), true);
+          event.setCancelled(true);
+          event.getPlayer().sendMessage(ChatColor.WHITE + "MobTechCollector: " +
+                  ChatColor.RED + "Reached the machine limit for Chuck (" +
+                  Supreme.getSupremeOptions().getChunkLimitMaxMobTechCollector() + "x Material)");
+        }
+      }
+    };
+  }
 }

@@ -22,6 +22,10 @@ public class SupremeOptions {
     int baseTimeMobCollector;
     int baseTimeTechGenerator;
     int maxAmountTechGenerator;
+    int chunkLimitMaxTechGenerator;
+    int chunkLimitMaxTechMutation;
+    int chunkLimitMaxTechRobotic;
+    int chunkLimitMaxMobTechCollector;
     boolean mobTechEnableBee;
     boolean mobTechEnableIronGolem;
     boolean mobTechEnableZombie;
@@ -49,6 +53,10 @@ public class SupremeOptions {
                 .baseTimeMobCollector(15)
                 .baseTimeTechGenerator(1800)
                 .maxAmountTechGenerator(64)
+                .chunkLimitMaxTechGenerator(100)
+                .chunkLimitMaxTechMutation(100)
+                .chunkLimitMaxTechRobotic(100)
+                .chunkLimitMaxMobTechCollector(100)
                 .mobTechEnableBee(true)
                 .mobTechEnableIronGolem(true)
                 .mobTechEnableZombie(true)

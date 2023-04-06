@@ -3,7 +3,7 @@ Supreme is an addon for Slimefun which adds 100+ various new resources that will
 
 ## Requirements
 
-Minecraft Version: 1.17 ~ 1.19.2
+Minecraft Version: 1.17+
 
 Slimefun Version: RC-32
 
@@ -138,6 +138,10 @@ Make a new issue, pull request, or discord Slimefun-Addon-Community
 - **base-time-mob-collector** - To change the Mob Collector base processing time (default: 15)
 - **base-time-tech-generator** - To change the Tech Generator base processing time (default: 1800)
 - **tech-generator-max-amount** - To change the Tech Generator base result item amount (default: 64)
+- **chunk-limit-max-tech-generator** - Option to limit the use of TechGenerator in a given chunk (default: 100)
+- **chunk-limit-max-tech-mutation** - Option to limit the use of TechMutation in a given chunk (default: 100)
+- **chunk-limit-max-tech-robotic** - Option to limit the use of TechRobotic in a given chunk (default: 100)
+- **chunk-limit-max-mob-tech-collector** - Option to limit the use of TechCollector in a given chunk (default: 100)
 - **mob-tech-enable-bee** - Indication whether to enable the Bee in Mob Tech (default: true)
 - **mob-tech-enable-iron-golem** - Indication whether to enable the Iron Golem in Mob Tech (default: true)
 - **mob-tech-enable-zombie** - Indication whether to enable the Zombie in Mob Tech (default: true)
