@@ -96,8 +96,8 @@ public class ElectricCrafter extends FlexItemContainerMachine {
     list.add(RECIPE_GLASS_BOTTLE);
     list.add(RECIPE_FISHING_ROD);
     list.add(RECIPE_FLINT_AND_STEEL);
-    list.add(RECIPE_SHEARS);
     list.add(RECIPE_IRON_SWORD);
+    list.add(RECIPE_SHEARS);
     list.add(RECIPE_BARREL);
     list.add(RECIPE_SYNTHETIC_AMETHYST);
     list.add(RECIPE_SYNTHETIC_RUBY);
