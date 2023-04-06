@@ -34,6 +34,20 @@ public class SetupSimpleCard {
     TechGenerator.preSetup(plugin, SimpleCard.CARD_CLAY, Material.CLAY, Material.CLAY);
 
     TechGenerator.preSetup(plugin, SimpleCard.CARD_SNOW, Material.SNOW_BLOCK, Material.SNOW_BLOCK);
+    
+    TechGenerator.preSetup(plugin, SimpleCard.CARD_APPLE, Material.APPLE, Material.APPLE);
+
+    TechGenerator.preSetup(plugin, SimpleCard.CARD_NETHER_STAR, Material.NETHER_STAR, Material.NETHER_STAR);
+
+    TechGenerator.preSetup(plugin, SimpleCard.CARD_WITHER_ROSE, Material.WITHER_ROSE, Material.WITHER_ROSE);
+
+    TechGenerator.preSetup(plugin, SimpleCard.CARD_SLIME_BALL, Material.SLIME_BALL, Material.SLIME_BALL);
+
+    TechGenerator.preSetup(plugin, SimpleCard.CARD_INK_SAC, Material.INK_SAC, Material.INK_SAC);
+
+    TechGenerator.preSetup(plugin, SimpleCard.CARD_GLOW_INK_SAC, Material.GLOW_INK_SAC, Material.GLOW_INK_SAC);
+
+    TechGenerator.preSetup(plugin, SimpleCard.CARD_HONEY_BOTTLE, Material.HONEY_BOTTLE, Material.HONEY_BOTTLE);
 
     TechGenerator.preSetup(plugin, SimpleCard.CARD_COAL, Material.COAL_BLOCK, Material.COAL);
 
@@ -82,6 +96,5 @@ public class SetupSimpleCard {
     TechGenerator.preSetup(plugin, SimpleCard.CARD_TIN_DUST, SlimefunItems.TIN_DUST, SlimefunItems.TIN_DUST);
 
     TechGenerator.preSetup(plugin, SimpleCard.CARD_ZINC_DUST, SlimefunItems.ZINC_DUST, SlimefunItems.ZINC_DUST);
-
   }
 }

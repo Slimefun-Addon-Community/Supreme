@@ -1,6 +1,8 @@
-package com.github.relativobr.supreme.machine;
+package com.github.relativobr.supreme.util;
 
 import java.util.List;
+
+import com.github.relativobr.supreme.machine.AbstractQuarryOutputItem;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,7 +12,7 @@ import lombok.Setter;
 @Getter
 @Builder
 @AllArgsConstructor
-public class AbstractQuarryOutput {
+public class SupremeQuarryOutput {
 
   List<AbstractQuarryOutputItem> outputItems;
 

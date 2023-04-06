@@ -266,6 +266,11 @@ public class MobCollector extends SimpleItemWithLargeContainerMachine {
     this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.IRON_SWORD),
         new ItemStack(Material.GLASS_BOTTLE, this.getSpeed()),
         (n) -> n.getType() == EntityType.WITCH));
+    if (!customBc) {
+      this.addProduce(new MobCollectorMachineRecipe(new ItemStack(Material.GOLD_INGOT),
+              new SlimefunItemStack(SlimefunItems.STRANGE_NETHER_GOO, this.getSpeed()),
+              (n) -> n.getType() == EntityType.PIGLIN));
+    }
   }
 
 

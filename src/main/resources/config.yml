@@ -973,3 +973,33 @@ supreme-effect:
   boots:
     dolphins_grace: true
     fire_resistance: true
+power-section:
+    capacitor-aurum-capacity: 1000000
+    capacitor-titanium-capacity: 4000000
+    capacitor-adamantium-capacity: 16000000
+    capacitor-thornium-capacity: 100000000
+    capacitor-supreme-capacity: 1600000000
+    generator-basic-ignis-energy: 2500
+    generator-basic-ignis-buffer: 5000
+    generator-basic-ventus-energy: 2500
+    generator-basic-ventus-buffer: 5000
+    generator-basic-aqua-energy: 2500
+    generator-basic-aqua-buffer: 5000
+    generator-basic-lux-energy: 2500
+    generator-basic-lux-buffer: 5000
+    generator-basic-lumium-energy: 5000
+    generator-basic-lumium-buffer: 10000
+    generator-ignis-energy: 25000
+    generator-ignis-buffer: 50000
+    generator-ventus-energy: 25000
+    generator-ventus-buffer: 50000
+    generator-aqua-energy: 25000
+    generator-aqua-buffer: 50000
+    generator-lux-energy: 25000
+    generator-lux-buffer: 50000
+    generator-lumium-energy: 75000
+    generator-lumium-buffer: 500000
+    generator-thornium-energy: 1000000
+    generator-thornium-buffer: 6000000
+    generator-supreme-energy: 2000000
+    generator-supreme-buffer: 12000000
