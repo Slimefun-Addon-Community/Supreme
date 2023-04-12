@@ -242,7 +242,7 @@ public class TechRobotic extends SimpleItemContainerMachine implements Radioacti
   private ItemStack validRecipeItem(BlockMenu inv) {
 
     for (AbstractItemRecipe produce : this.recipes) {
-      ItemStack itemStack = produce.getFirstItemInput().clone();
+      ItemStack itemStack = produce.getFirstItemInput();
       itemStack.setAmount(getAmountUpgrade());
       if (SlimefunUtils.isItemSimilar(inv.getItemInSlot(getInputSlots()[0]), itemStack, false, true)) {
         inv.consumeItem(getInputSlots()[0], getAmountUpgrade());
