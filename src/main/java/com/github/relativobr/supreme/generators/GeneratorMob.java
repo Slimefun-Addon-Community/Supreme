@@ -25,9 +25,9 @@ import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static com.github.relativobr.supreme.util.ItemUtil.getValueGeneratorsWithLimit;
@@ -70,7 +70,7 @@ public class GeneratorMob extends AbstractEnergyProvider {
       SlimefunItems.CARBONADO, GeneratorMob.GENERATOR_MOB_MEDIUM, SlimefunItems.HEATING_COIL, SlimefunItems.PLUTONIUM,
       SlimefunItems.HEATING_COIL, GeneratorMob.GENERATOR_MOB_MEDIUM, SupremeComponents.INDUCTIVE_MACHINE,
       GeneratorMob.GENERATOR_MOB_MEDIUM};
-  protected static final Map<BlockPosition, UUID> cachedEntity = new HashMap<>();
+  protected static final Map<BlockPosition, UUID> cachedEntity = new ConcurrentHashMap<>();
 
   private int energy;
   private int buffer;
@@ -84,15 +84,22 @@ public class GeneratorMob extends AbstractEnergyProvider {
   private boolean isAnimalNearby(Location l) {
     try {
       BlockPosition p = new BlockPosition(l);
-      UUID uuid = cachedEntity.get(p);
-      if (!isAnimalNearby(l, uuid)) {
+      UUID uuid = cachedEntity.getOrDefault(p, null);
+      boolean nearby = isAnimalNearby(l, uuid);
+
+      if (!nearby) {
         uuid = locateEntity(l);
-        cachedEntity.put(p, uuid);
+        nearby = isAnimalNearby(l, uuid);
       } else {
         return true;
       }
 
-      return isAnimalNearby(l, uuid);
+      if (nearby) {
+        cachedEntity.put(p, uuid);
+        return true;
+      }
+
+      return false;
     } catch (Exception e) {
       e.printStackTrace();
       return false;
