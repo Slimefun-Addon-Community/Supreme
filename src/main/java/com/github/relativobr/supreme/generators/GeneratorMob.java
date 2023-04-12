@@ -1,5 +1,6 @@
 package com.github.relativobr.supreme.generators;
 
+import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.util.ItemGroups;
 import com.github.relativobr.supreme.util.SupremeItemStack;
@@ -86,15 +87,21 @@ public class GeneratorMob extends AbstractEnergyProvider {
       BlockPosition p = new BlockPosition(l);
       UUID uuid = cachedEntity.getOrDefault(p, null);
       boolean nearby = isAnimalNearby(l, uuid);
-
+      Supreme.inst().getLogger().info("UUID: " + uuid);
+      Supreme.inst().getLogger().info("Nearby: " + nearby);
       if (!nearby) {
+        Supreme.inst().getLogger().info("Not nearby" );
         uuid = locateEntity(l);
         nearby = isAnimalNearby(l, uuid);
+        Supreme.inst().getLogger().info("UUID: " + uuid);
+        Supreme.inst().getLogger().info("Nearby: " + nearby);
       } else {
         return true;
       }
 
       if (nearby) {
+        Supreme.inst().getLogger().info("Is nearby, should generate power");
+        Supreme.inst().getLogger().info("uuid: " + uuid);
         cachedEntity.put(p, uuid);
         return true;
       }
