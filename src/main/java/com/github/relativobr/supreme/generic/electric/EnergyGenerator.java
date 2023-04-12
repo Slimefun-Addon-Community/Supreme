@@ -1,5 +1,6 @@
 package com.github.relativobr.supreme.generic.electric;
 
+import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.util.UtilEnergy;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -23,6 +24,8 @@ public final class EnergyGenerator extends MenuBlock implements EnergyNetProvide
 
   private int energy;
   private int buffer;
+  private int generate = 0;
+  private int currentDelay = 0;
   private GenerationType type;
 
 
@@ -83,11 +86,18 @@ public final class EnergyGenerator extends MenuBlock implements EnergyNetProvide
   @Override
   public int getGeneratedOutput(Location l, Config data) {
 
-    int gen = this.type.generate(l.getWorld(), l.getBlock(), this.energy);
+    if(this.generate > 0 && (this.currentDelay < Supreme.getSupremeOptions().getDelayTimeValidGenerators())){
+      this.currentDelay++;
+    } else {
+      // check block
+      this.generate = this.type.generate(l.getWorld(), l.getBlock(), this.energy);
+      this.currentDelay = 0;
+    }
+
 
     BlockMenu inv = BlockStorage.getInventory(l);
     if (inv != null && inv.hasViewer()) {
-      if (gen == 0) {
+      if (this.generate == 0) {
         inv.replaceExistingItem(13, new CustomItemStack(
                 Material.RED_STAINED_GLASS_PANE,
                 "&cNot generating",
@@ -100,14 +110,14 @@ public final class EnergyGenerator extends MenuBlock implements EnergyNetProvide
                 Material.GREEN_STAINED_GLASS_PANE,
                 "&aGeneration",
                 "&7Type: &6" + this.type,
-                "&7Generating: &6" + UtilEnergy.format(gen) + " J/s ",
+                "&7Generating: &6" + UtilEnergy.format(this.generate) + " J/tick ",
                 "&7Stored: &6" + UtilEnergy.format(getCharge(l)) + " J",
                 "&7Capacity: &6" + UtilEnergy.format(this.buffer) + " J"
         ));
       }
     }
 
-    return gen/2;
+    return this.generate;
   }
 
   @Override

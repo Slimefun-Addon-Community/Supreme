@@ -17,6 +17,7 @@ public class SupremeOptions {
     int customTickerDelay;
     boolean enableGenerators;
     boolean limitProductionGenerators;
+    int delayTimeValidGenerators;
     int baseTimeVirtualGarden;
     int baseTimeVirtualAquarium;
     int baseTimeMobCollector;
@@ -42,6 +43,7 @@ public class SupremeOptions {
                 .customTickerDelay(2)
                 .enableGenerators(true)
                 .limitProductionGenerators(false)
+                .delayTimeValidGenerators(600)
                 .enableQuarry(true)
                 .limitProductionQuarry(false)
                 .baseTimeVirtualGarden(15)
