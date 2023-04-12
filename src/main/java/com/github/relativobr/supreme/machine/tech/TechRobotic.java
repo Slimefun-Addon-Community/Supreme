@@ -1,8 +1,8 @@
 package com.github.relativobr.supreme.machine.tech;
 
 import com.github.relativobr.supreme.generic.machine.SimpleItemContainerMachine;
-import com.github.relativobr.supreme.generic.recipe.AbstractItemRecipe;
 import com.github.relativobr.supreme.generic.recipe.InventoryRecipe;
+import com.github.relativobr.supreme.generic.recipe.AbstractItemRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.magical.SupremeAttribute;
 import com.github.relativobr.supreme.resource.magical.SupremeCetrus;
@@ -22,6 +22,12 @@ import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import javax.annotation.Nonnull;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
@@ -35,13 +41,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.springframework.scheduling.annotation.Async;
-
-import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 @Async
 public class TechRobotic extends SimpleItemContainerMachine implements Radioactive {
@@ -77,10 +76,10 @@ public class TechRobotic extends SimpleItemContainerMachine implements Radioacti
       SupremeCetrus.CETRUS_LUMIUM, SupremeComponents.CRYSTALLIZER_MACHINE};
 
   public static final List<AbstractItemRecipe> recipes = new ArrayList<>();
-  private Map<Block, ItemStack> processing = new HashMap<>();
-  private Map<Block, Integer> progressTime = new HashMap<>();
+  private Map<Block, ItemStack> processing = new HashMap<Block, ItemStack>();
+  private Map<Block, Integer> progressTime = new HashMap<Block, Integer>();
   private int speed = 1;
-  private int amountUpgrade = 64;
+  private int amoundUpgrade = 64;
 
   public TechRobotic(SlimefunItemStack item, ItemStack[] recipe) {
     super(ItemGroups.MACHINES_CATEGORY, item, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
@@ -242,10 +241,10 @@ public class TechRobotic extends SimpleItemContainerMachine implements Radioacti
   private ItemStack validRecipeItem(BlockMenu inv) {
 
     for (AbstractItemRecipe produce : this.recipes) {
-      ItemStack itemStack = produce.getFirstItemInput();
-      itemStack.setAmount(getAmountUpgrade());
+      ItemStack itemStack = produce.getFirstItemInput().clone();
+      itemStack.setAmount(getAmoundUpgrade());
       if (SlimefunUtils.isItemSimilar(inv.getItemInSlot(getInputSlots()[0]), itemStack, false, true)) {
-        inv.consumeItem(getInputSlots()[0], getAmountUpgrade());
+        inv.consumeItem(getInputSlots()[0], getAmoundUpgrade());
         return produce.getFirstItemOutput();
       }
 
@@ -261,7 +260,7 @@ public class TechRobotic extends SimpleItemContainerMachine implements Radioacti
         .stream().filter(Objects::nonNull)
         .forEach(recipe -> {
       ItemStack itemStack = recipe.getFirstItemOutput().clone();
-      itemStack.setAmount(getAmountUpgrade());
+      itemStack.setAmount(getAmoundUpgrade());
       displayRecipes.add(itemStack);
       displayRecipes.add(recipe.getFirstItemOutput());
     });
@@ -277,12 +276,12 @@ public class TechRobotic extends SimpleItemContainerMachine implements Radioacti
     return this;
   }
 
-  public int getAmountUpgrade() {
-    return amountUpgrade;
+  public int getAmoundUpgrade() {
+    return amoundUpgrade;
   }
 
-  public TechRobotic setAmountUpgrade(int amountUpgrade) {
-    this.amountUpgrade = amountUpgrade;
+  public TechRobotic setAmoundUpgrade(int amoundUpgrade) {
+    this.amoundUpgrade = amoundUpgrade;
     return this;
   }
 
