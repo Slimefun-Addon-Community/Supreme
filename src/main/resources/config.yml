@@ -6,6 +6,7 @@ options:
   custom-ticker-delay: 2
   enable-generators: true
   limit-production-generators: false
+  delay-time-valid-generators: 600
   base-time-virtual-garden: 15
   base-time-virtual-aquarium: 15
   base-time-mob-collector: 15

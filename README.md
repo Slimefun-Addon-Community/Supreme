@@ -130,6 +130,7 @@ Make a new issue, pull request, or discord Slimefun-Addon-Community
 - **use-legacy-supremeexpansion-item-id** - Indication use compatibily old item from addon SupremeExpanssion (default: false)
 - **enable-generators** - Indication whether to enable the power generators (default: true)
 - **limit-production-generators** - To reduce the efficiency of generators (factor 5x) (default: false)
+- **delay-time-valid-generators** - Configuration for validation waiting time if a generator must be turned off, due to the change of nearby blocks (default: 600)
 - **enable-quarry** - Indication whether to enable the quarry machine (default: true)
 - **limit-production-quarry** - To reduce quarry production (hard mode 50% failure) (default: false)
 - **custom-ticker-delay** - To change the quarry production delay (default: 2)
