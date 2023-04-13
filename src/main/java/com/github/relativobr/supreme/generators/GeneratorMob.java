@@ -1,6 +1,5 @@
 package com.github.relativobr.supreme.generators;
 
-import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.util.ItemGroups;
 import com.github.relativobr.supreme.util.SupremeItemStack;
@@ -25,11 +24,11 @@ import org.bukkit.entity.Sheep;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicReference;
 
 import static com.github.relativobr.supreme.util.ItemUtil.getValueGeneratorsWithLimit;
 
@@ -71,7 +70,7 @@ public class GeneratorMob extends AbstractEnergyProvider {
       SlimefunItems.CARBONADO, GeneratorMob.GENERATOR_MOB_MEDIUM, SlimefunItems.HEATING_COIL, SlimefunItems.PLUTONIUM,
       SlimefunItems.HEATING_COIL, GeneratorMob.GENERATOR_MOB_MEDIUM, SupremeComponents.INDUCTIVE_MACHINE,
       GeneratorMob.GENERATOR_MOB_MEDIUM};
-  protected static final Map<BlockPosition, UUID> cachedEntity = new ConcurrentHashMap<>();
+  protected static final Map<BlockPosition, UUID> cachedMob = new ConcurrentHashMap<>();
 
   private int energy;
   private int buffer;
@@ -79,47 +78,6 @@ public class GeneratorMob extends AbstractEnergyProvider {
 
   public GeneratorMob(SlimefunItemStack item, ItemStack[] recipe) {
     super(ItemGroups.ELECTRIC_CATEGORY, item, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
-  }
-
-  @ParametersAreNonnullByDefault
-  private boolean isAnimalNearby(Location l) {
-    try {
-      BlockPosition p = new BlockPosition(l);
-      UUID uuid = cachedEntity.getOrDefault(p, null);
-      boolean nearby = isAnimalNearby(l, uuid);
-      Supreme.inst().getLogger().info("UUID: " + uuid);
-      Supreme.inst().getLogger().info("Nearby: " + nearby);
-      if (!nearby) {
-        Supreme.inst().getLogger().info("Not nearby" );
-        uuid = locateEntity(l);
-        nearby = isAnimalNearby(l, uuid);
-        Supreme.inst().getLogger().info("UUID: " + uuid);
-        Supreme.inst().getLogger().info("Nearby: " + nearby);
-      } else {
-        return true;
-      }
-
-      if (nearby) {
-        Supreme.inst().getLogger().info("Is nearby, should generate power");
-        Supreme.inst().getLogger().info("uuid: " + uuid);
-        cachedEntity.put(p, uuid);
-        return true;
-      }
-
-      return false;
-    } catch (Exception e) {
-      e.printStackTrace();
-      return false;
-    }
-  }
-
-  private boolean isAnimalNearby(Location l, UUID uuid) {
-    return uuid != null && Bukkit.getEntity(uuid) != null && l.distanceSquared(Bukkit.getEntity(uuid).getLocation()) <= Math.pow(mobRange, 2);
-  }
-
-  @ParametersAreNonnullByDefault
-  private boolean isValidAnimal(Entity n) {
-    return n instanceof Cow || n instanceof Sheep || n instanceof Pig;
   }
 
   public final GeneratorMob setEnergy(int value) {
@@ -173,9 +131,34 @@ public class GeneratorMob extends AbstractEnergyProvider {
   }
 
   @ParametersAreNonnullByDefault
-  private UUID locateEntity(Location l) {
-    final AtomicReference<UUID> uuid = new AtomicReference<>();
-    Slimefun.runSync(() -> uuid.set(l.getWorld().getNearbyEntities(l, mobRange, mobRange, mobRange, this::isValidAnimal).stream().findFirst().map(Entity::getUniqueId).orElse(null)));
-    return uuid.get();
+  private boolean isAnimalNearby(@Nonnull Location l) {
+    BlockPosition p = new BlockPosition(l);
+    updateSet(p, l);
+    return cachedMob.containsKey(p);
+  }
+
+  private boolean isAnimalNearby(@Nonnull Location l, @Nullable UUID uuid) {
+    return uuid != null && Bukkit.getEntity(uuid) != null && l.distanceSquared(Bukkit.getEntity(uuid).getLocation()) <= Math.pow(mobRange, 2);
+  }
+
+  @ParametersAreNonnullByDefault
+  private boolean isValidAnimal(Entity n) {
+    return n instanceof Cow || n instanceof Sheep || n instanceof Pig;
+  }
+
+  private UUID locateNearbyMob(@Nonnull Location l) {
+    return l.getWorld().getNearbyEntities(l, mobRange, mobRange, mobRange, this::isValidAnimal).stream().findFirst().map(Entity::getUniqueId).orElse(null);
+  }
+
+  @ParametersAreNonnullByDefault
+  private void updateSet(@Nonnull BlockPosition p, @Nonnull Location l) {
+    Slimefun.runSync(() -> {
+      UUID uuid = cachedMob.getOrDefault(p, locateNearbyMob(l));
+      if (isAnimalNearby(l, uuid)) {
+        cachedMob.put(p, uuid);
+      } else {
+        cachedMob.remove(p);
+      }
+    });
   }
 }
