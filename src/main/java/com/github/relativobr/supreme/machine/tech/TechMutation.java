@@ -205,7 +205,7 @@ public class TechMutation extends SimpleItemContainerMachine implements Radioact
       if (this.getProgressTime(b) <= 0) {
 
         if (UtilMachine.getRandomInt() <= (itemProcessing.getChance() * getUpgradeLuck())) {
-          inv.pushItem(itemProcessing.getOutput().clone(), this.getOutputSlots());
+          inv.pushItem(((ItemStack) itemProcessing.getOutput()).clone(), this.getOutputSlots());
           invalidProgressBar(inv, Material.BLACK_STAINED_GLASS_PANE, " Success! ");
         } else {
           invalidProgressBar(inv, Material.BLACK_STAINED_GLASS_PANE, " Fail! ");
