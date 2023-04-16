@@ -22,13 +22,6 @@ import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
@@ -42,6 +35,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.springframework.scheduling.annotation.Async;
+
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 @Async
 public class TechMutation extends SimpleItemContainerMachine implements Radioactive {
@@ -122,22 +123,22 @@ public class TechMutation extends SimpleItemContainerMachine implements Radioact
   protected void constructMenu(BlockMenuPreset preset) {
 
     for (int i : InventoryRecipe.TECH_MUTATION_BORDER) {
-      preset.addItem(i, new CustomItemStack(Material.GRAY_STAINED_GLASS_PANE, " ", new String[0]),
+      preset.addItem(i, new CustomItemStack(Material.GRAY_STAINED_GLASS_PANE, " "),
           ChestMenuUtils.getEmptyClickHandler());
     }
 
     for (int i : InventoryRecipe.TECH_MUTATION_BORDER_IN) {
-      preset.addItem(i, new CustomItemStack(Material.BLUE_STAINED_GLASS_PANE, " ", new String[0]),
+      preset.addItem(i, new CustomItemStack(Material.BLUE_STAINED_GLASS_PANE, " "),
           ChestMenuUtils.getEmptyClickHandler());
     }
 
     for (int i : InventoryRecipe.TECH_MUTATION_BORDER_OUT) {
-      preset.addItem(i, new CustomItemStack(Material.ORANGE_STAINED_GLASS_PANE, " ", new String[0]),
+      preset.addItem(i, new CustomItemStack(Material.ORANGE_STAINED_GLASS_PANE, " "),
           ChestMenuUtils.getEmptyClickHandler());
     }
 
     for (int i : InventoryRecipe.TECH_MUTATION_PROGRESS_BAR_SLOT) {
-      preset.addItem(i, new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, " ", new String[0]),
+      preset.addItem(i, new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, " "),
           ChestMenuUtils.getEmptyClickHandler());
     }
 
@@ -174,22 +175,23 @@ public class TechMutation extends SimpleItemContainerMachine implements Radioact
     });
   }
 
+  @Override
   public void tick(Block b) {
 
     BlockMenu inv = BlockStorage.getInventory(b);
 
-    final MobTechMutationGeneric itemNaReceita = validRecipeItem(inv);
-    final MobTechMutationGeneric itemProduzindo = processing.get(b);
-    if (itemProduzindo == null) {
+    final MobTechMutationGeneric itemRecipe = validRecipeItem(inv);
+    final MobTechMutationGeneric itemProcessing = processing.get(b);
+    if (itemProcessing == null) {
 
-      if (itemNaReceita != null) {
+      if (itemRecipe != null) {
 
         inv.consumeItem(getInputSlots()[0], 1);
         inv.consumeItem(getInputSlots()[1], 1);
 
-        invalidProgressBar(inv, itemNaReceita.getOutput().getType(), " ");
+        invalidProgressBar(inv, itemRecipe.getOutput().getType(), " ");
 
-        processing.put(b, itemNaReceita);
+        processing.put(b, itemRecipe);
         progressTime.put(b, (getTimeProcess() * 2));
 
       } else {
@@ -202,8 +204,8 @@ public class TechMutation extends SimpleItemContainerMachine implements Radioact
 
       if (this.getProgressTime(b) <= 0) {
 
-        if (UtilMachine.getRandomInt() <= (itemProduzindo.getChance() * getUpgradeLuck())) {
-          inv.pushItem(itemProduzindo.getOutput().clone(), this.getOutputSlots());
+        if (UtilMachine.getRandomInt() <= (itemProcessing.getChance() * getUpgradeLuck())) {
+          inv.pushItem(((ItemStack) itemProcessing.getOutput()).clone(), this.getOutputSlots());
           invalidProgressBar(inv, Material.BLACK_STAINED_GLASS_PANE, " Success! ");
         } else {
           invalidProgressBar(inv, Material.BLACK_STAINED_GLASS_PANE, " Fail! ");
@@ -214,7 +216,7 @@ public class TechMutation extends SimpleItemContainerMachine implements Radioact
 
       } else {
 
-        this.processTicks(b, inv, itemProduzindo.getOutput());
+        this.processTicks(b, inv, itemProcessing.getOutput());
 
       }
 
@@ -255,8 +257,8 @@ public class TechMutation extends SimpleItemContainerMachine implements Radioact
   private MobTechMutationGeneric validRecipeItem(BlockMenu inv) {
 
     for (MobTechMutationGeneric produce : this.recipes) {
-      ItemStack input1 = produce.getInput1().clone();
-      ItemStack input2 = produce.getInput2().clone();
+      ItemStack input1 = produce.getInput1();
+      ItemStack input2 = produce.getInput2();
       if (SlimefunUtils.isItemSimilar(inv.getItemInSlot(getInputSlots()[0]), input1, false, false)
           && SlimefunUtils.isItemSimilar(inv.getItemInSlot(getInputSlots()[1]), input2, false, false)) {
         return produce;

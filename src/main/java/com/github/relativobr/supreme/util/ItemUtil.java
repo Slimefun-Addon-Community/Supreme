@@ -1,26 +1,32 @@
 package com.github.relativobr.supreme.util;
 
-import static com.github.relativobr.supreme.Supreme.getSupremeOptions;
-import static com.github.relativobr.supreme.util.CompatibilySupremeLegacy.getNewIdSupremeLegacy;
-import static com.github.relativobr.supreme.util.CompatibilySupremeLegacy.getOldIdSupremeLegacy;
-
 import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.machine.AbstractQuarry;
 import com.github.relativobr.supreme.machine.AbstractQuarryOutputItem;
 import com.github.relativobr.supreme.machine.tech.MobTechGeneric;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
-import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.logging.Level;
-import java.util.stream.Collectors;
-import javax.annotation.Nonnull;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactivity;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import javax.annotation.Nonnull;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.logging.Level;
+import java.util.stream.Collectors;
+
+import static com.github.relativobr.supreme.Supreme.getSupremeOptions;
+import static com.github.relativobr.supreme.util.CompatibilySupremeLegacy.getNewIdSupremeLegacy;
+import static com.github.relativobr.supreme.util.CompatibilySupremeLegacy.getOldIdSupremeLegacy;
 
 public class ItemUtil {
 
@@ -268,13 +274,17 @@ public class ItemUtil {
         }
     }
 
-    public static SlimefunItemStack buildItemFromMobTechDTO(MobTechGeneric mobTechGeneric,
-                                                            Integer tier) {
-        return new SlimefunItemStack(buildIdTier(mobTechGeneric.getId(), tier),
+    public static SlimefunItemStack buildItemFromMobTechDTO(MobTechGeneric mobTechGeneric, Integer tier) {
+        SlimefunItemStack itemStack = new SlimefunItemStack(buildIdTier(mobTechGeneric.getId(), tier),
                 mobTechGeneric.getTexture(),
                 buildNameTier(mobTechGeneric.getName(), tier), "",
                 buildLoreRadioactivityType(mobTechGeneric.getMobTechType()),
                 buildLoreType(mobTechGeneric.getMobTechType(), tier),
                 buildLoreTypeAmount(mobTechGeneric.getMobTechType(), tier), "", "&3Supreme Component");
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        PersistentDataAPI.setInt(itemMeta, new NamespacedKey(Supreme.inst(), "mob_tech_tier"), tier);
+        PersistentDataAPI.setString(itemMeta, new NamespacedKey(Supreme.inst(), "mob_tech_type"), mobTechGeneric.getMobTechType().name());
+        itemStack.setItemMeta(itemMeta);
+        return itemStack;
     }
 }
