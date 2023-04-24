@@ -139,6 +139,11 @@ public class SimpleCard {
       LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE), "", "&3Supreme Component");
 
 
+  public static final SlimefunItemStack CARD_BLAZE_ROD = new SupremeItemStack("SUPREME_CARD_BLAZE_ROD",
+      Material.MUSIC_DISC_FAR, "&bCard Machine Blaze Rod", "", "&fChange to Production Blaze Rod", "",
+      LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE), "", "&3Supreme Component");
+
+
   public static final SlimefunItemStack CARD_NETHERITE = new SupremeItemStack("SUPREME_CARD_NETHERITE",
       Material.MUSIC_DISC_FAR, "&bCard Machine Netherite", "", "&fChange to Production Netherite", "",
       LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE), "", "&3Supreme Component");
