@@ -43,6 +43,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.springframework.scheduling.annotation.Async;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -108,6 +109,7 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
     TechGenerator.addRecipesToProcess(item, output);
   }
 
+  @Nonnull
   private static ItemStack getCardTier(int tierCard) {
     if (tierCard >= 3) {
       return SupremeComponents.CENTER_CARD_ULTIMATE;
@@ -206,7 +208,7 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
       }
 
       public boolean isSynchronized() {
-        return true;
+        return false;
       }
     });
   }
@@ -215,9 +217,14 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
 
     BlockMenu inv = BlockStorage.getInventory(b);
 
-    final ItemStack validRecipeItem = validRecipeItem(inv);
+    // Unlikely but blockmenus can be null
+    if (inv == null) {
+      return;
+    }
+
     final ItemStack itemProduction = processing.get(b);
     if (itemProduction == null) {
+      final ItemStack validRecipeItem = validRecipeItem(inv);
 
       if (validRecipeItem != null) {
 
@@ -243,6 +250,7 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
         invalidStatus(inv, Material.BLACK_STAINED_GLASS_PANE, " ");
 
       } else {
+        final ItemStack validRecipeItem = validRecipeItem(inv);
 
         if (SlimefunUtils.isItemSimilar(validRecipeItem, itemProduction, false, false)) {
 
@@ -297,7 +305,6 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
   }
 
   private void processTicks(Block b, BlockMenu inv, ItemStack result) {
-    int ticksTotal = getTimeProcess() * 2;
     int ticksLeft = this.getProgressTime(b);
     if (ticksLeft > 0) {
 
@@ -309,6 +316,8 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
           time = 0;
         }
         progressTime.put(b, time);
+
+        int ticksTotal = getTimeProcess() * 2;
 
         for (int i : InventoryRecipe.TECH_GENERATOR_PROGRESS_BAR_SLOT) {
           ChestMenuUtils.updateProgressbar(inv, i, Math.round(ticksLeft / this.getSpeed()),
@@ -386,11 +395,12 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
         MobTechType mobTechType = MobTechType.valueOf(PersistentDataAPI.getString(itemMeta, type));
         int mobTechTier = PersistentDataAPI.getInt(itemMeta, tier);
         float perceptual = (mobTechTier + 1) * input.getAmount() * 0.15625F;
-        int adjustEnergy = Math.round(consumption / 100F * perceptual);
         if (mobTechType == MobTechType.ROBOTIC_EFFICIENCY || mobTechType == MobTechType.MUTATION_INTELLIGENCE) {
+          int adjustEnergy = Math.round(consumption / 100F * perceptual);
           consumption = consumption - adjustEnergy;
         }
         if (mobTechType == MobTechType.ROBOTIC_ACCELERATION || mobTechType == MobTechType.MUTATION_BERSERK) {
+          int adjustEnergy = Math.round(consumption / 100F * perceptual);
           consumption = consumption + adjustEnergy;
         }
       } else {
@@ -405,6 +415,7 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
     return consumption;
   }
 
+  @Nullable
   private ItemStack validRecipeItem(BlockMenu inv) {
 
     for (AbstractItemRecipe produce : this.getRecipeProcess()) {
@@ -421,15 +432,14 @@ public class TechGenerator extends SimpleItemContainerMachine implements Radioac
   @Override
   public List<ItemStack> getDisplayRecipes() {
     List<ItemStack> displayRecipes = new ArrayList();
-    this.getRecipeShow()
-        .stream().filter(Objects::nonNull)
-        .forEach(recipe -> {
-          ItemStack itemStack = recipe.getFirstItemOutput().clone();
-          itemStack.setAmount(Supreme.getSupremeOptions().getMaxAmountTechGenerator());
-          displayRecipes.add(recipe.getFirstItemInput());
-          displayRecipes.add(itemStack);
-
-        });
+    for (AbstractItemRecipe recipe : this.getRecipeShow()) {
+      if (recipe != null) {
+        ItemStack itemStack = recipe.getFirstItemOutput().clone();
+        itemStack.setAmount(Supreme.getSupremeOptions().getMaxAmountTechGenerator());
+        displayRecipes.add(recipe.getFirstItemInput());
+        displayRecipes.add(itemStack);
+      }
+    }
     return displayRecipes;
   }
 
