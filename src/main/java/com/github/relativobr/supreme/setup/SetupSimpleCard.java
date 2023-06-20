@@ -78,6 +78,8 @@ public class SetupSimpleCard {
     }
 
     TechGenerator.preSetup(plugin, SimpleCard.CARD_AMETHYST, Material.AMETHYST_BLOCK, Material.AMETHYST_SHARD);
+    
+    TechGenerator.preSetup(plugin, SimpleCard.CARD_GUNPOWDER, Material.GUNPOWDER, Material.GUNPOWDER);
 
     TechGenerator.preSetup(plugin, SimpleCard.CARD_IRON_DUST, SlimefunItems.IRON_DUST, SlimefunItems.IRON_DUST);
 
