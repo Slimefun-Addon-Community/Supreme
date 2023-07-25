@@ -144,6 +144,11 @@ public class SimpleCard {
       LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE), "", "&3Supreme Component");
 
 
+  public static final SlimefunItemStack CARD_ENDER_PEARL = new SupremeItemStack("SUPREME_CARD_ENDER_PEARL",
+      Material.MUSIC_DISC_FAR, "&bCard Machine Ender Peal", "", "&fChange to Production Ender Pearl", "",
+      LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE), "", "&3Supreme Component");
+
+
   public static final SlimefunItemStack CARD_GUNPOWDER = new SupremeItemStack("SUPREME_CARD_GUNPOWDER",
       Material.MUSIC_DISC_FAR, "&bCard Machine Blaze Rod", "", "&fChange to Production Gunpowder", "",
       LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE), "", "&3Supreme Component");

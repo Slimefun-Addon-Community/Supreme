@@ -71,6 +71,8 @@ public class SetupSimpleCard {
 
     TechGenerator.preSetup(plugin, SimpleCard.CARD_BLAZE_ROD, Material.BLAZE_ROD, Material.BLAZE_ROD);
 
+    TechGenerator.preSetup(plugin, SimpleCard.CARD_ENDER_PEARL, Material.ENDER_PEARL, Material.ENDER_PEARL);
+
     if(customBc){
       TechGenerator.preSetup(plugin, SimpleCard.CARD_NETHERITE, Material.NETHERITE_BLOCK, Material.NETHERITE_SCRAP);
     } else {
