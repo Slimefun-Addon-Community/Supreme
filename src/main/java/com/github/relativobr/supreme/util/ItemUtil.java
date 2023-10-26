@@ -32,7 +32,7 @@ public class ItemUtil {
 
 
     public static int getValueGeneratorsWithLimit(int value) {
-        return Math.min((getSupremeOptions().isLimitProductionGenerators() ? (value / 5) : value), 16000000);
+        return Math.min((getSupremeOptions().isLimitProductionGenerators() ? (value / 5) : value), 1600000000);
     }
 
     public static SupremeQuarryOutput getOutputQuarry(@Nonnull SlimefunItemStack item) {
