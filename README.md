@@ -147,7 +147,6 @@ Make a new issue, pull request, or discord Slimefun-Addon-Community
 - **enable-tools** - Indication whether to enable the tools (default: true)
 - **enable-armor** - Indication whether to enable the armor (default: true)
 - **enable-tech** - Indication whether to enable new machine and resource to clonnig item (default: true)
-- **enable-item-converter-machine** - Converter Item by ID, restore values of name and meta item converting to a new item (maintaining current enchantments and durability) (default: true)
 - **supreme-enchant** - Indication Enchantment of the gear and tools
 - **supreme-effects** - Indication Effects of the gear
 - **power-section** - Customizable Capacity, Buffer and Energy of the capacitor and generator

@@ -5,7 +5,7 @@ import java.util.Locale;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import net.guizhanss.guizhanlib.localization.Localization;
-import net.guizhanss.guizhanlib.utils.ChatUtil;
+import net.guizhanss.guizhanlib.minecraft.utils.ChatUtil;
 import net.guizhanss.guizhanlib.utils.StringUtil;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.BaseComponent;

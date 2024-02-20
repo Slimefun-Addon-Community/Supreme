@@ -60,7 +60,6 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
                 .enableTools(typeSection.getBoolean("enable-tools", true))
                 .enableArmor(typeSection.getBoolean("enable-armor", true))
                 .enableTech(typeSection.getBoolean("enable-tech", true))
-                .enableItemConverter(typeSection.getBoolean("enable-item-converter-machine", true))
                 .customBc(typeSection.getBoolean("custom-bc", false))
                 .build();
       }
@@ -160,14 +159,6 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
     // localization
     Supreme.inst().log(Level.INFO, "Loaded language Supreme: " + getSupremeOptions().getLang());
     getLocalization();
-
-    // check Compatibily Legacy (SupremeExpansion)
-    if (getSupremeOptions().isUseLegacySupremeexpansionItemId()) {
-      Supreme.inst().log(Level.INFO, "Legacy SupremeExpansion IDs: enable");
-      getLegacyItem();
-    } else {
-      Supreme.inst().log(Level.INFO, "Legacy SupremeExpansion IDs: disable");
-    }
 
     MainSetup.setup(this);
 

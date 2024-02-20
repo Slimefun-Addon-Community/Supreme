@@ -67,12 +67,11 @@
             <version>5.3.19</version>
         </dependency>
 
-        <!-- tradução -->
+        <!-- translation plugin -->
         <dependency>
-            <groupId>net.guizhanss</groupId>
-            <artifactId>GuizhanLib</artifactId>
-            <version>1.7.0</version>
-            <scope>compile</scope>
+          <groupId>net.guizhanss</groupId>
+          <artifactId>GuizhanLibPlugin</artifactId>
+          <version>1.7.0</version>
         </dependency>
 
     </dependencies>
