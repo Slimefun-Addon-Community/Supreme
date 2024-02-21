@@ -160,6 +160,14 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
     Supreme.inst().log(Level.INFO, "Loaded language Supreme: " + getSupremeOptions().getLang());
     getLocalization();
 
+    // check Compatibily Legacy (SupremeExpansion)
+    if (getSupremeOptions().isUseLegacySupremeexpansionItemId()) {
+      Supreme.inst().log(Level.INFO, "Legacy SupremeExpansion IDs: enable");
+      getLegacyItem();
+    } else {
+      Supreme.inst().log(Level.INFO, "Legacy SupremeExpansion IDs: disable");
+    }
+
     MainSetup.setup(this);
 
   }
