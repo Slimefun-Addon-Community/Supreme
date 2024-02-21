@@ -36,14 +36,14 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.19-R0.1-SNAPSHOT</version>
+            <version>1.20.4-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>com.github.Slimefun</groupId>
             <artifactId>Slimefun4</artifactId>
-            <version>RC-32</version>
+            <version>1aeb0e8</version>
             <scope>provided</scope>
         </dependency>
 
@@ -67,7 +67,7 @@
             <version>5.3.19</version>
         </dependency>
 
-        <!-- tradução -->
+      <!-- translation plugin -->
         <dependency>
             <groupId>net.guizhanss</groupId>
             <artifactId>GuizhanLib</artifactId>
@@ -78,7 +78,7 @@
     </dependencies>
 
     <build>
-        <finalName>${project.name} - RC 1</finalName>
+        <finalName>${project.name}</finalName>
         <defaultGoal>clean package</defaultGoal>
         <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
 

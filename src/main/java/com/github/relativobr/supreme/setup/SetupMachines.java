@@ -8,7 +8,6 @@ import com.github.relativobr.supreme.machine.ElectricCrafter;
 import com.github.relativobr.supreme.machine.ForgeIngot;
 import com.github.relativobr.supreme.machine.ForgeMagical;
 import com.github.relativobr.supreme.machine.Foundry;
-import com.github.relativobr.supreme.machine.ItemConverter;
 import com.github.relativobr.supreme.machine.MagicAltar;
 import com.github.relativobr.supreme.machine.MobCollector;
 import com.github.relativobr.supreme.machine.VirtualAquarium;
@@ -218,14 +217,7 @@ public class SetupMachines {
 
     SetupTechMachines.setup(sup);
 
-    if (supremeOptions.isEnableItemConverter()) {
-      new ItemConverter(ItemGroups.MACHINES_CATEGORY, ItemConverter.ITEM_CONVERTER_MACHINE,
-          RecipeType.ENHANCED_CRAFTING_TABLE, ItemConverter.RECIPE_ITEM_CONVERTER_MACHINE).setMachineIdentifier(
-              ItemConverter.ITEM_CONVERTER_MACHINE.getItemId()).setCapacity(1).setEnergyConsumption(1)
-          .setProcessingSpeed(1000).register(sup);
-    }
-
-      CheckInventory.setup(sup);
+    CheckInventory.setup(sup);
 
   }
 }

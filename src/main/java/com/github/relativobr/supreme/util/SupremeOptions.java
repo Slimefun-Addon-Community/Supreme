@@ -32,7 +32,6 @@ public class SupremeOptions {
     boolean enableTools;
     boolean enableArmor;
     boolean enableTech;
-    boolean enableItemConverter;
     boolean customBc;
 
     public static SupremeOptions defaultValue() {
@@ -58,7 +57,6 @@ public class SupremeOptions {
                 .enableTools(true)
                 .enableArmor(true)
                 .enableTech(true)
-                .enableItemConverter(true)
                 .customBc(false)
                 .build();
     }

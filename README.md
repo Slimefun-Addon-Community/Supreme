@@ -3,9 +3,9 @@ Supreme is an addon for Slimefun which adds 100+ various new resources that will
 
 ## Requirements
 
-Minecraft Version: 1.17 ~ 1.19.2
+Minecraft Version: 1.17 ~ 1.12.4
 
-Slimefun Version: RC-32
+Slimefun Version: 1aeb0e8
 
 
 ### [Download](https://thebusybiscuit.github.io/builds/RelativoBR/Supreme/main/)
@@ -147,7 +147,6 @@ Make a new issue, pull request, or discord Slimefun-Addon-Community
 - **enable-tools** - Indication whether to enable the tools (default: true)
 - **enable-armor** - Indication whether to enable the armor (default: true)
 - **enable-tech** - Indication whether to enable new machine and resource to clonnig item (default: true)
-- **enable-item-converter-machine** - Converter Item by ID, restore values of name and meta item converting to a new item (maintaining current enchantments and durability) (default: true)
 - **supreme-enchant** - Indication Enchantment of the gear and tools
 - **supreme-effects** - Indication Effects of the gear
 - **power-section** - Customizable Capacity, Buffer and Energy of the capacitor and generator

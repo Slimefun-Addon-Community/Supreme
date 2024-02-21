@@ -60,7 +60,6 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
                 .enableTools(typeSection.getBoolean("enable-tools", true))
                 .enableArmor(typeSection.getBoolean("enable-armor", true))
                 .enableTech(typeSection.getBoolean("enable-tech", true))
-                .enableItemConverter(typeSection.getBoolean("enable-item-converter-machine", true))
                 .customBc(typeSection.getBoolean("custom-bc", false))
                 .build();
       }

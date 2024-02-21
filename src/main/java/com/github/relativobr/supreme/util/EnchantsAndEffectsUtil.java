@@ -3,9 +3,9 @@ package com.github.relativobr.supreme.util;
 import com.github.relativobr.supreme.Supreme;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import org.bukkit.ChatColor;
+import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.enchantments.EnchantmentWrapper;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -120,7 +120,7 @@ public class EnchantsAndEffectsUtil {
 
         Map<Enchantment, Integer> enchants = new HashMap<>();
         for (String path : section.getKeys(false)) {
-            Enchantment e = new EnchantmentWrapper(path);
+            Enchantment e = Enchantment.getByKey(NamespacedKey.minecraft(path));
             if (e != null) {
                 int level = section.getInt(path);
                 if (level > 0 && level <= 100) {
