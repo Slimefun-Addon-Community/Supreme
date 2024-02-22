@@ -12,7 +12,7 @@ import com.github.relativobr.supreme.util.SupremeOptions;
 import com.github.relativobr.supreme.util.SupremePowerSection;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.GitHubBuildsUpdater;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.BlobBuildUpdater;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -151,7 +151,7 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
         && getDescription().getVersion()
         .startsWith("DEV - ")) {
       Supreme.inst().log(Level.INFO, "Auto Update: enable");
-      new GitHubBuildsUpdater(this, getFile(), "RelativoBR/Supreme/main").start();
+      new BlobBuildUpdater(this, getFile(), "Supreme", "Dev").start();
     } else {
       Supreme.inst().log(Level.INFO, "Auto Update: disable");
     }
