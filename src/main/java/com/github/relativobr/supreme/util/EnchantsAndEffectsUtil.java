@@ -4,6 +4,7 @@ import com.github.relativobr.supreme.Supreme;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
+import org.bukkit.Registry;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -120,7 +121,8 @@ public class EnchantsAndEffectsUtil {
 
         Map<Enchantment, Integer> enchants = new HashMap<>();
         for (String path : section.getKeys(false)) {
-            Enchantment e = Enchantment.getByKey(NamespacedKey.minecraft(path));
+            Enchantment e = Registry.ENCHANTMENT.get(NamespacedKey.minecraft(path));
+
             if (e != null) {
                 int level = section.getInt(path);
                 if (level > 0 && level <= 100) {
@@ -262,7 +264,7 @@ public class EnchantsAndEffectsUtil {
         if (section != null) {
             List<PotionEffect> potionEffects = new ArrayList<>();
             for (String key : section.getKeys(true)) {
-                PotionEffectType potionEffectType = PotionEffectType.getByName(key);
+                PotionEffectType potionEffectType = Registry.EFFECT.get(NamespacedKey.minecraft(key));
                 // check enable
                 if (section.getBoolean(key) && potionEffectType != null) {
                     potionEffects.add(new PotionEffect(potionEffectType, 600, amplifier, false, false, false));
@@ -279,10 +281,10 @@ public class EnchantsAndEffectsUtil {
         List<String> names = new ArrayList<>();
         if (section != null) {
             for (String key : section.getKeys(true)) {
-                PotionEffectType potionEffectType = PotionEffectType.getByName(key);
+                PotionEffectType potionEffectType = Registry.EFFECT.get(NamespacedKey.minecraft(key));
                 // check enable
                 if (section.getBoolean(key) && potionEffectType != null) {
-                    String name = potionEffectType.getName();
+                    String name = potionEffectType.getKey().toString();
                     name = name.replace("_", " ");
                     name = name.substring(0, 1).toUpperCase().concat(name.substring(1).toLowerCase());
                     names.add(name);
