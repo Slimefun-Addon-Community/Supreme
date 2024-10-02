@@ -48,9 +48,9 @@ public class ElectricCrafter extends FlexItemContainerMachine {
       SupremeCetrus.CETRUS_LUMIUM, SupremeComponents.CRYSTALLIZER_MACHINE};
 
   public static final AbstractItemRecipe RECIPE_BATTERY = new AbstractItemRecipe(
-      new ItemStack[]{new ItemStack(SlimefunItems.ZINC_INGOT), new ItemStack(SlimefunItems.SULFATE),
-          new ItemStack(SlimefunItems.COPPER_INGOT), new ItemStack(SlimefunItems.ZINC_INGOT),
-          new ItemStack(SlimefunItems.SULFATE), new ItemStack(SlimefunItems.COPPER_INGOT),
+      new ItemStack[]{SlimefunItems.ZINC_INGOT, SlimefunItems.SULFATE,
+          SlimefunItems.COPPER_INGOT, SlimefunItems.ZINC_INGOT,
+          SlimefunItems.SULFATE, SlimefunItems.COPPER_INGOT,
           new ItemStack(Material.REDSTONE), null, null}, new SlimefunItemStack(SlimefunItems.BATTERY, 1));
   public static final AbstractItemRecipe RECIPE_BLAZE_POWDER = new AbstractItemRecipe(
       new ItemStack[]{new ItemStack(Material.BLAZE_ROD), null, null, null, null, null, null, null, null},
