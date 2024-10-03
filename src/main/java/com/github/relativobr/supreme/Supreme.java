@@ -137,7 +137,7 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
     instance = this;
 
     Supreme.inst().log(Level.INFO, "########################################");
-    Supreme.inst().log(Level.INFO, "      Supreme 2.0  - By RelativoBR      ");
+    Supreme.inst().log(Level.INFO, "      Supreme - By RelativoBR      ");
     Supreme.inst().log(Level.INFO, "########################################");
 
     Config cfg = new Config(this);
@@ -147,13 +147,10 @@ public class Supreme extends JavaPlugin implements SlimefunAddon {
       return;
     }
 
-    if (getSupremeOptions().isAutoUpdate() && cfg.getBoolean("options.auto-update")
-        && getDescription().getVersion()
-        .startsWith("DEV - ")) {
-      Supreme.inst().log(Level.INFO, "Auto Update: enable");
+		var autoUpdate = getSupremeOptions().isAutoUpdate() && getDescription().getVersion().startsWith("Dev");
+		Supreme.inst().log(Level.INFO, "auto-update: " + autoUpdate);
+    if (autoUpdate) {
       new BlobBuildUpdater(this, getFile(), "Supreme", "Dev").start();
-    } else {
-      Supreme.inst().log(Level.INFO, "Auto Update: disable");
     }
 
     // localization
