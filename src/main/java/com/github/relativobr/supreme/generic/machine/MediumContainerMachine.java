@@ -421,6 +421,8 @@ public class MediumContainerMachine extends AContainer implements NotHopperable,
         progressItem.put(b, i + 1);
         ChestMenuUtils.updateProgressbar(inv, getStatusSlot(), ticksLeft, ticks,
             result[0]);
+      } else {
+        break;
       }
     }
   }
