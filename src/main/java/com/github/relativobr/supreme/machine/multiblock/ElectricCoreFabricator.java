@@ -1,6 +1,6 @@
 package com.github.relativobr.supreme.machine.multiblock;
 
-import com.github.relativobr.supreme.generic.machine.MediumContainerMachine;
+import com.github.relativobr.supreme.generic.machine.GenericMachine;
 import com.github.relativobr.supreme.generic.recipe.AbstractItemRecipe;
 import com.github.relativobr.supreme.generic.recipe.CustomCoreRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
@@ -26,7 +26,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-public class ElectricCoreFabricator extends MediumContainerMachine {
+public class ElectricCoreFabricator extends GenericMachine {
 
   public static final SlimefunItemStack ELECTRIC_CORE_MACHINE = new SupremeItemStack("SUPREME_ELECTRIC_CORE_I",
       Material.SHROOMLIGHT, "&bElectric Core Machine", "", "&fCraft resource of core", "",

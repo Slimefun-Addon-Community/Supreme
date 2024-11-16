@@ -1,6 +1,6 @@
 package com.github.relativobr.supreme.machine.multiblock;
 
-import com.github.relativobr.supreme.generic.machine.FlexItemContainerMachine;
+import com.github.relativobr.supreme.generic.machine.GenericMachine;
 import com.github.relativobr.supreme.generic.recipe.AbstractItemRecipe;
 import com.github.relativobr.supreme.gear.ArmorThornium;
 import com.github.relativobr.supreme.gear.WeaponsThornium;
@@ -23,7 +23,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-public class ElectricGearFabricator extends FlexItemContainerMachine {
+public class ElectricGearFabricator extends GenericMachine {
 
   public static final SlimefunItemStack ELECTRIC_GEAR_MACHINE = new SupremeItemStack("SUPREME_ELECTRIC_GEAR_I",
       Material.SMITHING_TABLE, "&bElectric Gear Machine", "", "&fCraft tier of gear", "",

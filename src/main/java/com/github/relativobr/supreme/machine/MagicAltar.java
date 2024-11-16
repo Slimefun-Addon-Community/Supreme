@@ -1,6 +1,6 @@
 package com.github.relativobr.supreme.machine;
 
-import com.github.relativobr.supreme.generic.machine.MediumContainerMachine;
+import com.github.relativobr.supreme.generic.machine.GenericMachine;
 import com.github.relativobr.supreme.generic.recipe.AbstractItemRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.magical.SupremeAttribute;
@@ -21,7 +21,7 @@ import org.bukkit.inventory.ItemStack;
 import org.springframework.scheduling.annotation.Async;
 
 @Async
-public class MagicAltar extends MediumContainerMachine {
+public class MagicAltar extends GenericMachine {
 
   public static final SlimefunItemStack MAGIC_ALTAR_MACHINE = new SupremeItemStack("SUPREME_MAGIC_ALTAR_I",
       Material.SMOKER, "&bMagic Altar", "", "&fCraft Rune and Magical Items", "",
