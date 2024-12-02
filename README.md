@@ -3,13 +3,12 @@ Supreme is an addon for Slimefun which adds 100+ various new resources that will
 
 ## Requirements
 
-Minecraft Version: 1.17 ~ 1.12.4
-
-Slimefun Version: 1aeb0e8
+Minecraft Version: +1.17
 
 
-### [Download](https://thebusybiscuit.github.io/builds/RelativoBR/Supreme/main/)
-[![Build Status](https://thebusybiscuit.github.io/builds/RelativoBR/Supreme/main/badge.svg)](https://thebusybiscuit.github.io/builds/RelativoBR/Supreme/main)
+
+### [Download](https://blob.build/project/Supreme)
+[![Build Status](https://thebusybiscuit.github.io/builds/RelativoBR/Supreme/main/badge.svg)](https://blob.build/project/Supreme)
 
 
 ## Bugs/Suggestions
