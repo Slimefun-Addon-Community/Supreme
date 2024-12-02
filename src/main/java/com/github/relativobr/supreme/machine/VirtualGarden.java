@@ -149,7 +149,23 @@ public class VirtualGarden extends SimpleItemWithLargeContainerMachine {
   @Override
   protected void tick(Block b) {
     BlockMenu inv = BlockStorage.getInventory(b);
+    if (inv == null) {
+      return;
+    }
+
     if (isProcessing(b)) {
+
+      var recipeOutput = processing.get(b).getOutput();
+      if (notHasSpaceOutput(inv, recipeOutput)) {
+        updateStatusOutputFull(inv);
+        return;
+      }
+
+      if (getCharge(b.getLocation()) < getEnergyConsumption()) {
+        updateStatusConnectEnergy(inv, recipeOutput[0]);
+        return;
+      }
+
       if (takeCharge(b.getLocation())) {
         int timeleft = progress.get(b);
         if (timeleft > 0) {
@@ -160,8 +176,7 @@ public class VirtualGarden extends SimpleItemWithLargeContainerMachine {
           }
           progress.put(b, time);
         } else {
-          inv.replaceExistingItem(getStatusSlot(), new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, " "));
-          for (ItemStack output : processing.get(b).getOutput()) {
+          for (ItemStack output : recipeOutput) {
             if(output != null){
               ItemStack clone = output.clone();
               clone.setAmount(1);
@@ -170,6 +185,7 @@ public class VirtualGarden extends SimpleItemWithLargeContainerMachine {
           }
           progress.remove(b);
           processing.remove(b);
+          updateStatusReset(inv);
         }
       }
     } else {
@@ -177,6 +193,8 @@ public class VirtualGarden extends SimpleItemWithLargeContainerMachine {
       if (next != null) {
         processing.put(b, next);
         progress.put(b, next.getTicks());
+      } else {
+        updateStatusReset(inv);
       }
     }
   }

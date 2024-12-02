@@ -10,10 +10,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.inventory.ItemStack;
 
-/**
- * Machine that uses only 1 item in the input and only 1 item in the output
- */
-public class SimpleItemContainerMachine extends MediumContainerMachine {
+public class SimpleItemContainerMachine extends GenericMachine {
 
     @ParametersAreNonnullByDefault
     protected SimpleItemContainerMachine(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
@@ -29,11 +26,6 @@ public class SimpleItemContainerMachine extends MediumContainerMachine {
             displayRecipes.add(recipe.getFirstItemOutput());
         });
         return displayRecipes;
-    }
-
-    @Override
-    public int getSizeProcessInput(){
-        return 1;
     }
 
     @Override

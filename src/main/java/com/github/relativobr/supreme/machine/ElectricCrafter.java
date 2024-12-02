@@ -1,6 +1,6 @@
 package com.github.relativobr.supreme.machine;
 
-import com.github.relativobr.supreme.generic.machine.FlexItemContainerMachine;
+import com.github.relativobr.supreme.generic.machine.GenericMachine;
 import com.github.relativobr.supreme.generic.recipe.AbstractItemRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.magical.SupremeCetrus;
@@ -18,7 +18,7 @@ import java.util.List;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-public class ElectricCrafter extends FlexItemContainerMachine {
+public class ElectricCrafter extends GenericMachine {
 
   public static final SlimefunItemStack ELECTRIC_CRAFTER_MACHINE = new SupremeItemStack("SUPREME_ELECTRIC_CRAFTER_I",
       Material.CRAFTING_TABLE, "&bElectric Crafter", "", "&fCraft Items", "",

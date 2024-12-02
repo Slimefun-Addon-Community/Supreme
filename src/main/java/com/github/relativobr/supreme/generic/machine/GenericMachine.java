@@ -39,24 +39,16 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
-/**
- * Machine that can use up to 9 items in the input and only 1 item in the output
- */
-public class MediumContainerMachine extends AContainer implements NotHopperable, RecipeDisplayItem {
+public class GenericMachine extends AContainer implements NotHopperable, RecipeDisplayItem {
 
   private final Map<Block, MachineRecipe> processing = new HashMap<Block, MachineRecipe>();
-  private final Map<Block, Integer> progressItem = new HashMap<Block, Integer>();
   private final Map<Block, Integer> progressTime = new HashMap<Block, Integer>();
   public List<AbstractItemRecipe> machineRecipes = new ArrayList<>();
   private Integer timeProcess;
   private String machineIdentifier = "MediumContainerMachine";
 
-  public int getSizeProcessInput(){
-    return 9;
-  }
-
   @ParametersAreNonnullByDefault
-  public MediumContainerMachine(ItemGroup category, SlimefunItemStack item, RecipeType recipeType,
+  public GenericMachine(ItemGroup category, SlimefunItemStack item, RecipeType recipeType,
       ItemStack[] recipe) {
     super(category, item, recipeType, recipe);
 
@@ -135,49 +127,32 @@ public class MediumContainerMachine extends AContainer implements NotHopperable,
         }
         progressTime.remove(b);
         processing.remove(b);
-        progressItem.remove(b);
       }
     };
   }
 
-  private void invalidInput(BlockMenu menu) {
-    menu.replaceExistingItem(getStatusSlot(), new CustomItemStack(
-        Material.RED_STAINED_GLASS_PANE,
-        "&cInput a valid material to start"
-    ));
+  protected void updateStatusReset(BlockMenu menu) {
+    menu.replaceExistingItem(getStatusSlot(), getDisplayOrInfo(null, " "));
   }
 
-  private void invalidOutput(BlockMenu menu) {
-    menu.replaceExistingItem(getStatusSlot(), new CustomItemStack(
-        Material.RED_STAINED_GLASS_PANE,
-        "&cOutput is full"
-    ));
+  protected void updateStatusInvalidInput(BlockMenu menu) {
+    menu.replaceExistingItem(getStatusSlot(),getDisplayOrWarn(null,"&cInput a valid material to start"));
   }
 
-  private void noEnergyStart(BlockMenu menu) {
-    menu.replaceExistingItem(getStatusSlot(), new CustomItemStack(
-        Material.RED_STAINED_GLASS_PANE, "&cConnect energy to start"
-    ));
+  protected void updateStatusOutputFull(BlockMenu menu) {
+    menu.replaceExistingItem(getStatusSlot(), getDisplayOrWarn(null,"&cOutput is full"));
   }
 
-  private void noEnergyContinue(BlockMenu menu, ItemStack material) {
-    menu.replaceExistingItem(getStatusSlot(), new CustomItemStack(
-        material, "&cConnect energy to continue"
-    ));
+  protected void updateStatusConnectEnergy(BlockMenu menu, ItemStack itemStack) {
+    menu.replaceExistingItem(getStatusSlot(), getDisplayOrWarn(itemStack, "&cConnect energy to continue"));
   }
 
-  private void noMaterialContinue(BlockMenu menu, ItemStack material) {
-    menu.replaceExistingItem(getStatusSlot(), new CustomItemStack(
-        material, "&cDeposit more materials to continue"
-    ));
-  }
-
-  public MediumContainerMachine setMachineRecipes(@Nonnull List<AbstractItemRecipe> machineRecipes) {
+  public GenericMachine setMachineRecipes(@Nonnull List<AbstractItemRecipe> machineRecipes) {
     this.machineRecipes = machineRecipes;
     return this;
   }
 
-  public MediumContainerMachine setTimeProcess(int timeProcess) {
+  public GenericMachine setTimeProcess(int timeProcess) {
     this.timeProcess = timeProcess;
     return this;
   }
@@ -272,7 +247,7 @@ public class MediumContainerMachine extends AContainer implements NotHopperable,
     return nonNull(this.machineIdentifier) ? this.machineIdentifier : "MachineIdentifier";
   }
 
-  public MediumContainerMachine setMachineIdentifier(@Nonnull String machineIdentifier) {
+  public GenericMachine setMachineIdentifier(@Nonnull String machineIdentifier) {
     this.machineIdentifier = machineIdentifier;
     return this;
   }
@@ -280,197 +255,15 @@ public class MediumContainerMachine extends AContainer implements NotHopperable,
   @Override
   protected void tick(Block b) {
     BlockMenu inv = BlockStorage.getInventory(b);
+    if (inv == null) {
+      return;
+    }
 
     if (this.isProcessing(b)) {
-
-      final MachineRecipe machineRecipe = processing.get(b);
-
-      if (getCharge(b.getLocation()) < getEnergyConsumption()) {
-        noEnergyContinue(inv, (machineRecipe.getOutput()[0]));
-        return;
-      }
-
-      final int processItem = getProgressItem(b);
-      final int ticks = getProcessing(b).getTicks();
-      int ticksLeft = getProgressTime(b);
-      ItemStack[] result = machineRecipe.getOutput();
-
-      //checks if inventory is full
-      int fullSlots = 0;
-      List<Integer> slots = new LinkedList<>();
-      for (int slot : getOutputSlots()) {
-        ItemStack stack = inv.getItemInSlot(slot);
-        if (stack != null && SlimefunUtils.isItemSimilar(stack, result[0], false, false)) {
-          if (stack.getAmount() >= stack.getMaxStackSize()) {
-            fullSlots++;
-          }
-          slots.add(slot);
-        }
-      }
-
-      if (!slots.isEmpty() && fullSlots == getOutputSlots().length) {
-        // All slots with that item are already full
-        invalidOutput(inv);
-        return;
-      }
-
-      int sizeProcessInput = getSizeProcessInput();
-      if(sizeProcessInput == -1){
-        sizeProcessInput = machineRecipe.getInput().length;
-      }
-
-      if ((ticksLeft == ticks) && (ticksLeft > 0) && this.takeCharge(b.getLocation())) {
-
-        startProcessTicks(b, inv, ticks, ticksLeft, result[0]);
-
-      } else if ((ticksLeft <= 0) && (processItem >= sizeProcessInput) && this.takeCharge(b.getLocation())) {
-
-        endProcessTicks(b, inv, result);
-
-      } else if ((ticksLeft <= 0) && (processItem < sizeProcessInput) && this.takeCharge(b.getLocation())) {
-
-        checkMaterialProgress(b, inv, machineRecipe, processItem, sizeProcessInput, ticks, ticksLeft, result);
-
-      } else {
-
-        processTicks(b, inv, machineRecipe, processItem, sizeProcessInput, ticks, ticksLeft, result);
-
-      }
-
+      doProcessing(b, inv);
     } else {
-
-      if (getCharge(b.getLocation()) < getEnergyConsumption()) {
-        noEnergyStart(inv);
-        return;
-      }
-
-      MachineRecipe next = this.findNextRecipe(inv);
-
-      if (next != null) {
-
-        processing.put(b, next);
-        progressTime.put(b, next.getTicks());
-        progressItem.put(b, 0);
-
-      } else {
-
-        invalidInput(inv);
-      }
+      nextProcessing(b, inv);
     }
-
-  }
-
-  private void processTicks(Block b, BlockMenu inv, MachineRecipe machineRecipe, int processItem,
-      int sizeProcessInput, int ticks, int ticksLeft, ItemStack[] result) {
-    final ItemStack[] recipeInput = machineRecipe.getInput();
-    if (((ticksLeft < ticks) && (ticksLeft > 0)) && this.takeCharge(b.getLocation())) {
-      int time = ticksLeft - this.getSpeed();
-      if (time < 0) {
-        time = 0;
-      }
-      progressTime.put(b, time);
-      ChestMenuUtils.updateProgressbar(inv, getStatusSlot(), ticksLeft, ticks,
-          result[0]);
-
-      if (processItem < sizeProcessInput && recipeInput[processItem] != null) {
-        ItemStack itemStack = recipeInput[processItem];
-        if (consumeItem(b, itemStack)) {
-          progressItem.put(b, processItem + 1);
-        }
-      }
-
-    }
-  }
-
-  private void endProcessTicks(Block b, BlockMenu inv, ItemStack[] result) {
-    //give result
-    for (ItemStack itemStack : result) {
-      inv.pushItem(itemStack.clone(), getOutputSlots());
-    }
-    progressTime.remove(b);
-    processing.remove(b);
-    progressItem.remove(b);
-    invalidInput(inv);
-  }
-
-  private void startProcessTicks(Block b, BlockMenu inv, int ticks, int ticksLeft,
-      ItemStack itemStack) {
-    ChestMenuUtils.updateProgressbar(inv, getStatusSlot(), ticksLeft, ticks,
-        itemStack);
-    int time = ticksLeft - this.getSpeed();
-    if (time < 0) {
-      time = 0;
-    }
-    progressTime.put(b, time);
-    progressItem.put(b, 0);
-  }
-
-  private void checkMaterialProgress(Block b, BlockMenu inv, MachineRecipe machineRecipe,
-      int processItem, int sizeProcessInput, int ticks, int ticksLeft, ItemStack[] result) {
-    noMaterialContinue(inv, result[0]);
-    for (int i = processItem; i < sizeProcessInput; i++) {
-      ItemStack itemStack = machineRecipe.getInput()[i];
-      if (consumeItem(b, itemStack)) {
-        if (ticksLeft > 0) {
-          int time = ticksLeft - this.getSpeed();
-          if (time < 0) {
-            time = 0;
-          }
-          progressTime.put(b, time);
-        }
-        progressItem.put(b, i + 1);
-        ChestMenuUtils.updateProgressbar(inv, getStatusSlot(), ticksLeft, ticks,
-            result[0]);
-      }
-    }
-  }
-
-  private boolean consumeItem(Block b, ItemStack itemToConsume) {
-    final BlockMenu inv = BlockStorage.getInventory(b);
-    int[] inputSlots = this.getInputSlots();
-    for (int slot : inputSlots) {
-      ItemStack item = inv.getItemInSlot(slot);
-      if (item != null && SlimefunUtils.isItemSimilar(item, itemToConsume, false, true)) {
-        inv.consumeItem(slot, itemToConsume.getAmount());
-        return true;
-      }
-    }
-    return false;
-  }
-
-  @Override
-  protected MachineRecipe findNextRecipe(BlockMenu inv) {
-
-    int[] inputSlots = this.getInputSlots();
-
-    for (AbstractItemRecipe recipe : machineRecipes) {
-
-      ItemStack[] recipeInput = recipe.getInput();
-      int sizeProcessInput = getSizeProcessInput();
-
-      if(sizeProcessInput == -1){
-        recipeInput = recipe.getInputNotNull();
-        sizeProcessInput = recipeInput.length;
-      }
-
-      int foundSize = 0;
-      for (ItemStack itemStack : recipeInput) {
-        for (int inputSlot : inputSlots) {
-          if (SlimefunUtils.isItemSimilar(inv.getItemInSlot(inputSlot), itemStack, false, true)) {
-            foundSize++;
-            break;
-          }
-        }
-      }
-
-      if (foundSize == sizeProcessInput) {
-        return new MachineRecipe(getTimeProcess(), recipeInput, recipe.getOutput());
-      }
-
-    }
-
-    return null;
-
   }
 
   @Nonnull
@@ -484,20 +277,205 @@ public class MediumContainerMachine extends AContainer implements NotHopperable,
     return displayRecipes;
   }
 
-  public int getProgressTime(Block b) {
+  @Override
+  protected MachineRecipe findNextRecipe(BlockMenu inv) {
+    for (AbstractItemRecipe recipe : machineRecipes) {
+      if (matchingRecipe(recipe.getInputNotNull(), inv)) {
+        return new MachineRecipe(getTimeProcess(), recipe.getInputNotNull(), recipe.getOutputNotNull());
+      }
+    }
+    return null;
+  }
+
+  protected int getProgressTime(Block b) {
     return progressTime.get(b) != null ? progressTime.get(b) : getTimeProcess();
   }
 
-  public int getProgressItem(Block b) {
-    return progressItem.get(b) != null ? progressItem.get(b) : 0;
-  }
-
-  public MachineRecipe getProcessing(Block b) {
+  protected MachineRecipe getProcessing(Block b) {
     return processing.get(b);
   }
 
-  public boolean isProcessing(Block b) {
+  protected boolean isProcessing(Block b) {
     return getProcessing(b) != null;
   }
 
+  protected boolean notHasSpaceOutput(BlockMenu inv, ItemStack[] result) {
+    int requiredSpace = result.length;
+    int availableSpace = 0;
+    for (int slot : getOutputSlots()) {
+      ItemStack itemInSlot = inv.getItemInSlot(slot);
+      if (itemInSlot == null) {
+        availableSpace++;
+      } else {
+        for (ItemStack stack : result) {
+          if (SlimefunUtils.isItemSimilar(itemInSlot, stack, false, false)
+              && itemInSlot.getAmount() < itemInSlot.getMaxStackSize()) {
+            availableSpace++;
+            break;
+          }
+        }
+      }
+      if (availableSpace >= requiredSpace) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  private void nextProcessing(Block b, BlockMenu inv) {
+    MachineRecipe next = this.findNextRecipe(inv);
+    if (next != null) {
+      processing.put(b, next);
+      progressTime.put(b, next.getTicks());
+    } else {
+      if (getInputSlots().length <= 5) {
+        updateStatusReset(inv);
+      } else {
+        updateStatusInvalidInput(inv);
+      }
+    }
+  }
+
+  private void doProcessing(Block b, BlockMenu inv) {
+
+    var result = processing.get(b).getOutput();
+
+    if (result == null || result.length == 0) {
+      progressTime.remove(b);
+      processing.remove(b);
+      updateStatusReset(inv);
+      return;
+    }
+
+    if (getCharge(b.getLocation()) < getEnergyConsumption()) {
+      updateStatusConnectEnergy(inv, null);
+      return;
+    }
+    removeCharge(b.getLocation(), getEnergyConsumption());
+
+    final int ticks = getProcessing(b).getTicks();
+    int ticksRemaining = getProgressTime(b);
+    if (ticks == ticksRemaining) {
+      startProcessTicks(b, inv, ticksRemaining);
+    } else if (ticksRemaining == 0) {
+      endProcessTicks(b, inv, result);
+    } else {
+      doProcessTicks(b, inv, ticks, ticksRemaining, result[0]);
+    }
+  }
+
+  private void startProcessTicks(Block b, BlockMenu inv, int ticksRemaining) {
+    if (consumptionRecipe(inv, processing.get(b).getInput())) {
+      progressTime.put(b, Math.max(ticksRemaining - this.getSpeed(), 0));
+    } else {
+      progressTime.remove(b);
+      processing.remove(b);
+      updateStatusInvalidInput(inv);
+    }
+  }
+
+  private void endProcessTicks(Block b, BlockMenu inv, ItemStack[] result) {
+    if (notHasSpaceOutput(inv, result)) {
+      updateStatusOutputFull(inv);
+      return;
+    }
+    for (ItemStack itemStack : result) {
+      inv.pushItem(itemStack.clone(), getOutputSlots());
+    }
+    progressTime.remove(b);
+    processing.remove(b);
+    updateStatusReset(inv);
+  }
+
+  private void doProcessTicks(Block b, BlockMenu inv, int ticks, int ticksRemaining, ItemStack result) {
+    progressTime.put(b, Math.max(ticksRemaining - this.getSpeed(), 0));
+    ChestMenuUtils.updateProgressbar(inv, getStatusSlot(), ticksRemaining, ticks, result);
+  }
+
+  private boolean consumptionRecipe(BlockMenu inv, ItemStack[] input) {
+
+    // Count the required amount of each item in the input
+    Map<ItemStack, Integer> requiredItems = new HashMap<>();
+    for (ItemStack item : input) {
+      requiredItems.merge(item, item.getAmount(), Integer::sum);
+    }
+
+    // Try to consume the required items from the input slots
+    boolean consumeFailure = false;
+    List<ItemStack> consumedItems = new ArrayList<>();
+
+    for (Map.Entry<ItemStack, Integer> entry : requiredItems.entrySet()) {
+      ItemStack requiredItem = entry.getKey();
+      int requiredAmount = entry.getValue();
+      int foundAmount = 0;
+
+      for (int slot : this.getInputSlots()) {
+        ItemStack itemInSlot = inv.getItemInSlot(slot);
+        if (itemInSlot != null && SlimefunUtils.isItemSimilar(itemInSlot, requiredItem, false, false)) {
+          int amountToConsume = Math.min(itemInSlot.getAmount(), requiredAmount - foundAmount);
+          inv.consumeItem(slot, amountToConsume);
+          foundAmount += amountToConsume;
+          consumedItems.add(new ItemStack(itemInSlot.getType(), amountToConsume));
+          if (foundAmount >= requiredAmount) {
+            break;
+          }
+        }
+      }
+      if (foundAmount < requiredAmount) {
+        consumeFailure = true;
+        break;
+      }
+    }
+
+    // Revert consumption if not all required items are found
+    if (consumeFailure) {
+      for (ItemStack consumedItem : consumedItems) {
+        inv.pushItem(consumedItem, getInputSlots());
+      }
+      return false;
+    }
+    return true;
+  }
+
+  private boolean matchingRecipe(ItemStack[] recipe, BlockMenu inv) {
+
+    // Count the required amount of each item in the recipe
+    Map<ItemStack, Integer> requiredItems = new HashMap<>();
+    for (ItemStack recipeItem : recipe) {
+      requiredItems.merge(recipeItem, recipeItem.getAmount(), Integer::sum);
+    }
+
+    // Check if all required items are present in the input slots
+    Map<ItemStack, Integer> foundItems = new HashMap<>();
+    for (int slot : this.getInputSlots()) {
+      ItemStack itemInSlot = inv.getItemInSlot(slot);
+      if (itemInSlot != null) {
+        for (Map.Entry<ItemStack, Integer> entry : requiredItems.entrySet()) {
+          ItemStack requiredItem = entry.getKey();
+          if (SlimefunUtils.isItemSimilar(itemInSlot, requiredItem, false, false)) {
+            foundItems.merge(requiredItem, itemInSlot.getAmount(), Integer::sum);
+          }
+        }
+      }
+    }
+
+    // Verify if the found amount of each item is sufficient
+    for (Map.Entry<ItemStack, Integer> entry : requiredItems.entrySet()) {
+      ItemStack requiredItem = entry.getKey();
+      int requiredAmount = entry.getValue();
+      int foundAmount = foundItems.getOrDefault(requiredItem, 0);
+      if (foundAmount < requiredAmount) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  private ItemStack getDisplayOrInfo(ItemStack itemStack, String name) {
+    return new CustomItemStack(itemStack != null ? itemStack : new ItemStack(Material.BLACK_STAINED_GLASS_PANE), name);
+  }
+
+  private ItemStack getDisplayOrWarn(ItemStack itemStack, String name) {
+    return new CustomItemStack(itemStack != null ? itemStack : new ItemStack(Material.RED_STAINED_GLASS_PANE), name);
+  }
 }

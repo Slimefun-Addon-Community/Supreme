@@ -13,7 +13,7 @@ import static com.github.relativobr.supreme.resource.core.SupremeCoreColor.RESOU
 import static com.github.relativobr.supreme.resource.core.SupremeCoreDeath.RESOURCE_CORE_STRING;
 import static com.github.relativobr.supreme.resource.core.SupremeCoreLife.RESOURCE_CORE_APPLE;
 
-import com.github.relativobr.supreme.generic.machine.MediumContainerMachine;
+import com.github.relativobr.supreme.generic.machine.GenericMachine;
 import com.github.relativobr.supreme.generic.recipe.AbstractItemRecipe;
 import com.github.relativobr.supreme.resource.SupremeComponents;
 import com.github.relativobr.supreme.resource.magical.SupremeAttribute;
@@ -38,7 +38,7 @@ import org.bukkit.inventory.ItemStack;
 import org.springframework.scheduling.annotation.Async;
 
 @Async
-public class Foundry extends MediumContainerMachine {
+public class Foundry extends GenericMachine {
 
   public static final SlimefunItemStack FOUNDRY_MACHINE = new SupremeItemStack("SUPREME_FOUNDRY_I", Material.GRINDSTONE,
       "&bFoundry", "", "&fFoundry and Synthesizer Items", "",
