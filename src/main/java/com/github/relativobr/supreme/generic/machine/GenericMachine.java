@@ -17,11 +17,14 @@ import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
@@ -41,8 +44,11 @@ import org.bukkit.inventory.ItemStack;
 
 public class GenericMachine extends AContainer implements NotHopperable, RecipeDisplayItem {
 
-  private final Map<Block, MachineRecipe> processing = new HashMap<Block, MachineRecipe>();
-  private final Map<Block, Integer> progressTime = new HashMap<Block, Integer>();
+  private final Map<Block, MachineRecipe> processing = new HashMap<>();
+  private final Map<Block, Integer> progressTime = new HashMap<>();
+  private final Map<Block, List<ItemStack>> consumedItemsMap = new HashMap<>();
+  private final Map<Block, Integer> attemptCount = new HashMap<>();
+  private static final int MAX_ATTEMPTS = 15;
   public List<AbstractItemRecipe> machineRecipes = new ArrayList<>();
   private Integer timeProcess;
   private String machineIdentifier = "MediumContainerMachine";
@@ -337,7 +343,6 @@ public class GenericMachine extends AContainer implements NotHopperable, RecipeD
   }
 
   private void doProcessing(Block b, BlockMenu inv) {
-
     var result = processing.get(b).getOutput();
 
     if (result == null || result.length == 0) {
@@ -365,12 +370,25 @@ public class GenericMachine extends AContainer implements NotHopperable, RecipeD
   }
 
   private void startProcessTicks(Block b, BlockMenu inv, int ticksRemaining) {
-    if (consumptionRecipe(inv, processing.get(b).getInput())) {
+    List<ItemStack> consumedItems = consumedItemsMap.getOrDefault(b, new ArrayList<>());
+    if (consumptionRecipe(inv, processing.get(b).getInput(), consumedItems)) {
       progressTime.put(b, Math.max(ticksRemaining - this.getSpeed(), 0));
+      attemptCount.remove(b);
+      consumedItemsMap.remove(b);
     } else {
-      progressTime.remove(b);
-      processing.remove(b);
-      updateStatusInvalidInput(inv);
+      int attempts = attemptCount.getOrDefault(b, 0) + 1;
+      if (attempts >= MAX_ATTEMPTS) {
+        progressTime.remove(b);
+        processing.remove(b);
+        attemptCount.remove(b);
+        consumedItemsMap.remove(b);
+        for (ItemStack consumedItem : consumedItems) {
+          inv.pushItem(consumedItem, getInputSlots());
+        }
+        updateStatusInvalidInput(inv);
+      } else {
+        attemptCount.put(b, attempts);
+      }
     }
   }
 
@@ -392,22 +410,24 @@ public class GenericMachine extends AContainer implements NotHopperable, RecipeD
     ChestMenuUtils.updateProgressbar(inv, getStatusSlot(), ticksRemaining, ticks, result);
   }
 
-  private boolean consumptionRecipe(BlockMenu inv, ItemStack[] input) {
-
-    // Count the required amount of each item in the input
+  private boolean consumptionRecipe(BlockMenu inv, ItemStack[] input, List<ItemStack> consumedItems) {
     Map<ItemStack, Integer> requiredItems = new HashMap<>();
     for (ItemStack item : input) {
       requiredItems.merge(item, item.getAmount(), Integer::sum);
     }
 
-    // Try to consume the required items from the input slots
     boolean consumeFailure = false;
-    List<ItemStack> consumedItems = new ArrayList<>();
 
     for (Map.Entry<ItemStack, Integer> entry : requiredItems.entrySet()) {
       ItemStack requiredItem = entry.getKey();
       int requiredAmount = entry.getValue();
       int foundAmount = 0;
+
+      for (ItemStack consumedItem : consumedItems) {
+        if (SlimefunUtils.isItemSimilar(consumedItem, requiredItem, false, false)) {
+          foundAmount += consumedItem.getAmount();
+        }
+      }
 
       for (int slot : this.getInputSlots()) {
         ItemStack itemInSlot = inv.getItemInSlot(slot);
@@ -427,48 +447,22 @@ public class GenericMachine extends AContainer implements NotHopperable, RecipeD
       }
     }
 
-    // Revert consumption if not all required items are found
-    if (consumeFailure) {
-      for (ItemStack consumedItem : consumedItems) {
-        inv.pushItem(consumedItem, getInputSlots());
-      }
-      return false;
-    }
-    return true;
+    return !consumeFailure;
   }
 
   private boolean matchingRecipe(ItemStack[] recipe, BlockMenu inv) {
+    Set<ItemStack> uniqueItems = new HashSet<>(Arrays.asList(recipe));
+    return uniqueItems.stream().allMatch(item -> isItemPresentInSlots(item, inv));
+  }
 
-    // Count the required amount of each item in the recipe
-    Map<ItemStack, Integer> requiredItems = new HashMap<>();
-    for (ItemStack recipeItem : recipe) {
-      requiredItems.merge(recipeItem, recipeItem.getAmount(), Integer::sum);
-    }
-
-    // Check if all required items are present in the input slots
-    Map<ItemStack, Integer> foundItems = new HashMap<>();
+  private boolean isItemPresentInSlots(ItemStack item, BlockMenu inv) {
     for (int slot : this.getInputSlots()) {
       ItemStack itemInSlot = inv.getItemInSlot(slot);
-      if (itemInSlot != null) {
-        for (Map.Entry<ItemStack, Integer> entry : requiredItems.entrySet()) {
-          ItemStack requiredItem = entry.getKey();
-          if (SlimefunUtils.isItemSimilar(itemInSlot, requiredItem, false, false)) {
-            foundItems.merge(requiredItem, itemInSlot.getAmount(), Integer::sum);
-          }
-        }
+      if (itemInSlot != null && SlimefunUtils.isItemSimilar(itemInSlot, item, false, false)) {
+        return true;
       }
     }
-
-    // Verify if the found amount of each item is sufficient
-    for (Map.Entry<ItemStack, Integer> entry : requiredItems.entrySet()) {
-      ItemStack requiredItem = entry.getKey();
-      int requiredAmount = entry.getValue();
-      int foundAmount = foundItems.getOrDefault(requiredItem, 0);
-      if (foundAmount < requiredAmount) {
-        return false;
-      }
-    }
-    return true;
+    return false;
   }
 
   private ItemStack getDisplayOrInfo(ItemStack itemStack, String name) {
