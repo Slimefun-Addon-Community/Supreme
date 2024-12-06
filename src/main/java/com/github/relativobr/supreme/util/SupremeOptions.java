@@ -33,6 +33,7 @@ public class SupremeOptions {
     boolean enableArmor;
     boolean enableTech;
     boolean customBc;
+    int machineMaxAttemptConsumed;
 
     public static SupremeOptions defaultValue() {
         return SupremeOptions.builder()
@@ -58,6 +59,7 @@ public class SupremeOptions {
                 .enableArmor(true)
                 .enableTech(true)
                 .customBc(false)
+                .machineMaxAttemptConsumed(30)
                 .build();
     }
 }

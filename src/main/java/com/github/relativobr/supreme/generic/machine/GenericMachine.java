@@ -2,6 +2,7 @@ package com.github.relativobr.supreme.generic.machine;
 
 import static java.util.Objects.nonNull;
 
+import com.github.relativobr.supreme.Supreme;
 import com.github.relativobr.supreme.generic.recipe.AbstractItemRecipe;
 import com.github.relativobr.supreme.generic.recipe.InventoryRecipe;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -46,9 +47,8 @@ public class GenericMachine extends AContainer implements NotHopperable, RecipeD
 
   private final Map<Block, MachineRecipe> processing = new HashMap<>();
   private final Map<Block, Integer> progressTime = new HashMap<>();
-  private final Map<Block, List<ItemStack>> consumedItemsMap = new HashMap<>();
+  private final Map<Block, Map<ItemStack, Integer>> consumedItemsMap = new HashMap<>();
   private final Map<Block, Integer> attemptCount = new HashMap<>();
-  private static final int MAX_ATTEMPTS = 15;
   public List<AbstractItemRecipe> machineRecipes = new ArrayList<>();
   private Integer timeProcess;
   private String machineIdentifier = "MediumContainerMachine";
@@ -128,11 +128,11 @@ public class GenericMachine extends AContainer implements NotHopperable, RecipeD
       public void onBlockBreak(Block b) {
         BlockMenu inv = BlockStorage.getInventory(b);
         if (inv != null) {
+          revertConsumedItem(b, inv);
           inv.dropItems(b.getLocation(), getInputSlots());
           inv.dropItems(b.getLocation(), getOutputSlots());
         }
-        progressTime.remove(b);
-        processing.remove(b);
+        removeMapBlock(b);
       }
     };
   }
@@ -151,6 +151,14 @@ public class GenericMachine extends AContainer implements NotHopperable, RecipeD
 
   protected void updateStatusConnectEnergy(BlockMenu menu, ItemStack itemStack) {
     menu.replaceExistingItem(getStatusSlot(), getDisplayOrWarn(itemStack, "&cConnect energy to continue"));
+  }
+
+  protected void updateStatusLoadMaterial(BlockMenu menu, ItemStack itemStack, int attempts, int progressCount, int totalProgress) {
+    var infoDetail = new CustomItemStack(itemStack,
+        "&cLoad more material to start", "",
+        "&7Attempts: &e" + attempts + " &7/ &e" + Supreme.getSupremeOptions().getMachineMaxAttemptConsumed(),
+        "&7Progress: &e" + progressCount + " &7/ &e" + totalProgress, "");
+    menu.replaceExistingItem(getStatusSlot(), infoDetail);
   }
 
   public GenericMachine setMachineRecipes(@Nonnull List<AbstractItemRecipe> machineRecipes) {
@@ -301,6 +309,10 @@ public class GenericMachine extends AContainer implements NotHopperable, RecipeD
     return processing.get(b);
   }
 
+  protected Map<ItemStack, Integer> getConsumedItems(Block b) {
+    return consumedItemsMap.get(b);
+  }
+
   protected boolean isProcessing(Block b) {
     return getProcessing(b) != null;
   }
@@ -333,6 +345,8 @@ public class GenericMachine extends AContainer implements NotHopperable, RecipeD
     if (next != null) {
       processing.put(b, next);
       progressTime.put(b, next.getTicks());
+      consumedItemsMap.put(b, new HashMap<>());
+      attemptCount.put(b, 0);
     } else {
       if (getInputSlots().length <= 5) {
         updateStatusReset(inv);
@@ -342,12 +356,18 @@ public class GenericMachine extends AContainer implements NotHopperable, RecipeD
     }
   }
 
+  private void removeMapBlock(Block b) {
+    progressTime.remove(b);
+    processing.remove(b);
+    attemptCount.remove(b);
+    consumedItemsMap.remove(b);
+  }
+
   private void doProcessing(Block b, BlockMenu inv) {
-    var result = processing.get(b).getOutput();
+    var result = getProcessing(b).getOutput();
 
     if (result == null || result.length == 0) {
-      progressTime.remove(b);
-      processing.remove(b);
+      removeMapBlock(b);
       updateStatusReset(inv);
       return;
     }
@@ -370,26 +390,42 @@ public class GenericMachine extends AContainer implements NotHopperable, RecipeD
   }
 
   private void startProcessTicks(Block b, BlockMenu inv, int ticksRemaining) {
-    List<ItemStack> consumedItems = consumedItemsMap.getOrDefault(b, new ArrayList<>());
-    if (consumptionRecipe(inv, processing.get(b).getInput(), consumedItems)) {
+
+    int attempts = attemptCount.getOrDefault(b, 0) + 1;
+    if (consumptionRecipe(b, inv)) {
       progressTime.put(b, Math.max(ticksRemaining - this.getSpeed(), 0));
-      attemptCount.remove(b);
-      consumedItemsMap.remove(b);
+      attemptCount.put(b, 0);
+      consumedItemsMap.put(b, new HashMap<>());
     } else {
-      int attempts = attemptCount.getOrDefault(b, 0) + 1;
-      if (attempts >= MAX_ATTEMPTS) {
-        progressTime.remove(b);
-        processing.remove(b);
-        attemptCount.remove(b);
-        consumedItemsMap.remove(b);
-        for (ItemStack consumedItem : consumedItems) {
-          inv.pushItem(consumedItem, getInputSlots());
-        }
+      if (attempts >= Supreme.getSupremeOptions().getMachineMaxAttemptConsumed()) {
+        revertConsumedItem(b, inv);
+        removeMapBlock(b);
         updateStatusInvalidInput(inv);
       } else {
         attemptCount.put(b, attempts);
+        var progressCount = getConsumedItems(b).values().stream().mapToInt(Integer::intValue).sum();
+        var totalProgress = Arrays.stream(getProcessing(b).getInput()).mapToInt(ItemStack::getAmount).sum();
+        updateStatusLoadMaterial(inv, getProcessing(b).getOutput()[0], attempts, progressCount, totalProgress);
       }
     }
+  }
+
+  private void revertConsumedItem(Block b, BlockMenu inv) {
+    for (Map.Entry<ItemStack, Integer> consumedEntry : getConsumedItems(b).entrySet()) {
+      ItemStack consumedItem = consumedEntry.getKey();
+      int amount = consumedEntry.getValue();
+      if (consumedItem != null && consumedItem.getType() != Material.AIR) {
+        int maxStackSize = consumedItem.getMaxStackSize();
+        while (amount > 0) {
+          int stackSize = Math.min(maxStackSize, amount);
+          ItemStack returnItem = consumedItem.clone();
+          returnItem.setAmount(stackSize);
+          inv.pushItem(returnItem, getInputSlots());
+          amount -= stackSize;
+        }
+      }
+    }
+    getConsumedItems(b).clear();
   }
 
   private void endProcessTicks(Block b, BlockMenu inv, ItemStack[] result) {
@@ -400,8 +436,7 @@ public class GenericMachine extends AContainer implements NotHopperable, RecipeD
     for (ItemStack itemStack : result) {
       inv.pushItem(itemStack.clone(), getOutputSlots());
     }
-    progressTime.remove(b);
-    processing.remove(b);
+    removeMapBlock(b);
     updateStatusReset(inv);
   }
 
@@ -410,32 +445,36 @@ public class GenericMachine extends AContainer implements NotHopperable, RecipeD
     ChestMenuUtils.updateProgressbar(inv, getStatusSlot(), ticksRemaining, ticks, result);
   }
 
-  private boolean consumptionRecipe(BlockMenu inv, ItemStack[] input, List<ItemStack> consumedItems) {
+  private boolean consumptionRecipe(Block b, BlockMenu inv) {
     Map<ItemStack, Integer> requiredItems = new HashMap<>();
-    for (ItemStack item : input) {
-      requiredItems.merge(item, item.getAmount(), Integer::sum);
+    for (ItemStack item : getProcessing(b).getInput()) {
+      requiredItems.merge(item.clone(), item.getAmount(), Integer::sum);
     }
 
     boolean consumeFailure = false;
-
     for (Map.Entry<ItemStack, Integer> entry : requiredItems.entrySet()) {
       ItemStack requiredItem = entry.getKey();
       int requiredAmount = entry.getValue();
       int foundAmount = 0;
 
-      for (ItemStack consumedItem : consumedItems) {
-        if (SlimefunUtils.isItemSimilar(consumedItem, requiredItem, false, false)) {
-          foundAmount += consumedItem.getAmount();
+      for (Map.Entry<ItemStack, Integer> consumedEntry : getConsumedItems(b).entrySet()) {
+        if (SlimefunUtils.isItemSimilar(consumedEntry.getKey(), requiredItem, false, false)) {
+          foundAmount += consumedEntry.getValue();
         }
       }
 
       for (int slot : this.getInputSlots()) {
-        ItemStack itemInSlot = inv.getItemInSlot(slot);
-        if (itemInSlot != null && SlimefunUtils.isItemSimilar(itemInSlot, requiredItem, false, false)) {
-          int amountToConsume = Math.min(itemInSlot.getAmount(), requiredAmount - foundAmount);
-          inv.consumeItem(slot, amountToConsume);
+        if (inv.getItemInSlot(slot) == null) {
+          continue;
+        }
+        ItemStack inputItem = inv.getItemInSlot(slot).clone();
+        if (SlimefunUtils.isItemSimilar(inputItem, requiredItem, false, false)) {
+          int amountToConsume = Math.min(inputItem.getAmount(), requiredAmount - foundAmount);
+          if (amountToConsume > 0) {
+            inv.consumeItem(slot, amountToConsume);
+            getConsumedItems(b).merge(inputItem, amountToConsume, Integer::sum);
+          }
           foundAmount += amountToConsume;
-          consumedItems.add(new ItemStack(itemInSlot.getType(), amountToConsume));
           if (foundAmount >= requiredAmount) {
             break;
           }
