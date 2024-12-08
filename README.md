@@ -138,6 +138,7 @@ Make a new issue, pull request, or discord Slimefun-Addon-Community
 - **base-time-mob-collector** - To change the Mob Collector base processing time (default: 15)
 - **base-time-tech-generator** - To change the Tech Generator base processing time (default: 1800)
 - **tech-generator-max-amount** - To change the Tech Generator base result item amount (default: 64)
+- **machine-max-attempt-consumed** - To change the Electric Machines max attempt consumed item retry (default: 30)
 - **mob-tech-enable-bee** - Indication whether to enable the Bee in Mob Tech (default: true)
 - **mob-tech-enable-iron-golem** - Indication whether to enable the Iron Golem in Mob Tech (default: true)
 - **mob-tech-enable-zombie** - Indication whether to enable the Zombie in Mob Tech (default: true)

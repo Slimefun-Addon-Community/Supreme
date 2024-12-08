@@ -21,6 +21,7 @@ options:
   enable-armor: true
   enable-tech: true
   custom-bc: false
+  machine-max-attempt-consumed: 30
 # -------------------------------
 # quarry-custom-output
 # -------------------------------
